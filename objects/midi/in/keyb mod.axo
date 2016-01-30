@@ -1,6 +1,6 @@
 <objdefs>
-   <obj.normal id="keyb mod" uuid="abcd509d15e7d13d5381203fd2b4d0ac6fe57bb3" sha="8a3a022c1939dab132d8384e14252d713eff5cc3">
-      <upgradeSha>d8c6231a4b7f1068d9862fc84915fc392cfc2777</upgradeSha>
+   <obj.normal id="keyb mod" uuid="abcd509d15e7d13d5381203fd2b4d0ac6fe57bb3" sha="5c4259f776c29bb6d0a1dae616d462851a373035">
+      <upgradeSha>b04b85a71cec3251affc24a6ff92a38936ee9b1b</upgradeSha>
       <sDescription>Monophonic MIDI keyboard note input, gate, velocity and release velocity modulation source</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
@@ -43,13 +43,13 @@ outlet_releaseVelocity= _rvelo<<20;
   _gate = 1<<27;
   _gate2 = 0;
   PExModulationSourceChange(
-    &parent->PExModulationSources[parent->MODULATOR_attr_name_velocity][0],
+    &parent->GetModulationTable()[parent->MODULATOR_attr_name_velocity*NMODULATIONTARGETS],
     NMODULATIONTARGETS,
     &parent->PExch[0],
     &parent->PExModulationPrevVal[parent->polyIndex][parent->MODULATOR_attr_name_velocity],
     _velo<<20);
   PExModulationSourceChange(
-    &parent->PExModulationSources[parent->MODULATOR_attr_name_note][0],
+    &parent->GetModulationTable()[parent->MODULATOR_attr_name_note*NMODULATIONTARGETS],
     NMODULATIONTARGETS,
     &parent->PExch[0],
     &parent->PExModulationPrevVal[parent->polyIndex][parent->MODULATOR_attr_name_note],
@@ -60,7 +60,7 @@ outlet_releaseVelocity= _rvelo<<20;
     _rvelo = data2;
     _gate = 0;
   PExModulationSourceChange(
-    &parent->PExModulationSources[parent->MODULATOR_attr_name_releasevelocity][0],
+    &parent->GetModulationTable()[parent->MODULATOR_attr_name_releasevelocity*NMODULATIONTARGETS],
     NMODULATIONTARGETS,
     &parent->PExch[0],
     &parent->PExModulationPrevVal[parent->polyIndex][parent->MODULATOR_attr_name_releasevelocity],
