@@ -60,7 +60,7 @@
                <string>22</string>
             </CEntries>
          </combo>
-         <table name="filename"/>
+         <file name="filename"/>
       </attribs>
       <depends>
          <depend>fatfs</depend>
