@@ -1,0 +1,27 @@
+<objdefs>
+   <obj.normal id="channel touch" uuid="ec3cecfc230f8f94dbae80c4f897b1840ab0116b" sha="756a8edffa57fa55aa0a171b9d59a44fb91dd663">
+      <upgradeSha>b61a16e60ef013228240c1a762342579230ad8ed</upgradeSha>
+      <sDescription>Midi channel pressure output</sDescription>
+      <author>Mark Harris</author>
+      <license>BSD</license>
+      <inlets>
+         <frac32.positive name="pressure" description="pressure"/>
+         <bool32.rising name="trig" description="trigger"/>
+      </inlets>
+      <outlets/>
+      <displays/>
+      <params/>
+      <attribs>
+         <spinner name="channel" MinValue="1" MaxValue="16" DefaultValue="0"/>
+      </attribs>
+      <code.declaration><![CDATA[int ntrig;
+int note;]]></code.declaration>
+      <code.init><![CDATA[note=0;ntrig=0;
+]]></code.init>
+      <code.krate><![CDATA[if ((inlet_trig>0) && !ntrig) {
+PatchMidiInHandler(MIDI_DEVICE_INTERNAL, 0, MIDI_CHANNEL_PRESSURE + (attr_channel-1),inlet_pressure>>20,0);  ntrig=1;
+}
+if (!(inlet_trig>0) && ntrig) {ntrig=0;}
+]]></code.krate>
+   </obj.normal>
+</objdefs>
