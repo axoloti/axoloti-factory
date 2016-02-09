@@ -1,6 +1,6 @@
 <objdefs>
-   <obj.normal id="outconfig" uuid="f4fa7e864a5446fc3e4527e5ef6732f283a9d43c" sha="b005d810ffcd8fd1b07342bb194377d6d94e64e2">
-      <upgradeSha>2aa0e0cba0ec5538ada88b36303a2632fc2a8b1a</upgradeSha>
+   <obj.normal id="outconfig" uuid="eace67e3304afaa1bb695b444e9345f2d8adaf00" sha="1b9173f679e8604a6e64ee5f938ac798d3d77ff2">
+      <upgradeSha>2c5cb5f91c8da9460b48f4130918b38e4d595489</upgradeSha>
       <sDescription>Audio output configuration)</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
@@ -37,12 +37,25 @@
                <string>63</string>
             </CEntries>
          </combo>
+         <combo name="mode">
+            <MenuEntries>
+               <string>Stereo</string>
+               <string>Mono(L)</string>
+               <string>Balanced(L)</string>
+            </MenuEntries>
+            <CEntries>
+               <string>A_STEREO</string>
+               <string>A_MONO</string>
+               <string>A_BALANCED</string>
+            </CEntries>
+         </combo>
       </attribs>
       <depends>
          <depend>ADAU1361</depend>
       </depends>
       <code.init><![CDATA[ADAU1961_WriteRegister(0x4023,(attr_headphones<<2)+3);
 ADAU1961_WriteRegister(0x4024,(attr_headphones<<2)+3);
+AudioOutputMode = attr_mode ;
 ]]></code.init>
    </obj.normal>
 </objdefs>
