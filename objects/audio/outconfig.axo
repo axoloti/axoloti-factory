@@ -1,6 +1,6 @@
 <objdefs>
-   <obj.normal id="outconfig" uuid="eace67e3304afaa1bb695b444e9345f2d8adaf00" sha="1b9173f679e8604a6e64ee5f938ac798d3d77ff2">
-      <upgradeSha>2c5cb5f91c8da9460b48f4130918b38e4d595489</upgradeSha>
+   <obj.normal id="outconfig" uuid="eace67e3304afaa1bb695b444e9345f2d8adaf00" sha="131a98d9122529e20f3148bd5b1f557c87e78dfb">
+      <upgradeSha>6bcf773ffb1cc3d890cc9725fdb62924ae7deb62</upgradeSha>
       <sDescription>Audio output configuration)</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
@@ -55,7 +55,7 @@
       </depends>
       <code.init><![CDATA[ADAU1961_WriteRegister(0x4023,(attr_headphones<<2)+3);
 ADAU1961_WriteRegister(0x4024,(attr_headphones<<2)+3);
-AudioOutputMode = attr_mode ;
+AudioOutputMode = attr_mode;
 ]]></code.init>
    </obj.normal>
 </objdefs>

@@ -1,6 +1,6 @@
 <objdefs>
-   <obj.normal id="inconfig" uuid="6f2f725102e40ae42955f5615c27eb211298a1d" sha="7eb314b69477fa9eb4ff1f78cc33085b109e9400">
-      <upgradeSha>c5ee5e230152b248edde544704970b051688aa4f</upgradeSha>
+   <obj.normal id="inconfig" uuid="9a80ef3c19f2a8f81da3a3b7c1c44d18126b97d9" sha="40c7f45d95b632f20fbc749cfd97c27bd79cf6e">
+      <upgradeSha>fc3cab0b80520751f5aa366d0d26b7ace0ca6d5a</upgradeSha>
       <sDescription>Audio input configuration</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
@@ -59,6 +59,18 @@
                <string>2</string>
             </CEntries>
          </combo>
+         <combo name="mode">
+            <MenuEntries>
+               <string>Stereo</string>
+               <string>Mono(L)</string>
+               <string>Balanced(L)</string>
+            </MenuEntries>
+            <CEntries>
+               <string>A_STEREO</string>
+               <string>A_MONO</string>
+               <string>A_BALANCED</string>
+            </CEntries>
+         </combo>
       </attribs>
       <depends>
          <depend>ADAU1361</depend>
@@ -67,6 +79,7 @@
 ADAU1961_WriteRegister(0x400F,(attr_gain<<2)+3);
 ADAU1961_WriteRegister(0x400B,(attr_boost<<3)+0);
 ADAU1961_WriteRegister(0x400D,(attr_boost<<3)+0);
+AudioInputMode = attr_mode;
 ]]></code.init>
    </obj.normal>
 </objdefs>
