@@ -1,6 +1,6 @@
 <objdefs>
-   <obj.normal id="play fn" uuid="25910f7130532e4934eed3cf2a934324790d0f00" sha="bc10154d9f6cdd55401f61da49295c28b3287de9">
-      <upgradeSha>ff9051f66866eec819e736804368891a9fbdc446</upgradeSha>
+   <obj.normal id="play fn" uuid="25910f7130532e4934eed3cf2a934324790d0f00" sha="f8e94936bdea36a99134ade7dd8988d30d0ac6bc">
+      <upgradeSha>3772a7e3208a65534e5007803e1343c61497e9b2</upgradeSha>
       <sDescription>streaming playback of a mono .wav file from sdcard (testing). Direct filename.</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
@@ -15,13 +15,13 @@
       <displays/>
       <params/>
       <attribs>
-         <table name="fn"/>
+         <file name="fn"/>
       </attribs>
       <includes>
          <include>./streamer.h</include>
          <include>chibios/ext/fatfs/src/ff.h</include>
       </includes>
-      <code.declaration><![CDATA[    WORKING_AREA(waThreadSD, 512);
+      <code.declaration><![CDATA[    WORKING_AREA(waThreadSD, 720);
    sdReadFilePingpong *stream;
    int starttrig;
    int stoptrig;
