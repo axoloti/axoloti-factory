@@ -1,4 +1,4 @@
-<patch-1.0 appVersion="1.0.8">
+<patch-1.0>
    <obj type="ctrl/dial p" sha="1f21216639bb798a4ea7902940999a5bcfd0de90" name="level" x="182" y="14">
       <params>
          <frac32.u.map name="value" onParent="true" value="4.0"/>
@@ -9,7 +9,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/div 2" uuid="ad1e413d83e5edce017e3e9a4f30d86035cf637" name="div_1" x="112" y="56">
+   <obj type="math/div 2" sha="5df68ad33aa1633cb7cb1724fcd41eee28932582" name="div_1" x="112" y="56">
       <params/>
       <attribs/>
    </obj>
@@ -17,7 +17,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/+" uuid="faedbea4612d9bd3644d6d3bf31946d848a70e19" name="+c_1" x="112" y="98">
+   <obj type="math/+" sha="f21fcf9a2511404a296065f4ba87ab840e153161" name="+c_1" x="112" y="98">
       <params/>
       <attribs/>
    </obj>
@@ -25,11 +25,11 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/muls 2" uuid="c3083089dc169cd87133000659a02789dec5a151" name="muls_1" x="252" y="98">
+   <obj type="math/muls 2" sha="17100b9369a00a2265f0f754ff1c0ec87f9c6690" name="muls_1" x="252" y="98">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/+" uuid="faedbea4612d9bd3644d6d3bf31946d848a70e19" name="+c_2" x="252" y="140">
+   <obj type="math/+" sha="f21fcf9a2511404a296065f4ba87ab840e153161" name="+c_2" x="252" y="140">
       <params/>
       <attribs/>
    </obj>
@@ -37,15 +37,15 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/-" uuid="832edca3a945aa25ae1875d277bdd12d6709031a" name="-_1" x="392" y="140">
+   <obj type="math/-" sha="86190d21676ef888e72ad0ae4fde0d817119f21c" name="-_1" x="392" y="140">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/inv" uuid="7f4c6cf4dcf79f9b0aa81c2eaf540405875714a3" name="inv_1" x="112" y="154">
+   <obj type="math/inv" sha="dd3d98b9ec6f2b9231cb1d00d0f9667152537120" name="inv_1" x="112" y="154">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/muls 8" uuid="910989ec4cbbf3e9ac50429a9f27dc336f63ddd3" name="muls_2" x="392" y="196">
+   <obj type="math/muls 8" sha="3b876043fb7aa6dff276407826cba102606eb254" name="muls_2" x="392" y="196">
       <params/>
       <attribs/>
    </obj>
@@ -54,6 +54,14 @@
       <attribs/>
    </obj>
    <nets>
+      <net>
+         <source obj="+c_1" outlet="out"/>
+         <dest obj="rectifier_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="div_1" outlet="out"/>
+         <dest obj="+c_1" inlet="in1"/>
+      </net>
       <net>
          <source obj="level" outlet="out"/>
          <dest obj="nointerp_1" inlet="i"/>
@@ -69,6 +77,18 @@
          <dest obj="inv_1" inlet="in"/>
       </net>
       <net>
+         <source obj="inv_1" outlet="out"/>
+         <dest obj="+c_2" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="+c_2" outlet="out"/>
+         <dest obj="rectifier_2" inlet="in"/>
+      </net>
+      <net>
+         <source obj="muls_1" outlet="out"/>
+         <dest obj="+c_2" inlet="in2"/>
+      </net>
+      <net>
          <source obj="rectifier_2" outlet="out"/>
          <dest obj="-_1" inlet="in1"/>
       </net>
@@ -77,32 +97,12 @@
          <dest obj="div_1" inlet="in"/>
       </net>
       <net>
-         <source obj="div_1" outlet="out"/>
-         <dest obj="+c_1" inlet="in1"/>
-      </net>
-      <net>
-         <source obj="+c_1" outlet="out"/>
-         <dest obj="rectifier_1" inlet="in"/>
-      </net>
-      <net>
-         <source obj="muls_1" outlet="out"/>
-         <dest obj="+c_2" inlet="in2"/>
-      </net>
-      <net>
          <source obj="-_1" outlet="out"/>
          <dest obj="muls_2" inlet="in"/>
       </net>
       <net>
-         <source obj="inv_1" outlet="out"/>
-         <dest obj="+c_2" inlet="in1"/>
-      </net>
-      <net>
          <source obj="muls_2" outlet="out"/>
          <dest obj="outlet_1" inlet="outlet"/>
-      </net>
-      <net>
-         <source obj="+c_2" outlet="out"/>
-         <dest obj="rectifier_2" inlet="in"/>
       </net>
    </nets>
    <settings>
