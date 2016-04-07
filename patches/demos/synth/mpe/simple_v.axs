@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <comment type="patch/comment" x="56" y="14" text="Simple voice for a MPE synth. simply load in parent patch, set voices and connect to audio"/>
    <obj type="osc/saw" sha="fe2c3c02396657dfbc225c73f9340ad0c4c3eea6" name="saw_1" x="546" y="70">
       <params>
@@ -6,7 +6,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 1 g" sha="9837ebd6f7c0b2b3853ea475d91c943144e2273b" name="sub_osc_mix" x="672" y="70">
+   <obj type="mix/mix 1 g" uuid="e6982841c1bf323ee2062a4b6cc2737adafbd668" name="mix_1" x="672" y="70">
       <params>
          <frac32.u.map name="gain1" onParent="true" value="63.5"/>
       </params>
@@ -82,14 +82,14 @@
       </net>
       <net>
          <source obj="saw_1" outlet="wave"/>
-         <dest obj="sub_osc_mix" inlet="bus_in"/>
+         <dest obj="mix_1" inlet="bus_in"/>
       </net>
       <net>
          <source obj="sub_osc" outlet="wave"/>
-         <dest obj="sub_osc_mix" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
-         <source obj="sub_osc_mix" outlet="out"/>
+         <source obj="mix_1" outlet="out"/>
          <dest obj="lp_1" inlet="in"/>
       </net>
       <net>

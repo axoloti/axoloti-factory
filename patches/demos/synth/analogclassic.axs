@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="lfo/sine" sha="a2851b3d62ed0faceefc98038d9571422f0ce260" name="lfo" x="180" y="20">
       <params>
          <frac32.s.map name="pitch" onParent="true" value="-3.0"/>
@@ -65,7 +65,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 1" sha="f543e080bd2111cba525885443039f346703a594" name="sub" x="240" y="320">
+   <obj type="mix/mix 1" uuid="e8f482af5b1ec4a2e9cf8ac7ce09e7c0e43cea08" name="mix_1" x="240" y="320">
       <params>
          <frac32.u.map name="gain1" onParent="true" value="6.0"/>
       </params>
@@ -101,14 +101,14 @@
       </net>
       <net>
          <source obj="osc~_1" outlet="wave"/>
-         <dest obj="sub" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
          <source obj="saw~_1" outlet="wave"/>
-         <dest obj="sub" inlet="bus_in"/>
+         <dest obj="mix_1" inlet="bus_in"/>
       </net>
       <net>
-         <source obj="sub" outlet="out"/>
+         <source obj="mix_1" outlet="out"/>
          <dest obj="vca~_1" inlet="a"/>
       </net>
       <net>

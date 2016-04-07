@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="midi/in/keyb" sha="b8deb97637e54be31fcb62e849e4fa406e72256e" name="keyb1" x="0" y="0">
       <params/>
       <attribs/>
@@ -51,7 +51,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="conv/bipolar2unipolar" sha="38609fdcec231d6b21f80d961254b8abd0ecad61" name="bipolar2unipolar1" x="0" y="154">
+   <obj type="conv/bipolar2unipolar" uuid="5b5f9405be365706c1ad37266d9df07b9a1570ee" name="bipolar2unipolar_1" x="0" y="154">
       <params/>
       <attribs/>
    </obj>
@@ -73,7 +73,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 3" sha="3d37ac18e4393438042204df12d17aec499f09fb" name="mix21" x="574" y="336">
+   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_1" x="574" y="336">
       <params>
          <frac32.u.map name="gain1" onParent="true" value="8.5"/>
          <frac32.u.map name="gain2" onParent="true" value="10.5"/>
@@ -112,18 +112,18 @@
       </net>
       <net>
          <source obj="vcf3_1" outlet="out"/>
-         <dest obj="mix21" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
          <source obj="f1" outlet="out"/>
-         <dest obj="mix21" inlet="in2"/>
+         <dest obj="mix_1" inlet="in2"/>
       </net>
       <net>
          <source obj="f2" outlet="out"/>
-         <dest obj="mix21" inlet="in3"/>
+         <dest obj="mix_1" inlet="in3"/>
       </net>
       <net>
-         <source obj="mix21" outlet="out"/>
+         <source obj="mix_1" outlet="out"/>
          <dest obj="dac_1" inlet="outlet"/>
       </net>
       <net>
@@ -133,7 +133,7 @@
       </net>
       <net>
          <source obj="lfsr_1" outlet="out"/>
-         <dest obj="bipolar2unipolar1" inlet="i"/>
+         <dest obj="bipolar2unipolar_1" inlet="i"/>
       </net>
       <net>
          <source obj="velo" outlet="out"/>
@@ -152,7 +152,7 @@
          <dest obj="*1" inlet="b"/>
       </net>
       <net>
-         <source obj="bipolar2unipolar1" outlet="o"/>
+         <source obj="bipolar2unipolar_1" outlet="o"/>
          <dest obj="vca_1" inlet="a"/>
       </net>
       <net>

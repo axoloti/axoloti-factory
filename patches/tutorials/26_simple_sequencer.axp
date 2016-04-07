@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <comment type="patch/comment" x="28" y="14" text="fire event on start"/>
    <obj type="const/i" sha="15b9dce9232a04e8881936a6ea800e66ae8e0da9" uuid="e202f44b2df17ae0b3e663b98ea6b14c8ff00408" name="counter_1" x="28" y="28">
       <params/>

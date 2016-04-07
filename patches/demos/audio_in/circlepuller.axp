@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="audio/in left" sha="f36683ba4df4704fc1d45058134f1721a25d22f9" name="in_1" x="14" y="14">
       <params/>
       <attribs/>
@@ -44,7 +44,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c_2" x="112" y="112">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_2" x="112" y="112">
       <params>
          <frac32.u.map name="amp" value="20.5"/>
       </params>
@@ -65,7 +65,7 @@
          <spinner attributeName="d4" value="277"/>
       </attribs>
    </obj>
-   <obj type="mix/mix 2 g" sha="f14eeeeb6df032a7e072e970956c20613eb267f1" name="mix_1" x="350" y="112">
+   <obj type="mix/mix 2 g" uuid="221f038da51943034a75e442c90624fcebfe6112" name="mix_1" x="350" y="112">
       <params>
          <frac32.u.map name="gain1" value="21.0"/>
          <frac32.u.map name="gain2" value="23.0"/>
@@ -78,7 +78,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 2 g" sha="f14eeeeb6df032a7e072e970956c20613eb267f1" name="mix_3" x="350" y="266">
+   <obj type="mix/mix 2 g" uuid="221f038da51943034a75e442c90624fcebfe6112" name="mix_3" x="350" y="266">
       <params>
          <frac32.u.map name="gain1" value="21.0"/>
          <frac32.u.map name="gain2" value="23.0"/>
@@ -96,7 +96,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/muls 8" sha="3b876043fb7aa6dff276407826cba102606eb254" name="muls_1" x="658" y="266">
+   <obj type="math/muls 8" uuid="910989ec4cbbf3e9ac50429a9f27dc336f63ddd3" name="muls_1" x="658" y="266">
       <params/>
       <attribs/>
    </obj>
@@ -111,7 +111,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="dist/soft" sha="4de9b281f2a362671b6dc8606f5d039535893f45" name="soft_1" x="280" y="336">
+   <obj type="dist/soft" uuid="e680d76a805e4866027cdf654c7efd8b2e54622" name="soft_1" x="280" y="336">
       <params/>
       <attribs/>
    </obj>
@@ -141,7 +141,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/muls 8" sha="3b876043fb7aa6dff276407826cba102606eb254" name="muls_2" x="658" y="420">
+   <obj type="math/muls 8" uuid="910989ec4cbbf3e9ac50429a9f27dc336f63ddd3" name="muls_2" x="658" y="420">
       <params/>
       <attribs/>
    </obj>
@@ -152,10 +152,10 @@
    <nets>
       <net>
          <source obj="in_1" outlet="wave"/>
-         <dest obj="*c_2" inlet="in"/>
-         <dest obj="soft_1" inlet="in"/>
          <dest obj="follower_1" inlet="in"/>
          <dest obj="comp_1" inlet="in"/>
+         <dest obj="*c_2" inlet="in"/>
+         <dest obj="soft_1" inlet="in"/>
       </net>
       <net>
          <source obj="fdn4_1" outlet="out1"/>

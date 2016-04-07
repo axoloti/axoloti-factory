@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <comment type="patch/comment" x="14" y="14" text="envelopes for amplitude"/>
    <comment type="patch/comment" x="14" y="28" text="again: use the keyboard window to play"/>
    <comment type="patch/comment" x="182" y="84" text="just decay"/>
@@ -69,7 +69,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c1" x="574" y="672">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_1" x="574" y="672">
       <params>
          <frac32.u.map name="amp" value="20.5"/>
       </params>
@@ -113,10 +113,10 @@
       </net>
       <net>
          <source obj="vca_1" outlet="o"/>
-         <dest obj="*c1" inlet="in"/>
+         <dest obj="*c_1" inlet="in"/>
       </net>
       <net>
-         <source obj="*c1" outlet="out"/>
+         <source obj="*c_1" outlet="out"/>
          <dest obj="dac_1" inlet="left"/>
          <dest obj="dac_1" inlet="right"/>
       </net>

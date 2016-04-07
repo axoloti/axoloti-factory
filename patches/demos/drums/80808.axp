@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <comment type="patch/comment" x="42" y="28" text="check settings for MIDI channel!"/>
    <obj type="midi/in/keyb note" sha="5d623ad73ade2280421069a67ee3f30595794c72" name="keybnote1" x="40" y="60">
       <params/>
@@ -112,7 +112,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="mix/mix 7" sha="e2e19d94516239bac4be0805adb91501669a4843" name="mix71" x="420" y="680">
+   <obj type="mix/mix 7" uuid="1ddcf110bc38d78eddbc6d343aa8bf8a0953af76" name="mix_1" x="420" y="680">
       <params>
          <frac32.u.map name="gain1" value="7.0"/>
          <frac32.u.map name="gain2" value="63.5"/>
@@ -214,37 +214,37 @@
          <dest obj="vca_1______" inlet="a"/>
       </net>
       <net>
-         <source obj="mix71" outlet="out"/>
+         <source obj="mix_1" outlet="out"/>
          <dest obj="dac_1______" inlet="left"/>
          <dest obj="dac_1______" inlet="right"/>
       </net>
       <net>
          <source obj="vca_1" outlet="o"/>
-         <dest obj="mix71" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
          <source obj="vca_1_" outlet="o"/>
-         <dest obj="mix71" inlet="in2"/>
+         <dest obj="mix_1" inlet="in2"/>
       </net>
       <net>
          <source obj="vca_1__" outlet="o"/>
-         <dest obj="mix71" inlet="in3"/>
+         <dest obj="mix_1" inlet="in3"/>
       </net>
       <net>
          <source obj="vca_1___" outlet="o"/>
-         <dest obj="mix71" inlet="in4"/>
+         <dest obj="mix_1" inlet="in4"/>
       </net>
       <net>
          <source obj="vca_1____" outlet="o"/>
-         <dest obj="mix71" inlet="in5"/>
+         <dest obj="mix_1" inlet="in5"/>
       </net>
       <net>
          <source obj="vca_1_____" outlet="o"/>
-         <dest obj="mix71" inlet="in6"/>
+         <dest obj="mix_1" inlet="in6"/>
       </net>
       <net>
          <source obj="vca_1______" outlet="o"/>
-         <dest obj="mix71" inlet="in7"/>
+         <dest obj="mix_1" inlet="in7"/>
       </net>
    </nets>
    <settings>

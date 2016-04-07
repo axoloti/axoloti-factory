@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="./bounce_v" uuid="91d1d4e3e7e23ebe9ee3f4582b6140c36acc790a" name="bounce_v_1" x="196" y="154">
       <params>
          <frac32.s.map name="bounce time" value="13.0"/>
@@ -7,8 +7,6 @@
       </params>
       <attribs>
          <combo attributeName="poly" selection="8"/>
-         <combo attributeName="mididevice" selection="omni"/>
-         <combo attributeName="midiport" selection="omni"/>
       </attribs>
    </obj>
    <obj type="audio/out stereo" sha="b933bb91801a126126313c11f773158b5ca2face" name="out_1" x="378" y="168">

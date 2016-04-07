@@ -1,8 +1,8 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="wave/play fn" sha="60926d7b3ffb8a3a9d5b9d72347f2797f413f2fc" uuid="25910f7130532e4934eed3cf2a934324790d0f00" name="play_1" x="140" y="0">
       <params/>
       <attribs>
-         <table attributeName="fn" table=""/>
+         <file attributeName="fn" file=""/>
       </attribs>
    </obj>
    <obj type="patch/inlet f" sha="8e69e1ab7ccd8afaefdc23146c50149809b64955" uuid="5c585d2dcd9c05631e345ac09626a22a639d7c13" name="pitch" x="28" y="28">

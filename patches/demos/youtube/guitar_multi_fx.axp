@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="audio/in left" sha="f36683ba4df4704fc1d45058134f1721a25d22f9" name="in_1" x="14" y="14">
       <params/>
       <attribs/>
@@ -24,8 +24,8 @@
    </obj>
    <obj type="stomps/distortion1" uuid="6e51dad43c4fcec9833dafa88e62bd6f183ee0f3" name="obj_2" x="140" y="224">
       <params>
-         <frac32.u.map name="gain" value="59.5"/>
-         <frac32.u.map name="level" value="14.0"/>
+         <frac32.u.map name="gain_1" value="12.0"/>
+         <frac32.u.map name="*c_1" value="14.0"/>
          <int32 name="eq:lowmid" value="0"/>
          <int32 name="eq:mid" value="3"/>
          <int32 name="eq:highmid" value="3"/>
@@ -67,7 +67,7 @@
    <obj type="stomps/reverb1" uuid="6e81e7f992c3263b7e94d97493b9d3e8f62559ba" name="obj_6" x="672" y="224">
       <params>
          <bool32.tgl name="on" value="1"/>
-         <frac32.u.map name="amt" value="11.0"/>
+         <frac32.u.map name="*c_1" value="17.5"/>
          <frac32.u.map name="decay" value="46.0"/>
       </params>
       <attribs/>

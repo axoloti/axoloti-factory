@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="math/c 64" sha="69b493f3d94607d38df5ab951d27622bec162349" name="c64_1" x="240" y="20">
       <params/>
       <attribs/>
@@ -99,7 +99,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/&gt;" sha="66caccb0a5493a2894a4643178419d30d067add1" name="&gt;_1" x="340" y="360">
+   <obj type="math/&gt;" uuid="8112942c245dbc2edf7d7de122fe83b0dcd0a391" name="&gt;_1" x="340" y="360">
       <params/>
       <attribs/>
    </obj>
@@ -159,7 +159,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/+c" sha="dd36bdfc156063826c3897754f7ef30fd2895c89" name="+c_1" x="720" y="540">
+   <obj type="math/+c" uuid="8a7195df16f4695260af58e8072c656181925b4d" name="+c_1" x="720" y="540">
       <params>
          <frac32.u.map name="c" value="6.5"/>
       </params>
@@ -266,8 +266,8 @@
       </net>
       <net>
          <source obj="inv_1" outlet="out"/>
-         <dest obj="&gt;_1" inlet="in1"/>
          <dest obj="-c_2" inlet="in"/>
+         <dest obj="&gt;_1" inlet="in1"/>
       </net>
       <net>
          <source obj="&gt;_1" outlet="out"/>

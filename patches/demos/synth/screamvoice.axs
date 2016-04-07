@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="midi/in/keyb" sha="b8deb97637e54be31fcb62e849e4fa406e72256e" name="keyb1" x="0" y="0">
       <params/>
       <attribs/>
@@ -93,7 +93,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c1" x="672" y="280">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_1" x="672" y="280">
       <params>
          <frac32.u.map name="amp" value="53.0"/>
       </params>
@@ -117,7 +117,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/div 32" sha="5c939ae8539de1dcd5808b75c6bba2de5f593827" name="div161" x="266" y="350">
+   <obj type="math/div 32" uuid="c5455911d6a520e99e9737457c48bdcc84ef7aef" name="div_1" x="266" y="350">
       <params/>
       <attribs/>
    </obj>
@@ -147,7 +147,7 @@
       </net>
       <net>
          <source obj="vca_1" outlet="o"/>
-         <dest obj="*c1" inlet="in"/>
+         <dest obj="*c_1" inlet="in"/>
       </net>
       <net>
          <source obj="mix21" outlet="out"/>
@@ -191,10 +191,10 @@
       </net>
       <net>
          <source obj="lowpass_1" outlet="out"/>
-         <dest obj="div161" inlet="in"/>
+         <dest obj="div_1" inlet="in"/>
       </net>
       <net>
-         <source obj="div161" outlet="out"/>
+         <source obj="div_1" outlet="out"/>
          <dest obj="mix21" inlet="in2"/>
       </net>
       <net>
@@ -226,7 +226,7 @@
          <dest class="axoloti.inlets.InletInstanceZombie" obj="envahd1" inlet="dm"/>
       </net>
       <net>
-         <source obj="*c1" outlet="out"/>
+         <source obj="*c_1" outlet="out"/>
          <dest obj="v" inlet="outlet"/>
       </net>
    </nets>

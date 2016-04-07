@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="lfo/square" sha="b4420b58ca2ae5ece53d53540bc91bc9ed7a4b83" name="square1" x="0" y="0">
       <params>
          <frac32.s.map name="pitch" value="1.0"/>
@@ -133,7 +133,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 2" sha="67c325bf12e5b73ad58df89daf7899831777003c" name="mix_1" x="168" y="630">
+   <obj type="mix/mix 2" uuid="30c04239c88e09d3fa5c333b784ecf54f1b0e268" name="mix_1" x="168" y="630">
       <params>
          <frac32.u.map name="gain1" value="63.5"/>
          <frac32.u.map name="gain2" value="63.5"/>
@@ -151,17 +151,17 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/+c" sha="dd36bdfc156063826c3897754f7ef30fd2895c89" name="+c1" x="476" y="644">
+   <obj type="math/+c" uuid="8a7195df16f4695260af58e8072c656181925b4d" name="+c_1" x="476" y="644">
       <params>
          <frac32.u.map name="c" value="0.5"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="math/muls 16" sha="fc43d4b12bedaf555251f39a12909179bdaa71bb" name="muls21" x="532" y="644">
+   <obj type="math/muls 16" uuid="c72d593cdf22887ca55f6da46ea788d091a21d19" name="muls_1" x="532" y="644">
       <params/>
       <attribs/>
    </obj>
-   <obj type="dist/soft" sha="4de9b281f2a362671b6dc8606f5d039535893f45" name="softsat1" x="616" y="644">
+   <obj type="dist/soft" uuid="e680d76a805e4866027cdf654c7efd8b2e54622" name="soft_1" x="616" y="644">
       <params/>
       <attribs/>
    </obj>
@@ -263,21 +263,21 @@
          <dest obj="inmux21" inlet="s"/>
       </net>
       <net>
-         <source obj="softsat1" outlet="out"/>
+         <source obj="soft_1" outlet="out"/>
          <dest obj="*c1" inlet="in"/>
       </net>
       <net>
-         <source obj="muls21" outlet="out"/>
-         <dest obj="softsat1" inlet="in"/>
+         <source obj="muls_1" outlet="out"/>
+         <dest obj="soft_1" inlet="in"/>
       </net>
       <net>
          <source obj="lpfm_1" outlet="out"/>
-         <dest obj="+c1" inlet="in"/>
          <dest obj="kscope_1" inlet="in"/>
+         <dest obj="+c_1" inlet="in"/>
       </net>
       <net>
-         <source obj="+c1" outlet="out"/>
-         <dest obj="muls21" inlet="in"/>
+         <source obj="+c_1" outlet="out"/>
+         <dest obj="muls_1" inlet="in"/>
       </net>
       <net>
          <source obj="square_1" outlet="wave"/>

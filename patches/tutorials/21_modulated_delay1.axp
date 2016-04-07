@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <comment type="patch/comment" x="28" y="14" text="demonstration: modulated delay lines for effect processing"/>
    <comment type="patch/comment" x="70" y="42" text="test signal selection"/>
    <obj type="ctrl/i radio 4 v" sha="d755521996a6bf57298aeed6198f271783137da1" name="i_2" x="28" y="56">
@@ -34,11 +34,11 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="conv/bipolar2unipolar" sha="38609fdcec231d6b21f80d961254b8abd0ecad61" name="bipolar2unipolar1" x="168" y="280">
+   <obj type="conv/bipolar2unipolar" uuid="5b5f9405be365706c1ad37266d9df07b9a1570ee" name="bipolar2unipolar_1" x="168" y="280">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c1" x="308" y="280">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_2" x="308" y="280">
       <params>
          <frac32.u.map name="amp" value="1.0"/>
       </params>
@@ -58,7 +58,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c1_" x="308" y="378">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_3" x="308" y="378">
       <params>
          <frac32.u.map name="amp" value="4.5"/>
       </params>
@@ -68,23 +68,23 @@
    <comment type="patch/comment" x="532" y="392" text="2 - downwards pitch shifter (rising sawtooth wave modulated)"/>
    <comment type="patch/comment" x="532" y="406" text="3 - upwards pitch shifter (falling sawtooth wave modulated)"/>
    <comment type="patch/comment" x="644" y="420" text="2 and 3: notice: clicking due to abrupt slicing!"/>
-   <obj type="math/-c" sha="3ce2337e3d146554f568711a6b81d3578b0c92e0" name="-c1" x="154" y="462">
+   <obj type="math/-c" uuid="aafdb4cc793fc2dd9b2310a9833c7099a771cd33" name="-c_1" x="154" y="462">
       <params>
          <frac32.u.map name="c" value="63.5"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="math/inv" sha="dd3d98b9ec6f2b9231cb1d00d0f9667152537120" name="inv1" x="238" y="462">
+   <obj type="math/inv" uuid="7f4c6cf4dcf79f9b0aa81c2eaf540405875714a3" name="inv_1" x="238" y="462">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c1__" x="308" y="462">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_4" x="308" y="462">
       <params>
          <frac32.u.map name="amp" value="1.0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="mux/mux 4" sha="4145bfd8751449238db95f24fb1cd2a69972d026" name="inmux31" x="434" y="462">
+   <obj type="mux/mux 4" uuid="e511105cf5630d1a0b4a144dc3fabb3cc7c07bd" name="mux_1" x="434" y="462">
       <params/>
       <attribs/>
    </obj>
@@ -96,7 +96,7 @@
          <objref attributeName="delayname" obj="d1"/>
       </attribs>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c_1" x="686" y="462">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_1" x="686" y="462">
       <params>
          <frac32.u.map name="amp" value="13.5"/>
       </params>
@@ -109,40 +109,40 @@
    <nets>
       <net>
          <source obj="osc_1" outlet="wave"/>
-         <dest obj="bipolar2unipolar1" inlet="i"/>
+         <dest obj="bipolar2unipolar_1" inlet="i"/>
       </net>
       <net>
-         <source obj="*c1" outlet="out"/>
-         <dest obj="inmux31" inlet="i1"/>
+         <source obj="*c_2" outlet="out"/>
+         <dest obj="mux_1" inlet="i1"/>
       </net>
       <net>
-         <source obj="inmux31" outlet="o"/>
+         <source obj="mux_1" outlet="o"/>
          <dest obj="delread2__1" inlet="time"/>
       </net>
       <net>
          <source obj="phasor3_1" outlet="phasor"/>
-         <dest obj="*c1_" inlet="in"/>
-         <dest obj="-c1" inlet="in"/>
+         <dest obj="*c_3" inlet="in"/>
+         <dest obj="-c_1" inlet="in"/>
       </net>
       <net>
-         <source obj="*c1_" outlet="out"/>
-         <dest obj="inmux31" inlet="i2"/>
+         <source obj="*c_3" outlet="out"/>
+         <dest obj="mux_1" inlet="i2"/>
       </net>
       <net>
-         <source obj="*c1__" outlet="out"/>
-         <dest obj="inmux31" inlet="i3"/>
+         <source obj="*c_4" outlet="out"/>
+         <dest obj="mux_1" inlet="i3"/>
       </net>
       <net>
-         <source obj="bipolar2unipolar1" outlet="o"/>
-         <dest obj="*c1" inlet="in"/>
+         <source obj="bipolar2unipolar_1" outlet="o"/>
+         <dest obj="*c_2" inlet="in"/>
       </net>
       <net>
-         <source obj="-c1" outlet="out"/>
-         <dest obj="inv1" inlet="in"/>
+         <source obj="-c_1" outlet="out"/>
+         <dest obj="inv_1" inlet="in"/>
       </net>
       <net>
-         <source obj="inv1" outlet="out"/>
-         <dest obj="*c1__" inlet="in"/>
+         <source obj="inv_1" outlet="out"/>
+         <dest obj="*c_4" inlet="in"/>
       </net>
       <net>
          <source obj="cbp1" outlet="out"/>
@@ -150,7 +150,7 @@
       </net>
       <net>
          <source obj="i_1" outlet="out"/>
-         <dest obj="inmux31" inlet="s"/>
+         <dest obj="mux_1" inlet="s"/>
       </net>
       <net>
          <source obj="i_2" outlet="out"/>

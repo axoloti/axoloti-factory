@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="midi/in/keyb zone lru" sha="b9b28cf52b3421368e367f3718404222910c57a5" name="keybzone_lru_1" x="28" y="0">
       <params/>
       <attribs>
@@ -72,7 +72,7 @@
    </obj>
    <obj type="filter/hp1" sha="f9059d53a5af0890dc1a1268b5679aa335731857" name="hipass~_1" x="378" y="340">
       <params>
-         <frac32.u.map name="freq" value="0.0"/>
+         <frac32.s.map name="freq" value="0.0"/>
       </params>
       <attribs/>
    </obj>

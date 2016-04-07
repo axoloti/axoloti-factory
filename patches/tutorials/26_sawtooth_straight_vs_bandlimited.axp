@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="midi/in/keyb" sha="d2b06e818348b14523c68fd021077192860093c0" name="keyb1" x="40" y="40">
       <params/>
       <attribs/>
@@ -24,15 +24,15 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="conv/unipolar2bipolar" sha="8525be5d55df51043f07b379c6d326988e993946" name="unipolar2bipolar1" x="360" y="220">
+   <obj type="conv/unipolar2bipolar" uuid="3345c38145a8120f27f13de7d1507d9aa22862ae" name="unipolar2bipolar_1" x="360" y="220">
       <params/>
       <attribs/>
    </obj>
-   <obj type="mux/mux 2" sha="c6b90f8c9bc3d2f8632ce90fca7a738c7153eb2f" name="inmux21" x="520" y="220">
+   <obj type="mux/mux 2" uuid="539c246f4c360ac476e128cfbfa84348fb7f7e73" name="mux_1" x="520" y="220">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c1" x="640" y="220">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_1" x="640" y="220">
       <params>
          <frac32.u.map name="amp" value="2.5"/>
       </params>
@@ -60,27 +60,27 @@
       </net>
       <net>
          <source obj="saw_1" outlet="wave"/>
-         <dest obj="inmux21" inlet="i1"/>
+         <dest obj="mux_1" inlet="i1"/>
       </net>
       <net>
          <source obj="cb11" outlet="o"/>
-         <dest obj="inmux21" inlet="s"/>
+         <dest obj="mux_1" inlet="s"/>
       </net>
       <net>
          <source obj="phasor3_1" outlet="phasor"/>
-         <dest obj="unipolar2bipolar1" inlet="i"/>
+         <dest obj="unipolar2bipolar_1" inlet="i"/>
       </net>
       <net>
-         <source obj="unipolar2bipolar1" outlet="o"/>
-         <dest obj="inmux21" inlet="i2"/>
+         <source obj="unipolar2bipolar_1" outlet="o"/>
+         <dest obj="mux_1" inlet="i2"/>
       </net>
       <net>
-         <source obj="inmux21" outlet="o"/>
-         <dest obj="*c1" inlet="in"/>
+         <source obj="mux_1" outlet="o"/>
          <dest obj="scope_1" inlet="in"/>
+         <dest obj="*c_1" inlet="in"/>
       </net>
       <net>
-         <source obj="*c1" outlet="out"/>
+         <source obj="*c_1" outlet="out"/>
          <dest obj="dac_1" inlet="left"/>
          <dest obj="dac_1" inlet="right"/>
       </net>

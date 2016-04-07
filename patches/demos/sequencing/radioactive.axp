@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <comment type="patch/comment" x="434" y="14" text="preset 1: intro"/>
    <comment type="patch/comment" x="630" y="14" text="keyboard splits: 0-50: bassline"/>
    <comment type="patch/comment" x="434" y="42" text="preset 2: intro speeding up"/>
@@ -137,7 +137,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="mix/mix 3" sha="3d37ac18e4393438042204df12d17aec499f09fb" name="mix3_1" x="1288" y="224">
+   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_1" x="1288" y="224">
       <params>
          <frac32.u.map name="gain1" value="64.0"/>
          <frac32.u.map name="gain2" value="0.0"/>
@@ -145,7 +145,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 3" sha="3d37ac18e4393438042204df12d17aec499f09fb" name="mix3_2" x="1400" y="224">
+   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_2" x="1400" y="224">
       <params>
          <frac32.u.map name="gain1" value="64.0"/>
          <frac32.u.map name="gain2" value="63.5"/>
@@ -204,7 +204,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/div 2" sha="5df68ad33aa1633cb7cb1724fcd41eee28932582" name="div2_2" x="392" y="434">
+   <obj type="math/div 2" uuid="ad1e413d83e5edce017e3e9a4f30d86035cf637" name="div_1" x="392" y="434">
       <params/>
       <attribs/>
    </obj>
@@ -407,7 +407,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="mix/mix 4" sha="217ea56f47dd7397f64930ffcddab7c794ad4f5c" name="mix4_1" x="938" y="1120">
+   <obj type="mix/mix 4" uuid="e6f9a0cc7aadc1b89516143cf1ccb79b3538d05a" name="mix_3" x="938" y="1120">
       <params>
          <frac32.u.map name="gain1" value="0.0">
             <presets>
@@ -437,7 +437,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c_3" x="448" y="1134">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_3" x="448" y="1134">
       <params>
          <frac32.u.map name="amp" value="63.5"/>
       </params>
@@ -484,10 +484,10 @@
       </net>
       <net>
          <source obj="saw~_1" outlet="wave"/>
-         <dest obj="div2_2" inlet="in"/>
+         <dest obj="div_1" inlet="in"/>
       </net>
       <net>
-         <source obj="div2_2" outlet="out"/>
+         <source obj="div_1" outlet="out"/>
          <dest obj="vcf3~_1" inlet="in"/>
       </net>
       <net>
@@ -534,15 +534,15 @@
       </net>
       <net>
          <source obj="vca~_1" outlet="o"/>
-         <dest obj="mix4_1" inlet="in1"/>
+         <dest obj="mix_3" inlet="in1"/>
       </net>
       <net>
          <source obj="vca~_2" outlet="o"/>
-         <dest obj="mix4_1" inlet="in2"/>
+         <dest obj="mix_3" inlet="in2"/>
       </net>
       <net>
          <source obj="vca~_3" outlet="o"/>
-         <dest obj="mix4_1" inlet="in3"/>
+         <dest obj="mix_3" inlet="in3"/>
       </net>
       <net>
          <source obj="osc~_1" outlet="wave"/>
@@ -569,7 +569,7 @@
          <dest obj="vca~_3" inlet="v"/>
       </net>
       <net>
-         <source obj="mix4_1" outlet="out"/>
+         <source obj="mix_3" outlet="out"/>
          <dest obj="dac~_1" inlet="left"/>
          <dest obj="dac~_1" inlet="right"/>
       </net>
@@ -597,8 +597,8 @@
       </net>
       <net>
          <source obj="vca~_4" outlet="o"/>
-         <dest obj="mix3_1" inlet="in1"/>
-         <dest obj="mix3_2" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
+         <dest obj="mix_2" inlet="in1"/>
       </net>
       <net>
          <source obj="select_bool_16_v2x4_1" outlet="o2"/>
@@ -615,11 +615,11 @@
       </net>
       <net>
          <source obj="vca~_5" outlet="o"/>
-         <dest obj="mix3_1" inlet="in2"/>
-         <dest obj="mix3_2" inlet="in2"/>
+         <dest obj="mix_1" inlet="in2"/>
+         <dest obj="mix_2" inlet="in2"/>
       </net>
       <net>
-         <source obj="mix3_1" outlet="out"/>
+         <source obj="mix_1" outlet="out"/>
          <dest obj="dac~_2" inlet="left"/>
       </net>
       <net>
@@ -641,8 +641,8 @@
       </net>
       <net>
          <source obj="vca~_6" outlet="o"/>
-         <dest obj="mix3_1" inlet="in3"/>
-         <dest obj="mix3_2" inlet="in3"/>
+         <dest obj="mix_1" inlet="in3"/>
+         <dest obj="mix_2" inlet="in3"/>
       </net>
       <net>
          <source obj="select_bool_16_v2x4_1" outlet="o3"/>
@@ -681,7 +681,7 @@
          <dest obj="square_1" inlet="pitch"/>
       </net>
       <net>
-         <source obj="mix3_2" outlet="out"/>
+         <source obj="mix_2" outlet="out"/>
          <dest obj="dac~_2" inlet="right"/>
       </net>
       <net>

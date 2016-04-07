@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="lfo/sine" sha="a2851b3d62ed0faceefc98038d9571422f0ce260" name="metronome" x="14" y="14">
       <params>
          <frac32.s.map name="pitch" value="7.0"/>
@@ -93,7 +93,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="mix/mix 2" sha="67c325bf12e5b73ad58df89daf7899831777003c" name="mix2_1" x="826" y="336">
+   <obj type="mix/mix 2" uuid="30c04239c88e09d3fa5c333b784ecf54f1b0e268" name="mix_1" x="826" y="336">
       <params>
          <frac32.u.map name="gain1" value="63.5"/>
          <frac32.u.map name="gain2" value="60.5"/>
@@ -127,7 +127,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 2" sha="67c325bf12e5b73ad58df89daf7899831777003c" name="mix2_3" x="686" y="378">
+   <obj type="mix/mix 2" uuid="30c04239c88e09d3fa5c333b784ecf54f1b0e268" name="mix_2" x="686" y="378">
       <params>
          <frac32.u.map name="gain1" value="50.0"/>
          <frac32.u.map name="gain2" value="50.0"/>
@@ -164,7 +164,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 3" sha="3d37ac18e4393438042204df12d17aec499f09fb" name="mix3_2" x="938" y="574">
+   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_3" x="938" y="574">
       <params>
          <frac32.u.map name="gain1" value="48.0"/>
          <frac32.u.map name="gain2" value="22.5"/>
@@ -260,7 +260,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="mix/mix 3" sha="3d37ac18e4393438042204df12d17aec499f09fb" name="mix3_1" x="490" y="854">
+   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_4" x="490" y="854">
       <params>
          <frac32.u.map name="gain1" value="63.5"/>
          <frac32.u.map name="gain2" value="63.5"/>
@@ -268,11 +268,11 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/double" sha="8ae62ebf8fc6eb923ddf3cd42bfa750dd1d7f1b2" name="double_1" x="588" y="854">
+   <obj type="math/double" uuid="3b7c0f3e2d95da4ec849103bfaba6c1cee7b8661" name="double_1" x="588" y="854">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/sin" sha="1071012784f2bd65a87a083ab2b7c3d46db76c52" name="sin_1" x="686" y="854">
+   <obj type="math/sin" uuid="3fd3c55bdecb474393c99b2a5b01e9bed143eca7" name="sin_1" x="686" y="854">
       <params/>
       <attribs/>
    </obj>
@@ -416,33 +416,33 @@
       <net>
          <source obj="vcf3_1_" outlet="out"/>
          <dest obj="vu_2" inlet="in"/>
-         <dest obj="mix2_1" inlet="in2"/>
+         <dest obj="mix_1" inlet="in2"/>
       </net>
       <net>
          <source obj="vcf3_1" outlet="out"/>
          <dest obj="vu_1" inlet="in"/>
-         <dest obj="mix2_1" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
-         <source obj="mix2_1" outlet="out"/>
+         <source obj="mix_1" outlet="out"/>
          <dest obj="echo2_1" inlet="in"/>
-         <dest obj="mix3_2" inlet="in1"/>
+         <dest obj="mix_3" inlet="in1"/>
       </net>
       <net>
-         <source obj="mix3_2" outlet="out"/>
+         <source obj="mix_3" outlet="out"/>
          <dest obj="dac1_1" inlet="wave"/>
          <dest obj="dac2_1" inlet="wave"/>
       </net>
       <net>
          <source obj="saw_2" outlet="wave"/>
-         <dest obj="mix2_3" inlet="in1"/>
+         <dest obj="mix_2" inlet="in1"/>
       </net>
       <net>
          <source obj="saw_1_" outlet="wave"/>
-         <dest obj="mix2_3" inlet="in2"/>
+         <dest obj="mix_2" inlet="in2"/>
       </net>
       <net>
-         <source obj="mix2_3" outlet="out"/>
+         <source obj="mix_2" outlet="out"/>
          <dest obj="vca_1_" inlet="a"/>
       </net>
       <net>
@@ -468,24 +468,24 @@
       <net>
          <source obj="flashwaveplay1" outlet="out"/>
          <dest obj="vu_1_" inlet="in"/>
-         <dest obj="mix3_1" inlet="in1"/>
+         <dest obj="mix_4" inlet="in1"/>
       </net>
       <net>
          <source obj="flashwaveplay2" outlet="out"/>
          <dest obj="vu_2_" inlet="in"/>
-         <dest obj="mix3_1" inlet="in2"/>
+         <dest obj="mix_4" inlet="in2"/>
       </net>
       <net>
          <source obj="flashwaveplay3" outlet="out"/>
          <dest obj="vu_3" inlet="in"/>
-         <dest obj="mix3_1" inlet="in3"/>
+         <dest obj="mix_4" inlet="in3"/>
       </net>
       <net>
          <source obj="echo2_1" outlet="out"/>
-         <dest obj="mix3_2" inlet="in2"/>
+         <dest obj="mix_3" inlet="in2"/>
       </net>
       <net>
-         <source obj="mix3_1" outlet="out"/>
+         <source obj="mix_4" outlet="out"/>
          <dest obj="double_1" inlet="in"/>
       </net>
       <net>
@@ -494,7 +494,7 @@
       </net>
       <net>
          <source obj="sin_1" outlet="out"/>
-         <dest obj="mix3_2" inlet="in3"/>
+         <dest obj="mix_3" inlet="in3"/>
       </net>
    </nets>
    <settings>

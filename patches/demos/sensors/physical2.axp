@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="osc/square" sha="7cccf8a95bf312ecc084f11f532cf5fda00b8c58" name="square_1" x="40" y="40">
       <params>
          <frac32.s.map name="pitch" value="-64.0"/>
@@ -30,7 +30,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*" sha="2cde1e360d5ac386ff90b7726b9bc329b9fe46d2" name="*_1" x="220" y="100">
+   <obj type="math/*" uuid="6a31299e3a491edd8c4df0e809a519a35cc08a3b" name="*_1" x="220" y="100">
       <params/>
       <attribs/>
    </obj>

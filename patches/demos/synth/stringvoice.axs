@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="midi/in/keyb" sha="b8deb97637e54be31fcb62e849e4fa406e72256e" name="keyb1" x="14" y="14">
       <params/>
       <attribs/>
@@ -126,7 +126,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 3" sha="3d37ac18e4393438042204df12d17aec499f09fb" name="mix21" x="364" y="574">
+   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_1" x="364" y="574">
       <params>
          <frac32.u.map name="gain1" value="4.0"/>
          <frac32.u.map name="gain2" value="21.0"/>
@@ -145,7 +145,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c1" x="728" y="588">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_1" x="728" y="588">
       <params>
          <frac32.u.map name="amp" value="20.0"/>
       </params>
@@ -158,7 +158,7 @@
    <nets>
       <net>
          <source obj="vca_1" outlet="o"/>
-         <dest obj="*c1" inlet="in"/>
+         <dest obj="*c_1" inlet="in"/>
       </net>
       <net>
          <source obj="keyb1" outlet="gate"/>
@@ -166,15 +166,15 @@
       </net>
       <net>
          <source obj="osc_1" outlet="wave"/>
-         <dest obj="mix21" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
          <source obj="osc_2" outlet="wave"/>
-         <dest obj="mix21" inlet="in2"/>
+         <dest obj="mix_1" inlet="in2"/>
       </net>
       <net>
          <source obj="osc_3" outlet="wave"/>
-         <dest obj="mix21" inlet="in3"/>
+         <dest obj="mix_1" inlet="in3"/>
       </net>
       <net>
          <source obj="mix13" outlet="out"/>
@@ -184,7 +184,7 @@
          <dest obj="mix22" inlet="bus_in"/>
       </net>
       <net>
-         <source obj="*c1" outlet="out"/>
+         <source obj="*c_1" outlet="out"/>
          <dest obj="outlet_1" inlet="outlet"/>
       </net>
       <net>
@@ -249,7 +249,7 @@
          <dest obj="mix13" inlet="in1"/>
       </net>
       <net>
-         <source obj="mix21" outlet="out"/>
+         <source obj="mix_1" outlet="out"/>
          <dest obj="vcf3_1" inlet="in"/>
       </net>
       <net>

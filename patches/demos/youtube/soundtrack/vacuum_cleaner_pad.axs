@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="math/c 32" sha="5797bce9fc4e770d9c14890b0fa899f126c5bc38" name="c321" x="126" y="14">
       <params/>
       <attribs/>
@@ -100,7 +100,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 4" sha="217ea56f47dd7397f64930ffcddab7c794ad4f5c" name="mix31" x="546" y="406">
+   <obj type="mix/mix 4" uuid="e6f9a0cc7aadc1b89516143cf1ccb79b3538d05a" name="mix_1" x="546" y="406">
       <params>
          <frac32.u.map name="gain1" onParent="true" value="12.0"/>
          <frac32.u.map name="gain2" onParent="true" value="12.0"/>
@@ -138,15 +138,15 @@
       </net>
       <net>
          <source obj="pwm_1" outlet="wave"/>
-         <dest obj="mix31" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
          <source obj="pwm_1_" outlet="wave"/>
-         <dest obj="mix31" inlet="in2"/>
+         <dest obj="mix_1" inlet="in2"/>
       </net>
       <net>
          <source obj="pwm_1__" outlet="wave"/>
-         <dest obj="mix31" inlet="in3"/>
+         <dest obj="mix_1" inlet="in3"/>
       </net>
       <net>
          <source obj="osc1" outlet="wave"/>
@@ -191,7 +191,7 @@
          <dest obj="mix12" inlet="in1"/>
       </net>
       <net>
-         <source obj="mix31" outlet="out"/>
+         <source obj="mix_1" outlet="out"/>
          <dest obj="lpf_1" inlet="in"/>
       </net>
       <net>

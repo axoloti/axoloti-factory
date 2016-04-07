@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="midi/in/keyb zone lru" sha="b5981bfbddee6927781c171abbd63d632fd34ba5" name="keybzone_lru1" x="20" y="20">
       <params/>
       <attribs>
@@ -79,11 +79,11 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/inv" sha="dd3d98b9ec6f2b9231cb1d00d0f9667152537120" name="inv1" x="560" y="240">
+   <obj type="math/inv" uuid="7f4c6cf4dcf79f9b0aa81c2eaf540405875714a3" name="inv_1" x="560" y="240">
       <params/>
       <attribs/>
    </obj>
-   <obj type="mix/mix 3" sha="3d37ac18e4393438042204df12d17aec499f09fb" name="mix31" x="580" y="280">
+   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_1" x="580" y="280">
       <params>
          <frac32.u.map name="gain1" value="25.0"/>
          <frac32.u.map name="gain2" value="0.0"/>
@@ -136,14 +136,14 @@
       </net>
       <net>
          <source obj="saw_1" outlet="wave"/>
-         <dest obj="mix31" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
          <source obj="saw_1__" outlet="wave"/>
-         <dest obj="mix31" inlet="in3"/>
+         <dest obj="mix_1" inlet="in3"/>
       </net>
       <net>
-         <source obj="mix31" outlet="out"/>
+         <source obj="mix_1" outlet="out"/>
          <dest obj="hpfm_1" inlet="in"/>
       </net>
       <net>
@@ -182,11 +182,11 @@
       </net>
       <net>
          <source obj="saw_1_" outlet="wave"/>
-         <dest obj="inv1" inlet="in"/>
+         <dest obj="inv_1" inlet="in"/>
       </net>
       <net>
-         <source obj="inv1" outlet="out"/>
-         <dest obj="mix31" inlet="in2"/>
+         <source obj="inv_1" outlet="out"/>
+         <dest obj="mix_1" inlet="in2"/>
       </net>
       <net>
          <source obj="pnoise1" outlet="out"/>

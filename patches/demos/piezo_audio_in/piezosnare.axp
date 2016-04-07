@@ -1,9 +1,10 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="audio/inconfig" sha="7eb314b69477fa9eb4ff1f78cc33085b109e9400" name="adcconfig1" x="0" y="20">
       <params/>
       <attribs>
          <combo attributeName="gain" selection="15dB"/>
          <combo attributeName="boost" selection="20dB"/>
+         <combo attributeName="mode" selection="Stereo"/>
       </attribs>
    </obj>
    <obj type="disp/chart p" sha="8f2bc320aef06b8fef20b6dd1e928025aa9b067" name="scopeU1" x="280" y="20">

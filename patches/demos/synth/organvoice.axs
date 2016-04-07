@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="midi/in/keyb" sha="b8deb97637e54be31fcb62e849e4fa406e72256e" name="keyb1" x="0" y="0">
       <params/>
       <attribs/>
@@ -30,13 +30,13 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="3ade427ae7291fdf62058c4243fe718758187105" name="pm1" x="28" y="154">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_2" x="28" y="154">
       <params>
          <frac32.u.map name="amp" onParent="true" value="12.5"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="pm2" x="28" y="238">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_1" x="28" y="238">
       <params>
          <frac32.u.map name="amp" onParent="true" value="10.5"/>
       </params>
@@ -60,7 +60,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="3ade427ae7291fdf62058c4243fe718758187105" name="pm3" x="28" y="350">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_3" x="28" y="350">
       <params>
          <frac32.u.map name="amp" onParent="true" value="10.0"/>
       </params>
@@ -76,7 +76,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="mix/mix 4" sha="217ea56f47dd7397f64930ffcddab7c794ad4f5c" name="mix_1" x="322" y="476">
+   <obj type="mix/mix 4" uuid="e6f9a0cc7aadc1b89516143cf1ccb79b3538d05a" name="mix_1" x="322" y="476">
       <params>
          <frac32.u.map name="gain1" onParent="true" value="12.5"/>
          <frac32.u.map name="gain2" onParent="true" value="19.0"/>
@@ -109,11 +109,11 @@
       </net>
       <net>
          <source obj="sine_3" outlet="wave"/>
-         <dest obj="pm2" inlet="in"/>
+         <dest obj="*c_1" inlet="in"/>
          <dest obj="mix_1" inlet="in3"/>
       </net>
       <net>
-         <source obj="pm2" outlet="out"/>
+         <source obj="*c_1" outlet="out"/>
          <dest obj="sine_2" inlet="phase"/>
       </net>
       <net>
@@ -125,15 +125,15 @@
       <net>
          <source obj="mix_1" outlet="out"/>
          <dest obj="vca_1" inlet="a"/>
-         <dest obj="pm1" inlet="in"/>
-         <dest obj="pm3" inlet="in"/>
+         <dest obj="*c_2" inlet="in"/>
+         <dest obj="*c_3" inlet="in"/>
       </net>
       <net>
-         <source obj="pm1" outlet="out"/>
+         <source obj="*c_2" outlet="out"/>
          <dest obj="sine_1" inlet="phase"/>
       </net>
       <net>
-         <source obj="pm3" outlet="out"/>
+         <source obj="*c_3" outlet="out"/>
          <dest obj="sine_3" inlet="phase"/>
       </net>
       <net>
@@ -180,8 +180,8 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>0</x>
-      <y>2</y>
+      <x>791</x>
+      <y>237</y>
       <width>828</width>
       <height>786</height>
    </windowPos>

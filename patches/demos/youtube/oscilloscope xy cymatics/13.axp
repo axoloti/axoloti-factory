@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="table/alloc 8b" sha="ccd876999d6af75dbe57dfef4d08b9635a264ac8" name="tabx" x="84" y="14">
       <params/>
       <attribs>
@@ -65,13 +65,14 @@ for(i=0;i<LENGTH;i++)
       <params/>
       <attribs>
          <combo attributeName="headphones" selection="-30dB"/>
+         <combo attributeName="mode" selection="Stereo"/>
       </attribs>
    </obj>
    <obj type="logic/and 2" sha="1938611ef1b57af3c7b1965081b17bf8e194d9a6" name="and_1" x="1260" y="98">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/-" sha="bfe9c7f97b2e72bd54afeb62ab2c40dbf3a5a82" name="-_1" x="1330" y="98">
+   <obj type="math/-" uuid="1643d55e6e7ce1c995a5e66db9f54fd969e6c9b7" name="-_1" x="1330" y="98">
       <params/>
       <attribs/>
    </obj>
@@ -140,7 +141,7 @@ for(i=0;i<LENGTH;i++)
       </params>
       <attribs/>
    </obj>
-   <obj type="mux/mux 2" sha="138891901c8849485b260a487f3b0fc188f6bae2" name="mux_7" x="168" y="168">
+   <obj type="mux/mux 2" uuid="16f90f81694766b0bc8187bfcba5a021e5701d81" name="mux_3" x="168" y="168">
       <params/>
       <attribs/>
    </obj>
@@ -148,7 +149,7 @@ for(i=0;i<LENGTH;i++)
       <params/>
       <attribs/>
    </obj>
-   <obj type="table/write" sha="27fd4ced2949a883990a38df165fea0d15e1bc2b" name="tabwrite1" x="448" y="168">
+   <obj type="table/write" uuid="50b8c8807ba1fc700ed79381c9360a982e0c3fb9" name="write_1" x="448" y="168">
       <params/>
       <attribs>
          <objref attributeName="table" obj="tabx"/>
@@ -170,7 +171,7 @@ for(i=0;i<LENGTH;i++)
       <params/>
       <attribs/>
    </obj>
-   <obj type="table/write" sha="27fd4ced2949a883990a38df165fea0d15e1bc2b" name="tabwrite2" x="448" y="266">
+   <obj type="table/write" uuid="50b8c8807ba1fc700ed79381c9360a982e0c3fb9" name="write_2" x="448" y="266">
       <params/>
       <attribs>
          <objref attributeName="table" obj="taby"/>
@@ -285,7 +286,7 @@ for(i=0;i<LENGTH;i++)
       <params/>
       <attribs/>
    </obj>
-   <obj type="table/write" sha="27fd4ced2949a883990a38df165fea0d15e1bc2b" name="tabwrite3" x="448" y="378">
+   <obj type="table/write" uuid="50b8c8807ba1fc700ed79381c9360a982e0c3fb9" name="write_3" x="448" y="378">
       <params/>
       <attribs>
          <objref attributeName="table" obj="tabz"/>
@@ -295,7 +296,7 @@ for(i=0;i<LENGTH;i++)
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/+" sha="fdc908fd68bce74b7ba3aed17e88e9830021f0a9" name="fdbkcomb_5" x="1526" y="378">
+   <obj type="math/+" uuid="b94a9b8e9adcb7d18868c0ee808a9b211b65578d" name="+_4" x="1526" y="378">
       <params/>
       <attribs/>
    </obj>
@@ -354,7 +355,7 @@ for(i=0;i<LENGTH;i++)
       </params>
       <attribs/>
    </obj>
-   <obj type="mux/mux 2" sha="138891901c8849485b260a487f3b0fc188f6bae2" name="mux_4" x="1036" y="420">
+   <obj type="mux/mux 2" uuid="16f90f81694766b0bc8187bfcba5a021e5701d81" name="mux_4" x="1036" y="420">
       <params/>
       <attribs/>
    </obj>
@@ -391,7 +392,7 @@ for(i=0;i<LENGTH;i++)
       </params>
       <attribs/>
    </obj>
-   <obj type="mux/mux 2" sha="138891901c8849485b260a487f3b0fc188f6bae2" name="mux_5" x="1190" y="420">
+   <obj type="mux/mux 2" uuid="16f90f81694766b0bc8187bfcba5a021e5701d81" name="mux_5" x="1190" y="420">
       <params/>
       <attribs/>
    </obj>
@@ -428,7 +429,7 @@ for(i=0;i<LENGTH;i++)
       </params>
       <attribs/>
    </obj>
-   <obj type="mux/mux 2" sha="138891901c8849485b260a487f3b0fc188f6bae2" name="mux_6" x="1344" y="420">
+   <obj type="mux/mux 2" uuid="16f90f81694766b0bc8187bfcba5a021e5701d81" name="mux_6" x="1344" y="420">
       <params/>
       <attribs/>
    </obj>
@@ -473,7 +474,7 @@ for(i=0;i<LENGTH;i++)
       <params/>
       <attribs/>
    </obj>
-   <obj type="conv/bipolar2unipolar" sha="38609fdcec231d6b21f80d961254b8abd0ecad61" name="bipolar2unipolar_1" x="42" y="490">
+   <obj type="conv/bipolar2unipolar" uuid="5b5f9405be365706c1ad37266d9df07b9a1570ee" name="bipolar2unipolar_1" x="42" y="490">
       <params/>
       <attribs/>
    </obj>
@@ -540,7 +541,7 @@ for(i=0;i<LENGTH;i++)
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 1" sha="f543e080bd2111cba525885443039f346703a594" name="*c_3" x="1400" y="504">
+   <obj type="mix/mix 1" uuid="e8f482af5b1ec4a2e9cf8ac7ce09e7c0e43cea08" name="mix_2" x="1400" y="504">
       <params>
          <frac32.u.map name="gain1" MidiCC="17" value="63.5">
             <presets>
@@ -628,17 +629,17 @@ for(i=0;i<LENGTH;i++)
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/quantize" sha="3cf3075bda10b7de86084f67a210bdfe4e310125" name="quantize_1" x="308" y="546">
+   <obj type="math/quantize" uuid="c2e999efc45cf8c5077dd1b140dcc793221e050e" name="quantize_1" x="308" y="546">
       <params/>
       <attribs>
          <spinner attributeName="bits" value="8"/>
       </attribs>
    </obj>
-   <obj type="mix/xfade" sha="7c7bb910e14c9ba3614f189bb924c86ca0a86890" name="xfade~_1" x="392" y="546">
+   <obj type="mix/xfade" uuid="375dc91d218e96cdc9cbc7e92adb48f705ef701a" name="xfade_1" x="392" y="546">
       <params/>
       <attribs/>
    </obj>
-   <obj type="table/read interp" sha="b0519acd115f068f0851ae0be434a57888454c06" name="tabread1" x="476" y="546">
+   <obj type="table/read interp" uuid="42918ec2255011ae3787cc5488c9b29980d796a8" name="read_1" x="476" y="546">
       <params/>
       <attribs>
          <objref attributeName="table" obj="tabx"/>
@@ -648,7 +649,7 @@ for(i=0;i<LENGTH;i++)
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/+" sha="f21fcf9a2511404a296065f4ba87ab840e153161" name="+_1" x="1680" y="546">
+   <obj type="math/+" uuid="faedbea4612d9bd3644d6d3bf31946d848a70e19" name="+_1" x="1680" y="546">
       <params/>
       <attribs/>
    </obj>
@@ -715,7 +716,7 @@ for(i=0;i<LENGTH;i++)
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 1" sha="f543e080bd2111cba525885443039f346703a594" name="*c_4" x="1400" y="602">
+   <obj type="mix/mix 1" uuid="e8f482af5b1ec4a2e9cf8ac7ce09e7c0e43cea08" name="mix_3" x="1400" y="602">
       <params>
          <frac32.u.map name="gain1" MidiCC="18" value="0.0">
             <presets>
@@ -762,11 +763,11 @@ for(i=0;i<LENGTH;i++)
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/+" sha="f21fcf9a2511404a296065f4ba87ab840e153161" name="+_2" x="1680" y="644">
+   <obj type="math/+" uuid="faedbea4612d9bd3644d6d3bf31946d848a70e19" name="+_2" x="1680" y="644">
       <params/>
       <attribs/>
    </obj>
-   <obj type="table/read" sha="13db20ba539824a51f60bb0ae362e2af0044c354" name="tabread2" x="476" y="686">
+   <obj type="table/read" uuid="57c0d2f661ccce53e64e9d4653918bc7a74f311e" name="read_2" x="476" y="686">
       <params/>
       <attribs>
          <objref attributeName="table" obj="taby"/>
@@ -835,7 +836,7 @@ for(i=0;i<LENGTH;i++)
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 1" sha="f543e080bd2111cba525885443039f346703a594" name="*c_5" x="1400" y="700">
+   <obj type="mix/mix 1" uuid="e8f482af5b1ec4a2e9cf8ac7ce09e7c0e43cea08" name="mix_4" x="1400" y="700">
       <params>
          <frac32.u.map name="gain1" MidiCC="19" value="46.0">
             <presets>
@@ -882,11 +883,11 @@ for(i=0;i<LENGTH;i++)
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/+" sha="f21fcf9a2511404a296065f4ba87ab840e153161" name="+_3" x="1680" y="742">
+   <obj type="math/+" uuid="faedbea4612d9bd3644d6d3bf31946d848a70e19" name="+_3" x="1680" y="742">
       <params/>
       <attribs/>
    </obj>
-   <obj type="table/read interp" sha="b0519acd115f068f0851ae0be434a57888454c06" name="tabread3" x="476" y="826">
+   <obj type="table/read interp" uuid="42918ec2255011ae3787cc5488c9b29980d796a8" name="read_3" x="476" y="826">
       <params/>
       <attribs>
          <objref attributeName="table" obj="tabz"/>
@@ -896,11 +897,11 @@ for(i=0;i<LENGTH;i++)
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/muls 8" sha="3b876043fb7aa6dff276407826cba102606eb254" name="muls_1" x="854" y="840">
+   <obj type="math/muls 8" uuid="910989ec4cbbf3e9ac50429a9f27dc336f63ddd3" name="muls_1" x="854" y="840">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/div 2" sha="5df68ad33aa1633cb7cb1724fcd41eee28932582" name="div_1" x="924" y="840">
+   <obj type="math/div 2" uuid="ad1e413d83e5edce017e3e9a4f30d86035cf637" name="div_1" x="924" y="840">
       <params/>
       <attribs/>
    </obj>
@@ -932,11 +933,11 @@ for(i=0;i<LENGTH;i++)
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/muls 8" sha="3b876043fb7aa6dff276407826cba102606eb254" name="muls_2" x="854" y="896">
+   <obj type="math/muls 8" uuid="910989ec4cbbf3e9ac50429a9f27dc336f63ddd3" name="muls_2" x="854" y="896">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/div 2" sha="5df68ad33aa1633cb7cb1724fcd41eee28932582" name="div_2" x="924" y="896">
+   <obj type="math/div 2" uuid="ad1e413d83e5edce017e3e9a4f30d86035cf637" name="div_2" x="924" y="896">
       <params/>
       <attribs/>
    </obj>
@@ -944,18 +945,18 @@ for(i=0;i<LENGTH;i++)
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/muls 8" sha="3b876043fb7aa6dff276407826cba102606eb254" name="muls_3" x="854" y="952">
+   <obj type="math/muls 8" uuid="910989ec4cbbf3e9ac50429a9f27dc336f63ddd3" name="muls_3" x="854" y="952">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/div 2" sha="5df68ad33aa1633cb7cb1724fcd41eee28932582" name="div_3" x="924" y="952">
+   <obj type="math/div 2" uuid="ad1e413d83e5edce017e3e9a4f30d86035cf637" name="div_3" x="924" y="952">
       <params/>
       <attribs/>
    </obj>
-   <patcher type="patch/patcher" sha="da39a3ee5e6b4b0d3255bfef95601890afd80709" name="patcher_1" x="1008" y="952">
+   <patcher type="patch/patcher" sha="da39a3ee5e6b4b0d3255bfef95601890afd80709" uuid="897d19fb-2399-4d9b-be9c-55ebdb1f0290" name="patcher_1" x="1008" y="952">
       <params/>
       <attribs/>
-      <subpatch>
+      <subpatch appVersion="1.0.8">
          <obj type="patch/inlet a" sha="2944bdbaeb2a8a42d5a97163275d052f75668a86" name="rotX" x="28" y="0">
             <params/>
             <attribs/>
@@ -968,63 +969,63 @@ for(i=0;i<LENGTH;i++)
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/sin" sha="1071012784f2bd65a87a083ab2b7c3d46db76c52" name="sinh" x="168" y="112">
+         <obj type="math/sin" uuid="3fd3c55bdecb474393c99b2a5b01e9bed143eca7" name="sin_1" x="168" y="112">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/sin" sha="1071012784f2bd65a87a083ab2b7c3d46db76c52" name="sinp" x="294" y="112">
+         <obj type="math/sin" uuid="3fd3c55bdecb474393c99b2a5b01e9bed143eca7" name="sin_2" x="294" y="112">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/sin" sha="1071012784f2bd65a87a083ab2b7c3d46db76c52" name="sinb" x="420" y="112">
+         <obj type="math/sin" uuid="3fd3c55bdecb474393c99b2a5b01e9bed143eca7" name="sin_3" x="420" y="112">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/cos" sha="8e1816a884241ec4b44374c205dbcd18fe0d101e" name="cosh" x="168" y="196">
+         <obj type="math/cos" uuid="a2ba1ca8d10b854e06728c088c43409866624fc1" name="cos_1" x="168" y="196">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/cos" sha="8e1816a884241ec4b44374c205dbcd18fe0d101e" name="cosp" x="294" y="196">
+         <obj type="math/cos" uuid="a2ba1ca8d10b854e06728c088c43409866624fc1" name="cos_2" x="294" y="196">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/cos" sha="8e1816a884241ec4b44374c205dbcd18fe0d101e" name="cosb" x="420" y="196">
+         <obj type="math/cos" uuid="a2ba1ca8d10b854e06728c088c43409866624fc1" name="cos_3" x="420" y="196">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="soft_1" x="182" y="280">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_1" x="182" y="280">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="soft_2" x="238" y="280">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_2" x="238" y="280">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="soft_3" x="294" y="280">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_3" x="294" y="280">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="soft_5" x="392" y="280">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_4" x="392" y="280">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="soft_6" x="448" y="280">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_5" x="448" y="280">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="soft_4" x="504" y="280">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_6" x="504" y="280">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="soft_13" x="602" y="280">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_7" x="602" y="280">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/+" sha="f21fcf9a2511404a296065f4ba87ab840e153161" name="+_1" x="182" y="336">
+         <obj type="math/+" uuid="faedbea4612d9bd3644d6d3bf31946d848a70e19" name="+_1" x="182" y="336">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/-" sha="86190d21676ef888e72ad0ae4fde0d817119f21c" name="+_2" x="392" y="336">
+         <obj type="math/-" uuid="832edca3a945aa25ae1875d277bdd12d6709031a" name="-_1" x="392" y="336">
             <params/>
             <attribs/>
          </obj>
@@ -1032,15 +1033,15 @@ for(i=0;i<LENGTH;i++)
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="soft_7" x="252" y="406">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_8" x="252" y="406">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="soft_8" x="350" y="406">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_9" x="350" y="406">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/inv" sha="dd3d98b9ec6f2b9231cb1d00d0f9667152537120" name="soft_9" x="462" y="406">
+         <obj type="math/inv" uuid="7f4c6cf4dcf79f9b0aa81c2eaf540405875714a3" name="inv_1" x="462" y="406">
             <params/>
             <attribs/>
          </obj>
@@ -1052,19 +1053,19 @@ for(i=0;i<LENGTH;i++)
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="M11" x="168" y="560">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_10" x="168" y="560">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="M12" x="252" y="560">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_11" x="252" y="560">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="M13" x="336" y="560">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_12" x="336" y="560">
             <params/>
             <attribs/>
          </obj>
-         <obj type="mix/mix 3" sha="3d37ac18e4393438042204df12d17aec499f09fb" name="mix21" x="420" y="574">
+         <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_1" x="420" y="574">
             <params>
                <frac32.u.map name="gain1" value="63.5"/>
                <frac32.u.map name="gain2" value="63.5"/>
@@ -1076,19 +1077,19 @@ for(i=0;i<LENGTH;i++)
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="M31" x="168" y="616">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_13" x="168" y="616">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="M32" x="252" y="616">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_14" x="252" y="616">
             <params/>
             <attribs/>
          </obj>
-         <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="M33" x="336" y="616">
+         <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_15" x="336" y="616">
             <params/>
             <attribs/>
          </obj>
-         <obj type="mix/mix 3" sha="3d37ac18e4393438042204df12d17aec499f09fb" name="mix22" x="420" y="770">
+         <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_2" x="420" y="770">
             <params>
                <frac32.u.map name="gain1" value="63.5"/>
                <frac32.u.map name="gain2" value="63.5"/>
@@ -1103,148 +1104,148 @@ for(i=0;i<LENGTH;i++)
          <nets>
             <net>
                <source obj="X" outlet="inlet"/>
-               <dest obj="M11" inlet="a"/>
-               <dest obj="M31" inlet="a"/>
+               <dest obj="*_10" inlet="a"/>
+               <dest obj="*_13" inlet="a"/>
             </net>
             <net>
                <source obj="Y" outlet="inlet"/>
-               <dest obj="M12" inlet="a"/>
-               <dest obj="M32" inlet="a"/>
+               <dest obj="*_11" inlet="a"/>
+               <dest obj="*_14" inlet="a"/>
             </net>
             <net>
                <source obj="rotX" outlet="inlet"/>
-               <dest obj="sinh" inlet="phase"/>
-               <dest obj="cosh" inlet="phase"/>
+               <dest obj="sin_1" inlet="phase"/>
+               <dest obj="cos_1" inlet="phase"/>
             </net>
             <net>
                <source obj="Z" outlet="inlet"/>
-               <dest obj="M13" inlet="a"/>
-               <dest obj="M33" inlet="a"/>
+               <dest obj="*_12" inlet="a"/>
+               <dest obj="*_15" inlet="a"/>
             </net>
             <net>
                <source obj="rotY" outlet="inlet"/>
-               <dest obj="sinp" inlet="phase"/>
-               <dest obj="cosp" inlet="phase"/>
+               <dest obj="sin_2" inlet="phase"/>
+               <dest obj="cos_2" inlet="phase"/>
             </net>
             <net>
                <source obj="rotZ" outlet="inlet"/>
-               <dest obj="sinb" inlet="phase"/>
-               <dest obj="cosb" inlet="phase"/>
+               <dest obj="sin_3" inlet="phase"/>
+               <dest obj="cos_3" inlet="phase"/>
             </net>
             <net>
-               <source obj="cosh" outlet="out"/>
-               <dest obj="soft_1" inlet="a"/>
-               <dest obj="soft_4" inlet="b"/>
+               <source obj="cos_1" outlet="out"/>
+               <dest obj="*_1" inlet="a"/>
+               <dest obj="*_6" inlet="b"/>
             </net>
             <net>
-               <source obj="cosb" outlet="out"/>
-               <dest obj="soft_1" inlet="b"/>
-               <dest obj="soft_5" inlet="a"/>
-               <dest obj="soft_8" inlet="a"/>
+               <source obj="cos_3" outlet="out"/>
+               <dest obj="*_1" inlet="b"/>
+               <dest obj="*_4" inlet="a"/>
+               <dest obj="*_9" inlet="a"/>
             </net>
             <net>
-               <source obj="sinh" outlet="out"/>
-               <dest obj="soft_2" inlet="a"/>
-               <dest obj="soft_5" inlet="b"/>
-               <dest obj="soft_13" inlet="b"/>
+               <source obj="sin_1" outlet="out"/>
+               <dest obj="*_2" inlet="a"/>
+               <dest obj="*_4" inlet="b"/>
+               <dest obj="*_7" inlet="b"/>
             </net>
             <net>
-               <source obj="sinp" outlet="out"/>
-               <dest obj="soft_2" inlet="b"/>
-               <dest obj="soft_6" inlet="a"/>
-               <dest obj="soft_9" inlet="in"/>
+               <source obj="sin_2" outlet="out"/>
+               <dest obj="*_2" inlet="b"/>
+               <dest obj="*_5" inlet="a"/>
+               <dest obj="inv_1" inlet="in"/>
             </net>
             <net>
-               <source obj="sinb" outlet="out"/>
-               <dest obj="soft_3" inlet="a"/>
-               <dest obj="soft_4" inlet="a"/>
-               <dest obj="soft_7" inlet="b"/>
+               <source obj="sin_3" outlet="out"/>
+               <dest obj="*_3" inlet="a"/>
+               <dest obj="*_6" inlet="a"/>
+               <dest obj="*_8" inlet="b"/>
             </net>
             <net>
-               <source obj="soft_2" outlet="result"/>
-               <dest obj="soft_3" inlet="b"/>
+               <source obj="*_2" outlet="result"/>
+               <dest obj="*_3" inlet="b"/>
             </net>
             <net>
-               <source obj="soft_3" outlet="result"/>
+               <source obj="*_3" outlet="result"/>
                <dest obj="+_1" inlet="in2"/>
             </net>
             <net>
-               <source obj="soft_1" outlet="result"/>
+               <source obj="*_1" outlet="result"/>
                <dest obj="+_1" inlet="in1"/>
             </net>
             <net>
-               <source obj="cosp" outlet="out"/>
-               <dest obj="soft_13" inlet="a"/>
-               <dest obj="soft_7" inlet="a"/>
-               <dest obj="soft_8" inlet="b"/>
+               <source obj="cos_2" outlet="out"/>
+               <dest obj="*_7" inlet="a"/>
+               <dest obj="*_8" inlet="a"/>
+               <dest obj="*_9" inlet="b"/>
             </net>
             <net>
-               <source obj="soft_5" outlet="result"/>
-               <dest obj="soft_6" inlet="b"/>
+               <source obj="*_4" outlet="result"/>
+               <dest obj="*_5" inlet="b"/>
             </net>
             <net>
-               <source obj="soft_6" outlet="result"/>
-               <dest obj="+_2" inlet="in1"/>
+               <source obj="*_5" outlet="result"/>
+               <dest obj="-_1" inlet="in1"/>
             </net>
             <net>
-               <source obj="soft_4" outlet="result"/>
-               <dest obj="+_2" inlet="in2"/>
+               <source obj="*_6" outlet="result"/>
+               <dest obj="-_1" inlet="in2"/>
             </net>
             <net>
-               <source obj="mix21" outlet="out"/>
+               <source obj="mix_1" outlet="out"/>
                <dest obj="Xo" inlet="outlet"/>
             </net>
             <net>
-               <source obj="mix22" outlet="out"/>
+               <source obj="mix_2" outlet="out"/>
                <dest obj="Yo" inlet="outlet"/>
             </net>
             <net>
                <source obj="+_1" outlet="out"/>
-               <dest obj="M11" inlet="b"/>
+               <dest obj="*_10" inlet="b"/>
             </net>
             <net>
-               <source obj="soft_7" outlet="result"/>
-               <dest obj="M31" inlet="b"/>
+               <source obj="*_8" outlet="result"/>
+               <dest obj="*_13" inlet="b"/>
             </net>
             <net>
-               <source obj="+_2" outlet="out"/>
-               <dest obj="M12" inlet="b"/>
+               <source obj="-_1" outlet="out"/>
+               <dest obj="*_11" inlet="b"/>
             </net>
             <net>
-               <source obj="M11" outlet="result"/>
-               <dest obj="mix21" inlet="in1"/>
+               <source obj="*_10" outlet="result"/>
+               <dest obj="mix_1" inlet="in1"/>
             </net>
             <net>
-               <source obj="M12" outlet="result"/>
-               <dest obj="mix21" inlet="in2"/>
+               <source obj="*_11" outlet="result"/>
+               <dest obj="mix_1" inlet="in2"/>
             </net>
             <net>
-               <source obj="M31" outlet="result"/>
-               <dest obj="mix22" inlet="in2"/>
+               <source obj="*_13" outlet="result"/>
+               <dest obj="mix_2" inlet="in2"/>
             </net>
             <net>
-               <source obj="soft_13" outlet="result"/>
-               <dest obj="M13" inlet="b"/>
+               <source obj="*_7" outlet="result"/>
+               <dest obj="*_12" inlet="b"/>
             </net>
             <net>
-               <source obj="M13" outlet="result"/>
-               <dest obj="mix21" inlet="in3"/>
+               <source obj="*_12" outlet="result"/>
+               <dest obj="mix_1" inlet="in3"/>
             </net>
             <net>
-               <source obj="soft_8" outlet="result"/>
-               <dest obj="M32" inlet="b"/>
+               <source obj="*_9" outlet="result"/>
+               <dest obj="*_14" inlet="b"/>
             </net>
             <net>
-               <source obj="M32" outlet="result"/>
-               <dest obj="mix22" inlet="in1"/>
+               <source obj="*_14" outlet="result"/>
+               <dest obj="mix_2" inlet="in1"/>
             </net>
             <net>
-               <source obj="soft_9" outlet="out"/>
-               <dest obj="M33" inlet="b"/>
+               <source obj="inv_1" outlet="out"/>
+               <dest obj="*_15" inlet="b"/>
             </net>
             <net>
-               <source obj="M33" outlet="result"/>
-               <dest obj="mix22" inlet="in3"/>
+               <source obj="*_15" outlet="result"/>
+               <dest obj="mix_2" inlet="in3"/>
             </net>
          </nets>
          <settings>
@@ -1253,11 +1254,11 @@ for(i=0;i<LENGTH;i++)
          <notes><![CDATA[]]></notes>
       </subpatch>
    </patcher>
-   <obj type="mux/mux 2" sha="c6b90f8c9bc3d2f8632ce90fca7a738c7153eb2f" name="mux_1" x="1232" y="952">
+   <obj type="mux/mux 2" uuid="539c246f4c360ac476e128cfbfa84348fb7f7e73" name="mux_1" x="1232" y="952">
       <params/>
       <attribs/>
    </obj>
-   <obj type="mux/mux 2" sha="c6b90f8c9bc3d2f8632ce90fca7a738c7153eb2f" name="mux_2" x="1302" y="952">
+   <obj type="mux/mux 2" uuid="539c246f4c360ac476e128cfbfa84348fb7f7e73" name="mux_2" x="1302" y="952">
       <params/>
       <attribs/>
    </obj>
@@ -1268,15 +1269,15 @@ for(i=0;i<LENGTH;i++)
    <nets>
       <net>
          <source obj="randtrig1__" outlet="v"/>
-         <dest obj="tabwrite1" inlet="a"/>
-         <dest obj="tabwrite2" inlet="a"/>
-         <dest obj="tabwrite3" inlet="a"/>
+         <dest obj="write_1" inlet="a"/>
+         <dest obj="write_2" inlet="a"/>
+         <dest obj="write_3" inlet="a"/>
       </net>
       <net>
-         <source obj="xfade~_1" outlet="o"/>
-         <dest obj="tabread2" inlet="a"/>
-         <dest obj="tabread1" inlet="a"/>
-         <dest obj="tabread3" inlet="a"/>
+         <source obj="xfade_1" outlet="o"/>
+         <dest obj="read_1" inlet="a"/>
+         <dest obj="read_2" inlet="a"/>
+         <dest obj="read_3" inlet="a"/>
       </net>
       <net>
          <source obj="bipolar2unipolar_1" outlet="o"/>
@@ -1285,12 +1286,12 @@ for(i=0;i<LENGTH;i++)
       </net>
       <net>
          <source obj="quantize_1" outlet="b"/>
-         <dest obj="xfade~_1" inlet="i1"/>
+         <dest obj="xfade_1" inlet="i1"/>
       </net>
       <net>
          <source obj="mix11" outlet="o"/>
          <dest obj="quantize_1" inlet="a"/>
-         <dest obj="xfade~_1" inlet="i2"/>
+         <dest obj="xfade_1" inlet="i2"/>
       </net>
       <net>
          <source obj="muls_1" outlet="out"/>
@@ -1339,15 +1340,15 @@ for(i=0;i<LENGTH;i++)
          <dest obj="mix_1" inlet="bus_in"/>
       </net>
       <net>
-         <source obj="tabread1" outlet="o"/>
+         <source obj="read_1" outlet="o"/>
          <dest obj="vca_1" inlet="a"/>
       </net>
       <net>
-         <source obj="tabread2" outlet="o"/>
+         <source obj="read_2" outlet="o"/>
          <dest obj="vca_2" inlet="a"/>
       </net>
       <net>
-         <source obj="tabread3" outlet="o"/>
+         <source obj="read_3" outlet="o"/>
          <dest obj="vca_3" inlet="a"/>
       </net>
       <net>
@@ -1383,9 +1384,9 @@ for(i=0;i<LENGTH;i++)
       </net>
       <net>
          <source obj="nointerp_1" outlet="o"/>
-         <dest obj="*c_3" inlet="in1"/>
-         <dest obj="*c_4" inlet="in1"/>
-         <dest obj="*c_5" inlet="in1"/>
+         <dest obj="mix_2" inlet="in1"/>
+         <dest obj="mix_3" inlet="in1"/>
+         <dest obj="mix_4" inlet="in1"/>
       </net>
       <net>
          <source obj="saw_1" outlet="wave"/>
@@ -1400,7 +1401,7 @@ for(i=0;i<LENGTH;i++)
          <dest obj="+_1" inlet="in1"/>
       </net>
       <net>
-         <source obj="*c_3" outlet="out"/>
+         <source obj="mix_2" outlet="out"/>
          <dest obj="+_1" inlet="in2"/>
       </net>
       <net>
@@ -1416,7 +1417,7 @@ for(i=0;i<LENGTH;i++)
          <dest obj="+_2" inlet="in1"/>
       </net>
       <net>
-         <source obj="*c_4" outlet="out"/>
+         <source obj="mix_3" outlet="out"/>
          <dest obj="+_2" inlet="in2"/>
       </net>
       <net>
@@ -1432,7 +1433,7 @@ for(i=0;i<LENGTH;i++)
          <dest obj="+_3" inlet="in1"/>
       </net>
       <net>
-         <source obj="*c_5" outlet="out"/>
+         <source obj="mix_4" outlet="out"/>
          <dest obj="+_3" inlet="in2"/>
       </net>
       <net>
@@ -1445,27 +1446,27 @@ for(i=0;i<LENGTH;i++)
       </net>
       <net>
          <source obj="saw_4" outlet="phasor"/>
-         <dest obj="*c_3" inlet="bus_in"/>
+         <dest obj="mix_2" inlet="bus_in"/>
       </net>
       <net>
          <source obj="saw_5" outlet="phasor"/>
-         <dest obj="*c_4" inlet="bus_in"/>
+         <dest obj="mix_3" inlet="bus_in"/>
       </net>
       <net>
          <source obj="saw_6" outlet="phasor"/>
-         <dest obj="*c_5" inlet="bus_in"/>
+         <dest obj="mix_4" inlet="bus_in"/>
       </net>
       <net>
          <source obj="randtrig1" outlet="rand"/>
-         <dest obj="tabwrite1" inlet="v"/>
+         <dest obj="write_1" inlet="v"/>
       </net>
       <net>
          <source obj="randtrig1_" outlet="rand"/>
-         <dest obj="tabwrite2" inlet="v"/>
+         <dest obj="write_2" inlet="v"/>
       </net>
       <net>
          <source obj="randtrig1___" outlet="rand"/>
-         <dest obj="tabwrite3" inlet="v"/>
+         <dest obj="write_3" inlet="v"/>
       </net>
       <net>
          <source obj="osc1_" outlet="wave"/>
@@ -1539,9 +1540,6 @@ for(i=0;i<LENGTH;i++)
          <dest obj="randtrig1_" inlet="trig"/>
          <dest obj="randtrig1___" inlet="trig"/>
          <dest obj="randtrig1__" inlet="trig"/>
-         <dest obj="tabwrite1" inlet="trig"/>
-         <dest obj="tabwrite2" inlet="trig"/>
-         <dest obj="tabwrite3" inlet="trig"/>
          <dest obj="samplehold_5" inlet="trig"/>
          <dest obj="toggle_1" inlet="trig"/>
          <dest obj="samplehold_1" inlet="trig"/>
@@ -1550,6 +1548,9 @@ for(i=0;i<LENGTH;i++)
          <dest obj="uniform_6" inlet="trig"/>
          <dest obj="samplehold_6" inlet="trig"/>
          <dest obj="samplehold_4" inlet="trig"/>
+         <dest obj="write_1" inlet="trig"/>
+         <dest obj="write_2" inlet="trig"/>
+         <dest obj="write_3" inlet="trig"/>
       </net>
       <net>
          <source obj="smooth_1" outlet="out"/>
@@ -1577,7 +1578,7 @@ for(i=0;i<LENGTH;i++)
       </net>
       <net>
          <source obj="samplehold_5" outlet="o"/>
-         <dest obj="xfade~_1" inlet="c"/>
+         <dest obj="xfade_1" inlet="c"/>
       </net>
       <net>
          <source obj="mux_4" outlet="o"/>
@@ -1657,16 +1658,16 @@ for(i=0;i<LENGTH;i++)
          <dest obj="fdbkcomb_3" inlet="in2"/>
       </net>
       <net>
-         <source obj="mux_7" outlet="o"/>
+         <source obj="mux_3" outlet="o"/>
          <dest obj="fdbkcomb_4" inlet="in1"/>
       </net>
       <net>
          <source obj="toggle_5" outlet="o"/>
-         <dest obj="mux_7" inlet="s"/>
+         <dest obj="mux_3" inlet="s"/>
       </net>
       <net>
          <source obj="uniform_6" outlet="v"/>
-         <dest obj="mux_7" inlet="i2"/>
+         <dest obj="mux_3" inlet="i2"/>
       </net>
       <net>
          <source obj="fdbkcomb_4" outlet="out"/>
@@ -1686,11 +1687,11 @@ for(i=0;i<LENGTH;i++)
       </net>
       <net>
          <source obj="c_1" outlet="o"/>
-         <dest obj="fdbkcomb_5" inlet="in1"/>
-         <dest obj="fdbkcomb_5" inlet="in2"/>
+         <dest obj="+_4" inlet="in1"/>
+         <dest obj="+_4" inlet="in2"/>
       </net>
       <net>
-         <source obj="fdbkcomb_5" outlet="out"/>
+         <source obj="+_4" outlet="out"/>
          <dest obj="nointerp_1" inlet="i"/>
       </net>
       <net>

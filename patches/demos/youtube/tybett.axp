@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="lfo/square" sha="b4420b58ca2ae5ece53d53540bc91bc9ed7a4b83" name="square_3" x="0" y="0">
       <params>
          <frac32.s.map name="pitch" value="-4.0"/>
@@ -108,7 +108,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 1" sha="f543e080bd2111cba525885443039f346703a594" name="mix_1" x="840" y="252">
+   <obj type="mix/mix 1" uuid="e8f482af5b1ec4a2e9cf8ac7ce09e7c0e43cea08" name="mix_1" x="840" y="252">
       <params>
          <frac32.u.map name="gain1" value="30.0"/>
       </params>
@@ -185,7 +185,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 1" sha="f543e080bd2111cba525885443039f346703a594" name="mix_2" x="840" y="448">
+   <obj type="mix/mix 1" uuid="e8f482af5b1ec4a2e9cf8ac7ce09e7c0e43cea08" name="mix_2" x="840" y="448">
       <params>
          <frac32.u.map name="gain1" value="30.0"/>
       </params>
@@ -270,7 +270,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 1" sha="f543e080bd2111cba525885443039f346703a594" name="mix_3" x="840" y="630">
+   <obj type="mix/mix 1" uuid="e8f482af5b1ec4a2e9cf8ac7ce09e7c0e43cea08" name="mix_3" x="840" y="630">
       <params>
          <frac32.u.map name="gain1" value="30.0"/>
       </params>

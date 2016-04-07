@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="gpio/in/digital" sha="ba19c07c1187a5920be1049cfb56e9518a722c82" name="digitalRead_1" x="20" y="140">
       <params/>
       <attribs>

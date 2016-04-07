@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <comment type="patch/comment" x="42" y="14" text="waveshaper: time domain tranfert function"/>
    <comment type="patch/comment" x="84" y="28" text="adds harmonics to the spectrum"/>
    <comment type="patch/comment" x="126" y="42" text="(but also aliases!)"/>
@@ -89,11 +89,11 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="conv/bipolar2unipolar" sha="38609fdcec231d6b21f80d961254b8abd0ecad61" name="bipolar2unipolar1" x="294" y="434">
+   <obj type="conv/bipolar2unipolar" uuid="5b5f9405be365706c1ad37266d9df07b9a1570ee" name="bipolar2unipolar_1" x="294" y="434">
       <params/>
       <attribs/>
    </obj>
-   <obj type="table/read interp" sha="b0519acd115f068f0851ae0be434a57888454c06" name="tabread21" x="420" y="434">
+   <obj type="table/read interp" uuid="42918ec2255011ae3787cc5488c9b29980d796a8" name="read_1" x="420" y="434">
       <params/>
       <attribs>
          <objref attributeName="table" obj="softsat"/>
@@ -106,7 +106,7 @@
       <attribs/>
    </obj>
    <comment type="patch/comment" x="714" y="490" text="0:original"/>
-   <obj type="table/read interp" sha="b0519acd115f068f0851ae0be434a57888454c06" name="tabread21_" x="420" y="504">
+   <obj type="table/read interp" uuid="42918ec2255011ae3787cc5488c9b29980d796a8" name="read_2" x="420" y="504">
       <params/>
       <attribs>
          <objref attributeName="table" obj="hardsat"/>
@@ -115,17 +115,17 @@
    <comment type="patch/comment" x="714" y="504" text="1:softsat"/>
    <comment type="patch/comment" x="714" y="518" text="2:hardsat"/>
    <comment type="patch/comment" x="714" y="532" text="3: asymmetric"/>
-   <obj type="table/read interp" sha="b0519acd115f068f0851ae0be434a57888454c06" name="tabread21__" x="420" y="574">
+   <obj type="table/read interp" uuid="42918ec2255011ae3787cc5488c9b29980d796a8" name="read_3" x="420" y="574">
       <params/>
       <attribs>
          <objref attributeName="table" obj="asym"/>
       </attribs>
    </obj>
-   <obj type="mux/mux 4" sha="4145bfd8751449238db95f24fb1cd2a69972d026" name="inmux31" x="616" y="574">
+   <obj type="mux/mux 4" uuid="e511105cf5630d1a0b4a144dc3fabb3cc7c07bd" name="mux_1" x="616" y="574">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c1" x="700" y="574">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_1" x="700" y="574">
       <params>
          <frac32.u.map name="amp" value="9.5"/>
       </params>
@@ -141,29 +141,29 @@
          <dest obj="test_signal_generator1" inlet="pitch"/>
       </net>
       <net>
-         <source obj="bipolar2unipolar1" outlet="o"/>
-         <dest obj="tabread21" inlet="a"/>
-         <dest obj="tabread21_" inlet="a"/>
-         <dest obj="tabread21__" inlet="a"/>
+         <source obj="bipolar2unipolar_1" outlet="o"/>
+         <dest obj="read_1" inlet="a"/>
+         <dest obj="read_2" inlet="a"/>
+         <dest obj="read_3" inlet="a"/>
       </net>
       <net>
-         <source obj="tabread21_" outlet="o"/>
-         <dest obj="inmux31" inlet="i2"/>
+         <source obj="read_2" outlet="o"/>
+         <dest obj="mux_1" inlet="i2"/>
       </net>
       <net>
-         <source obj="tabread21__" outlet="o"/>
-         <dest obj="inmux31" inlet="i3"/>
+         <source obj="read_3" outlet="o"/>
+         <dest obj="mux_1" inlet="i3"/>
       </net>
       <net>
-         <source obj="tabread21" outlet="o"/>
-         <dest obj="inmux31" inlet="i1"/>
+         <source obj="read_1" outlet="o"/>
+         <dest obj="mux_1" inlet="i1"/>
       </net>
       <net>
-         <source obj="inmux31" outlet="o"/>
-         <dest obj="*c1" inlet="in"/>
+         <source obj="mux_1" outlet="o"/>
+         <dest obj="*c_1" inlet="in"/>
       </net>
       <net>
-         <source obj="*c1" outlet="out"/>
+         <source obj="*c_1" outlet="out"/>
          <dest obj="dac_11" inlet="left"/>
          <dest obj="dac_11" inlet="right"/>
       </net>
@@ -173,12 +173,12 @@
       </net>
       <net>
          <source obj="i_2" outlet="out"/>
-         <dest obj="inmux31" inlet="s"/>
+         <dest obj="mux_1" inlet="s"/>
       </net>
       <net>
          <source obj="test_signal_generator1" outlet="outlet_1"/>
-         <dest obj="bipolar2unipolar1" inlet="i"/>
-         <dest obj="inmux31" inlet="i0"/>
+         <dest obj="bipolar2unipolar_1" inlet="i"/>
+         <dest obj="mux_1" inlet="i0"/>
       </net>
    </nets>
    <settings>

@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <comment type="patch/comment" x="28" y="14" text="demonstration: modulated delay lines, overlap-add"/>
    <obj type="ctrl/i radio 4 v" sha="d755521996a6bf57298aeed6198f271783137da1" name="i_2" x="42" y="112">
       <params>
@@ -42,7 +42,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/*" sha="c47ceb7366785e0103cf880ce3450321491949f1" name="*c1" x="320" y="500">
+   <obj type="math/*" uuid="c16a625a661f40e4b359db604dcd00b3befcdbe3" name="*_1" x="320" y="500">
       <params/>
       <attribs/>
    </obj>
@@ -54,15 +54,15 @@
          <objref attributeName="delayname" obj="d1"/>
       </attribs>
    </obj>
-   <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="*1" x="600" y="500">
+   <obj type="math/*" uuid="c16a625a661f40e4b359db604dcd00b3befcdbe3" name="*_2" x="600" y="500">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/window" sha="279fd6991b5a8cf4c66e33feefccb9c9deb02f1d" name="window_1" x="400" y="600">
+   <obj type="math/window" uuid="5582d4d31acd67073be69df4d31d686304e17161" name="window_1" x="400" y="600">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*" sha="c47ceb7366785e0103cf880ce3450321491949f1" name="*c1_" x="320" y="640">
+   <obj type="math/*" uuid="c16a625a661f40e4b359db604dcd00b3befcdbe3" name="*_3" x="320" y="640">
       <params/>
       <attribs/>
    </obj>
@@ -74,11 +74,11 @@
          <objref attributeName="delayname" obj="d1"/>
       </attribs>
    </obj>
-   <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="*1_" x="600" y="640">
+   <obj type="math/*" uuid="c16a625a661f40e4b359db604dcd00b3befcdbe3" name="*_4" x="600" y="640">
       <params/>
       <attribs/>
    </obj>
-   <obj type="mix/mix 2" sha="67c325bf12e5b73ad58df89daf7899831777003c" name="mix21" x="680" y="640">
+   <obj type="mix/mix 2" uuid="30c04239c88e09d3fa5c333b784ecf54f1b0e268" name="mix_1" x="680" y="640">
       <params>
          <frac32.u.map name="gain1" value="32.0"/>
          <frac32.u.map name="gain2" value="32.0"/>
@@ -93,7 +93,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/window" sha="279fd6991b5a8cf4c66e33feefccb9c9deb02f1d" name="window_1_" x="400" y="740">
+   <obj type="math/window" uuid="5582d4d31acd67073be69df4d31d686304e17161" name="window_2" x="400" y="740">
       <params/>
       <attribs/>
    </obj>
@@ -104,55 +104,55 @@
       </net>
       <net>
          <source obj="phasor3_1" outlet="phasor0"/>
+         <dest obj="*_1" inlet="a"/>
          <dest obj="window_1" inlet="phase"/>
-         <dest obj="*c1" inlet="a"/>
       </net>
       <net>
          <source obj="window_1" outlet="win"/>
-         <dest obj="*1" inlet="b"/>
+         <dest obj="*_2" inlet="b"/>
       </net>
       <net>
          <source obj="delread2__1" outlet="out"/>
-         <dest obj="*1" inlet="a"/>
+         <dest obj="*_2" inlet="a"/>
       </net>
       <net>
-         <source obj="mix21" outlet="out"/>
+         <source obj="mix_1" outlet="out"/>
          <dest obj="dac_11" inlet="wave"/>
          <dest obj="dac_21" inlet="wave"/>
       </net>
       <net>
          <source obj="phasor3_1" outlet="phasor180"/>
-         <dest obj="*c1_" inlet="a"/>
-         <dest obj="window_1_" inlet="phase"/>
+         <dest obj="*_3" inlet="a"/>
+         <dest obj="window_2" inlet="phase"/>
       </net>
       <net>
-         <source obj="*c1" outlet="result"/>
+         <source obj="*_1" outlet="result"/>
          <dest obj="delread2__1" inlet="time"/>
       </net>
       <net>
-         <source obj="*c1_" outlet="result"/>
+         <source obj="*_3" outlet="result"/>
          <dest obj="delread2__1_" inlet="time"/>
       </net>
       <net>
          <source obj="delread2__1_" outlet="out"/>
-         <dest obj="*1_" inlet="a"/>
+         <dest obj="*_4" inlet="a"/>
       </net>
       <net>
          <source obj="c1" outlet="out"/>
-         <dest obj="*c1" inlet="b"/>
-         <dest obj="*c1_" inlet="b"/>
+         <dest obj="*_1" inlet="b"/>
+         <dest obj="*_3" inlet="b"/>
       </net>
       <net>
-         <source obj="*1" outlet="result"/>
-         <dest obj="mix21" inlet="in1"/>
+         <source obj="*_2" outlet="result"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
-         <source obj="*1_" outlet="result"/>
-         <dest obj="mix21" inlet="in2"/>
+         <source obj="*_4" outlet="result"/>
+         <dest obj="mix_1" inlet="in2"/>
       </net>
       <net>
-         <source obj="window_1_" outlet="win"/>
-         <dest obj="*1_" inlet="b"/>
+         <source obj="window_2" outlet="win"/>
+         <dest obj="*_4" inlet="b"/>
       </net>
       <net>
          <source obj="i_2" outlet="out"/>

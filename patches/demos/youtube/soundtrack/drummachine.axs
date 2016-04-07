@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="midi/in/keyb note" sha="5d623ad73ade2280421069a67ee3f30595794c72" name="keybnote1" x="14" y="14">
       <params/>
       <attribs>
@@ -15,7 +15,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/abs" sha="d9aef12fddc085a0a8a7a9868f1c845c538a9209" name="arithmetic.abs_1" x="420" y="14">
+   <obj type="math/abs" uuid="f4078fd9b2dff40d4f1551b79900c9ab360c99" name="abs_1" x="420" y="14">
       <params/>
       <attribs/>
    </obj>
@@ -43,11 +43,11 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="arithmetic.*_1" x="504" y="98">
+   <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_1" x="504" y="98">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*" sha="c47ceb7366785e0103cf880ce3450321491949f1" name="arithmetic.*_2" x="504" y="168">
+   <obj type="math/*" uuid="c16a625a661f40e4b359db604dcd00b3befcdbe3" name="*_2" x="504" y="168">
       <params/>
       <attribs/>
    </obj>
@@ -101,31 +101,31 @@
    <nets>
       <net>
          <source obj="noise.uniform_2" outlet="wave"/>
-         <dest obj="arithmetic.abs_1" inlet="in"/>
+         <dest obj="abs_1" inlet="in"/>
       </net>
       <net>
          <source obj="env.envdlinmx_1" outlet="env"/>
-         <dest obj="arithmetic.*_2" inlet="b"/>
+         <dest obj="*_2" inlet="b"/>
       </net>
       <net>
          <source obj="osc.sine_1" outlet="wave"/>
-         <dest obj="arithmetic.*_1" inlet="b"/>
+         <dest obj="*_1" inlet="b"/>
       </net>
       <net>
-         <source obj="arithmetic.*_1" outlet="result"/>
-         <dest obj="arithmetic.*_2" inlet="a"/>
+         <source obj="*_1" outlet="result"/>
+         <dest obj="*_2" inlet="a"/>
       </net>
       <net>
          <source obj="arithmetic.*c_2" outlet="out"/>
          <dest obj="osc.sine_1" inlet="pitch"/>
       </net>
       <net>
-         <source obj="arithmetic.abs_1" outlet="out"/>
+         <source obj="abs_1" outlet="out"/>
          <dest obj="filter.lowpass~_1" inlet="in"/>
       </net>
       <net>
          <source obj="filter.lowpass~_1" outlet="out"/>
-         <dest obj="arithmetic.*_1" inlet="a"/>
+         <dest obj="*_1" inlet="a"/>
       </net>
       <net>
          <source obj="keybnote1" outlet="gate"/>
@@ -173,7 +173,7 @@
          <dest obj="env.decay.m_1" inlet="d"/>
       </net>
       <net>
-         <source obj="arithmetic.*_2" outlet="result"/>
+         <source obj="*_2" outlet="result"/>
          <dest obj="bd" inlet="outlet"/>
       </net>
       <net>

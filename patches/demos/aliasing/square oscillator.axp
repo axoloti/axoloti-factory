@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <comment type="patch/comment" x="14" y="14" text="&lt;html&gt;&lt;H2&gt;Comparing a naive non-bandwidth limited square wave oscillator&lt;br&gt;with a better one&lt;/h2&gt;"/>
    <obj type="lfo/saw" sha="bce38cfb8c1d56d3c98a8df7986ddf379f982033" name="saw_1" x="14" y="98">
       <params>
@@ -32,11 +32,11 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mux/mux 2" sha="c6b90f8c9bc3d2f8632ce90fca7a738c7153eb2f" name="mux_1" x="350" y="182">
+   <obj type="mux/mux 2" uuid="539c246f4c360ac476e128cfbfa84348fb7f7e73" name="mux_1" x="350" y="182">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="3ade427ae7291fdf62058c4243fe718758187105" name="*c_1" x="420" y="182">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_1" x="420" y="182">
       <params>
          <frac32.u.map name="amp" value="16.0"/>
       </params>
@@ -53,8 +53,8 @@
    <nets>
       <net>
          <source obj="mux_1" outlet="o"/>
-         <dest obj="*c_1" inlet="in"/>
          <dest obj="scope_1" inlet="in"/>
+         <dest obj="*c_1" inlet="in"/>
       </net>
       <net>
          <source obj="*c_1" outlet="out"/>

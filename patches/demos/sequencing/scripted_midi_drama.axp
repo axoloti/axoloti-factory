@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="script/script" sha="24cae6cc95a2ace0ac855159f67b59a54efe7146" name="script1" x="14" y="14">
       <params/>
       <attribs>
@@ -108,7 +108,7 @@
       <attribs/>
    </obj>
    <comment type="patch/comment" x="462" y="196" text="drum 2"/>
-   <obj type="math/==" sha="3215967e1a000a377c36699ca3bc414a25beaf48" name="inv1" x="462" y="224">
+   <obj type="math/==" uuid="d80966871d5328696da567bba03c3fa83060f08d" name="==_1" x="462" y="224">
       <params/>
       <attribs/>
    </obj>
@@ -126,7 +126,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c1_" x="714" y="308">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_1" x="714" y="308">
       <params>
          <frac32.u.map name="amp" value="25.5"/>
       </params>
@@ -137,7 +137,7 @@
       <attribs/>
    </obj>
    <comment type="patch/comment" x="252" y="364" text="the fweeeeep engine"/>
-   <obj type="math/==" sha="3215967e1a000a377c36699ca3bc414a25beaf48" name="==1" x="252" y="392">
+   <obj type="math/==" uuid="d80966871d5328696da567bba03c3fa83060f08d" name="==_2" x="252" y="392">
       <params/>
       <attribs/>
    </obj>
@@ -153,7 +153,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="logic/change" sha="f80233f48404b59940f740ca338756232392f909" name="change1" x="238" y="448">
+   <obj type="logic/change" uuid="42071f8cb4cfe1f35956c0bd5a313a57e049bec4" name="change_1" x="238" y="448">
       <params/>
       <attribs/>
    </obj>
@@ -198,7 +198,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 1" sha="f543e080bd2111cba525885443039f346703a594" name="mix12" x="714" y="490">
+   <obj type="mix/mix 1" uuid="e8f482af5b1ec4a2e9cf8ac7ce09e7c0e43cea08" name="mix_1" x="714" y="490">
       <params>
          <frac32.u.map name="gain1" value="17.0"/>
       </params>
@@ -243,7 +243,7 @@
       <net>
          <source obj="script1" outlet="out1_"/>
          <dest obj="envd1" inlet="trig"/>
-         <dest obj="inv1" inlet="in1"/>
+         <dest obj="==_1" inlet="in1"/>
       </net>
       <net>
          <source obj="select_f_161" outlet="o"/>
@@ -263,10 +263,10 @@
       </net>
       <net>
          <source obj="osc0_1" outlet="wave"/>
-         <dest obj="mix12" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
-         <source obj="mix12" outlet="out"/>
+         <source obj="mix_1" outlet="out"/>
          <dest obj="dac_3" inlet="left"/>
          <dest obj="dac_3" inlet="right"/>
       </net>
@@ -274,19 +274,19 @@
          <source obj="script1" outlet="out2_"/>
          <dest obj="select_f_161" inlet="in"/>
          <dest obj="ibar161" inlet="in"/>
-         <dest obj="change1" inlet="in"/>
-         <dest obj="==1" inlet="in1"/>
+         <dest obj="==_2" inlet="in1"/>
+         <dest obj="change_1" inlet="in"/>
       </net>
       <net>
          <source obj="c1" outlet="out"/>
          <dest obj="saw21" inlet="pitch"/>
       </net>
       <net>
-         <source obj="change1" outlet="trig"/>
+         <source obj="change_1" outlet="trig"/>
          <dest obj="osc1" inlet="reset"/>
       </net>
       <net>
-         <source obj="==1" outlet="out"/>
+         <source obj="==_2" outlet="out"/>
          <dest obj="saw21" inlet="reset"/>
       </net>
       <net>
@@ -302,7 +302,7 @@
          <dest obj="dac_2" inlet="right"/>
       </net>
       <net>
-         <source obj="inv1" outlet="out"/>
+         <source obj="==_1" outlet="out"/>
          <dest obj="envd2" inlet="trig"/>
       </net>
       <net>
@@ -311,10 +311,10 @@
       </net>
       <net>
          <source obj="vca_2" outlet="o"/>
-         <dest obj="*c1_" inlet="in"/>
+         <dest obj="*c_1" inlet="in"/>
       </net>
       <net>
-         <source obj="*c1_" outlet="out"/>
+         <source obj="*c_1" outlet="out"/>
          <dest obj="dac_2__" inlet="left"/>
          <dest obj="dac_2__" inlet="right"/>
       </net>

@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="midi/in/keyb" sha="b8deb97637e54be31fcb62e849e4fa406e72256e" name="keyb1" x="14" y="14">
       <params/>
       <attribs/>
@@ -100,7 +100,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 2" sha="67c325bf12e5b73ad58df89daf7899831777003c" name="mix21" x="364" y="574">
+   <obj type="mix/mix 2" uuid="30c04239c88e09d3fa5c333b784ecf54f1b0e268" name="mix_1" x="364" y="574">
       <params>
          <frac32.u.map name="gain1" onParent="true" value="7.5"/>
          <frac32.u.map name="gain2" onParent="true" value="8.0"/>
@@ -114,7 +114,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 1" sha="f543e080bd2111cba525885443039f346703a594" name="sub" x="546" y="574">
+   <obj type="mix/mix 1" uuid="e8f482af5b1ec4a2e9cf8ac7ce09e7c0e43cea08" name="mix_2" x="546" y="574">
       <params>
          <frac32.u.map name="gain1" onParent="true" value="11.5"/>
       </params>
@@ -177,7 +177,7 @@
          <dest obj="pnoise" inlet="in1"/>
       </net>
       <net>
-         <source obj="mix21" outlet="out"/>
+         <source obj="mix_1" outlet="out"/>
          <dest obj="vcf3_1" inlet="in"/>
       </net>
       <net>
@@ -202,23 +202,23 @@
       </net>
       <net>
          <source obj="osc_1" outlet="wave"/>
-         <dest obj="sub" inlet="in1"/>
+         <dest obj="mix_2" inlet="in1"/>
       </net>
       <net>
          <source obj="vcf3_1" outlet="out"/>
-         <dest obj="sub" inlet="bus_in"/>
+         <dest obj="mix_2" inlet="bus_in"/>
       </net>
       <net>
-         <source obj="sub" outlet="out"/>
+         <source obj="mix_2" outlet="out"/>
          <dest obj="vca_1" inlet="a"/>
       </net>
       <net>
          <source obj="osc_2" outlet="wave"/>
-         <dest obj="mix21" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
          <source obj="osc_3" outlet="wave"/>
-         <dest obj="mix21" inlet="in2"/>
+         <dest obj="mix_1" inlet="in2"/>
       </net>
       <net>
          <source obj="enva" outlet="env"/>

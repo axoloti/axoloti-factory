@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="patch/inlet f" sha="ec45071db47e99aa672b4e8456c862acb1d95499" name="mod" x="504" y="28">
       <params/>
       <attribs/>
@@ -43,7 +43,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 2" sha="67c325bf12e5b73ad58df89daf7899831777003c" name="mix12" x="266" y="154">
+   <obj type="mix/mix 2" uuid="30c04239c88e09d3fa5c333b784ecf54f1b0e268" name="mix_1" x="266" y="154">
       <params>
          <frac32.u.map name="gain1" value="24.0"/>
          <frac32.u.map name="gain2" value="46.0"/>
@@ -86,10 +86,10 @@
       </net>
       <net>
          <source obj="osc_1" outlet="wave"/>
-         <dest obj="mix12" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
-         <source obj="mix12" outlet="out"/>
+         <source obj="mix_1" outlet="out"/>
          <dest obj="vca_2" inlet="a"/>
       </net>
       <net>
@@ -102,7 +102,7 @@
       </net>
       <net>
          <source obj="osc_1_" outlet="wave"/>
-         <dest obj="mix12" inlet="in2"/>
+         <dest obj="mix_1" inlet="in2"/>
       </net>
       <net>
          <source obj="env" outlet="env"/>

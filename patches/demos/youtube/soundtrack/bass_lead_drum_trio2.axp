@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <comment type="patch/comment" x="14" y="14" text="Midi Channels:"/>
    <comment type="patch/comment" x="14" y="28" text="Lead : 1, Pads 3, HH 4, Drum 5"/>
    <obj type="./lead" name="lead_1" x="14" y="84">
@@ -11,12 +11,16 @@
       </params>
       <attribs>
          <combo attributeName="midichannel" selection="1"/>
+         <combo attributeName="mididevice" selection="omni"/>
+         <combo attributeName="midiport" selection="omni"/>
       </attribs>
    </obj>
    <obj type="./hh" name="hh_2" x="140" y="84">
       <params/>
       <attribs>
          <combo attributeName="midichannel" selection="4"/>
+         <combo attributeName="mididevice" selection="omni"/>
+         <combo attributeName="midiport" selection="omni"/>
       </attribs>
    </obj>
    <obj type="./vacuum_cleaner_pad" name="vacuumcleanerpad" x="252" y="84">
@@ -32,11 +36,11 @@
          <frac32.s.map name="envahd1:d" value="0.0"/>
          <frac32.s.map name="pwm_1_" value="-19.510048866271973"/>
          <frac32.s.map name="pwm_1__" value="-31.43801259994507"/>
-         <frac32.u.map name="mix31:gain1" value="16.09999990463257"/>
-         <frac32.u.map name="mix31:gain2" value="16.0"/>
-         <frac32.u.map name="mix31:gain3" value="16.5"/>
-         <frac32.u.map name="mix31:gain4" value="0.0"/>
          <frac32.u.map name="lpf_1:reso" value="11.0"/>
+         <frac32.u.map name="mix_1:gain1" value="12.0"/>
+         <frac32.u.map name="mix_1:gain2" value="12.0"/>
+         <frac32.u.map name="mix_1:gain3" value="12.0"/>
+         <frac32.u.map name="mix_1:gain4" value="0.0"/>
       </params>
       <attribs>
          <combo attributeName="poly" selection="4"/>
@@ -45,7 +49,7 @@
          <combo attributeName="midiport" selection="omni"/>
       </attribs>
    </obj>
-   <obj type="mix/mix 3" sha="3d37ac18e4393438042204df12d17aec499f09fb" name="mix_1" x="392" y="84">
+   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_1" x="392" y="84">
       <params>
          <frac32.u.map name="gain1" value="49.5"/>
          <frac32.u.map name="gain2" value="63.5"/>
@@ -114,9 +118,11 @@
       </params>
       <attribs>
          <combo attributeName="midichannel" selection="5"/>
+         <combo attributeName="mididevice" selection="omni"/>
+         <combo attributeName="midiport" selection="omni"/>
       </attribs>
    </obj>
-   <obj type="mix/mix 2" sha="67c325bf12e5b73ad58df89daf7899831777003c" name="mix_2" x="644" y="364">
+   <obj type="mix/mix 2" uuid="30c04239c88e09d3fa5c333b784ecf54f1b0e268" name="mix_2" x="644" y="364">
       <params>
          <frac32.u.map name="gain1" value="19.5"/>
          <frac32.u.map name="gain2" value="16.5"/>
@@ -137,7 +143,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 3" sha="3d37ac18e4393438042204df12d17aec499f09fb" name="mix24" x="966" y="364">
+   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_3" x="966" y="364">
       <params>
          <frac32.u.map name="gain1" value="63.5"/>
          <frac32.u.map name="gain2" value="56.0"/>
@@ -145,7 +151,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 3" sha="3d37ac18e4393438042204df12d17aec499f09fb" name="mix24_" x="1064" y="364">
+   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_4" x="1064" y="364">
       <params>
          <frac32.u.map name="gain1" value="63.5"/>
          <frac32.u.map name="gain2" value="56.0"/>
@@ -176,30 +182,30 @@
    <nets>
       <net>
          <source obj="chorus1" outlet="L"/>
-         <dest obj="mix24" inlet="in2"/>
+         <dest obj="mix_3" inlet="in2"/>
       </net>
       <net>
          <source obj="chorus1" outlet="R"/>
-         <dest obj="mix24_" inlet="in2"/>
+         <dest obj="mix_4" inlet="in2"/>
       </net>
       <net>
-         <source obj="mix24" outlet="out"/>
+         <source obj="mix_3" outlet="out"/>
          <dest obj="dac_11" inlet="wave"/>
          <dest obj="envahd2" inlet="in"/>
       </net>
       <net>
-         <source obj="mix24_" outlet="out"/>
+         <source obj="mix_4" outlet="out"/>
          <dest obj="dac_21" inlet="wave"/>
       </net>
       <net>
          <source obj="echo2_1" outlet="out"/>
-         <dest obj="mix24" inlet="in1"/>
-         <dest obj="mix24_" inlet="in1"/>
+         <dest obj="mix_3" inlet="in1"/>
+         <dest obj="mix_4" inlet="in1"/>
       </net>
       <net>
          <source obj="vcff_1" outlet="out"/>
-         <dest obj="mix24" inlet="in3"/>
-         <dest obj="mix24_" inlet="in3"/>
+         <dest obj="mix_3" inlet="in3"/>
+         <dest obj="mix_4" inlet="in3"/>
       </net>
       <net>
          <source obj="envahd2" outlet="amp"/>
@@ -211,8 +217,8 @@
       </net>
       <net>
          <source obj="hh_2" outlet="out"/>
-         <dest obj="mix_1" inlet="in2"/>
          <dest obj="vu_2" inlet="in"/>
+         <dest obj="mix_1" inlet="in2"/>
       </net>
       <net>
          <source obj="mix_2" outlet="out"/>
@@ -220,23 +226,23 @@
       </net>
       <net>
          <source obj="vacuumcleanerpad" outlet="outlet_1"/>
-         <dest obj="mix_1" inlet="in1"/>
          <dest obj="vu_3" inlet="in"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
          <source obj="drummachine_1" outlet="bd"/>
-         <dest obj="mix_2" inlet="in1"/>
          <dest obj="vu_5" inlet="in"/>
+         <dest obj="mix_2" inlet="in1"/>
       </net>
       <net>
          <source obj="drummachine_1" outlet="snr"/>
-         <dest obj="mix_2" inlet="in2"/>
          <dest obj="vu_6" inlet="in"/>
+         <dest obj="mix_2" inlet="in2"/>
       </net>
       <net>
          <source obj="lead_1" outlet="out"/>
-         <dest obj="mix_1" inlet="in3"/>
          <dest obj="vu_1" inlet="in"/>
+         <dest obj="mix_1" inlet="in3"/>
       </net>
       <net>
          <source obj="mix_1" outlet="out"/>

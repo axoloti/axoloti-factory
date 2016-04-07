@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="lfo/sine" sha="a2851b3d62ed0faceefc98038d9571422f0ce260" name="osc1" x="14" y="0">
       <params>
          <frac32.s.map name="pitch" value="-6.0"/>
@@ -15,33 +15,31 @@
          <frac32.u.map name="q:gain2" value="0.0"/>
          <frac32.s.map name="f1:pitch" value="0.0"/>
          <frac32.s.map name="f2:pitch" value="12.0"/>
-         <frac32.u.map name="mix21:gain1" value="5.5"/>
-         <frac32.u.map name="mix21:gain2" value="4.5"/>
-         <frac32.u.map name="mix21:gain3" value="3.5"/>
+         <frac32.u.map name="mix_1:gain1" value="8.5"/>
+         <frac32.u.map name="mix_1:gain2" value="10.5"/>
+         <frac32.u.map name="mix_1:gain3" value="12.0"/>
       </params>
       <attribs>
          <combo attributeName="poly" selection="12"/>
-         <combo attributeName="mididevice" selection="omni"/>
-         <combo attributeName="midiport" selection="omni"/>
       </attribs>
    </obj>
-   <obj type="mix/mix 1" sha="f543e080bd2111cba525885443039f346703a594" name="mix11" x="154" y="98">
+   <obj type="mix/mix 1" uuid="e8f482af5b1ec4a2e9cf8ac7ce09e7c0e43cea08" name="mix_1" x="154" y="98">
       <params>
          <frac32.u.map name="gain1" value="16.0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="math/muls 2" sha="17100b9369a00a2265f0f754ff1c0ec87f9c6690" name="muls41" x="252" y="98">
+   <obj type="math/muls 2" uuid="c3083089dc169cd87133000659a02789dec5a151" name="muls_1" x="252" y="98">
       <params/>
       <attribs/>
    </obj>
-   <obj type="dist/soft" sha="4de9b281f2a362671b6dc8606f5d039535893f45" name="sat1" x="336" y="98">
+   <obj type="dist/soft" uuid="e680d76a805e4866027cdf654c7efd8b2e54622" name="soft_1" x="336" y="98">
       <params/>
       <attribs/>
    </obj>
    <obj type="filter/hp1" sha="f9059d53a5af0890dc1a1268b5679aa335731857" name="hipass_1" x="406" y="98">
       <params>
-         <frac32.u.map name="freq" value="4.5"/>
+         <frac32.s.map name="freq" value="4.5"/>
       </params>
       <attribs/>
    </obj>
@@ -61,23 +59,23 @@
       </net>
       <net>
          <source obj="interp_1" outlet="o"/>
-         <dest obj="mix11" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
-         <source obj="sat1" outlet="out"/>
+         <source obj="soft_1" outlet="out"/>
          <dest obj="hipass_1" inlet="in"/>
       </net>
       <net>
-         <source obj="mix11" outlet="out"/>
-         <dest obj="muls41" inlet="in"/>
+         <source obj="mix_1" outlet="out"/>
+         <dest obj="muls_1" inlet="in"/>
       </net>
       <net>
-         <source obj="muls41" outlet="out"/>
-         <dest obj="sat1" inlet="in"/>
+         <source obj="muls_1" outlet="out"/>
+         <dest obj="soft_1" inlet="in"/>
       </net>
       <net>
          <source obj="eclectric_piano_voice2" outlet="dac_1"/>
-         <dest obj="mix11" inlet="bus_in"/>
+         <dest obj="mix_1" inlet="bus_in"/>
       </net>
    </nets>
    <settings>

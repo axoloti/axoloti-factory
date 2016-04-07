@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="lfo/square" sha="b4420b58ca2ae5ece53d53540bc91bc9ed7a4b83" name="square_1" x="14" y="0">
       <params>
          <frac32.s.map name="pitch" value="21.0"/>
@@ -21,7 +21,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/div 4" sha="66117583fe543e5fdfef8d076e9ce720c72fb3d9" name="div_1" x="532" y="0">
+   <obj type="math/div 4" uuid="141db88b6bfd19a0f34b0f61de171bb8ae64ad19" name="div_1" x="532" y="0">
       <params/>
       <attribs/>
    </obj>
@@ -75,7 +75,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 2 g" sha="f14eeeeb6df032a7e072e970956c20613eb267f1" name="mix_1" x="896" y="154">
+   <obj type="mix/mix 2 g" uuid="221f038da51943034a75e442c90624fcebfe6112" name="mix_1" x="896" y="154">
       <params>
          <frac32.u.map name="gain1" value="23.5"/>
          <frac32.u.map name="gain2" value="8.5"/>
@@ -188,8 +188,6 @@
                </preset>
             </presets>
          </frac32.s.map>
-         <frac32.u.map name="mix21:gain1" value="11.5"/>
-         <frac32.u.map name="mix21:gain2" value="13.0"/>
          <frac32.s.map name="vcf3_1:pitch" MidiCC="1" value="17.0">
             <presets>
                <preset index="1">
@@ -201,7 +199,9 @@
             </modulators>
          </frac32.s.map>
          <frac32.u.map name="vcf3_1:reso" value="61.0"/>
-         <frac32.u.map name="sub" value="19.0"/>
+         <frac32.u.map name="mix_1:gain1" value="7.5"/>
+         <frac32.u.map name="mix_1:gain2" value="8.0"/>
+         <frac32.u.map name="mix_2" value="11.5"/>
       </params>
       <attribs>
          <combo attributeName="poly" selection="10"/>

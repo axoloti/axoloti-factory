@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="./stringvoice" name="stringvoice1" x="60" y="100">
       <params>
          <frac32.s.map name="envf:a" value="-17.0"/>

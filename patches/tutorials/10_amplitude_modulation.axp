@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <comment type="patch/comment" x="14" y="14" text="amplitude modulation, sine wave carrier, sine wave modulator, 100% modulation depth"/>
    <obj type="midi/in/keyb" sha="b8deb97637e54be31fcb62e849e4fa406e72256e" name="keyb1" x="14" y="42">
       <params/>
@@ -18,11 +18,11 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="conv/bipolar2unipolar" sha="38609fdcec231d6b21f80d961254b8abd0ecad61" name="bipolar2unipolar1" x="182" y="336">
+   <obj type="conv/bipolar2unipolar" uuid="5b5f9405be365706c1ad37266d9df07b9a1570ee" name="bipolar2unipolar_1" x="182" y="336">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="*1" x="336" y="336">
+   <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_1" x="336" y="336">
       <params/>
       <attribs/>
    </obj>
@@ -30,7 +30,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c1" x="504" y="336">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_1" x="504" y="336">
       <params>
          <frac32.u.map name="amp" value="33.5"/>
       </params>
@@ -48,18 +48,18 @@
    <nets>
       <net>
          <source obj="osc_2" outlet="wave"/>
-         <dest obj="bipolar2unipolar1" inlet="i"/>
+         <dest obj="bipolar2unipolar_1" inlet="i"/>
       </net>
       <net>
          <source obj="osc_1" outlet="wave"/>
-         <dest obj="*1" inlet="a"/>
+         <dest obj="*_1" inlet="a"/>
       </net>
       <net>
-         <source obj="bipolar2unipolar1" outlet="o"/>
-         <dest obj="*1" inlet="b"/>
+         <source obj="bipolar2unipolar_1" outlet="o"/>
+         <dest obj="*_1" inlet="b"/>
       </net>
       <net>
-         <source obj="*1" outlet="result"/>
+         <source obj="*_1" outlet="result"/>
          <dest obj="vca_1" inlet="a"/>
       </net>
       <net>
@@ -72,14 +72,14 @@
          <dest obj="vca_1" inlet="v"/>
       </net>
       <net>
-         <source obj="*c1" outlet="out"/>
+         <source obj="*c_1" outlet="out"/>
          <dest obj="dac_1" inlet="left"/>
          <dest obj="dac_1" inlet="right"/>
       </net>
       <net>
          <source obj="vca_1" outlet="o"/>
-         <dest obj="*c1" inlet="in"/>
          <dest obj="scope_1" inlet="in"/>
+         <dest obj="*c_1" inlet="in"/>
       </net>
    </nets>
    <settings>

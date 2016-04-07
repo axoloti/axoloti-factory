@@ -1,11 +1,11 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="osc/sine" sha="edec4a9d5f533ea748cd564ce8c69673dd78742f" name="osc_1" x="28" y="14">
       <params>
          <frac32.s.map name="pitch" value="1.0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="level" x="350" y="14">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_1" x="350" y="14">
       <params>
          <frac32.u.map name="amp" value="12.5"/>
       </params>
@@ -49,14 +49,14 @@
    <hyperlink type="patch/hyperlink" name="02_keyboard_controlled_sine_oscillator.axp" x="686" y="490"/>
    <nets>
       <net>
-         <source obj="level" outlet="out"/>
+         <source obj="*c_1" outlet="out"/>
          <dest obj="dac_11" inlet="wave"/>
          <dest obj="dac_21" inlet="wave"/>
          <dest obj="scope_128s_trig1" inlet="in"/>
       </net>
       <net>
          <source obj="osc_1" outlet="wave"/>
-         <dest obj="level" inlet="in"/>
+         <dest obj="*c_1" inlet="in"/>
       </net>
       <net>
          <source obj="FREEZE" outlet="o"/>

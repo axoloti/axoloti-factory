@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="math/c 32" sha="5797bce9fc4e770d9c14890b0fa899f126c5bc38" name="c_1" x="98" y="28">
       <params/>
       <attribs/>
@@ -25,54 +25,7 @@
          <frac32.s.map name="ahd_1:a" value="-64.0"/>
          <frac32.s.map name="ahd_1:d" value="-21.5"/>
          <frac32.s.map name="p" value="-28.5"/>
-         <frac32.u.map name="pm1" value="0.0">
-            <presets>
-               <preset index="1">
-                  <f v="41.5"/>
-               </preset>
-               <preset index="2">
-                  <f v="41.5"/>
-               </preset>
-               <preset index="3">
-                  <f v="0.0"/>
-               </preset>
-               <preset index="4">
-                  <f v="0.0"/>
-               </preset>
-            </presets>
-         </frac32.u.map>
-         <frac32.u.map name="pm2" value="20.0">
-            <presets>
-               <preset index="1">
-                  <f v="20.0"/>
-               </preset>
-               <preset index="2">
-                  <f v="20.0"/>
-               </preset>
-               <preset index="3">
-                  <f v="20.0"/>
-               </preset>
-               <preset index="4">
-                  <f v="20.0"/>
-               </preset>
-            </presets>
-         </frac32.u.map>
-         <frac32.u.map name="pm3" value="2.0">
-            <presets>
-               <preset index="1">
-                  <f v="26.5"/>
-               </preset>
-               <preset index="2">
-                  <f v="26.5"/>
-               </preset>
-               <preset index="3">
-                  <f v="2.0"/>
-               </preset>
-               <preset index="4">
-                  <f v="2.0"/>
-               </preset>
-            </presets>
-         </frac32.u.map>
+         <frac32.u.map name="*c_1" value="10.5"/>
          <frac32.u.map name="mix_1:gain1" value="18.0">
             <presets>
                <preset index="1">
@@ -124,6 +77,8 @@
          <frac32.u.map name="mix_1:gain4" value="0.5">
             <presets/>
          </frac32.u.map>
+         <frac32.u.map name="*c_2" value="12.5"/>
+         <frac32.u.map name="*c_3" value="10.0"/>
       </params>
       <attribs>
          <combo attributeName="poly" selection="16"/>

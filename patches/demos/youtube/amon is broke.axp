@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="lfo/square" sha="b4420b58ca2ae5ece53d53540bc91bc9ed7a4b83" name="square_1" x="14" y="14">
       <params>
          <frac32.s.map name="pitch" value="10.049998760223389"/>
@@ -21,7 +21,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/+1" sha="4fe729a7a54d99c1d63a2bdb85652b2031c32726" name="+1_1" x="854" y="42">
+   <obj type="math/+1" uuid="13c1a4574bb81783beb8839e81782b9a34e3fc17" name="+1_1" x="854" y="42">
       <params/>
       <attribs/>
    </obj>
@@ -238,21 +238,21 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mux/mux 2" sha="b27da86e6781ea0d7128a77aafd60d04e253d3b3" name="mux_2" x="322" y="294">
+   <obj type="mux/mux 2" uuid="e1c92bc92f4d191bfadf0efeae4503b458a4e440" name="mux_1" x="322" y="294">
       <params/>
       <attribs/>
    </obj>
    <obj type="wave/play fn stereo" sha="874bd2e9190a9d31cbf9936f18315f9b38fd724a" name="play_1" x="434" y="294">
       <params/>
       <attribs>
-         <table attributeName="fn" table="amenbr.wav"/>
+         <file attributeName="fn" file="amenbr.wav"/>
       </attribs>
    </obj>
-   <obj type="math/muls 2" sha="17100b9369a00a2265f0f754ff1c0ec87f9c6690" name="muls_1" x="574" y="294">
+   <obj type="math/muls 2" uuid="c3083089dc169cd87133000659a02789dec5a151" name="muls_1" x="574" y="294">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/muls 2" sha="17100b9369a00a2265f0f754ff1c0ec87f9c6690" name="muls_2" x="644" y="294">
+   <obj type="math/muls 2" uuid="c3083089dc169cd87133000659a02789dec5a151" name="muls_2" x="644" y="294">
       <params/>
       <attribs/>
    </obj>
@@ -443,19 +443,19 @@
       </net>
       <net>
          <source obj="sel_1" outlet="o1"/>
-         <dest obj="mux_2" inlet="i1"/>
+         <dest obj="mux_1" inlet="i1"/>
       </net>
       <net>
-         <source obj="mux_2" outlet="o"/>
+         <source obj="mux_1" outlet="o"/>
          <dest obj="play_1" inlet="start"/>
       </net>
       <net>
          <source obj="square_2" outlet="wave"/>
-         <dest obj="mux_2" inlet="i2"/>
+         <dest obj="mux_1" inlet="i2"/>
       </net>
       <net>
          <source obj="sel_4" outlet="o"/>
-         <dest obj="mux_2" inlet="s"/>
+         <dest obj="mux_1" inlet="s"/>
       </net>
       <net>
          <source obj="i_3" outlet="out"/>

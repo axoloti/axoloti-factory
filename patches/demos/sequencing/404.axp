@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="lfo/square" sha="b4420b58ca2ae5ece53d53540bc91bc9ed7a4b83" name="square_1" x="14" y="14">
       <params>
          <frac32.s.map name="pitch" value="-1.0"/>
@@ -42,14 +42,14 @@
          <combo attributeName="sample" selection="808snare"/>
       </attribs>
    </obj>
-   <obj type="mix/mix 2" sha="67c325bf12e5b73ad58df89daf7899831777003c" name="mix2_2" x="742" y="140">
+   <obj type="mix/mix 2" uuid="30c04239c88e09d3fa5c333b784ecf54f1b0e268" name="mix_1" x="742" y="140">
       <params>
          <frac32.u.map name="gain1" value="28.5"/>
          <frac32.u.map name="gain2" value="25.0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="math/muls 2" sha="17100b9369a00a2265f0f754ff1c0ec87f9c6690" name="muls2_1" x="826" y="140">
+   <obj type="math/muls 2" uuid="c3083089dc169cd87133000659a02789dec5a151" name="muls_1" x="826" y="140">
       <params/>
       <attribs/>
    </obj>
@@ -145,7 +145,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/+c" sha="dd36bdfc156063826c3897754f7ef30fd2895c89" name="+c_1" x="308" y="560">
+   <obj type="math/+c" uuid="8a7195df16f4695260af58e8072c656181925b4d" name="+c_1" x="308" y="560">
       <params>
          <frac32.u.map name="c" value="4.5"/>
       </params>
@@ -168,7 +168,7 @@
          <spinner attributeName="delaylength" value="19299"/>
       </attribs>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c_2" x="714" y="560">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_2" x="714" y="560">
       <params>
          <frac32.u.map name="amp" value="63.5"/>
       </params>
@@ -258,10 +258,10 @@
       </net>
       <net>
          <source obj="flashwaveplay~_1" outlet="out"/>
-         <dest obj="mix2_2" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
-         <source obj="muls2_1" outlet="out"/>
+         <source obj="muls_1" outlet="out"/>
          <dest obj="dac~_2" inlet="left"/>
          <dest obj="dac~_2" inlet="right"/>
       </net>
@@ -271,11 +271,11 @@
       </net>
       <net>
          <source obj="flashwaveplay~_2" outlet="out"/>
-         <dest obj="mix2_2" inlet="in2"/>
+         <dest obj="mix_1" inlet="in2"/>
       </net>
       <net>
-         <source obj="mix2_2" outlet="out"/>
-         <dest obj="muls2_1" inlet="in"/>
+         <source obj="mix_1" outlet="out"/>
+         <dest obj="muls_1" inlet="in"/>
       </net>
       <net>
          <source obj="vcf3~_1" outlet="out"/>

@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="midi/in/keyb" sha="b8deb97637e54be31fcb62e849e4fa406e72256e" name="keyb1" x="28" y="14">
       <params/>
       <attribs/>
@@ -11,7 +11,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/*" sha="c47ceb7366785e0103cf880ce3450321491949f1" name="*1" x="434" y="196">
+   <obj type="math/*" uuid="c16a625a661f40e4b359db604dcd00b3befcdbe3" name="*_1" x="434" y="196">
       <params/>
       <attribs/>
    </obj>
@@ -26,7 +26,7 @@
    <hyperlink type="patch/hyperlink" name="04_beating.axp" x="448" y="518"/>
    <nets>
       <net>
-         <source obj="*1" outlet="result"/>
+         <source obj="*_1" outlet="result"/>
          <dest obj="dac~_1" inlet="right"/>
          <dest obj="dac~_1" inlet="left"/>
       </net>
@@ -36,11 +36,11 @@
       </net>
       <net>
          <source obj="osc_1" outlet="wave"/>
-         <dest obj="*1" inlet="a"/>
+         <dest obj="*_1" inlet="a"/>
       </net>
       <net>
          <source obj="keyb1" outlet="gate"/>
-         <dest obj="*1" inlet="b"/>
+         <dest obj="*_1" inlet="b"/>
       </net>
    </nets>
    <settings>

@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="midi/in/keyb" sha="b8deb97637e54be31fcb62e849e4fa406e72256e" name="keyb1" x="14" y="14">
       <params/>
       <attribs/>
@@ -44,7 +44,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="mux/mux 4" sha="4145bfd8751449238db95f24fb1cd2a69972d026" name="inmux31" x="364" y="294">
+   <obj type="mux/mux 4" uuid="e511105cf5630d1a0b4a144dc3fabb3cc7c07bd" name="mux_1" x="364" y="294">
       <params/>
       <attribs/>
    </obj>
@@ -88,11 +88,11 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mux/mux 4" sha="4145bfd8751449238db95f24fb1cd2a69972d026" name="inmux31_" x="770" y="616">
+   <obj type="mux/mux 4" uuid="e511105cf5630d1a0b4a144dc3fabb3cc7c07bd" name="mux_2" x="770" y="616">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*c" sha="d36ecbd55095f4888a0ebda8efda68e015c5e72b" name="*c1" x="854" y="616">
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_1" x="854" y="616">
       <params>
          <frac32.u.map name="amp" value="34.5"/>
       </params>
@@ -113,15 +113,15 @@
    <nets>
       <net>
          <source obj="saw_1" outlet="wave"/>
-         <dest obj="inmux31" inlet="i0"/>
+         <dest obj="mux_1" inlet="i0"/>
       </net>
       <net>
          <source obj="square_1" outlet="wave"/>
-         <dest obj="inmux31" inlet="i1"/>
+         <dest obj="mux_1" inlet="i1"/>
       </net>
       <net>
          <source obj="pwm_1" outlet="wave"/>
-         <dest obj="inmux31" inlet="i2"/>
+         <dest obj="mux_1" inlet="i2"/>
       </net>
       <net>
          <source obj="keyb1" outlet="note"/>
@@ -134,7 +134,7 @@
          <dest obj="pwm_1" inlet="pw"/>
       </net>
       <net>
-         <source obj="inmux31" outlet="o"/>
+         <source obj="mux_1" outlet="o"/>
          <dest obj="vca_1" inlet="a"/>
       </net>
       <net>
@@ -146,42 +146,42 @@
          <dest obj="lpf_1" inlet="in"/>
          <dest obj="hpf_1" inlet="in"/>
          <dest obj="bpf_1" inlet="in"/>
-         <dest obj="inmux31_" inlet="i3"/>
+         <dest obj="mux_2" inlet="i3"/>
       </net>
       <net>
-         <source obj="inmux31_" outlet="o"/>
+         <source obj="mux_2" outlet="o"/>
          <dest obj="scope_128s_trig_v2_1" inlet="in"/>
          <dest obj="analyzer_1" inlet="in"/>
-         <dest obj="*c1" inlet="in"/>
+         <dest obj="*c_1" inlet="in"/>
       </net>
       <net>
-         <source obj="*c1" outlet="out"/>
+         <source obj="*c_1" outlet="out"/>
          <dest obj="dac_1" inlet="left"/>
          <dest obj="dac_1" inlet="right"/>
       </net>
       <net>
          <source obj="rand_1" outlet="wave"/>
-         <dest obj="inmux31" inlet="i3"/>
+         <dest obj="mux_1" inlet="i3"/>
       </net>
       <net>
          <source obj="lpf_1" outlet="out"/>
-         <dest obj="inmux31_" inlet="i0"/>
+         <dest obj="mux_2" inlet="i0"/>
       </net>
       <net>
          <source obj="bpf_1" outlet="out"/>
-         <dest obj="inmux31_" inlet="i2"/>
+         <dest obj="mux_2" inlet="i2"/>
       </net>
       <net>
          <source obj="hpf_1" outlet="out"/>
-         <dest obj="inmux31_" inlet="i1"/>
+         <dest obj="mux_2" inlet="i1"/>
       </net>
       <net>
          <source obj="i_1" outlet="out"/>
-         <dest obj="inmux31_" inlet="s"/>
+         <dest obj="mux_2" inlet="s"/>
       </net>
       <net>
          <source obj="i_2" outlet="out"/>
-         <dest obj="inmux31" inlet="s"/>
+         <dest obj="mux_1" inlet="s"/>
       </net>
    </nets>
    <settings>

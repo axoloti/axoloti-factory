@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="ctrl/dial b" sha="589b835807a3b8c8b05793bc4bd9adaf853f9705" name="ctrl.f.b_1" x="36" y="12">
       <params>
          <frac32.s.map name="value" value="-47.0"/>
@@ -77,7 +77,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/abs" sha="d9aef12fddc085a0a8a7a9868f1c845c538a9209" name="arithmetic.abs_1" x="1476" y="72">
+   <obj type="math/abs" uuid="f4078fd9b2dff40d4f1551b79900c9ab360c99" name="abs_2" x="1476" y="72">
       <params/>
       <attribs/>
    </obj>
@@ -121,11 +121,11 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="arithmetic.*_1" x="1560" y="156">
+   <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_1" x="1560" y="156">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*" sha="c47ceb7366785e0103cf880ce3450321491949f1" name="arithmetic.*_2" x="1560" y="216">
+   <obj type="math/*" uuid="c16a625a661f40e4b359db604dcd00b3befcdbe3" name="*_2" x="1560" y="216">
       <params/>
       <attribs/>
    </obj>
@@ -305,7 +305,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 1" sha="f543e080bd2111cba525885443039f346703a594" name="mix_1" x="1820" y="476">
+   <obj type="mix/mix 1" uuid="e8f482af5b1ec4a2e9cf8ac7ce09e7c0e43cea08" name="mix_1" x="1820" y="476">
       <params>
          <frac32.u.map name="gain1" value="5.0"/>
       </params>
@@ -367,7 +367,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="mux/mux 2" sha="138891901c8849485b260a487f3b0fc188f6bae2" name="mux.mux2_1" x="888" y="636">
+   <obj type="mux/mux 2" uuid="16f90f81694766b0bc8187bfcba5a021e5701d81" name="mux_1" x="888" y="636">
       <params/>
       <attribs/>
    </obj>
@@ -425,11 +425,11 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/muls 4" sha="bec77f5586c3b03aae932590902e4c98a554e0c9" name="math.muls.4_1" x="1440" y="756">
+   <obj type="math/muls 4" uuid="cb650a18eecbf0e9ad9afec6834aa0f478ffddf" name="muls_1" x="1440" y="756">
       <params/>
       <attribs/>
    </obj>
-   <obj type="dist/soft" sha="4de9b281f2a362671b6dc8606f5d039535893f45" name="dist.soft_2" x="1512" y="756">
+   <obj type="dist/soft" uuid="e680d76a805e4866027cdf654c7efd8b2e54622" name="soft_1" x="1512" y="756">
       <params/>
       <attribs/>
    </obj>
@@ -459,7 +459,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="mix/mix 6" sha="3cb483397ed6c25c361f7edaf34ef8c382a71183" name="mix.mix6_1" x="1596" y="798">
+   <obj type="mix/mix 6" uuid="a77539f90594da68ea7affa92e5c17caad5b3f04" name="mix_2" x="1596" y="798">
       <params>
          <frac32.u.map name="gain1" value="28.5"/>
          <frac32.u.map name="gain2" value="15.5"/>
@@ -528,7 +528,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="mux/mux 2" sha="138891901c8849485b260a487f3b0fc188f6bae2" name="mux.mux2_2" x="900" y="1176">
+   <obj type="mux/mux 2" uuid="16f90f81694766b0bc8187bfcba5a021e5701d81" name="mux_2" x="900" y="1176">
       <params/>
       <attribs/>
    </obj>
@@ -582,7 +582,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/+c" sha="dd36bdfc156063826c3897754f7ef30fd2895c89" name="math.+c_2" x="792" y="1380">
+   <obj type="math/+c" uuid="8a7195df16f4695260af58e8072c656181925b4d" name="+c_1" x="792" y="1380">
       <params>
          <frac32.u.map name="c" value="32.5"/>
       </params>
@@ -671,7 +671,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mux/mux 4" sha="ee02935bddb41185115fef2562f9468b643521af" name="mux.mux4_3" x="1140" y="1596">
+   <obj type="mux/mux 4" uuid="97b0e22b70b6c03c866599d0ac3ed3e9e6e5d4fc" name="mux_3" x="1140" y="1596">
       <params/>
       <attribs/>
    </obj>
@@ -686,19 +686,19 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/+c" sha="dd36bdfc156063826c3897754f7ef30fd2895c89" name="math.+c_1" x="1500" y="1632">
+   <obj type="math/+c" uuid="8a7195df16f4695260af58e8072c656181925b4d" name="+c_2" x="1500" y="1632">
       <params>
          <frac32.u.map name="c" value="11.5"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="dist/soft" sha="4de9b281f2a362671b6dc8606f5d039535893f45" name="dist.soft_1" x="1560" y="1632">
+   <obj type="dist/soft" uuid="e680d76a805e4866027cdf654c7efd8b2e54622" name="soft_2" x="1560" y="1632">
       <params/>
       <attribs/>
    </obj>
    <obj type="filter/hp1" sha="f9059d53a5af0890dc1a1268b5679aa335731857" name="filter.hipass~_1" x="1620" y="1632">
       <params>
-         <frac32.u.map name="freq" value="43.0"/>
+         <frac32.s.map name="freq" value="43.0"/>
       </params>
       <attribs/>
    </obj>
@@ -729,7 +729,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="mux/mux 4" sha="ee02935bddb41185115fef2562f9468b643521af" name="mux.mux4_4" x="1056" y="1776">
+   <obj type="mux/mux 4" uuid="97b0e22b70b6c03c866599d0ac3ed3e9e6e5d4fc" name="mux_4" x="1056" y="1776">
       <params/>
       <attribs/>
    </obj>
@@ -786,75 +786,75 @@
       </net>
       <net>
          <source obj="noise.uniform_2" outlet="wave"/>
-         <dest obj="arithmetic.abs_1" inlet="in"/>
+         <dest obj="abs_2" inlet="in"/>
       </net>
       <net>
          <source obj="env.envdlinmx_1" outlet="env"/>
-         <dest obj="arithmetic.*_2" inlet="b"/>
+         <dest obj="*_2" inlet="b"/>
       </net>
       <net>
          <source obj="osc.sine_1" outlet="wave"/>
-         <dest obj="arithmetic.*_1" inlet="b"/>
+         <dest obj="*_1" inlet="b"/>
       </net>
       <net>
-         <source obj="arithmetic.*_1" outlet="result"/>
-         <dest obj="arithmetic.*_2" inlet="a"/>
+         <source obj="*_1" outlet="result"/>
+         <dest obj="*_2" inlet="a"/>
       </net>
       <net>
          <source obj="arithmetic.*c_2" outlet="out"/>
          <dest obj="osc.sine_1" inlet="pitch"/>
       </net>
       <net>
-         <source obj="arithmetic.abs_1" outlet="out"/>
+         <source obj="abs_2" outlet="out"/>
          <dest obj="filter.lowpass~_1" inlet="in"/>
       </net>
       <net>
          <source obj="filter.lowpass~_1" outlet="out"/>
-         <dest obj="arithmetic.*_1" inlet="a"/>
+         <dest obj="*_1" inlet="a"/>
       </net>
       <net>
-         <source obj="arithmetic.*_2" outlet="result"/>
-         <dest obj="mix.mix6_1" inlet="in1"/>
+         <source obj="*_2" outlet="result"/>
+         <dest obj="mix_2" inlet="in1"/>
       </net>
       <net>
          <source obj="sel.b.32.x8_2" outlet="o1"/>
-         <dest obj="mux.mux4_3" inlet="i0"/>
+         <dest obj="mux_3" inlet="i0"/>
       </net>
       <net>
          <source obj="sel.b.32.x8_2" outlet="o2"/>
-         <dest obj="mux.mux4_3" inlet="i1"/>
+         <dest obj="mux_3" inlet="i1"/>
       </net>
       <net>
          <source obj="sel.b.32.x8_2" outlet="o3"/>
-         <dest obj="mux.mux4_3" inlet="i2"/>
+         <dest obj="mux_3" inlet="i2"/>
       </net>
       <net>
          <source obj="sel.b.32.x8_2" outlet="o4"/>
-         <dest obj="mux.mux4_3" inlet="i3"/>
+         <dest obj="mux_3" inlet="i3"/>
       </net>
       <net>
          <source obj="sel.b.32.x8_2" outlet="o5"/>
-         <dest obj="mux.mux4_4" inlet="i0"/>
+         <dest obj="mux_4" inlet="i0"/>
       </net>
       <net>
          <source obj="sel.b.32.x8_2" outlet="o6"/>
-         <dest obj="mux.mux4_4" inlet="i1"/>
+         <dest obj="mux_4" inlet="i1"/>
       </net>
       <net>
          <source obj="sel.b.32.x8_2" outlet="o7"/>
-         <dest obj="mux.mux4_4" inlet="i2"/>
+         <dest obj="mux_4" inlet="i2"/>
       </net>
       <net>
          <source obj="sel.b.32.x8_2" outlet="o8"/>
-         <dest obj="mux.mux4_4" inlet="i3"/>
+         <dest obj="mux_4" inlet="i3"/>
       </net>
       <net>
          <source obj="ctrl.i_3" outlet="out"/>
-         <dest obj="mux.mux4_3" inlet="s"/>
+         <dest obj="mux_3" inlet="s"/>
       </net>
       <net>
          <source obj="ctrl.i_4" outlet="out"/>
-         <dest obj="mux.mux4_4" inlet="s"/>
+         <dest obj="mux_4" inlet="s"/>
       </net>
       <net>
          <source obj="gain.vca~_1" outlet="o"/>
@@ -862,7 +862,7 @@
       </net>
       <net>
          <source obj="filter.bpfsvf~_1" outlet="out"/>
-         <dest obj="mix.mix6_1" inlet="in2"/>
+         <dest obj="mix_2" inlet="in2"/>
       </net>
       <net>
          <source obj="gain.vca~_2" outlet="o"/>
@@ -903,18 +903,18 @@
       </net>
       <net>
          <source obj="dist.inf_1" outlet="out"/>
-         <dest obj="mix.mix6_1" inlet="in6"/>
+         <dest obj="mix_2" inlet="in6"/>
       </net>
       <net>
          <source obj="filter.vcf3~_1" outlet="out"/>
-         <dest obj="math.+c_1" inlet="in"/>
+         <dest obj="+c_2" inlet="in"/>
       </net>
       <net>
-         <source obj="math.+c_1" outlet="out"/>
-         <dest obj="dist.soft_1" inlet="in"/>
+         <source obj="+c_2" outlet="out"/>
+         <dest obj="soft_2" inlet="in"/>
       </net>
       <net>
-         <source obj="dist.soft_1" outlet="out"/>
+         <source obj="soft_2" outlet="out"/>
          <dest obj="filter.hipass~_1" inlet="in"/>
       </net>
       <net>
@@ -957,10 +957,10 @@
       </net>
       <net>
          <source obj="filter.vcf3~_2" outlet="out"/>
-         <dest obj="math.+c_2" inlet="in"/>
+         <dest obj="+c_1" inlet="in"/>
       </net>
       <net>
-         <source obj="math.+c_2" outlet="out"/>
+         <source obj="+c_1" outlet="out"/>
          <dest obj="dist.inf_1" inlet="in"/>
       </net>
       <net>
@@ -1004,11 +1004,11 @@
       <net>
          <source obj="bass" outlet="o"/>
          <dest obj="logic.change_2" inlet="in"/>
-         <dest obj="mux.mux2_1" inlet="i1"/>
+         <dest obj="mux_1" inlet="i1"/>
       </net>
       <net>
          <source obj="logic.change_2" outlet="trig"/>
-         <dest obj="mux.mux2_1" inlet="s"/>
+         <dest obj="mux_1" inlet="s"/>
       </net>
       <net>
          <source obj="osc.sine_2" outlet="wave"/>
@@ -1016,18 +1016,18 @@
       </net>
       <net>
          <source obj="gain.vca~_5" outlet="o"/>
-         <dest obj="math.muls.4_1" inlet="in"/>
+         <dest obj="muls_1" inlet="in"/>
       </net>
       <net>
-         <source obj="math.muls.4_1" outlet="out"/>
-         <dest obj="dist.soft_2" inlet="in"/>
+         <source obj="muls_1" outlet="out"/>
+         <dest obj="soft_1" inlet="in"/>
       </net>
       <net>
-         <source obj="dist.soft_2" outlet="out"/>
-         <dest obj="mix.mix6_1" inlet="in4"/>
+         <source obj="soft_1" outlet="out"/>
+         <dest obj="mix_2" inlet="in4"/>
       </net>
       <net>
-         <source obj="mux.mux2_1" outlet="o"/>
+         <source obj="mux_1" outlet="o"/>
          <dest obj="logic.decode_int_1" inlet="i1"/>
          <dest obj="env.adsr_1" inlet="gate"/>
       </net>
@@ -1079,14 +1079,14 @@
       <net>
          <source obj="bassglide_" outlet="o"/>
          <dest obj="logic.change_3" inlet="in"/>
-         <dest obj="mux.mux2_2" inlet="i1"/>
+         <dest obj="mux_2" inlet="i1"/>
       </net>
       <net>
          <source obj="logic.change_3" outlet="trig"/>
-         <dest obj="mux.mux2_2" inlet="s"/>
+         <dest obj="mux_2" inlet="s"/>
       </net>
       <net>
-         <source obj="mux.mux2_2" outlet="o"/>
+         <source obj="mux_2" outlet="o"/>
          <dest obj="env.adsr_3" inlet="gate"/>
       </net>
       <net>
@@ -1102,7 +1102,7 @@
          <dest obj="filter.lpfsvf~_1" inlet="in"/>
       </net>
       <net>
-         <source obj="mux.mux4_4" outlet="o"/>
+         <source obj="mux_4" outlet="o"/>
          <dest obj="pulse.lfsrburst8~_1" inlet="trig"/>
       </net>
       <net>
@@ -1123,7 +1123,7 @@
       </net>
       <net>
          <source obj="gain.vca~_3" outlet="o"/>
-         <dest obj="mix.mix6_1" inlet="in5"/>
+         <dest obj="mix_2" inlet="in5"/>
       </net>
       <net>
          <source obj="i_2" outlet="out"/>
@@ -1160,7 +1160,7 @@
          <dest obj="arithmetic.*c_2" inlet="in"/>
       </net>
       <net>
-         <source obj="mux.mux4_3" outlet="o"/>
+         <source obj="mux_3" outlet="o"/>
          <dest obj="logic.latch_1" inlet="trig"/>
       </net>
       <net>
@@ -1170,7 +1170,7 @@
       </net>
       <net>
          <source obj="mix_1" outlet="out"/>
-         <dest obj="mix.mix6_1" inlet="in3"/>
+         <dest obj="mix_2" inlet="in3"/>
       </net>
       <net>
          <source obj="mix.mix3_2" outlet="out"/>
@@ -1220,7 +1220,7 @@
          <dest obj="audio.out.stereo_1" inlet="right"/>
       </net>
       <net>
-         <source obj="mix.mix6_1" outlet="out"/>
+         <source obj="mix_2" outlet="out"/>
          <dest obj="abs_1" inlet="in"/>
       </net>
    </nets>

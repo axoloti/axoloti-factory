@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <obj type="lfo/square" sha="b4420b58ca2ae5ece53d53540bc91bc9ed7a4b83" name="square1" x="40" y="20">
       <params>
          <frac32.s.map name="pitch" value="0.0"/>
@@ -172,11 +172,11 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="dist/soft" sha="4de9b281f2a362671b6dc8606f5d039535893f45" name="softsat1" x="640" y="800">
+   <obj type="dist/soft" uuid="e680d76a805e4866027cdf654c7efd8b2e54622" name="soft_1" x="640" y="800">
       <params/>
       <attribs/>
    </obj>
-   <obj type="mix/mix 4" sha="217ea56f47dd7397f64930ffcddab7c794ad4f5c" name="mix31" x="720" y="800">
+   <obj type="mix/mix 4" uuid="e6f9a0cc7aadc1b89516143cf1ccb79b3538d05a" name="mix_1" x="720" y="800">
       <params>
          <frac32.u.map name="gain1" value="20.5"/>
          <frac32.u.map name="gain2" value="63.5"/>
@@ -185,7 +185,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="dist/soft" sha="4de9b281f2a362671b6dc8606f5d039535893f45" name="softsat2" x="880" y="800">
+   <obj type="dist/soft" uuid="e680d76a805e4866027cdf654c7efd8b2e54622" name="soft_2" x="880" y="800">
       <params/>
       <attribs/>
    </obj>
@@ -238,14 +238,14 @@
          <dest obj="line3x1" inlet="trig"/>
       </net>
       <net>
-         <source obj="softsat2" outlet="out"/>
+         <source obj="soft_2" outlet="out"/>
          <dest obj="dac_1" inlet="left"/>
          <dest obj="dac_1" inlet="right"/>
       </net>
       <net>
          <source obj="flashwaveplay_1" outlet="out"/>
          <dest obj="env_1" inlet="in"/>
-         <dest obj="mix31" inlet="in2"/>
+         <dest obj="mix_1" inlet="in2"/>
       </net>
       <net>
          <source obj="osc_1" outlet="wave"/>
@@ -274,11 +274,11 @@
       </net>
       <net>
          <source obj="vca_1" outlet="o"/>
-         <dest obj="softsat1" inlet="in"/>
+         <dest obj="soft_1" inlet="in"/>
       </net>
       <net>
-         <source obj="softsat1" outlet="out"/>
-         <dest obj="mix31" inlet="in1"/>
+         <source obj="soft_1" outlet="out"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
          <source obj="+1" outlet="out"/>
@@ -345,7 +345,7 @@
       </net>
       <net>
          <source obj="bpf_1" outlet="out"/>
-         <dest obj="mix31" inlet="in3"/>
+         <dest obj="mix_1" inlet="in3"/>
       </net>
       <net>
          <source obj="select_bool_16_v2x21" outlet="o2"/>
@@ -360,8 +360,8 @@
          <dest obj="envahd2" inlet="d"/>
       </net>
       <net>
-         <source obj="mix31" outlet="out"/>
-         <dest obj="softsat2" inlet="in"/>
+         <source obj="mix_1" outlet="out"/>
+         <dest obj="soft_2" inlet="in"/>
       </net>
       <net>
          <source obj="select_bool_16_v2x21" outlet="o4"/>
@@ -369,7 +369,7 @@
       </net>
       <net>
          <source obj="envd_1" outlet="out"/>
-         <dest obj="mix31" inlet="in4"/>
+         <dest obj="mix_1" inlet="in4"/>
       </net>
       <net>
          <source obj="vca_2" outlet="o"/>

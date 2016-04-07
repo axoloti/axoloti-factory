@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.8">
    <comment type="patch/comment" x="182" y="14" text="granular reverb"/>
    <comment type="patch/comment" x="182" y="28" text="preset 1: smooth canyon"/>
    <comment type="patch/comment" x="182" y="42" text="preset 2: grainy canyon"/>
@@ -26,7 +26,7 @@
       </params>
       <attribs/>
    </obj>
-   <patcher type="patch/patcher" sha="da39a3ee5e6b4b0d3255bfef95601890afd80709" uuid="a245c220448000c901caef03c8b07740d533914a" name="patcher_1" x="238" y="140">
+   <patcher type="patch/patcher" sha="da39a3ee5e6b4b0d3255bfef95601890afd80709" uuid="f705a807-d8a7-4e89-9e09-725a58d2ae52" name="patcher_1" x="238" y="140">
       <params>
          <frac32.u.map name="lspread" value="5.5">
             <presets>
@@ -109,10 +109,8 @@
       </params>
       <attribs>
          <combo attributeName="poly" selection="10"/>
-         <combo attributeName="mididevice" selection="omni"/>
-         <combo attributeName="midiport" selection="omni"/>
       </attribs>
-      <subpatch>
+      <subpatch appVersion="1.0.8">
          <obj type="ctrl/dial p" sha="501c30e07dedf3d701e8d0b33c3c234908c3388e" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="lspread" x="84" y="0">
             <params>
                <frac32.u.map name="value" onParent="true" value="0.0"/>
@@ -149,10 +147,6 @@
             <params>
                <frac32.s.map name="d" onParent="true" value="5.0"/>
             </params>
-            <attribs/>
-         </obj>
-         <obj type="math/&gt;" sha="66caccb0a5493a2894a4643178419d30d067add1" name="&gt;_1" x="334" y="100">
-            <params/>
             <attribs/>
          </obj>
          <obj type="logic/inv" sha="a8bfe6f6bbfd2a76e25328c139315bc7aa2a6e18" uuid="2bd44b865d3b63ff9b80862242bf5be779e3ad5" name="inv_1" x="420" y="112">
@@ -241,10 +235,6 @@
             </params>
             <attribs/>
          </obj>
-         <obj type="math/&gt;" sha="66caccb0a5493a2894a4643178419d30d067add1" name="&gt;_2" x="336" y="420">
-            <params/>
-            <attribs/>
-         </obj>
          <obj type="logic/inv" sha="a8bfe6f6bbfd2a76e25328c139315bc7aa2a6e18" uuid="2bd44b865d3b63ff9b80862242bf5be779e3ad5" name="inv_2" x="420" y="420">
             <params/>
             <attribs/>
@@ -313,6 +303,14 @@
                <objref attributeName="table" obj="../t"/>
             </attribs>
          </obj>
+         <obj type="math/&gt;" uuid="8112942c245dbc2edf7d7de122fe83b0dcd0a391" name="&gt;_1" x="334" y="100">
+            <params/>
+            <attribs/>
+         </obj>
+         <obj type="math/&gt;" uuid="8112942c245dbc2edf7d7de122fe83b0dcd0a391" name="&gt;_2" x="336" y="420">
+            <params/>
+            <attribs/>
+         </obj>
          <nets>
             <net>
                <source obj="length" outlet="env"/>
@@ -371,7 +369,6 @@
             <net>
                <source obj="length" outlet="env"/>
                <dest obj="window_1" inlet="phase"/>
-               <dest obj="&gt;_1" inlet="in1"/>
             </net>
             <net>
                <source obj="inv_1" outlet="o"/>
@@ -386,10 +383,6 @@
             <net>
                <source obj="vca~_1" outlet="o"/>
                <dest obj="L" inlet="outlet"/>
-            </net>
-            <net>
-               <source obj="&gt;_1" outlet="out"/>
-               <dest obj="inv_1" inlet="i"/>
             </net>
             <net>
                <source obj="c_1" outlet="o"/>
@@ -421,8 +414,8 @@
             </net>
             <net>
                <source obj="length_" outlet="env"/>
-               <dest obj="&gt;_2" inlet="in1"/>
                <dest obj="window_2" inlet="phase"/>
+               <dest obj="&gt;_2" inlet="in1"/>
             </net>
             <net>
                <source obj="&gt;_2" outlet="out"/>
@@ -568,7 +561,7 @@
          <notes><![CDATA[]]></notes>
       </subpatch>
    </patcher>
-   <obj type="mix/mix 1" sha="f543e080bd2111cba525885443039f346703a594" name="mix1_1" x="364" y="140">
+   <obj type="mix/mix 1" uuid="e8f482af5b1ec4a2e9cf8ac7ce09e7c0e43cea08" name="mix_1" x="364" y="140">
       <params>
          <frac32.u.map name="gain1" value="15.0">
             <presets>
@@ -595,7 +588,7 @@
          </text>
       </attribs>
    </obj>
-   <obj type="mix/mix 1" sha="f543e080bd2111cba525885443039f346703a594" name="mix1_2" x="364" y="238">
+   <obj type="mix/mix 1" uuid="e8f482af5b1ec4a2e9cf8ac7ce09e7c0e43cea08" name="mix_2" x="364" y="238">
       <params>
          <frac32.u.map name="gain1" value="15.0">
             <presets>
@@ -621,24 +614,24 @@
       <net>
          <source obj="adc~1_1" outlet="wave"/>
          <dest obj="*c_1" inlet="in"/>
-         <dest obj="mix1_2" inlet="bus_in"/>
-         <dest obj="mix1_1" inlet="bus_in"/>
+         <dest obj="mix_1" inlet="bus_in"/>
+         <dest obj="mix_2" inlet="bus_in"/>
       </net>
       <net>
-         <source obj="mix1_1" outlet="out"/>
+         <source obj="mix_1" outlet="out"/>
          <dest obj="dac~_1" inlet="left"/>
       </net>
       <net>
-         <source obj="mix1_2" outlet="out"/>
+         <source obj="mix_2" outlet="out"/>
          <dest obj="dac~_1" inlet="right"/>
       </net>
       <net>
          <source obj="patcher_1" outlet="L"/>
-         <dest obj="mix1_1" inlet="in1"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
          <source obj="patcher_1" outlet="R"/>
-         <dest obj="mix1_2" inlet="in1"/>
+         <dest obj="mix_2" inlet="in1"/>
       </net>
       <net>
          <source obj="*c_1" outlet="out"/>
