@@ -24,8 +24,8 @@
 int8_t _note;
 int32_t _gate;
 int32_t _gate2;
-uint8_t _velo;
-uint8_t _rvelo;
+uint32_t _velo;
+uint32_t _rvelo;
 uint32_t _pressure;
 int32_t _bend;
 int32_t _timbre;
