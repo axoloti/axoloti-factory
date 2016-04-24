@@ -1,4 +1,4 @@
-<patch-1.0 appVersion="1.0.8">
+<patch-1.0 appVersion="1.0.9">
    <obj type="ctrl/dial p" sha="1f21216639bb798a4ea7902940999a5bcfd0de90" name="level" x="182" y="14">
       <params>
          <frac32.u.map name="value" onParent="true" value="4.0"/>
@@ -29,27 +29,27 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/+" uuid="faedbea4612d9bd3644d6d3bf31946d848a70e19" name="+c_2" x="252" y="140">
+   <obj type="math/inv" uuid="7f4c6cf4dcf79f9b0aa81c2eaf540405875714a3" name="inv_1" x="196" y="154">
       <params/>
       <attribs/>
    </obj>
-   <obj type="dist/rectifier" sha="6a81663bcc6a29c922883f499193baff3d14c5d" name="rectifier_2" x="322" y="140">
+   <obj type="math/+" uuid="faedbea4612d9bd3644d6d3bf31946d848a70e19" name="+c_2" x="252" y="154">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/-" uuid="832edca3a945aa25ae1875d277bdd12d6709031a" name="-_1" x="392" y="140">
+   <obj type="dist/rectifier" sha="6a81663bcc6a29c922883f499193baff3d14c5d" name="rectifier_2" x="322" y="154">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/inv" uuid="7f4c6cf4dcf79f9b0aa81c2eaf540405875714a3" name="inv_1" x="112" y="154">
+   <obj type="math/-" uuid="832edca3a945aa25ae1875d277bdd12d6709031a" name="-_1" x="392" y="154">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/muls 8" uuid="910989ec4cbbf3e9ac50429a9f27dc336f63ddd3" name="muls_2" x="392" y="196">
+   <obj type="math/muls 8" uuid="910989ec4cbbf3e9ac50429a9f27dc336f63ddd3" name="muls_2" x="392" y="210">
       <params/>
       <attribs/>
    </obj>
-   <obj type="patch/outlet a" sha="72226293648dde4dd4739bc1b8bc46a6bf660595" name="outlet_1" x="392" y="238">
+   <obj type="patch/outlet a" sha="72226293648dde4dd4739bc1b8bc46a6bf660595" name="outlet_1" x="392" y="252">
       <params/>
       <attribs/>
    </obj>
