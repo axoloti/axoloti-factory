@@ -11,8 +11,8 @@
       <displays/>
       <params/>
       <attribs/>
-      <code.declaration><![CDATA[charptr32 _inlet;
+      <code.declaration><![CDATA[char * _inlet;
 ]]></code.declaration>
-      <code.krate><![CDATA[   outlet_inlet = (const char *)_inlet;]]></code.krate>
+      <code.krate><![CDATA[   outlet_inlet = (char *)_inlet;]]></code.krate>
    </obj.normal>
 </objdefs>
