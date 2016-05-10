@@ -13,27 +13,29 @@
             <MenuEntries>
                <string>AVDD x0.90</string>
                <string>AVDD x0.65</string>
+               <string>disabled</string>
             </MenuEntries>
             <CEntries>
+               <string>1</string>
+               <string>5</string>
                <string>0</string>
-               <string>4</string>
             </CEntries>
          </combo>
          <combo name="mperf">
             <MenuEntries>
-               <string>High</string>
                <string>Normal</string>
+               <string>High</string>
             </MenuEntries>
             <CEntries>
                <string>0</string>
-               <string>1</string>
+               <string>8</string>
             </CEntries>
          </combo>
       </attribs>
       <depends>
          <depend>ADAU1361</depend>
       </depends>
-      <code.init><![CDATA[ADAU1961_WriteRegister(0x4010,attr_bias+attr_mperf+1);
+      <code.init><![CDATA[ADAU1961_WriteRegister(0x4010,attr_bias|attr_mperf);
 ]]></code.init>
    </obj.normal>
 </objdefs>
