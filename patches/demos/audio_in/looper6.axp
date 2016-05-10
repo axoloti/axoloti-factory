@@ -55,7 +55,7 @@
    <obj type="delay/write sdram" sha="3b156a92fef726fce69a05c2e670a365457a1728" name="d1" x="308" y="84">
       <params/>
       <attribs>
-         <combo attributeName="size" selection="131072 (2.37s)"/>
+         <combo attributeName="size" selection="131072 (2.73s)"/>
       </attribs>
    </obj>
    <obj type="delay/read" sha="5fca22dde504617cc3aec49fd5fcc1d7296290ca" name="read_1" x="420" y="84">
@@ -99,7 +99,7 @@
    <obj type="delay/write sdram" sha="3b156a92fef726fce69a05c2e670a365457a1728" name="d2" x="308" y="266">
       <params/>
       <attribs>
-         <combo attributeName="size" selection="131072 (2.37s)"/>
+         <combo attributeName="size" selection="131072 (2.73s)"/>
       </attribs>
    </obj>
    <obj type="delay/read" sha="5fca22dde504617cc3aec49fd5fcc1d7296290ca" name="read_2" x="420" y="266">
@@ -143,7 +143,7 @@
    <obj type="delay/write sdram" sha="3b156a92fef726fce69a05c2e670a365457a1728" name="d3" x="308" y="448">
       <params/>
       <attribs>
-         <combo attributeName="size" selection="131072 (2.37s)"/>
+         <combo attributeName="size" selection="131072 (2.73s)"/>
       </attribs>
    </obj>
    <obj type="delay/read" sha="5fca22dde504617cc3aec49fd5fcc1d7296290ca" name="read_3" x="420" y="448">
@@ -187,7 +187,7 @@
    <obj type="delay/write sdram" sha="3b156a92fef726fce69a05c2e670a365457a1728" name="d4" x="308" y="630">
       <params/>
       <attribs>
-         <combo attributeName="size" selection="131072 (2.37s)"/>
+         <combo attributeName="size" selection="131072 (2.73s)"/>
       </attribs>
    </obj>
    <obj type="delay/read" sha="5fca22dde504617cc3aec49fd5fcc1d7296290ca" name="read_4" x="420" y="630">
@@ -231,7 +231,7 @@
    <obj type="delay/write sdram" sha="3b156a92fef726fce69a05c2e670a365457a1728" name="d5" x="308" y="812">
       <params/>
       <attribs>
-         <combo attributeName="size" selection="131072 (2.37s)"/>
+         <combo attributeName="size" selection="131072 (2.73s)"/>
       </attribs>
    </obj>
    <obj type="delay/read" sha="5fca22dde504617cc3aec49fd5fcc1d7296290ca" name="read_5" x="420" y="812">
@@ -275,7 +275,7 @@
    <obj type="delay/write sdram" sha="3b156a92fef726fce69a05c2e670a365457a1728" name="d6" x="308" y="994">
       <params/>
       <attribs>
-         <combo attributeName="size" selection="131072 (2.37s)"/>
+         <combo attributeName="size" selection="131072 (2.73s)"/>
       </attribs>
    </obj>
    <obj type="delay/read" sha="5fca22dde504617cc3aec49fd5fcc1d7296290ca" name="read_6" x="420" y="994">
