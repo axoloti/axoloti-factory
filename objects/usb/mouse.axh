@@ -1,0 +1,128 @@
+<patch-1.0 appVersion="1.0.10">
+   <comment type="patch/comment" x="14" y="14" text="the x and y outputs are wrapping position"/>
+   <obj type="usb/mouse" uuid="c533bf6b3e8f5b56044ac97175695cdc02644c23" name="mouse_1" x="14" y="42">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/i" uuid="5e35fd0c62d81e70017289250cf28edd26e19e4a" name="i_1" x="98" y="42">
+      <params/>
+      <attribs/>
+   </obj>
+   <comment type="patch/comment" x="154" y="83" text="this combination shows how to unwrap phase to a larger range with adjustable speed"/>
+   <obj type="conv/to f" uuid="bdd08445689602ce174689ccb6be085f627d9892" name="to_1" x="154" y="112">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="math/&lt;&lt;" uuid="b03d8d8009c0480be0ccb29ed65933a82fa4a80f" name="&lt;&lt;_1" x="224" y="112">
+      <params/>
+      <attribs>
+         <spinner attributeName="shift" value="3"/>
+      </attribs>
+   </obj>
+   <obj type="filter/delta" uuid="58aa97f36fc7af885445a28604363a388a6b25f3" name="delta_1" x="322" y="112">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="math/*c" uuid="7d5ef61c3bcd571ee6bbd8437ef3612125dfb225" name="*c_1" x="406" y="112">
+      <params>
+         <frac32.u.map name="amp" value="0.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="filter/integrator" uuid="e4d9391b099e543aa867bc3ec9565dd4d6f7df60" name="integrator_1" x="518" y="112">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/dial b" uuid="9ffed04e6a3052d9001eda83bae7024cb6d17037" name="dial_1" x="616" y="112">
+      <params/>
+      <attribs/>
+   </obj>
+   <comment type="patch/comment" x="112" y="196" text="button states"/>
+   <obj type="disp/bool" uuid="a0ee71d48208b71752cbb8c05e55145106ef3946" name="bool_1" x="112" y="224">
+      <params/>
+      <attribs/>
+   </obj>
+   <comment type="patch/comment" x="347" y="227" text="if a spring-centering is desired, use this:"/>
+   <obj type="kfilter/lowpass" uuid="4f0d68b39b6f6b1c1d371b028d84391d14062d68" name="lowpass_1" x="406" y="266">
+      <params>
+         <frac32.s.map name="freq" value="-30.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="math/gain" uuid="6b4dd3da49f98e54900f6c20031f38f4624fa364" name="gain_1" x="518" y="266">
+      <params>
+         <frac32.u.map name="amp" value="52.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="disp/dial b" uuid="9ffed04e6a3052d9001eda83bae7024cb6d17037" name="dial_2" x="630" y="266">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/bool" uuid="a0ee71d48208b71752cbb8c05e55145106ef3946" name="bool_2" x="112" y="280">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/bool" uuid="a0ee71d48208b71752cbb8c05e55145106ef3946" name="bool_3" x="112" y="336">
+      <params/>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="*c_1" outlet="out"/>
+         <dest obj="integrator_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="integrator_1" outlet="out"/>
+         <dest obj="dial_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="delta_1" outlet="d"/>
+         <dest obj="*c_1" inlet="in"/>
+         <dest obj="lowpass_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="mouse_1" outlet="x"/>
+         <dest obj="to_1" inlet="i"/>
+         <dest obj="i_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="to_1" outlet="o"/>
+         <dest obj="&lt;&lt;_1" inlet="a"/>
+      </net>
+      <net>
+         <source obj="&lt;&lt;_1" outlet="result"/>
+         <dest obj="delta_1" inlet="a"/>
+      </net>
+      <net>
+         <source obj="mouse_1" outlet="left"/>
+         <dest obj="bool_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="mouse_1" outlet="right"/>
+         <dest obj="bool_2" inlet="in"/>
+      </net>
+      <net>
+         <source obj="mouse_1" outlet="middle"/>
+         <dest obj="bool_3" inlet="in"/>
+      </net>
+      <net>
+         <source obj="lowpass_1" outlet="out"/>
+         <dest obj="gain_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="gain_1" outlet="out"/>
+         <dest obj="dial_2" inlet="in"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>421</x>
+      <y>637</y>
+      <width>817</width>
+      <height>543</height>
+   </windowPos>
+</patch-1.0>
