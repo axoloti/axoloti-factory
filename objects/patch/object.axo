@@ -1,6 +1,6 @@
 <objdefs>
    <obj.normal class="axoloti.object.AxoObjectPatcherObject" id="object" uuid="d9f44795bfd6115f91bc84d9b38087afd0709f6e" sha="1615307cc4523f183e777df67f168c86908e8007">
-      <sDescription>Object stored in the patch document (IN DEVELOPMENT!)</sDescription>
+      <sDescription>Custom object stored in the patch document. Use this if you want to experiment with coding objects.</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
       <inlets/>
