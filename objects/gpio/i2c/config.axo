@@ -22,8 +22,8 @@ static const I2CConfig i2cfg = {
 i2cStart(&I2CD1, &i2cfg);
 ]]></code.init>
       <code.dispose><![CDATA[i2cStop(&I2CD1);
-palSetPadMode(GPIOA, 8, PAL_MODE_INPUT_ANALOG);
-palSetPadMode(GPIOA, 9, PAL_MODE_INPUT_ANALOG);
+palSetPadMode(GPIOB, 8, PAL_MODE_INPUT_ANALOG);
+palSetPadMode(GPIOB, 9, PAL_MODE_INPUT_ANALOG);
 ]]></code.dispose>
    </obj.normal>
 </objdefs>
