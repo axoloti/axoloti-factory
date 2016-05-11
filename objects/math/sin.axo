@@ -1,10 +1,10 @@
 <objdefs>
    <obj.normal id="sin" uuid="1964a1eea162423ab0d4ad3526e1940bcd3a43cf" sha="a9c0c4bc2dd9e0f4bf16860e8fabb5996b032cff">
       <upgradeSha>52c6ba07e0435b09bf0a3f06e42b5e8735af0522</upgradeSha>
-      <sDescription>sine function, -64..64 phase corresponds to -180 to 180 degrees</sDescription>
+      <sDescription>sine function, -64..64 phase corresponds to -360 to 360 degrees</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
-      <helpPatch>math.axh</helpPatch>
+      <helpPatch>trigonometry.axh</helpPatch>
       <inlets>
          <frac32 name="phase" description="phase"/>
       </inlets>
@@ -24,7 +24,7 @@
       <sDescription>sine function, -64..64 corresponds to -360 to 360 degrees</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
-      <helpPatch>math.axh</helpPatch>
+      <helpPatch>trigonometry.axh</helpPatch>
       <inlets>
          <frac32buffer name="phase" description="phase"/>
       </inlets>
