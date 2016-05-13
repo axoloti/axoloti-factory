@@ -11,7 +11,10 @@
       <displays/>
       <params/>
       <attribs/>
-      <code.krate><![CDATA[outlet_t = hal_lld_get_counter_value();
+      <code.krate><![CDATA[
+asm volatile("mov r0, r0");
+outlet_t = hal_lld_get_counter_value();
+asm volatile("mov r0, r0");
 ]]></code.krate>
    </obj.normal>
 </objdefs>
