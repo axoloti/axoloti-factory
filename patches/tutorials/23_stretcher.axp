@@ -1,4 +1,4 @@
-<patch-1.0 appVersion="1.0.8">
+<patch-1.0 appVersion="1.0.10">
    <obj type="ctrl/dial p" sha="1f21216639bb798a4ea7902940999a5bcfd0de90" name="c1" x="80" y="20">
       <params>
          <frac32.u.map name="value" value="0.0"/>
@@ -94,6 +94,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="56" y="630" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="24_wavetable.axp" x="182" y="630"/>
    <nets>
       <net>
          <source obj="phasor3q_1" outlet="phasor0"/>
@@ -174,8 +176,8 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>346</x>
-      <y>169</y>
+      <x>1429</x>
+      <y>152</y>
       <width>1150</width>
       <height>830</height>
    </windowPos>

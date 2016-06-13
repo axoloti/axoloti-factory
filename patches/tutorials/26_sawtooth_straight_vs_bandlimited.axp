@@ -1,4 +1,4 @@
-<patch-1.0 appVersion="1.0.8">
+<patch-1.0 appVersion="1.0.10">
    <obj type="midi/in/keyb" sha="d2b06e818348b14523c68fd021077192860093c0" name="keyb1" x="40" y="40">
       <params/>
       <attribs/>
@@ -52,6 +52,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="42" y="616" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="27_simple_sequencer.axp" x="168" y="616"/>
    <nets>
       <net>
          <source obj="keyb1" outlet="note"/>
@@ -94,9 +96,9 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>0</x>
-      <y>23</y>
-      <width>1070</width>
-      <height>650</height>
+      <x>1285</x>
+      <y>294</y>
+      <width>1574</width>
+      <height>912</height>
    </windowPos>
 </patch-1.0>

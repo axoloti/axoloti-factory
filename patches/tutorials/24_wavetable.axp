@@ -1,4 +1,4 @@
-<patch-1.0 appVersion="1.0.8">
+<patch-1.0 appVersion="1.0.10">
    <comment type="patch/comment" x="14" y="14" text="time domain table of one period of oscillation"/>
    <comment type="patch/comment" x="266" y="14" text="slow modulation of pitch: demonstrates audible interpolation artefacts (aliases)"/>
    <obj type="table/allocate 32b 16sliders" sha="2227408087d0108a79d19893c9bcca8343f9f004" name="tab" x="14" y="28">
@@ -85,6 +85,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="14" y="448" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="25_execution_order.axp" x="140" y="448"/>
    <nets>
       <net>
          <source obj="phasor3_1" outlet="phasor"/>
@@ -131,8 +133,8 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>0</x>
-      <y>23</y>
+      <x>1851</x>
+      <y>419</y>
       <width>982</width>
       <height>646</height>
    </windowPos>

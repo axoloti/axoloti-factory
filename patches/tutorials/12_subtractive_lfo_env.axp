@@ -1,4 +1,4 @@
-<patch-1.0 appVersion="1.0.8">
+<patch-1.0 appVersion="1.0.10">
    <obj type="midi/in/keyb" sha="b8deb97637e54be31fcb62e849e4fa406e72256e" name="keyb1" x="14" y="14">
       <params/>
       <attribs/>
@@ -75,6 +75,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="28" y="700" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="13_additive_harmonic.axp" x="28" y="728"/>
    <nets>
       <net>
          <source obj="keyb1" outlet="gate"/>
@@ -133,9 +135,9 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>213</x>
-      <y>55</y>
-      <width>828</width>
-      <height>912</height>
+      <x>1002</x>
+      <y>168</y>
+      <width>1527</width>
+      <height>1124</height>
    </windowPos>
 </patch-1.0>

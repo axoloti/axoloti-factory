@@ -1,4 +1,4 @@
-<patch-1.0 appVersion="1.0.8">
+<patch-1.0 appVersion="1.0.10">
    <comment type="patch/comment" x="14" y="14" text="frequency modulation, sine wave carrier, sine wave modulator"/>
    <comment type="patch/comment" x="182" y="42" text="evelope to control modulation depth"/>
    <obj type="midi/in/keyb" sha="b8deb97637e54be31fcb62e849e4fa406e72256e" name="keyb1" x="14" y="56">
@@ -54,6 +54,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="14" y="420" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="18_combfilter.axp" x="140" y="420"/>
    <nets>
       <net>
          <source obj="keyb1" outlet="note"/>
@@ -102,9 +104,9 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>720</x>
-      <y>217</y>
-      <width>926</width>
-      <height>618</height>
+      <x>223</x>
+      <y>960</y>
+      <width>1263</width>
+      <height>668</height>
    </windowPos>
 </patch-1.0>
