@@ -1,4 +1,4 @@
-<patch-1.0 appVersion="1.0.10">
+<patch-1.0 appVersion="1.0.8">
    <comment type="patch/comment" x="14" y="14" text="time domain table of one period of oscillation"/>
    <comment type="patch/comment" x="266" y="14" text="slow modulation of pitch: demonstrates audible interpolation artefacts (aliases)"/>
    <obj type="table/allocate 32b 16sliders" sha="2227408087d0108a79d19893c9bcca8343f9f004" name="tab" x="14" y="28">

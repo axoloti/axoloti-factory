@@ -1,4 +1,4 @@
-<patch-1.0 appVersion="1.0.10">
+<patch-1.0 appVersion="1.0.8">
    <obj type="midi/in/keyb" sha="d2b06e818348b14523c68fd021077192860093c0" name="keyb1" x="40" y="40">
       <params/>
       <attribs/>
