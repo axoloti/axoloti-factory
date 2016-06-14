@@ -83,6 +83,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="14" y="658" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="06_envelopes.axp" x="154" y="658"/>
    <nets>
       <net>
          <source obj="keyb1" outlet="note"/>
