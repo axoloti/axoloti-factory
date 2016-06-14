@@ -86,6 +86,8 @@
    <comment type="patch/comment" x="616" y="490" text="mix the three sources"/>
    <comment type="patch/comment" x="420" y="504" text="multiply envelope with oscillation"/>
    <comment type="patch/comment" x="490" y="518" text="watch the envelopes here"/>
+   <comment type="patch/comment" x="14" y="546" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="15_waveshaper.axp" x="14" y="574"/>
    <nets>
       <net>
          <source obj="mix_1" outlet="out"/>

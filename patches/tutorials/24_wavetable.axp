@@ -85,6 +85,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="14" y="448" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="25_execution_order.axp" x="140" y="448"/>
    <nets>
       <net>
          <source obj="phasor3_1" outlet="phasor"/>

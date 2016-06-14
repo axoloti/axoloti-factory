@@ -63,6 +63,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="14" y="644" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="10_amplitude_modulation.axp" x="14" y="672"/>
    <nets>
       <net>
          <source obj="saw_1" outlet="wave"/>

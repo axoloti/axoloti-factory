@@ -52,6 +52,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="42" y="616" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="27_simple_sequencer.axp" x="168" y="616"/>
    <nets>
       <net>
          <source obj="keyb1" outlet="note"/>

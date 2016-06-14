@@ -54,6 +54,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="14" y="420" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="18_combfilter.axp" x="140" y="420"/>
    <nets>
       <net>
          <source obj="keyb1" outlet="note"/>

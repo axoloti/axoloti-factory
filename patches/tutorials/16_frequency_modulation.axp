@@ -45,6 +45,8 @@
    </obj>
    <comment type="patch/comment" x="126" y="308" text="What is called &quot;FM&quot; in ads and magazines is really PM : Phase Modulation"/>
    <comment type="patch/comment" x="126" y="322" text="Phase modulation preserves the fundamental frequency, while FM does not, making it more well behaving"/>
+   <comment type="patch/comment" x="28" y="420" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="17_frequency_modulation_envelope.axp" x="154" y="420"/>
    <nets>
       <net>
          <source obj="keyb1" outlet="note"/>

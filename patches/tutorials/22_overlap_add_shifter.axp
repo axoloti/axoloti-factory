@@ -97,6 +97,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="42" y="826" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="23_stretcher.axp" x="168" y="826"/>
    <nets>
       <net>
          <source obj="cbp1" outlet="out"/>

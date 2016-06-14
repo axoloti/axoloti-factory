@@ -94,6 +94,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="56" y="630" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="24_wavetable.axp" x="182" y="630"/>
    <nets>
       <net>
          <source obj="phasor3q_1" outlet="phasor0"/>

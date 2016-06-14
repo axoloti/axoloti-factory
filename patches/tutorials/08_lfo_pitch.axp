@@ -47,6 +47,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="28" y="518" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="09_lfo_amplitude.axp" x="168" y="518"/>
    <nets>
       <net>
          <source obj="keyb1" outlet="note"/>

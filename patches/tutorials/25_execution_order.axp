@@ -39,6 +39,8 @@
       <attribs/>
    </obj>
    <comment type="patch/comment" x="280" y="448" text="upward link (from object seven to object six)  introduces a latch!"/>
+   <comment type="patch/comment" x="28" y="532" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="26_sawtooth_straight_vs_bandlimited.axp" x="154" y="532"/>
    <nets>
       <net>
          <source obj="one" outlet="out"/>

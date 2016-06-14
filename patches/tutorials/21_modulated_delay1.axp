@@ -106,6 +106,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="28" y="602" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="22_overlap_add_shifter.axp" x="154" y="602"/>
    <nets>
       <net>
          <source obj="osc_1" outlet="wave"/>

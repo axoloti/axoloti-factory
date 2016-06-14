@@ -110,6 +110,8 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="42" y="826" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="12_subtractive_lfo_env.axp" x="42" y="854"/>
    <nets>
       <net>
          <source obj="saw_1" outlet="wave"/>

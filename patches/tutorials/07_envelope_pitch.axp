@@ -58,6 +58,8 @@
       <attribs/>
    </obj>
    <comment type="patch/comment" x="182" y="518" text="mix output = bus_in + in1 * dial/64"/>
+   <comment type="patch/comment" x="28" y="658" text="Open next tutorial -&gt;"/>
+   <hyperlink type="patch/hyperlink" name="08_lfo_pitch.axp" x="168" y="658"/>
    <nets>
       <net>
          <source obj="keyb1" outlet="gate"/>
