@@ -13,7 +13,7 @@
    </obj>
    <obj type="osc/square" uuid="aa9592566d3673fe64dcaede132e9ebd45d2202f" name="square_2" x="14" y="56">
       <params>
-         <frac32.s.map name="pitch" value="11.199999809265137"/>
+         <frac32.s.map name="pitch" value="-6.0"/>
       </params>
       <attribs/>
    </obj>
@@ -28,11 +28,12 @@
       <attribs>
          <objref attributeName="table" obj="ir"/>
          <combo attributeName="attenuation" selection="18dB"/>
+         <spinner attributeName="length" value="1024"/>
       </attribs>
    </obj>
    <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_2" x="392" y="56">
       <params>
-         <frac32.u.map name="amp" value="40.0"/>
+         <frac32.u.map name="amp" value="28.5"/>
       </params>
       <attribs/>
    </obj>
@@ -218,8 +219,8 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>88</x>
-      <y>120</y>
+      <x>60</x>
+      <y>25</y>
       <width>1064</width>
       <height>1006</height>
    </windowPos>

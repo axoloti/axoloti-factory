@@ -1,6 +1,6 @@
 <patch-1.0 appVersion="1.0.10">
    <comment type="patch/comment" x="14" y="24" text="Supersaw synth with a convolution filter that updates with fresh gaussian noise on every note played"/>
-   <patcher type="patch/patcher" sha="da39a3ee5e6b4b0d3255bfef95601890afd80709" uuid="15d1b657-2466-43d3-a000-6b9f4101186c" name="patcher_1" x="14" y="56">
+   <patcher type="patch/patcher" sha="da39a3ee5e6b4b0d3255bfef95601890afd80709" uuid="afe3bfcf-33c3-4f8e-840e-b2a32112430f" name="patcher_1" x="14" y="56">
       <params>
          <frac32.s.map name="adsr_1:a" value="-64.0"/>
          <frac32.s.map name="adsr_1:d" value="0.0"/>
@@ -86,6 +86,7 @@
       <attribs>
          <objref attributeName="table" obj="t1"/>
          <combo attributeName="attenuation" selection="12dB"/>
+         <spinner attributeName="length" value="1024"/>
       </attribs>
    </obj>
    <obj type="math/*c" sha="a73a2cafcf92eb4b6524655dcee98a569d5ddc28" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="mix_3" x="280" y="56">
@@ -110,22 +111,7 @@
       <attribs>
          <combo attributeName="size" selection="1024"/>
          <text attributeName="init">
-            <sText><![CDATA[array[0]=7<<12;
-array[1023]=7<<12;
-
-/*
-array[10]=7<<12;
-array[11]=7<<12;
-array[12]=7<<12;
-array[13]=7<<12;
-array[14]=6<<12;
-array[15]=5<<12;
-array[16]=4<<12;
-array[17]=3<<12;
-array[18]=2<<12;
-array[19]=1<<12;
-//array[4]=1<<14;
-*/]]></sText>
+            <sText><![CDATA[]]></sText>
          </text>
       </attribs>
    </obj>
@@ -181,9 +167,9 @@ array[19]=1<<12;
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>78</x>
-      <y>151</y>
-      <width>646</width>
+      <x>39</x>
+      <y>62</y>
+      <width>638</width>
       <height>642</height>
    </windowPos>
 </patch-1.0>

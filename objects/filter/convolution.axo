@@ -38,8 +38,9 @@ A 1024 sample impulse response results in 66% load!</sDescription>
                <string>5</string>
             </CEntries>
          </combo>
+         <spinner name="length" MinValue="16" MaxValue="1280" DefaultValue="512"/>
       </attribs>
-      <code.declaration><![CDATA[static const int length = 1024;
+      <code.declaration><![CDATA[static const int length = attr_length;
 static const int pad = 16;
 int16_t circbuf[(length+pad) * 2];
 int writeindex = length;]]></code.declaration>
