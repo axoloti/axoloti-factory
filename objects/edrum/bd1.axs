@@ -1,4 +1,4 @@
-<patch-1.0>
+<patch-1.0 appVersion="1.0.10">
    <obj type="patch/inlet b" sha="e98d5f4c7b741588feaffc8629026f8d8e59e3ef" name="trig" x="14" y="14">
       <params/>
       <attribs/>
@@ -13,7 +13,7 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/abs" sha="d9aef12fddc085a0a8a7a9868f1c845c538a9209" name="arithmetic.abs_1" x="322" y="14">
+   <obj type="math/abs" uuid="f4078fd9b2dff40d4f1551b79900c9ab360c99" name="abs_1" x="322" y="14">
       <params/>
       <attribs/>
    </obj>
@@ -23,7 +23,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="env/d lin m x" sha="7cd630c1ecdc64542bf24aadc0f3114629fdf37d" name="d2" x="112" y="98">
+   <obj type="env/d lin m" uuid="e9d9a5152981b17626748fd93e7e6a39c0afe3aa" name="d2" x="112" y="98">
       <params>
          <frac32.s.map name="d" onParent="true" value="-12.0"/>
       </params>
@@ -41,11 +41,11 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="math/*" sha="d67b6c172dd96232df67e96baf19e3062e880e68" name="*_1" x="406" y="98">
+   <obj type="math/*" uuid="dc7fbdd46e5e6d4b8de62ee63fd6321639b2f167" name="*_1" x="406" y="98">
       <params/>
       <attribs/>
    </obj>
-   <obj type="math/*" sha="c47ceb7366785e0103cf880ce3450321491949f1" name="*_2" x="406" y="168">
+   <obj type="math/*" uuid="c16a625a661f40e4b359db604dcd00b3befcdbe3" name="*_2" x="406" y="168">
       <params/>
       <attribs/>
    </obj>
@@ -56,7 +56,7 @@
    <nets>
       <net>
          <source obj="noise.uniform_2" outlet="wave"/>
-         <dest obj="arithmetic.abs_1" inlet="in"/>
+         <dest obj="abs_1" inlet="in"/>
       </net>
       <net>
          <source obj="d2" outlet="env"/>
@@ -75,7 +75,7 @@
          <dest obj="sine_1" inlet="pitch"/>
       </net>
       <net>
-         <source obj="arithmetic.abs_1" outlet="out"/>
+         <source obj="abs_1" outlet="out"/>
          <dest obj="lp1" inlet="in"/>
       </net>
       <net>
@@ -102,7 +102,7 @@
    <notes><![CDATA[]]></notes>
    <windowPos>
       <x>0</x>
-      <y>2</y>
+      <y>1</y>
       <width>800</width>
       <height>478</height>
    </windowPos>
