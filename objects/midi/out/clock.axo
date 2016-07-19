@@ -60,8 +60,8 @@ rstp = 0;]]></code.init>
 }
 if (inlet_run && !_active) {
   _active = 1;
-  if (_pos24ppq)     MidiSend1((midi_device_t) attr_device, MIDI_START);
-  else     MidiSend1((midi_device_t) attr_device, MIDI_CONTINUE);
+  if (_pos24ppq)     MidiSend1((midi_device_t) attr_device, MIDI_CONTINUE);
+  else     MidiSend1((midi_device_t) attr_device, MIDI_START);
 } else if (!inlet_run && _active){
   _active = 0;
   MidiSend1((midi_device_t) attr_device, MIDI_STOP);
