@@ -1,0 +1,62 @@
+<patch-1.0 appVersion="1.0.10">
+   <comment type="patch/comment" x="14" y="14" text="demonstrates the use of hardware serial I/O. Connect PA2 to PA3 to create a loopback test."/>
+   <obj type="gpio/serial/config" sha="f0df278a5fd5140e32239828049a8e062059f391" name="serial.begin_1" x="14" y="42">
+      <params/>
+      <attribs>
+         <combo attributeName="baudrate" selection="9600"/>
+      </attribs>
+   </obj>
+   <comment type="patch/comment" x="14" y="112" text="transmission/reception of serial data is done in a script2 object"/>
+   <obj type="ctrl/dial p" sha="1f21216639bb798a4ea7902940999a5bcfd0de90" name="c_1" x="14" y="140">
+      <params>
+         <frac32.u.map name="value" value="23.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="script/script2" uuid="d39e743cf47c9221f4e99c133430148cf74c68c5" name="script2_1" x="98" y="140">
+      <params/>
+      <attribs>
+         <text attributeName="script">
+            <sText><![CDATA[// demo serial transmission and reception using SD2 (USART2)
+
+void setup(void) {
+} 
+
+void loop(void) {
+	// send a single byte, value from in1
+	sdPut(&SD2, in1>>21); 
+
+	// read all pending bytes, value to out1
+	while(!sdGetWouldBlock(&SD2)){
+		out1 = sdGet(&SD2)<<21;
+	}
+	chThdSleepMilliseconds(3);
+}]]></sText>
+         </text>
+      </attribs>
+   </obj>
+   <obj type="disp/dial p" sha="5ff4edecce7038619b91d1d056c33eecbc4eaf30" name="displayU_1" x="210" y="140">
+      <params/>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="c_1" outlet="out"/>
+         <dest obj="script2_1" inlet="in1_"/>
+      </net>
+      <net>
+         <source obj="script2_1" outlet="out1_"/>
+         <dest obj="displayU_1" inlet="in"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>628</x>
+      <y>382</y>
+      <width>562</width>
+      <height>506</height>
+   </windowPos>
+</patch-1.0>

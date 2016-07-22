@@ -4,6 +4,7 @@
       <sDescription>Configures a serial (uart) interface on pins PA2 (TX) and PA3 (RX), using the SerialDriver API.</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
+      <helpPatch>serial.axh</helpPatch>
       <inlets/>
       <outlets/>
       <displays/>
