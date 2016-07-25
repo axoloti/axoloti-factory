@@ -1,0 +1,15 @@
+<objdefs appVersion="1.0.10">
+   <obj.normal id="bankindex" uuid="943bd281-10a5-4994-9876-11a3b1fbde8a">
+      <sDescription>Gets the index of the currently loaded patch in the patch bank. Mostly useful in controller objects, to prevent a patch loading mechanism to load itself over and over again.</sDescription>
+      <author>Johannes Taelman</author>
+      <license>BSD</license>
+      <inlets/>
+      <outlets>
+         <int32.positive name="index" description="patch index, starting from zero"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <code.krate><![CDATA[outlet_index = *(int32_t *)(BKPSRAM_BASE + 4092);]]></code.krate>
+   </obj.normal>
+</objdefs>
