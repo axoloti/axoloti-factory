@@ -1,28 +1,32 @@
-<patch-1.0 appVersion="1.0.8">
-   <comment type="patch/comment" x="14" y="14" text="IMPORTANT: needs samples on sdcard!"/>
-   <obj type="lfo/square" sha="b4420b58ca2ae5ece53d53540bc91bc9ed7a4b83" name="square_1" x="14" y="56">
+<patch-1.0 appVersion="1.0.11">
+   <comment type="patch/comment" x="15" y="17" text="Important: you need to supply your own samples&apos; and you need an SD Card inserted into Axoloti"/>
+   <comment type="patch/comment" x="14" y="42" text="1. download your samples from the internet 48k, 16bit, save as raw files (see forum for details)"/>
+   <comment type="patch/comment" x="14" y="56" text="2. use the choose button on each object, to select the sample"/>
+   <comment type="patch/comment" x="14" y="70" text="3. when you hit &apos;live&apos;, axoloti will upload these samples to the sdcard automatically"/>
+   <obj type="lfo/square" uuid="de6909eb64db13af5b43f979a4c130024b3a4793" name="square_1" x="14" y="112">
       <params>
-         <frac32.s.map name="pitch" value="7.0"/>
+         <frac32.s.map name="pitch" value="3.0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="logic/counter" sha="77a4b4804913310c0ec3fcc53592eed1cd9af148" name="counter_1" x="126" y="56">
+   <obj type="logic/counter" uuid="7a141ba82230e54e5f5cd12da5dbe5a74ba854a5" name="counter_1" x="126" y="112">
       <params>
          <int32 name="maximum" value="16"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="disp/ibar 16" sha="6202b6944fb6704b4fcdfb66663aba8e11d266d4" name="ibar_1" x="224" y="56">
+   <obj type="disp/ibar 16" uuid="302bfed4cde8894229679ce81f6b8a5c5212dd98" name="ibar_1" x="224" y="112">
       <params/>
       <attribs/>
    </obj>
-   <obj type="wave/play fn" sha="60926d7b3ffb8a3a9d5b9d72347f2797f413f2fc" uuid="25910f7130532e4934eed3cf2a934324790d0f00" name="play_1" x="518" y="98">
+   <comment type="patch/comment" x="518" y="140" text="you&apos;ll need your own sample for each player"/>
+   <obj type="wave/play fn" uuid="25910f7130532e4934eed3cf2a934324790d0f00" name="play_1" x="518" y="154">
       <params/>
       <attribs>
          <file attributeName="fn" file="BW.raw"/>
       </attribs>
    </obj>
-   <obj type="sel/sel b 16 8t pulse" sha="67e67f12150c9ffcf6bb89d44faf18d1407f10da" name="sel_1" x="224" y="112">
+   <obj type="sel/sel b 16 8t pulse" uuid="831eeb126a17f646cd63749a9829dd27f7212acd" name="sel_1" x="224" y="168">
       <params>
          <bin16 name="p1" value="37121">
             <presets>
@@ -89,13 +93,14 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="wave/play fn" sha="60926d7b3ffb8a3a9d5b9d72347f2797f413f2fc" uuid="25910f7130532e4934eed3cf2a934324790d0f00" name="play_2" x="518" y="196">
+   <comment type="patch/comment" x="723" y="228" text="&lt;&lt; select your sample here"/>
+   <obj type="wave/play fn" uuid="25910f7130532e4934eed3cf2a934324790d0f00" name="play_2" x="518" y="252">
       <params/>
       <attribs>
          <file attributeName="fn" file="SD.raw"/>
       </attribs>
    </obj>
-   <obj type="fx/flanger" uuid="2973631847c569e35ca947106caf10356f93afee" name="obj_1" x="658" y="210">
+   <obj type="fx/flanger" uuid="2973631847c569e35ca947106caf10356f93afee" name="obj_1" x="700" y="266">
       <params>
          <frac32.u.map name="depth" value="20.0"/>
          <frac32.u.map name="fdbk" value="40.0"/>
@@ -103,7 +108,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 6 g" uuid="2dd642dee5072357722740c850699b79b8da3008" name="mix_1" x="798" y="210">
+   <obj type="mix/mix 6 g" uuid="2dd642dee5072357722740c850699b79b8da3008" name="mix_1" x="812" y="266">
       <params>
          <frac32.u.map name="gain1" value="51.5">
             <presets/>
@@ -122,30 +127,30 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="audio/out stereo" sha="b933bb91801a126126313c11f773158b5ca2face" name="out_1" x="910" y="210">
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="924" y="266">
       <params/>
       <attribs/>
    </obj>
-   <obj type="wave/play fn" sha="60926d7b3ffb8a3a9d5b9d72347f2797f413f2fc" uuid="25910f7130532e4934eed3cf2a934324790d0f00" name="play_3" x="518" y="294">
+   <obj type="wave/play fn" uuid="25910f7130532e4934eed3cf2a934324790d0f00" name="play_3" x="518" y="350">
       <params/>
       <attribs>
          <file attributeName="fn" file="CH.raw"/>
       </attribs>
    </obj>
-   <comment type="patch/comment" x="406" y="392" text="Hey! HH exclusion!"/>
-   <obj type="wave/play fn" sha="60926d7b3ffb8a3a9d5b9d72347f2797f413f2fc" uuid="25910f7130532e4934eed3cf2a934324790d0f00" name="play_4" x="518" y="392">
+   <comment type="patch/comment" x="406" y="448" text="Hey! HH exclusion!"/>
+   <obj type="wave/play fn" uuid="25910f7130532e4934eed3cf2a934324790d0f00" name="play_4" x="518" y="448">
       <params/>
       <attribs>
          <file attributeName="fn" file="OH.raw"/>
       </attribs>
    </obj>
-   <obj type="wave/play fn" sha="60926d7b3ffb8a3a9d5b9d72347f2797f413f2fc" uuid="25910f7130532e4934eed3cf2a934324790d0f00" name="play_5" x="518" y="490">
+   <obj type="wave/play fn" uuid="25910f7130532e4934eed3cf2a934324790d0f00" name="play_5" x="518" y="546">
       <params/>
       <attribs>
          <file attributeName="fn" file="TB.raw"/>
       </attribs>
    </obj>
-   <obj type="wave/play fn" sha="60926d7b3ffb8a3a9d5b9d72347f2797f413f2fc" uuid="25910f7130532e4934eed3cf2a934324790d0f00" name="play_6" x="518" y="588">
+   <obj type="wave/play fn" uuid="25910f7130532e4934eed3cf2a934324790d0f00" name="play_6" x="518" y="644">
       <params/>
       <attribs>
          <file attributeName="fn" file="CL.raw"/>
@@ -225,9 +230,9 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>500</x>
-      <y>304</y>
+      <x>220</x>
+      <y>23</y>
       <width>1220</width>
-      <height>912</height>
+      <height>873</height>
    </windowPos>
 </patch-1.0>
