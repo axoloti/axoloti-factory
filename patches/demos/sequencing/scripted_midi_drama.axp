@@ -76,7 +76,7 @@
       <attribs/>
    </obj>
    <comment type="patch/comment" x="14" y="168" text="orchestra"/>
-   <patcher type="patch/patcher" uuid="3692c008-2a4e-4009-8761-acbfb1c730ef" name="stringvoice1" x="0" y="196">
+   <patcher type="patch/patcher" uuid="e1d3e21a-4df0-4373-bea0-96a13dc6d594" name="stringvoice1" x="0" y="196">
       <params>
          <frac32.s.map name="envf:a" value="-17.0"/>
          <frac32.s.map name="envf:d" value="19.0"/>
@@ -91,7 +91,7 @@
       </params>
       <attribs>
          <combo attributeName="poly" selection="7"/>
-         <combo attributeName="midichannel" selection="0"/>
+         <combo attributeName="midichannel" selection="1"/>
          <combo attributeName="mididevice" selection="omni"/>
          <combo attributeName="midiport" selection="omni"/>
       </attribs>
@@ -402,7 +402,7 @@
    </patcher>
    <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_2" x="112" y="196">
       <params>
-         <frac32.u.map name="amp" value="26.5"/>
+         <frac32.u.map name="amp" value="24.5"/>
       </params>
       <attribs/>
    </obj>
@@ -647,7 +647,7 @@
    <notes><![CDATA[]]></notes>
    <windowPos>
       <x>416</x>
-      <y>74</y>
+      <y>23</y>
       <width>1016</width>
       <height>873</height>
    </windowPos>
