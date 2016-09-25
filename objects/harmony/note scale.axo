@@ -1,10 +1,10 @@
 <objdefs>
-   <obj.normal id="note quantizer" uuid="d5343a4fea87a3e4f4dae20287226084550ea8d3" sha="13431d42028aa183f45816ccf88d37464b5ef22b">
+   <obj.normal id="note scale" uuid="d5343a4fea87a3e4f4dae20287226084550ea8d3" sha="13431d42028aa183f45816ccf88d37464b5ef22b">
       <upgradeSha>197f71182416021f2b8487c8039736c5155c9d8e</upgradeSha>
-      <sDescription>quantize note input to a scale</sDescription>
+      <sDescription>note to a scale</sDescription>
       <author>Mark Harris</author>
       <license>BSD</license>
-      <helpPatch>note quantizer.axh</helpPatch>
+      <helpPatch>note scale.axh</helpPatch>
       <inlets>
          <frac32.bipolar name="note" description="note number (-64..63)"/>
          <int32 name="tonic" description="tonic note number (0-11)"/>
