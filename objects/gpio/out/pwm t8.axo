@@ -1,23 +1,31 @@
-<objdefs>
-   <obj.normal id="pwm t8" uuid="b2f2a79d93dd90bd9b812babc9c122eaf22a562b" sha="ac29ca844307adbd8b725bdd768e825ce2f7710f">
-      <upgradeSha>bc5389b0e96a90dcc21d117cbf363659bfe2070e</upgradeSha>
-      <sDescription>pwm output timer 8</sDescription>
+<objdefs appVersion="1.0.11">
+   <obj.normal id="pwm t8" uuid="3e491ae7-4200-4b96-95e7-cc42c168d0fd">
+      <sDescription>PWM output using hardware timer 8
+at a fixed frequency of 97.65 Hz</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
+      <helpPatch>pwm.axh</helpPatch>
       <inlets>
          <frac32.positive name="pa5" description="pwm ratio"/>
-         <frac32.positive name="pc7" description="pwm ratio"/>
       </inlets>
       <outlets/>
       <displays/>
       <params/>
       <attribs/>
-      <code.init><![CDATA[  palSetPadMode(GPIOA, 5, PAL_MODE_ALTERNATE(3));
-  palSetPadMode(GPIOC, 7, PAL_MODE_ALTERNATE(3));
-  PWMD8.tim->CCER |= STM32_TIM_CCER_CC1NE | STM32_TIM_CCER_CC1NP;
-]]></code.init>
-      <code.krate><![CDATA[   pwmEnableChannel(&PWMD8, 0, (pwmcnt_t)((inlet_pa5>=0)?(4096-(inlet_pa5>>15)):4096));
-   pwmEnableChannel(&PWMD8, 1, (pwmcnt_t)((inlet_pc7>=0)?(4096-(inlet_pc7>>15)):4096));
-]]></code.krate>
+      <code.init><![CDATA[static const PWMConfig pwmcfg = {400000, /* 400kHz PWM clock frequency.  */
+	4096, /* PWM period is 128 cycles.    */
+	NULL, 
+	{{PWM_OUTPUT_ACTIVE_HIGH, NULL}, 
+	{PWM_OUTPUT_ACTIVE_HIGH, NULL},
+	{PWM_OUTPUT_ACTIVE_HIGH, NULL}, 
+	{PWM_OUTPUT_ACTIVE_HIGH, NULL}},
+	/* HW dependent part.*/
+	0};
+
+pwmStart(&PWMD8, &pwmcfg);
+palSetPadMode(GPIOA, 5, PAL_MODE_ALTERNATE(3));
+PWMD8.tim->CCER |= STM32_TIM_CCER_CC1NE | STM32_TIM_CCER_CC1NP;]]></code.init>
+      <code.dispose><![CDATA[pwmStop(&PWMD8);]]></code.dispose>
+      <code.krate><![CDATA[pwmEnableChannel(&PWMD8, 0, (pwmcnt_t)(inlet_pa5>=0?inlet_pa5>>15:0));]]></code.krate>
    </obj.normal>
 </objdefs>

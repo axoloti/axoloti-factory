@@ -4,6 +4,7 @@
       <sDescription>pwm output timer 4, scaled for servo motors</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
+      <helpPatch>pwm.axh</helpPatch>
       <inlets>
          <frac32.positive name="pb8" description="pwm ratio"/>
          <frac32.positive name="pb9" description="pwm ratio"/>
@@ -15,8 +16,20 @@
       <depends>
          <depend>PWMD4</depend>
       </depends>
-      <code.init><![CDATA[  palSetPadMode(GPIOB, 8, PAL_MODE_ALTERNATE(2));
-  palSetPadMode(GPIOB, 9, PAL_MODE_ALTERNATE(2));]]></code.init>
+      <code.init><![CDATA[static const PWMConfig pwmcfg = {400000, /* 400kHz PWM clock frequency.  */
+	4096, /* PWM period is 128 cycles.    */
+	NULL, 
+	{{PWM_OUTPUT_ACTIVE_HIGH, NULL}, 
+	{PWM_OUTPUT_ACTIVE_HIGH, NULL},
+	{PWM_OUTPUT_ACTIVE_HIGH, NULL}, 
+	{PWM_OUTPUT_ACTIVE_HIGH, NULL}},
+	/* HW dependent part.*/
+	0};
+
+pwmStart(&PWMD4, &pwmcfg);
+palSetPadMode(GPIOB, 8, PAL_MODE_ALTERNATE(2));
+palSetPadMode(GPIOB, 9, PAL_MODE_ALTERNATE(2));]]></code.init>
+      <code.dispose><![CDATA[pwmStop(&PWMD4);]]></code.dispose>
       <code.krate><![CDATA[   pwmEnableChannel(&PWMD4, 2, (pwmcnt_t)((inlet_pb8>=0)?(150+(inlet_pb8>>17)-(inlet_pb8>>19)):4096));
    pwmEnableChannel(&PWMD4, 3, (pwmcnt_t)((inlet_pb9>=0)?(150+(inlet_pb9>>17)-(inlet_pb9>>19)):4096));]]></code.krate>
    </obj.normal>
