@@ -1,0 +1,57 @@
+<objdefs appVersion="1.0.11">
+   <obj.normal id="format" uuid="511fcd12-757d-423b-a2d1-ffc46911b9d3">
+      <sDescription>SDCard formatting - ERASES ALL CONTENTS of the SDCard!
+To activate, turn on confirm1 and click confirm2.</sDescription>
+      <author>Johannes Taelman</author>
+      <license>BSD</license>
+      <inlets/>
+      <outlets/>
+      <displays>
+         <bool32 name="busy"/>
+         <bool32 name="succeeded"/>
+         <bool32 name="failed"/>
+      </displays>
+      <params>
+         <bool32.tgl name="confirm1"/>
+         <bool32.mom name="confirm2"/>
+      </params>
+      <attribs/>
+      <code.declaration><![CDATA[FRESULT fs_error = FR_OK;
+bool pconfirm;
+bool busy;
+bool ready;
+
+msg_t ThreadX2(){
+  busy = 1;
+  fs_error = f_mkfs(0, 0, 0);
+  if (fs_error != FR_OK) report_fatfs_error(fs_error,"");  
+  sdcard_unmount();
+  sdcard_attemptMountIfUnmounted();  
+  ready = 1;
+  chThdExit((msg_t)0);
+}
+
+static msg_t ThreadX(void *arg) {
+((attr_parent *)arg)->ThreadX2();
+}
+
+WORKING_AREA(waThreadX, 1024);
+Thread *pThd=0;]]></code.declaration>
+      <code.krate><![CDATA[if (param_confirm1 && param_confirm2 && !pconfirm){
+	pconfirm = 1;
+	pThd = chThdCreateStatic(waThreadX, sizeof(waThreadX),
+                    NORMALPRIO, ThreadX, (void *)this);
+} else if (!param_confirm2){
+	pconfirm = 0;
+}
+
+if (ready){
+	busy = 0;
+	pThd = 0;
+}
+
+disp_busy=busy;
+disp_succeeded=ready && (fs_error == FR_OK);
+disp_failed=ready && (fs_error != FR_OK);]]></code.krate>
+   </obj.normal>
+</objdefs>
