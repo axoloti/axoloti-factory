@@ -29,27 +29,27 @@ p_Bend=param_Bend;]]></code.krate>
    <code.midihandler><![CDATA[switch (status & 0xf0) {
 	case MIDI_NOTE_ON: 
 	if (p_Note)
-		LogTextMessage("NoteOn  ch%2D n%3D v%3D", status & 0x0F, data1, data2);
+		LogTextMessage("NoteOn  ch%2D n%3D v%3D", 1 + (status & 0x0F), data1, data2);
 		break;
 	case MIDI_NOTE_OFF: 
 	if (p_Note)
-		LogTextMessage("NoteOff ch%2D n%3D v%3D", status & 0x0F, data1, data2);
+		LogTextMessage("NoteOff ch%2D n%3D v%3D", 1 + (status & 0x0F), data1, data2);
 		break;
 	case MIDI_POLY_PRESSURE: 
 	if (p_PolyPressure)
-		LogTextMessage("PolyPrs ch%2D n%3D v%3D", status & 0x0F, data1, data2);
+		LogTextMessage("PolyPrs ch%2D n%3D v%3D", 1 + (status & 0x0F), data1, data2);
 		break;
 	case MIDI_CONTROL_CHANGE: 
 	if (p_ControlChange)
-		LogTextMessage("Control ch%2D cc%3D v%3D", status & 0x0F, data1, data2);
+		LogTextMessage("Control ch%2D cc%3D v%3D", 1 + (status & 0x0F), data1, data2);
 		break;
 	case MIDI_PROGRAM_CHANGE: 
 	if (p_ProgramChange)
-		LogTextMessage("PgmChg  ch%2D pgm%3D", status & 0x0F, data1, data2);
+		LogTextMessage("PgmChg  ch%2D pgm%3D", 1 + (status & 0x0F), data1, data2);
 		break;
 	case MIDI_PITCH_BEND: 
 	if (p_Bend)
-		LogTextMessage("PitchBnd ch%2D v%3D v%3D", status & 0x0F, data1, data2);
+		LogTextMessage("PitchBnd ch%2D v%3D v%3D", 1 + (status & 0x0F), data1, data2);
 		break;
 	default:
 	;
