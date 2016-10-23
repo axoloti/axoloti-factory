@@ -1,0 +1,124 @@
+<objdefs appVersion="1.0.10">
+   <obj.normal id="attr" uuid="f984f796-8ea5-410c-b89d-cfbbc941be64">
+      <author>Johannes Taelman</author>
+      <license>BSD</license>
+      <helpPatch>osc.axh</helpPatch>
+      <inlets>
+         <frac32.bipolar name="pitch" description="pitch"/>
+         <bool32.rising name="trig"/>
+         <frac32.positive name="p1"/>
+         <frac32.positive name="p2"/>
+      </inlets>
+      <outlets>
+         <frac32buffer.bipolar name="wave" description="sine wave"/>
+      </outlets>
+      <displays/>
+      <params>
+         <frac32.s.map.pitch name="pitch" noLabel="true"/>
+         <frac32.u.map name="param1"/>
+         <frac32.u.map name="param2"/>
+      </params>
+      <attribs>
+         <combo name="shape">
+            <MenuEntries>
+               <string>triple_ring_mod</string>
+               <string>saw_swarm</string>
+               <string>comb_filter</string>
+               <string>toy</string>
+               <string>digital_filter_lp</string>
+               <string>digital_filter_pk</string>
+               <string>digital_filter_bp</string>
+               <string>digital_filter_hp</string>
+               <string>vosim</string>
+               <string>vowel</string>
+               <string>vowel_fof</string>
+               <string>harmonics</string>
+               <string>fm</string>
+               <string>feedback_fm</string>
+               <string>chaotic_feedback_fm</string>
+               <string>struck_bell</string>
+               <string>struck_drum</string>
+               <string>kick</string>
+               <string>hat</string>
+               <string>snare</string>
+               <string>plucked</string>
+               <string>bowed</string>
+               <string>blown</string>
+               <string>fluted</string>
+               <string>wavetables</string>
+               <string>wave_map</string>
+               <string>wave_line</string>
+               <string>wave_paraphonic</string>
+               <string>filtered_noise</string>
+               <string>twin_peaks_noise</string>
+               <string>clocked_noise</string>
+               <string>granular_cloud</string>
+               <string>particle_noise</string>
+               <string>digital_modulation</string>
+               <string>question_mark_last</string>
+            </MenuEntries>
+            <CEntries>
+               <string>OSC_SHAPE_TRIPLE_RING_MOD</string>
+               <string>OSC_SHAPE_SAW_SWARM</string>
+               <string>OSC_SHAPE_COMB_FILTER</string>
+               <string>OSC_SHAPE_TOY</string>
+               <string>OSC_SHAPE_DIGITAL_FILTER_LP</string>
+               <string>OSC_SHAPE_DIGITAL_FILTER_PK</string>
+               <string>OSC_SHAPE_DIGITAL_FILTER_BP</string>
+               <string>OSC_SHAPE_DIGITAL_FILTER_HP</string>
+               <string>OSC_SHAPE_VOSIM</string>
+               <string>OSC_SHAPE_VOWEL</string>
+               <string>OSC_SHAPE_VOWEL_FOF</string>
+               <string>OSC_SHAPE_HARMONICS</string>
+               <string>OSC_SHAPE_FM</string>
+               <string>OSC_SHAPE_FEEDBACK_FM</string>
+               <string>OSC_SHAPE_CHAOTIC_FEEDBACK_FM</string>
+               <string>OSC_SHAPE_STRUCK_BELL</string>
+               <string>OSC_SHAPE_STRUCK_DRUM</string>
+               <string>OSC_SHAPE_KICK</string>
+               <string>OSC_SHAPE_HAT</string>
+               <string>OSC_SHAPE_SNARE</string>
+               <string>OSC_SHAPE_PLUCKED</string>
+               <string>OSC_SHAPE_BOWED</string>
+               <string>OSC_SHAPE_BLOWN</string>
+               <string>OSC_SHAPE_FLUTED</string>
+               <string>OSC_SHAPE_WAVETABLES</string>
+               <string>OSC_SHAPE_WAVE_MAP</string>
+               <string>OSC_SHAPE_WAVE_LINE</string>
+               <string>OSC_SHAPE_WAVE_PARAPHONIC</string>
+               <string>OSC_SHAPE_FILTERED_NOISE</string>
+               <string>OSC_SHAPE_TWIN_PEAKS_NOISE</string>
+               <string>OSC_SHAPE_CLOCKED_NOISE</string>
+               <string>OSC_SHAPE_GRANULAR_CLOUD</string>
+               <string>OSC_SHAPE_PARTICLE_NOISE</string>
+               <string>OSC_SHAPE_DIGITAL_MODULATION</string>
+               <string>OSC_SHAPE_QUESTION_MARK_LAST</string>
+            </CEntries>
+         </combo>
+      </attribs>
+      <code.declaration><![CDATA[bool ptrig=0;
+braids::DigitalOscillator digitalOscillator;]]></code.declaration>
+      <code.init><![CDATA[digitalOscillator.set_shape(braids::attr_shape);]]></code.init>
+      <code.krate><![CDATA[digitalOscillator.set_parameters((inlet_p1 + param_param1)>>12,(inlet_p2 + param_param2)>>12);
+digitalOscillator.set_pitch((64<<7)+((param_pitch + inlet_pitch)>>14));
+
+if (inlet_trig && !ptrig){
+	digitalOscillator.Strike();
+	ptrig = 1;
+} else if (!inlet_trig) {
+	ptrig = 0;	
+}
+
+uint8_t sync_in[BUFSIZE];
+int16_t buffer[BUFSIZE];
+
+int i;
+for(i=0;i<BUFSIZE;i++){
+	sync_in[i] = 0;
+}
+digitalOscillator.Render(sync_in,buffer,BUFSIZE);
+for(i=0;i<BUFSIZE;i++){
+	outlet_wave[i] = buffer[i]<<11;
+}]]></code.krate>
+   </obj.normal>
+</objdefs>

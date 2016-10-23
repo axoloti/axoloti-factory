@@ -1,0 +1,46 @@
+<objdefs appVersion="1.0.10">
+   <obj.normal id="ensemble rngs" uuid="615802b3-3def-478d-95ce-c5ac35003a55">
+      <sDescription>Ensemble effect from Mutable Instrumnets Rings</sDescription>
+      <license>GPL</license>
+      <inlets>
+         <frac32buffer name="l"/>
+         <frac32buffer name="r"/>
+      </inlets>
+      <outlets>
+         <frac32buffer name="l"/>
+         <frac32buffer name="r"/>
+      </outlets>
+      <displays/>
+      <params>
+         <frac32.u.map name="amount"/>
+         <frac32.u.map name="depth"/>
+      </params>
+      <attribs/>
+      <code.declaration><![CDATA[rings::Ensemble ensemble;
+
+uint16_t * get_buffer(){
+	static uint16_t reverb_buffer[32768] __attribute__ ((section (".sdram")));
+	return reverb_buffer;
+}]]></code.declaration>
+      <code.init><![CDATA[ensemble.Init(get_buffer());]]></code.init>
+      <code.krate><![CDATA[static float left[BUFSIZE];
+static float right[BUFSIZE];
+
+int i;
+
+ensemble.set_amount(q27_to_float(param_amount));
+ensemble.set_depth(q27_to_float(param_depth));
+
+for(i=0;i<BUFSIZE;i++){
+	left[i] = q27_to_float(inlet_l[i]);
+	right[i] = q27_to_float(inlet_r[i]);
+}
+
+ensemble.Process(left,right,BUFSIZE);
+
+for(i=0;i<BUFSIZE;i++){
+	outlet_l[i] = float_to_q27(left[i]);
+	outlet_r[i] = float_to_q27(right[i]);
+}]]></code.krate>
+   </obj.normal>
+</objdefs>
