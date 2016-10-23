@@ -1,0 +1,127 @@
+<patch-1.0 appVersion="1.0.11">
+   <obj type="lfo/square" uuid="de6909eb64db13af5b43f979a4c130024b3a4793" name="square_1" x="14" y="14">
+      <params>
+         <frac32.s.map name="pitch" value="2.299999713897705"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="logic/counter" uuid="7a141ba82230e54e5f5cd12da5dbe5a74ba854a5" name="counter_1" x="112" y="14">
+      <params>
+         <int32 name="maximum" value="16"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="disp/ibar 16" uuid="302bfed4cde8894229679ce81f6b8a5c5212dd98" name="ibar_1" x="14" y="112">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="sel/sel b 16 4t pulse" uuid="888c8955ae75a9e7e3ed641fa9084d6b52e9fee9" name="sel_1" x="14" y="168">
+      <params>
+         <bin16 name="p1" value="4369"/>
+         <bin16 name="p2" value="48059"/>
+         <bin16 name="p3" value="17476"/>
+         <bin16 name="p4" value="4112"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="jt/sampletest/flashplay" uuid="595422aa-8767-45a8-ae08-bd8ac0247c61" name="flashplay_1" x="224" y="168">
+      <params/>
+      <attribs>
+         <combo attributeName="sample" selection="808bd"/>
+      </attribs>
+   </obj>
+   <obj type="jt/sampletest/flashplay" uuid="595422aa-8767-45a8-ae08-bd8ac0247c61" name="flashplay_2" x="224" y="224">
+      <params/>
+      <attribs>
+         <combo attributeName="sample" selection="808hatclose"/>
+      </attribs>
+   </obj>
+   <obj type="jt/sampletest/flashplay" uuid="595422aa-8767-45a8-ae08-bd8ac0247c61" name="flashplay_3" x="224" y="280">
+      <params/>
+      <attribs>
+         <combo attributeName="sample" selection="808hatopen"/>
+      </attribs>
+   </obj>
+   <obj type="jt/sampletest/flashplay" uuid="595422aa-8767-45a8-ae08-bd8ac0247c61" name="flashplay_4" x="224" y="336">
+      <params/>
+      <attribs>
+         <combo attributeName="sample" selection="808snare"/>
+      </attribs>
+   </obj>
+   <obj type="mix/mix 4" uuid="e6f9a0cc7aadc1b89516143cf1ccb79b3538d05a" name="mix_1" x="364" y="336">
+      <params>
+         <frac32.u.map name="gain1" value="31.5"/>
+         <frac32.u.map name="gain2" value="31.0"/>
+         <frac32.u.map name="gain3" value="32.0"/>
+         <frac32.u.map name="gain4" value="33.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="462" y="336">
+      <params/>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="square_1" outlet="wave"/>
+         <dest obj="counter_1" inlet="trig"/>
+      </net>
+      <net>
+         <source obj="counter_1" outlet="o"/>
+         <dest obj="ibar_1" inlet="in"/>
+         <dest obj="sel_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="flashplay_1" outlet="out"/>
+         <dest obj="mix_1" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="flashplay_2" outlet="out"/>
+         <dest obj="mix_1" inlet="in2"/>
+      </net>
+      <net>
+         <source obj="flashplay_3" outlet="out"/>
+         <dest obj="mix_1" inlet="in3"/>
+      </net>
+      <net>
+         <source obj="flashplay_4" outlet="out"/>
+         <dest obj="mix_1" inlet="in4"/>
+      </net>
+      <net>
+         <source obj="sel_1" outlet="o1"/>
+         <dest obj="flashplay_1" inlet="trig"/>
+      </net>
+      <net>
+         <source obj="sel_1" outlet="o2"/>
+         <dest obj="flashplay_2" inlet="trig"/>
+      </net>
+      <net>
+         <source obj="sel_1" outlet="o3"/>
+         <dest obj="flashplay_3" inlet="trig"/>
+      </net>
+      <net>
+         <source obj="sel_1" outlet="o4"/>
+         <dest obj="flashplay_4" inlet="trig"/>
+      </net>
+      <net>
+         <source obj="mix_1" outlet="out"/>
+         <dest obj="out_1" inlet="left"/>
+         <dest obj="out_1" inlet="right"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+      <MidiChannel>1</MidiChannel>
+      <NPresets>8</NPresets>
+      <NPresetEntries>32</NPresetEntries>
+      <NModulationSources>8</NModulationSources>
+      <NModulationTargetsPerSource>8</NModulationTargetsPerSource>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>241</x>
+      <y>345</y>
+      <width>1011</width>
+      <height>777</height>
+   </windowPos>
+</patch-1.0>
