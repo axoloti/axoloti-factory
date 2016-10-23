@@ -1,5 +1,6 @@
 <objdefs appVersion="1.0.10">
    <obj.normal id="attr" uuid="fcecc5d0-62b8-4f13-9006-18339bd51809">
+      <sDescription>virtual analog oscillators from Mutable Instruments Braids</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
       <helpPatch>osc.axh</helpPatch>
