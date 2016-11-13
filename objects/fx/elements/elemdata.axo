@@ -1,0 +1,23 @@
+<objdefs appVersion="1.0.11">
+   <obj.normal id="elements data" uuid="361A8551-0FF8-4559-9D34-6419E86449E7">
+      <sDescription>Object which load data required for elements, experimental only</sDescription>
+      <author>Mark Harris</author>
+      <license>BSD</license>
+      <inlets/>
+      <outlets/>
+      <displays/>
+      <params/>
+      <attribs/>
+      <file-depends>
+         <file-depend localFilename="smp_noise_sample.raw" targetPath="/shared/elements/smp_noise_data.raw"/>
+         <file-depend localFilename="smp_sample_data.raw" targetPath="/shared/elements/smp_sample_data.raw"/>
+      </file-depends>
+      <includes>
+         <include>axoloti_mi.h</include>
+      </includes>
+      <depends>
+         <depend>fatfs</depend>
+      </depends>
+      <code.init><![CDATA[loadElementsData();]]></code.init>
+   </obj.normal>
+</objdefs>
