@@ -21,39 +21,30 @@ int32_t _gate;
 int32_t _gate2;
 uint8_t _velo;
 uint8_t _rvelo;
-uint8_t _noteCount;
 ]]></code.declaration>
       <code.init><![CDATA[_gate = 0;
 _note = 0;
-_noteCount = 0;
 ]]></code.init>
-      <code.krate><![CDATA[
-outlet_note= _note<<21;
+      <code.krate><![CDATA[outlet_note= _note<<21;
 outlet_gate= _gate;
 outlet_gate2= _gate2;
+_gate2 = _gate;
 outlet_velocity= _velo<<20;
 outlet_releaseVelocity= _rvelo<<20;
-_gate2 = _noteCount > 0;
 ]]></code.krate>
-      <code.midihandler><![CDATA[
-if ((status == MIDI_NOTE_ON + attr_midichannel) && (data2)) {
+      <code.midihandler><![CDATA[if ((status == MIDI_NOTE_ON + attr_midichannel) && (data2)) {
   _velo = data2;
   _note = data1-64;
   _gate = 1<<27;
-  _gate2 = _noteCount == 0; 
-  _noteCount++;
+  _gate2 = 0;
 } else if (((status == MIDI_NOTE_ON + attr_midichannel) && (!data2))||
           (status == MIDI_NOTE_OFF + attr_midichannel)) {
   if (_note == data1-64) {
     _rvelo = data2;
-    _gate2 = 0;
+    _gate = 0;
   }
-  _noteCount = _noteCount > 0 ? _noteCount - 1 : 0 ;
-  _gate = _noteCount>0;
 } else if ((status == attr_midichannel + MIDI_CONTROL_CHANGE)&&(data1 == MIDI_C_ALL_NOTES_OFF)) {
   _gate = 0;
-  _gate2 = 0;
-  _noteCount = 0;
 }
 ]]></code.midihandler>
    </obj.normal>

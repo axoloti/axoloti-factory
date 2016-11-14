@@ -18,20 +18,6 @@
       <depends>
          <depend>fatfs</depend>
       </depends>
-      <code.init><![CDATA[const int SAMPLE_SZ = 256026 / 2;
-const int NOISE_SZ = 81926 / 2;
-static int16_t smp_sample_data[SAMPLE_SZ] __attribute__ ((section (".sdram")));
-static int16_t smp_noise_data[NOISE_SZ] __attribute__ ((section (".sdram")));
-
-bool r = false;
-r = loadElementsData(0,"/shared/elements/smp_sample_data.raw",smp_sample_data,SAMPLE_SZ);
-if(r) r = loadElementsData(1,"/shared/elements/smp_noise_data.raw",smp_noise_data,NOISE_SZ);
-
-if(r) {
-	LogTextMessage("Loading complete");
-	for(int i=0;i<10;i++) {
-		LogTextMessage("%d", smp_sample_data[i]);
-	}
-}]]></code.init>
+      <code.init><![CDATA[loadElementsData();]]></code.init>
    </obj.normal>
 </objdefs>
