@@ -1,0 +1,106 @@
+<objdefs appVersion="1.0.11">
+   <obj.normal id="lmnts" uuid="361A8551-0FF8-4559-9D34-6419E86449E7">
+      <sDescription>Elements effect from Mutable Instruments Elements
+(note: this is not working, testing only)</sDescription>
+      <license>GPL</license>
+      <inlets>
+         <frac32buffer name="blow"/>
+         <frac32buffer name="strike"/>
+      </inlets>
+      <outlets>
+         <frac32buffer name="l"/>
+         <frac32buffer name="r"/>
+      </outlets>
+      <displays/>
+      <params>
+         <frac32.u.map name="excite env shape"/>
+         <frac32.u.map name="bow level"/>
+         <frac32.u.map name="bow timbre"/>
+         <frac32.u.map name="blow level"/>
+         <frac32.u.map name="blow meta"/>
+         <frac32.u.map name="blow timbre"/>
+         <frac32.u.map name="strike level"/>
+         <frac32.u.map name="strike meta"/>
+         <frac32.u.map name="strike timbre"/>
+         <frac32.u.map name="excite signature"/>
+         <frac32.u.map name="res geometry"/>
+         <frac32.u.map name="res brightness"/>
+         <frac32.u.map name="res damping"/>
+         <frac32.u.map name="res position"/>
+         <frac32.u.map name="res mod freq"/>
+         <frac32.u.map name="res mod offset"/>
+         <frac32.u.map name="reverb diff"/>
+         <frac32.u.map name="reverb lp"/>
+         <frac32.u.map name="space"/>
+         <frac32.u.map name="mod freq"/>
+      </params>
+      <attribs/>
+      <file-depends>
+         <file-depend localFilename="smp_noise_sample.raw" targetPath="/shared/elements/smp_noise_data.raw"/>
+         <file-depend localFilename="smp_sample_data.raw" targetPath="/shared/elements/smp_sample_data.raw"/>
+      </file-depends>
+      <includes>
+         <include>axoloti_mi.h</include>
+      </includes>
+      <code.declaration><![CDATA[elements::Part part;
+
+uint16_t * alloc_buffer(){
+   static uint16_t buffer[32768] __attribute__ ((section (".sdram")));
+   return buffer;
+}]]></code.declaration>
+      <code.init><![CDATA[const int SAMPLE_SZ = 256026 / 2;
+const int NOISE_SZ = 81926 / 2;
+static int16_t smp_sample_data[SAMPLE_SZ] __attribute__ ((section (".sdram")));
+static int16_t smp_noise_data[NOISE_SZ] __attribute__ ((section (".sdram")));
+
+bool r = false;
+r = loadElementsData(0,"/shared/elements/smp_sample_data.raw",smp_sample_data,SAMPLE_SZ);
+if(r) r = loadElementsData(1,"/shared/elements/smp_noise_data.raw",smp_noise_data,NOISE_SZ);
+
+if(r) {
+   LogTextMessage("Elements loading sample complete");
+}
+
+part.Init(alloc_buffer());]]></code.init>
+      <code.krate><![CDATA[static float blow_in[BUFSIZE];
+static float strike_in[BUFSIZE];
+static float left[BUFSIZE];
+static float right[BUFSIZE];
+
+int i;
+
+part.mutable_patch()->exciter_envelope_shape=q27_to_float(param_excite_space_env_space_shape);
+part.mutable_patch()->exciter_bow_level=q27_to_float(param_bow_space_level);
+part.mutable_patch()->exciter_bow_timbre=q27_to_float(param_bow_space_timbre);
+part.mutable_patch()->exciter_blow_level=q27_to_float(param_blow_space_level);
+part.mutable_patch()->exciter_blow_meta=q27_to_float(param_blow_space_meta);
+part.mutable_patch()->exciter_blow_timbre=q27_to_float(param_blow_space_timbre);
+part.mutable_patch()->exciter_strike_level=q27_to_float(param_strike_space_level);
+part.mutable_patch()->exciter_strike_meta=q27_to_float(param_strike_space_meta);
+part.mutable_patch()->exciter_strike_timbre=q27_to_float(param_strike_space_timbre);
+part.mutable_patch()->exciter_signature=q27_to_float(param_excite_space_signature);
+part.mutable_patch()->resonator_geometry=q27_to_float(param_res_space_geometry);
+part.mutable_patch()->resonator_brightness=q27_to_float(param_res_space_brightness);
+part.mutable_patch()->resonator_damping=q27_to_float(param_res_space_damping);
+part.mutable_patch()->resonator_position=q27_to_float(param_res_space_position);
+part.mutable_patch()->resonator_modulation_frequency=q27_to_float(param_res_space_mod_space_freq);
+part.mutable_patch()->resonator_modulation_offset=q27_to_float(param_res_space_mod_space_offset);
+part.mutable_patch()->reverb_diffusion=q27_to_float(param_reverb_space_diff);
+part.mutable_patch()->reverb_lp=q27_to_float(param_reverb_space_lp);
+part.mutable_patch()->space=q27_to_float(param_space);
+part.mutable_patch()->modulation_frequency==q27_to_float(param_mod_space_freq);
+ 
+for(i=0;i<BUFSIZE;i++){
+   blow_in[i] = q27_to_float(inlet_blow[i]);
+   strike_in[i] = q27_to_float(inlet_strike[i]);
+}
+
+elements::PerformanceState state;
+part.Process(state,blow_in,strike_in,left,right,BUFSIZE);
+
+for(i=0;i<BUFSIZE;i++){
+   outlet_l[i] = float_to_q27(left[i]);
+   outlet_r[i] = float_to_q27(right[i]);
+}]]></code.krate>
+   </obj.normal>
+</objdefs>

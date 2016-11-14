@@ -1,0 +1,37 @@
+<objdefs appVersion="1.0.11">
+   <obj.normal id="diffuser" uuid="C1031A8D-A6A5-4640-9440-5FA1E2FA756E">
+      <sDescription>Diffuser effect from Mutable Instruments Elements</sDescription>
+      <license>GPL</license>
+      <inlets>
+         <frac32buffer name="in"/>
+      </inlets>
+      <outlets>
+         <frac32buffer name="out"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <code.declaration><![CDATA[elements::Diffuser diffuser;
+
+float * alloc_buffer(){
+	static float buffer[32768] __attribute__ ((section (".sdram")));
+	return buffer;
+}]]></code.declaration>
+      <code.init><![CDATA[diffuser.Init(alloc_buffer());]]></code.init>
+      <code.krate><![CDATA[
+static float buf[BUFSIZE];
+
+int i;
+
+
+for(i=0;i<BUFSIZE;i++){
+	buf[i] = q27_to_float(inlet_in[i]);
+}
+
+diffuser.Process(buf,BUFSIZE);
+
+for(i=0;i<BUFSIZE;i++){
+	outlet_out[i] = float_to_q27(buf[i]);
+}]]></code.krate>
+   </obj.normal>
+</objdefs>

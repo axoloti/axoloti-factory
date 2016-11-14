@@ -1,0 +1,47 @@
+<objdefs appVersion="1.0.11">
+   <obj.normal id="tube" uuid="DA10F64F-A80A-41DA-A97E-5E010D8E46E9">
+      <sDescription>Waveguide tube from Mutable Instruments Elements</sDescription>
+      <license>GPL</license>
+      <inlets>
+         <frac32buffer name="in"/>
+      </inlets>
+      <outlets>
+         <frac32buffer name="out"/>
+      </outlets>
+      <displays/>
+      <params>
+         <frac32.u.map name="frequency"/>
+         <frac32.u.map name="envelope"/>
+         <frac32.u.map name="damping"/>
+         <frac32.u.map name="timbre"/>
+         <frac32.u.map name="gain"/>
+      </params>
+      <attribs/>
+      <code.declaration><![CDATA[elements::Tube tube;]]></code.declaration>
+      <code.init><![CDATA[tube.Init();]]></code.init>
+      <code.krate><![CDATA[static float buf[BUFSIZE];
+
+int i;
+
+for(i=0;i<BUFSIZE;i++){
+	buf[i] = q27_to_float(inlet_in[i]);
+}
+ 
+float freq = q27_to_float(param_frequency);
+if(freq == 0.0) freq = 0.0000001; // stop tube blowing up.
+
+tube.Process(
+			freq,
+			q27_to_float(param_envelope),
+			q27_to_float(param_damping),
+			q27_to_float(param_timbre),
+			buf,
+			q27_to_float(param_gain),
+			BUFSIZE
+			);
+
+for(i=0;i<BUFSIZE;i++){
+	outlet_out[i] = float_to_q27(buf[i]);
+}]]></code.krate>
+   </obj.normal>
+</objdefs>
