@@ -1,6 +1,7 @@
 <objdefs appVersion="1.0.11">
    <obj.normal id="diffuser" uuid="C1031A8D-A6A5-4640-9440-5FA1E2FA756E">
       <sDescription>Diffuser effect from Mutable Instruments Elements</sDescription>
+      <author>Mark Harris</author>
       <license>GPL</license>
       <inlets>
          <frac32buffer name="in"/>
@@ -18,8 +19,7 @@ float * alloc_buffer(){
 	return buffer;
 }]]></code.declaration>
       <code.init><![CDATA[diffuser.Init(alloc_buffer());]]></code.init>
-      <code.krate><![CDATA[
-static float buf[BUFSIZE];
+      <code.krate><![CDATA[static float buf[BUFSIZE];
 
 int i;
 

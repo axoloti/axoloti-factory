@@ -1,6 +1,7 @@
 <objdefs appVersion="1.0.11">
    <obj.normal id="tube" uuid="DA10F64F-A80A-41DA-A97E-5E010D8E46E9">
       <sDescription>Waveguide tube from Mutable Instruments Elements</sDescription>
+      <author>Mark Harris</author>
       <license>GPL</license>
       <inlets>
          <frac32buffer name="in"/>

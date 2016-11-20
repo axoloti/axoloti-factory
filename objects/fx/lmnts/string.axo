@@ -1,0 +1,64 @@
+<objdefs appVersion="1.0.11">
+   <obj.normal id="string" uuid="F272EAA4-2C68-4843-BA42-C6BA402943AE">
+      <sDescription>String from Mutable Instruments Elements</sDescription>
+      <author>Mark Harris</author>
+      <license>GPL</license>
+      <inlets>
+         <frac32buffer name="in"/>
+      </inlets>
+      <outlets>
+         <frac32buffer name="l"/>
+         <frac32buffer name="r"/>
+      </outlets>
+      <displays/>
+      <params>
+         <frac32.u.map name="frequency"/>
+         <frac32.u.map name="dispersion"/>
+         <frac32.u.map name="brightness"/>
+         <frac32.u.map name="damping"/>
+         <frac32.u.map name="position"/>
+      </params>
+      <attribs>
+         <combo name="dispersion">
+            <MenuEntries>
+               <string>true</string>
+               <string>false</string>
+            </MenuEntries>
+            <CEntries>
+               <string>1</string>
+               <string>0</string>
+            </CEntries>
+         </combo>
+      </attribs>
+      <code.declaration><![CDATA[elements::String string;]]></code.declaration>
+      <code.init><![CDATA[string.Init(attr_dispersion);]]></code.init>
+      <code.krate><![CDATA[static float in[BUFSIZE];
+static float out[BUFSIZE];
+static float aux[BUFSIZE];
+
+int i;
+
+for(i=0;i<BUFSIZE;i++){
+	in[i] = q27_to_float(inlet_in[i]);
+}
+
+ 
+float freq = q27_to_float(param_frequency);
+if(freq == 0.0) freq = 0.0000001; // stop tube blowing up.
+string.set_frequency(freq);
+
+string.set_dispersion(q27_to_float(param_dispersion));
+string.set_brightness(q27_to_float(param_brightness));
+string.set_damping(q27_to_float(param_damping));
+string.set_position(q27_to_float(param_position));
+
+
+
+string.Process(in,out,aux,BUFSIZE);
+
+for(i=0;i<BUFSIZE;i++){
+	outlet_l[i] = float_to_q27(out[i]);
+   outlet_r[i] = float_to_q27(aux[i]);
+}]]></code.krate>
+   </obj.normal>
+</objdefs>

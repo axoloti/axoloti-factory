@@ -1,6 +1,7 @@
 <objdefs appVersion="1.0.11">
    <obj.normal id="reverb" uuid="8027561C-A0B5-4DF8-A10E-3ED1274F2980">
       <sDescription>Reverb effect from Mutable Instruments Elements</sDescription>
+      <author>Mark Harris</author>
       <license>GPL</license>
       <inlets>
          <frac32buffer name="l"/>
@@ -19,14 +20,10 @@
          <frac32.u.map name="lowpass"/>
       </params>
       <attribs/>
-      <code.declaration><![CDATA[
-elements::Reverb reverb;
-
-uint16_t * alloc_buffer(){
-	static uint16_t buffer[32768] __attribute__ ((section (".sdram")));
-	return buffer;
-}]]></code.declaration>
-      <code.init><![CDATA[reverb.Init(alloc_buffer());]]></code.init>
+      <code.declaration><![CDATA[elements::Reverb reverb;]]></code.declaration>
+      <code.init><![CDATA[uint16_t* buf = (uint16_t*) sdram_malloc(32768);
+if(!buf) return;
+reverb.Init(buf);]]></code.init>
       <code.krate><![CDATA[static float left[BUFSIZE];
 static float right[BUFSIZE];
 

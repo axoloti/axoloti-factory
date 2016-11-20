@@ -1,7 +1,7 @@
 <objdefs appVersion="1.0.11">
    <obj.normal id="lmnts" uuid="361A8551-0FF8-4559-9D34-6419E86449E7">
-      <sDescription>Elements effect from Mutable Instruments Elements
-(note: this is not working, testing only)</sDescription>
+      <sDescription>Elements effect from Mutable Instruments Elements</sDescription>
+      <author>Mark Harris</author>
       <license>GPL</license>
       <helpPatch>lmnts.axh</helpPatch>
       <inlets>
@@ -61,12 +61,15 @@
       <includes>
          <include>axoloti_mi.h</include>
       </includes>
-      <code.declaration><![CDATA[elements::Part part;
-bool reset;]]></code.declaration>
-      <code.init><![CDATA[const int SAMPLE_SZ = 256026;
-const int NOISE_SZ = 81926;
+      <code.declaration><![CDATA[
+elements::Part part;
 
-reset = false;
+
+]]></code.declaration>
+      <code.init><![CDATA[
+
+const int SAMPLE_SZ = 256026;
+const int NOISE_SZ = 81926;
 
 bool r = false;
 LogTextMessage("sdram_get_free %d",sdram_get_free());
@@ -90,8 +93,12 @@ part.Init( (uint16_t *) sdram_malloc(ELEMENTS_SZ) );
 
 LogTextMessage("Elements initialised, SDRAM free %d", sdram_get_free() );
 
-part.set_resonator_model(elements::ResonatorModel(attr_resonator));]]></code.init>
-      <code.krate><![CDATA[static float blow_in[BUFSIZE];
+part.set_resonator_model(elements::ResonatorModel(attr_resonator));
+
+]]></code.init>
+      <code.krate><![CDATA[
+
+static float blow_in[BUFSIZE];
 static float strike_in[BUFSIZE];
 static float left[BUFSIZE];
 static float right[BUFSIZE];
@@ -116,7 +123,7 @@ part.mutable_patch()->resonator_modulation_frequency=q27_to_float(param_res_spac
 part.mutable_patch()->resonator_modulation_offset=q27_to_float(param_res_space_mod_space_offset);
 part.mutable_patch()->reverb_diffusion=q27_to_float(param_reverb_space_diff);
 part.mutable_patch()->reverb_lp=q27_to_float(param_reverb_space_lp);
-part.mutable_patch()->space=q27_to_float(param_space);
+part.mutable_patch()->space=q27_to_float(param_space) * 2.0;
 part.mutable_patch()->modulation_frequency==q27_to_float(param_mod_space_freq);
  
 for(i=0;i<BUFSIZE;i++){
@@ -126,8 +133,9 @@ for(i=0;i<BUFSIZE;i++){
 
 elements::PerformanceState state;
 state.gate = inlet_gate > 0;
-state.note = (64<<7)+((param_pitch + inlet_pitch)>>14);
-state.modulation = q27_to_float(inlet_modulation);
+state.note = q27_to_float(param_pitch + inlet_pitch) * 60.0f;
+//state.note = (64<<7)+((param_pitch + inlet_pitch)>>14);
+state.modulation = q27_to_float(inlet_modulation) * 60.0f;
 state.strength = q27_to_float(inlet_strength);
 
 
