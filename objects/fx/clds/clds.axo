@@ -1,0 +1,99 @@
+<objdefs appVersion="1.0.11">
+   <obj.normal id="clds" uuid="FD6EFF1B-3317-4BA5-A952-841327FC2F47">
+      <sDescription>Clouds effect from Mutable Instruments Elements
+(note: this is not working, testing only)</sDescription>
+      <author>Mark Harris</author>
+      <license>GPL</license>
+      <helpPatch>clds.axh</helpPatch>
+      <inlets>
+         <frac32buffer name="l"/>
+         <frac32buffer name="r"/>
+         <bool32 name="freeze"/>
+         <bool32 name="trigger"/>
+         <bool32 name="gate"/>
+      </inlets>
+      <outlets>
+         <frac32buffer name="l"/>
+         <frac32buffer name="r"/>
+      </outlets>
+      <displays/>
+      <params>
+         <frac32.u.map name="position"/>
+         <frac32.u.map name="size"/>
+         <frac32.s.map name="pitch"/>
+         <frac32.u.map name="density"/>
+         <frac32.u.map name="texture"/>
+         <frac32.u.map name="mix"/>
+         <frac32.u.map name="spread"/>
+         <frac32.u.map name="feedback"/>
+         <frac32.u.map name="reverb"/>
+         <frac32.u.map name="goverlap"/>
+         <frac32.u.map name="gwndshape"/>
+         <frac32.u.map name="gspread"/>
+         <bool32.tgl name="gseed"/>
+         <frac32.u.map name="squantization"/>
+         <frac32.u.map name="srate"/>
+         <frac32.u.map name="srand"/>
+         <frac32.u.map name="swarp"/>
+      </params>
+      <attribs/>
+      <includes>
+         <include>axoloti_mi.h</include>
+      </includes>
+      <code.declaration><![CDATA[clouds::GranularProcessor processor;]]></code.declaration>
+      <code.init><![CDATA[const int LARGE_BUF = 118784;
+const int SMALL_BUF = 65536 - 128;
+
+uint8_t* large_buff = (uint8_t*) sdram_malloc(LARGE_BUF); 
+if(!large_buff) return;
+uint8_t* small_buff = (uint8_t*) sdram_malloc(SMALL_BUF); //ccm usually
+if(!small_buff) return;
+
+processor.Init(large_buff,LARGE_BUF, small_buff,SMALL_BUF);]]></code.init>
+      <code.krate><![CDATA[static clouds::ShortFrame input[BUFSIZE];
+static clouds::ShortFrame output[BUFSIZE];
+
+int i;
+
+processor.mutable_parameters()->position=q27_to_float(param_position);
+processor.mutable_parameters()->size=q27_to_float(param_size);
+processor.mutable_parameters()->pitch=q27_to_float(param_pitch);
+processor.mutable_parameters()->density=q27_to_float(param_density);
+processor.mutable_parameters()->texture=q27_to_float(param_texture);
+processor.mutable_parameters()->dry_wet=q27_to_float(param_mix);
+processor.mutable_parameters()->stereo_spread=q27_to_float(param_spread);
+processor.mutable_parameters()->feedback=q27_to_float(param_feedback);
+processor.mutable_parameters()->reverb=q27_to_float(param_reverb);
+
+processor.mutable_parameters()->granular.overlap=q27_to_float(param_goverlap);
+processor.mutable_parameters()->granular.window_shape=q27_to_float(param_gwndshape);
+processor.mutable_parameters()->granular.stereo_spread=q27_to_float(param_gspread);
+processor.mutable_parameters()->granular.use_deterministic_seed=q27_to_float(param_gseed);
+
+processor.mutable_parameters()->spectral.quantization=q27_to_float(param_squantization);
+processor.mutable_parameters()->spectral.refresh_rate=q27_to_float(param_srate);
+processor.mutable_parameters()->spectral.phase_randomization=q27_to_float(param_srand);
+processor.mutable_parameters()->spectral.warp=q27_to_float(param_swarp);
+
+
+processor.mutable_parameters()->gate=q27_to_float(inlet_gate);
+processor.mutable_parameters()->freeze=q27_to_float(inlet_freeze);
+processor.mutable_parameters()->trigger=q27_to_float(inlet_trigger);
+
+
+
+for(i=0;i<BUFSIZE;i++){
+   input[i].l = inlet_l[i]>> 17; 
+   input[i].r = inlet_r[i] >> 17; 
+}
+
+
+processor.Prepare();
+processor.Process(input,output,BUFSIZE);
+
+for(i=0;i<BUFSIZE;i++){
+   outlet_l[i] = output[i].l << 17;
+   outlet_r[i] = output[i].r << 17;
+}]]></code.krate>
+   </obj.normal>
+</objdefs>
