@@ -3,9 +3,14 @@
       <sDescription>Elements effect from Mutable Instruments Elements
 (note: this is not working, testing only)</sDescription>
       <license>GPL</license>
+      <helpPatch>lmnts.axh</helpPatch>
       <inlets>
          <frac32buffer name="blow"/>
          <frac32buffer name="strike"/>
+         <bool32 name="gate"/>
+         <frac32.bipolar name="pitch"/>
+         <frac32.bipolar name="modulation"/>
+         <frac32.positive name="strength"/>
       </inlets>
       <outlets>
          <frac32buffer name="l"/>
@@ -33,8 +38,22 @@
          <frac32.u.map name="reverb lp"/>
          <frac32.u.map name="space"/>
          <frac32.u.map name="mod freq"/>
+         <frac32.s.map name="pitch"/>
       </params>
-      <attribs/>
+      <attribs>
+         <combo name="resonator">
+            <MenuEntries>
+               <string>modal</string>
+               <string>string</string>
+               <string>strings</string>
+            </MenuEntries>
+            <CEntries>
+               <string>1</string>
+               <string>2</string>
+               <string>3</string>
+            </CEntries>
+         </combo>
+      </attribs>
       <file-depends>
          <file-depend localFilename="smp_noise_sample.raw" targetPath="/shared/elements/smp_noise_data.raw"/>
          <file-depend localFilename="smp_sample_data.raw" targetPath="/shared/elements/smp_sample_data.raw"/>
@@ -43,25 +62,35 @@
          <include>axoloti_mi.h</include>
       </includes>
       <code.declaration><![CDATA[elements::Part part;
+bool reset;]]></code.declaration>
+      <code.init><![CDATA[const int SAMPLE_SZ = 256026;
+const int NOISE_SZ = 81926;
 
-uint16_t * alloc_buffer(){
-   static uint16_t buffer[32768] __attribute__ ((section (".sdram")));
-   return buffer;
-}]]></code.declaration>
-      <code.init><![CDATA[const int SAMPLE_SZ = 256026 / 2;
-const int NOISE_SZ = 81926 / 2;
-static int16_t smp_sample_data[SAMPLE_SZ] __attribute__ ((section (".sdram")));
-static int16_t smp_noise_data[NOISE_SZ] __attribute__ ((section (".sdram")));
+reset = false;
 
 bool r = false;
-r = loadElementsData(0,"/shared/elements/smp_sample_data.raw",smp_sample_data,SAMPLE_SZ);
-if(r) r = loadElementsData(1,"/shared/elements/smp_noise_data.raw",smp_noise_data,NOISE_SZ);
+LogTextMessage("sdram_get_free %d",sdram_get_free());
+
+int16_t* smp_sample_data = (int16_t*) sdram_malloc(SAMPLE_SZ);
+if(!smp_sample_data) return;
+ 
+r = loadElementsData(0,"/shared/elements/smp_sample_data.raw",smp_sample_data,SAMPLE_SZ/2);
+
+int16_t* smp_noise_data= (int16_t*) sdram_malloc(NOISE_SZ);
+if(!smp_noise_data) return;
+
+if(r) r = loadElementsData(1,"/shared/elements/smp_noise_data.raw",smp_noise_data,NOISE_SZ/2);
 
 if(r) {
-   LogTextMessage("Elements loading sample complete");
+   LogTextMessage("Elements loading sample complete, SDRAM free %d", sdram_get_free() );
 }
 
-part.Init(alloc_buffer());]]></code.init>
+const int ELEMENTS_SZ= 32768;
+part.Init( (uint16_t *) sdram_malloc(ELEMENTS_SZ) );
+
+LogTextMessage("Elements initialised, SDRAM free %d", sdram_get_free() );
+
+part.set_resonator_model(elements::ResonatorModel(attr_resonator));]]></code.init>
       <code.krate><![CDATA[static float blow_in[BUFSIZE];
 static float strike_in[BUFSIZE];
 static float left[BUFSIZE];
@@ -96,6 +125,12 @@ for(i=0;i<BUFSIZE;i++){
 }
 
 elements::PerformanceState state;
+state.gate = inlet_gate > 0;
+state.note = (64<<7)+((param_pitch + inlet_pitch)>>14);
+state.modulation = q27_to_float(inlet_modulation);
+state.strength = q27_to_float(inlet_strength);
+
+
 part.Process(state,blow_in,strike_in,left,right,BUFSIZE);
 
 for(i=0;i<BUFSIZE;i++){
