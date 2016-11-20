@@ -1,5 +1,5 @@
-<objdefs appVersion="1.0.10">
-   <obj.normal id="reverb rngs" uuid="bb0fb9e0-aafe-4501-ba83-897f2530751d">
+<objdefs appVersion="1.0.11">
+   <obj.normal id="reverb" uuid="bb0fb9e0-aafe-4501-ba83-897f2530751d">
       <sDescription>Reverb effect from Mutable Instrumnets Rings</sDescription>
       <license>GPL</license>
       <inlets>
@@ -21,11 +21,8 @@
       <attribs/>
       <code.declaration><![CDATA[rings::Reverb reverb;
 
-uint16_t * alloc_buffer(){
-	static uint16_t buffer[32768] __attribute__ ((section (".sdram")));
-	return buffer;
-}]]></code.declaration>
-      <code.init><![CDATA[reverb.Init(alloc_buffer());]]></code.init>
+]]></code.declaration>
+      <code.init><![CDATA[reverb.Init((uint16_t*) sdram_malloc(32768));]]></code.init>
       <code.krate><![CDATA[static float left[BUFSIZE];
 static float right[BUFSIZE];
 
