@@ -1,6 +1,6 @@
 <objdefs appVersion="1.0.11">
    <obj.normal id="clds" uuid="FD6EFF1B-3317-4BA5-A952-841327FC2F47">
-      <sDescription>Clouds effect from Mutable Instruments Elements</sDescription>
+      <sDescription>Clouds effect from Mutable Instruments</sDescription>
       <author>Mark Harris</author>
       <license>GPL</license>
       <helpPatch>clds.axh</helpPatch>
