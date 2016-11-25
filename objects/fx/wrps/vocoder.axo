@@ -1,0 +1,34 @@
+<objdefs appVersion="1.0.11">
+   <obj.normal id="vocoder" uuid="87d4cf48-208b-4828-a574-107c7678e1ea">
+      <sDescription>vocoder from mutable instruments
+modified for 48kHz operation</sDescription>
+      <author>Johannes Taelman</author>
+      <license>GPL</license>
+      <inlets>
+         <frac32buffer name="carrier"/>
+         <frac32buffer name="modulator"/>
+      </inlets>
+      <outlets>
+         <frac32buffer name="out"/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs/>
+      <code.declaration><![CDATA[warps::Vocoder vocoder;]]></code.declaration>
+      <code.init><![CDATA[vocoder.Init(48000);]]></code.init>
+      <code.krate><![CDATA[float fmod[BUFSIZE];
+float fcar[BUFSIZE];
+float fout[BUFSIZE];
+int i;
+for(i=0;i<BUFSIZE;i++){
+   fmod[i] = q27_to_float(inlet_modulator[i]); 
+   fcar[i] = q27_to_float(inlet_carrier[i]); 
+}
+
+vocoder.Process(&fmod[0],&fcar[0],&fout[0],BUFSIZE);
+
+for(i=0;i<BUFSIZE;i++){
+   outlet_out[i] = float_to_q27(fout[i]);
+}]]></code.krate>
+   </obj.normal>
+</objdefs>
