@@ -1,6 +1,6 @@
 <objdefs appVersion="1.0.11">
    <obj.normal id="chorus" uuid="fefe9ec6-1b22-431f-ad8f-09529a3fb5e6">
-      <sDescription>Chorus effect from Mutable Instrumnets Rings</sDescription>
+      <sDescription>Chorus effect from Mutable Instruments Rings</sDescription>
       <license>GPL</license>
       <inlets>
          <frac32buffer name="l"/>

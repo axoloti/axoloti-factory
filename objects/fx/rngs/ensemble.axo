@@ -1,6 +1,6 @@
 <objdefs appVersion="1.0.11">
    <obj.normal id="ensemble" uuid="615802b3-3def-478d-95ce-c5ac35003a55">
-      <sDescription>Ensemble effect from Mutable Instrumnets Rings</sDescription>
+      <sDescription>Ensemble effect from Mutable Instruments Rings</sDescription>
       <license>GPL</license>
       <inlets>
          <frac32buffer name="l"/>

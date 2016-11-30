@@ -1,6 +1,6 @@
 <objdefs appVersion="1.0.11">
    <obj.normal id="reverb" uuid="bb0fb9e0-aafe-4501-ba83-897f2530751d">
-      <sDescription>Reverb effect from Mutable Instrumnets Rings</sDescription>
+      <sDescription>Reverb effect from Mutable Instruments Rings</sDescription>
       <license>GPL</license>
       <inlets>
          <frac32buffer name="l"/>
