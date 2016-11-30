@@ -1,0 +1,30 @@
+<objdefs appVersion="1.0.11">
+   <obj.normal id="comb" uuid="e83492db-ef5d-4367-a874-c82385603fee">
+      <sDescription>saw swarm oscillator from Mutable Instruments Braids</sDescription>
+      <author>Johannes Taelman</author>
+      <license>BSD</license>
+      <helpPatch>osc.axh</helpPatch>
+      <inlets>
+         <frac32buffer.bipolar name="in"/>
+         <frac32.bipolar name="pitch" description="pitch"/>
+         <frac32 name="color"/>
+      </inlets>
+      <outlets>
+         <frac32buffer.bipolar name="wave" description="sine wave"/>
+      </outlets>
+      <displays/>
+      <params>
+         <frac32.s.map.pitch name="pitch" noLabel="true"/>
+         <frac32.u.map name="color"/>
+      </params>
+      <attribs/>
+      <includes>
+         <include>./brds_digital.h</include>
+      </includes>
+      <code.declaration><![CDATA[braids_deriv::Comb osc;]]></code.declaration>
+      <code.init><![CDATA[osc.Init();]]></code.init>
+      <code.krate><![CDATA[osc.set_parameters(0,__USAT((inlet_color+param_color)>>12,15));
+osc.set_pitch((64<<7)+((param_pitch + inlet_pitch)>>14));
+osc.Render(&inlet_in[0],&outlet_wave[0],BUFSIZE);]]></code.krate>
+   </obj.normal>
+</objdefs>
