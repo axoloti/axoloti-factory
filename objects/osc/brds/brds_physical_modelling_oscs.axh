@@ -1,0 +1,170 @@
+<patch-1.0 appVersion="1.0.12">
+   <comment type="patch/comment" x="14" y="14" text="physical modelling oscillators from Mutable Instruments Braids"/>
+   <obj type="midi/in/keyb" uuid="53b04874696932f38aceaa168bd5d9efb743716d" name="keyb_1" x="14" y="42">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="ctrl/dial b" uuid="862e7d7f29093cb1ce4aed72244d118ad4d46692" name="dial_1" x="168" y="70">
+      <params>
+         <frac32.s.map name="value" MidiCC="1" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="ctrl/dial b" uuid="862e7d7f29093cb1ce4aed72244d118ad4d46692" name="dial_2" x="252" y="70">
+      <params>
+         <frac32.s.map name="value" MidiCC="2" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="ctrl/button" uuid="ef3d13774349df85aa9bfecf30dbc91ab8488b3f" name="button_1" x="28" y="182">
+      <params>
+         <bool32.mom name="b" value="0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="osc/brds/blown" uuid="1185d86b-5be7-429f-8788-e26868c65a82" name="blown_1" x="126" y="182">
+      <params>
+         <frac32.s.map name="pitch" value="-10.0"/>
+         <frac32.u.map name="timbre" value="25.0"/>
+         <frac32.u.map name="color" value="49.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="osc/brds/bowed" uuid="c914df2f-e44b-4918-be05-2c194020cca9" name="bowed_1" x="238" y="182">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+         <frac32.u.map name="timbre" value="50.0"/>
+         <frac32.u.map name="color" value="39.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="osc/brds/fluted" uuid="18c4121e-004c-4f1f-a92b-a344b7a6ae8b" name="fluted_1" x="350" y="182">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+         <frac32.u.map name="timbre" value="39.0"/>
+         <frac32.u.map name="color" value="13.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="osc/brds/plucked" uuid="e78bfbb5-2963-49a0-8863-dead044d748c" name="plucked_1" x="462" y="182">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+         <frac32.u.map name="timbre" value="34.0"/>
+         <frac32.u.map name="color" value="41.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="env/hd" uuid="819e2ee2c29202649dec31560d8be9a92528ef15" name="hd_1" x="14" y="294">
+      <params>
+         <frac32.s.map name="d" value="12.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="ctrl/i radio 4 v" uuid="b610704137c90b0e43464440b84bfb4fb7d2bb30" name="i_1" x="14" y="448">
+      <params>
+         <int32.vradio name="value" value="3"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="mux/mux 4" uuid="e511105cf5630d1a0b4a144dc3fabb3cc7c07bd" name="mux_1" x="238" y="448">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_1" x="322" y="448">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/scope 128 b trig" uuid="11747dcd1dc9afe4919f537c861fb18b80b4e4e" name="scope_1" x="434" y="448">
+      <params/>
+      <attribs/>
+   </obj>
+   <comment type="patch/comment" x="98" y="490" text="blown"/>
+   <comment type="patch/comment" x="98" y="504" text="bowed"/>
+   <comment type="patch/comment" x="98" y="518" text="fluted"/>
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="322" y="518">
+      <params/>
+      <attribs/>
+   </obj>
+   <comment type="patch/comment" x="98" y="532" text="plucked"/>
+   <nets>
+      <net>
+         <source obj="blown_1" outlet="wave"/>
+         <dest obj="mux_1" inlet="i0"/>
+      </net>
+      <net>
+         <source obj="bowed_1" outlet="wave"/>
+         <dest obj="mux_1" inlet="i1"/>
+      </net>
+      <net>
+         <source obj="fluted_1" outlet="wave"/>
+         <dest obj="mux_1" inlet="i2"/>
+      </net>
+      <net>
+         <source obj="plucked_1" outlet="wave"/>
+         <dest obj="mux_1" inlet="i3"/>
+      </net>
+      <net>
+         <source obj="keyb_1" outlet="note"/>
+         <dest obj="blown_1" inlet="pitch"/>
+         <dest obj="bowed_1" inlet="pitch"/>
+         <dest obj="fluted_1" inlet="pitch"/>
+         <dest obj="plucked_1" inlet="pitch"/>
+      </net>
+      <net>
+         <source obj="button_1" outlet="o"/>
+         <dest obj="blown_1" inlet="strike"/>
+         <dest obj="bowed_1" inlet="strike"/>
+         <dest obj="fluted_1" inlet="strike"/>
+      </net>
+      <net>
+         <source obj="keyb_1" outlet="gate"/>
+         <dest obj="hd_1" inlet="trig"/>
+      </net>
+      <net>
+         <source obj="mux_1" outlet="o"/>
+         <dest obj="vca_1" inlet="a"/>
+      </net>
+      <net>
+         <source obj="hd_1" outlet="env"/>
+         <dest obj="vca_1" inlet="v"/>
+      </net>
+      <net>
+         <source obj="vca_1" outlet="o"/>
+         <dest obj="out_1" inlet="left"/>
+         <dest obj="out_1" inlet="right"/>
+         <dest obj="scope_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="i_1" outlet="out"/>
+         <dest obj="mux_1" inlet="s"/>
+      </net>
+      <net>
+         <source obj="dial_1" outlet="out"/>
+         <dest obj="blown_1" inlet="timbre"/>
+         <dest obj="bowed_1" inlet="timbre"/>
+         <dest obj="fluted_1" inlet="timbre"/>
+         <dest obj="plucked_1" inlet="timbre"/>
+      </net>
+      <net>
+         <source obj="dial_2" outlet="out"/>
+         <dest obj="blown_1" inlet="color"/>
+         <dest obj="bowed_1" inlet="color"/>
+         <dest obj="fluted_1" inlet="color"/>
+         <dest obj="plucked_1" inlet="color"/>
+      </net>
+      <net>
+         <source obj="keyb_1" outlet="gate2"/>
+         <dest obj="plucked_1" inlet="strike"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>189</x>
+      <y>93</y>
+      <width>794</width>
+      <height>830</height>
+   </windowPos>
+</patch-1.0>

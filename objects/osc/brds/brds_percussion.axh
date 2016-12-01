@@ -1,0 +1,242 @@
+<patch-1.0 appVersion="1.0.12">
+   <comment type="patch/comment" x="14" y="28" text="Test of the Mutable Instruments Braids percussion oscillators"/>
+   <obj type="lfo/square" uuid="de6909eb64db13af5b43f979a4c130024b3a4793" name="square_1" x="14" y="56">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="logic/counter" uuid="7a141ba82230e54e5f5cd12da5dbe5a74ba854a5" name="counter_1" x="126" y="56">
+      <params>
+         <int32 name="maximum" value="32"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="sel/sel b 32 8t" uuid="989f1cf7caf5b472065772cf2898bdab76ceae1e" name="sel_1" x="224" y="56">
+      <params>
+         <bin32 name="p1" value="557908225"/>
+         <bin32 name="p2" value="1074794512"/>
+         <bin32 name="p3" value="1227433253"/>
+         <bin32 name="p4" value="1073741824"/>
+         <bin32 name="p5" value="0"/>
+         <bin32 name="p6" value="536936464"/>
+         <bin32 name="p7" value="132128"/>
+         <bin32 name="p8" value="138936452"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="rand/uniform f trig" uuid="223873125a332e3b8a82795a3eef167993adb086" name="uniform_1" x="658" y="140">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="math/*c" uuid="7d5ef61c3bcd571ee6bbd8437ef3612125dfb225" name="*c_1" x="784" y="140">
+      <params>
+         <frac32.u.map name="amp" value="1.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="env/d" uuid="190ae648e41832b41adbedb465317c18a010aefe" name="d_1" x="658" y="196">
+      <params>
+         <frac32.s.map name="d" value="13.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="rand/uniform f trig" uuid="223873125a332e3b8a82795a3eef167993adb086" name="uniform_2" x="658" y="280">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="math/*c" uuid="7d5ef61c3bcd571ee6bbd8437ef3612125dfb225" name="*c_2" x="784" y="280">
+      <params>
+         <frac32.u.map name="amp" value="1.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="osc/brds/kick" uuid="5687b190-2426-430c-a30c-383b668dcfad" name="kick_1" x="70" y="364">
+      <params>
+         <frac32.s.map name="pitch" value="-17.0"/>
+         <frac32.u.map name="timbre" value="30.5"/>
+         <frac32.u.map name="color" value="61.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="osc/brds/snare" uuid="6cfef612-0d2d-4dbf-9e01-ce8704bf86c9" name="snare_1" x="168" y="364">
+      <params>
+         <frac32.s.map name="pitch" value="0.0"/>
+         <frac32.u.map name="timbre" value="19.5"/>
+         <frac32.u.map name="color" value="56.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="osc/brds/struckbell" uuid="7dc99f76-9a23-4faf-a6da-3654cd168670" name="struckbell_1" x="266" y="364">
+      <params>
+         <frac32.s.map name="pitch" value="20.0"/>
+         <frac32.u.map name="timbre" value="9.5"/>
+         <frac32.u.map name="color" value="34.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="osc/brds/cymbal" uuid="96b50c19-cec9-4773-9606-e0c248ea0a56" name="cymbal_1" x="378" y="364">
+      <params>
+         <frac32.s.map name="pitch" value="6.0"/>
+         <frac32.u.map name="timbre" value="51.5"/>
+         <frac32.u.map name="color" value="9.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_1" x="490" y="364">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="osc/brds/struckdrum" uuid="e9737331-1464-485d-9d5e-d304e04943f7" name="struckdrum_1" x="560" y="364">
+      <params>
+         <frac32.s.map name="pitch" value="-8.0"/>
+         <frac32.u.map name="timbre" value="23.0"/>
+         <frac32.u.map name="color" value="40.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="osc/brds/struckdrum" uuid="e9737331-1464-485d-9d5e-d304e04943f7" name="struckdrum_2" x="686" y="364">
+      <params>
+         <frac32.s.map name="pitch" value="-11.0"/>
+         <frac32.u.map name="timbre" value="23.0"/>
+         <frac32.u.map name="color" value="40.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="osc/brds/struckdrum" uuid="e9737331-1464-485d-9d5e-d304e04943f7" name="struckdrum_3" x="812" y="364">
+      <params>
+         <frac32.s.map name="pitch" value="-17.0"/>
+         <frac32.u.map name="timbre" value="23.0"/>
+         <frac32.u.map name="color" value="40.5"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="mix/mix 8" uuid="f12e13a7920b67f4e286369e0e2c573e5af08f9c" name="mix_1" x="938" y="364">
+      <params>
+         <frac32.u.map name="gain1" value="64.0"/>
+         <frac32.u.map name="gain2" value="64.0"/>
+         <frac32.u.map name="gain3" value="32.0"/>
+         <frac32.u.map name="gain4" value="64.0"/>
+         <frac32.u.map name="gain5" value="57.5"/>
+         <frac32.u.map name="gain6" value="32.0"/>
+         <frac32.u.map name="gain7" value="32.0"/>
+         <frac32.u.map name="gain8" value="32.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="1036" y="364">
+      <params/>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="sel_1" outlet="o3"/>
+         <dest obj="struckbell_1" inlet="strike"/>
+         <dest obj="uniform_1" inlet="trig"/>
+      </net>
+      <net>
+         <source obj="sel_1" outlet="o5"/>
+         <dest obj="cymbal_1" inlet="strike"/>
+      </net>
+      <net>
+         <source obj="kick_1" outlet="wave"/>
+         <dest obj="mix_1" inlet="in1"/>
+      </net>
+      <net>
+         <source obj="struckbell_1" outlet="wave"/>
+         <dest obj="mix_1" inlet="in3"/>
+      </net>
+      <net>
+         <source obj="struckdrum_1" outlet="wave"/>
+         <dest obj="mix_1" inlet="in4"/>
+      </net>
+      <net>
+         <source obj="cymbal_1" outlet="wave"/>
+         <dest obj="vca_1" inlet="a"/>
+      </net>
+      <net>
+         <source obj="counter_1" outlet="o"/>
+         <dest obj="sel_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="square_1" outlet="wave"/>
+         <dest obj="counter_1" inlet="trig"/>
+      </net>
+      <net>
+         <source obj="snare_1" outlet="wave"/>
+         <dest obj="mix_1" inlet="in2"/>
+      </net>
+      <net>
+         <source obj="sel_1" outlet="o1"/>
+         <dest obj="kick_1" inlet="strike"/>
+      </net>
+      <net>
+         <source obj="sel_1" outlet="o2"/>
+         <dest obj="snare_1" inlet="strike"/>
+      </net>
+      <net>
+         <source obj="*c_1" outlet="out"/>
+         <dest obj="struckbell_1" inlet="color"/>
+      </net>
+      <net>
+         <source obj="uniform_1" outlet="rand"/>
+         <dest obj="*c_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="vca_1" outlet="o"/>
+         <dest obj="mix_1" inlet="in5"/>
+      </net>
+      <net>
+         <source obj="d_1" outlet="env"/>
+         <dest obj="vca_1" inlet="v"/>
+      </net>
+      <net>
+         <source obj="sel_1" outlet="o4"/>
+         <dest obj="d_1" inlet="trig"/>
+         <dest obj="uniform_2" inlet="trig"/>
+      </net>
+      <net>
+         <source obj="uniform_2" outlet="rand"/>
+         <dest obj="*c_2" inlet="in"/>
+      </net>
+      <net>
+         <source obj="*c_2" outlet="out"/>
+         <dest obj="cymbal_1" inlet="timbre"/>
+      </net>
+      <net>
+         <source obj="sel_1" outlet="o8"/>
+         <dest obj="struckdrum_1" inlet="strike"/>
+      </net>
+      <net>
+         <source obj="sel_1" outlet="o7"/>
+         <dest obj="struckdrum_2" inlet="strike"/>
+      </net>
+      <net>
+         <source obj="sel_1" outlet="o6"/>
+         <dest obj="struckdrum_3" inlet="strike"/>
+      </net>
+      <net>
+         <source obj="struckdrum_2" outlet="wave"/>
+         <dest obj="mix_1" inlet="in6"/>
+      </net>
+      <net>
+         <source obj="struckdrum_3" outlet="wave"/>
+         <dest obj="mix_1" inlet="in7"/>
+      </net>
+      <net>
+         <source obj="mix_1" outlet="out"/>
+         <dest obj="out_1" inlet="left"/>
+         <dest obj="out_1" inlet="right"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>55</x>
+      <y>96</y>
+      <width>1347</width>
+      <height>898</height>
+   </windowPos>
+</patch-1.0>

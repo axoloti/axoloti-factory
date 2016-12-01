@@ -2078,6 +2078,8 @@ void Render(
 }
 };
 
+#endif
+
 
 class FilteredNoise :  public DigitalOscillator {
   private:
@@ -2085,8 +2087,7 @@ class FilteredNoise :  public DigitalOscillator {
   int32_t lp_;  
   public:
 void Render(
-    const uint8_t* sync,
-    int16_t* buffer,
+    int32_t* buffer,
     size_t size) {
   int32_t f = stmlib::Interpolate824(braids::lut_svf_cutoff, pitch_ << 17);
   int32_t damp = stmlib::Interpolate824(braids::lut_svf_damp, parameter_[0] << 17);
@@ -2123,39 +2124,44 @@ void Render(
     result += (hp_gain * hp) >> 14;
     CLIP(result)
     result = result * gain_correction >> 15;
-    *buffer++ = stmlib::Interpolate88(ws_moderate_overdrive, result + 32768);
+    *buffer++ = stmlib::Interpolate88(braids::ws_moderate_overdrive, result + 32768)<<11;
   }
   lp_ = lp;
   bp_ = bp;
 }
 };
 
+struct ParticleNoiseState {
+  uint16_t amplitude;
+  int32_t filter_state[3][2];
+  int32_t filter_scale[3];
+  int32_t filter_coefficient[3];
+};
 
 class TwinPeaksNoise :  public DigitalOscillator {
-	
+	ParticleNoiseState pno_;
   public:
 void Render(
-    const uint8_t* sync,
-    int16_t* buffer,
+    int32_t* buffer,
     size_t size) {
   int32_t sample;
   int32_t y10, y20;
-  int32_t y11 = state_.pno.filter_state[0][0];
-  int32_t y12 = state_.pno.filter_state[0][1];
-  int32_t y21 = state_.pno.filter_state[1][0];
-  int32_t y22 = state_.pno.filter_state[1][1];
+  int32_t y11 = pno_.filter_state[0][0];
+  int32_t y12 = pno_.filter_state[0][1];
+  int32_t y21 = pno_.filter_state[1][0];
+  int32_t y22 = pno_.filter_state[1][1];
   uint32_t q = 65240 + (parameter_[0] >> 7);
   int32_t q_squared = q * q >> 17;
   int16_t p1 = pitch_;
 
   CONSTRAIN(p1, 0, 16383)
-  int32_t c1 = stmlib::Interpolate824(lut_resonator_coefficient, p1 << 17);
-  int32_t s1 = stmlib::Interpolate824(lut_resonator_scale, p1 << 17);
+  int32_t c1 = stmlib::Interpolate824(braids::lut_resonator_coefficient, p1 << 17);
+  int32_t s1 = stmlib::Interpolate824(braids::lut_resonator_scale, p1 << 17);
   
   int16_t p2 = pitch_ + ((parameter_[1] - 16384) >> 1);
   CONSTRAIN(p2, 0, 16383)
-  int32_t c2 = stmlib::Interpolate824(lut_resonator_coefficient, p2 << 17);
-  int32_t s2 = stmlib::Interpolate824(lut_resonator_scale, p2 << 17);
+  int32_t c2 = stmlib::Interpolate824(braids::lut_resonator_coefficient, p2 << 17);
+  int32_t s2 = stmlib::Interpolate824(braids::lut_resonator_scale, p2 << 17);
 
   c1 = c1 * q >> 16;
   c2 = c2 * q >> 16;
@@ -2189,29 +2195,41 @@ void Render(
     y10 += (y10 * makeup_gain >> 13);
     CLIP(y10)
     sample = y10;
-    sample = stmlib::Interpolate88(ws_moderate_overdrive, sample + 32768);
+    sample = stmlib::Interpolate88(braids::ws_moderate_overdrive, sample + 32768);
     
-    *buffer++ = sample;
-    *buffer++ = sample;
-    size -= 2;
+    *buffer++ = sample<<11;
+    size --;
   }
   
-  state_.pno.filter_state[0][0] = y11;
-  state_.pno.filter_state[0][1] = y12;
-  state_.pno.filter_state[1][0] = y21;
-  state_.pno.filter_state[1][1] = y22;
+  pno_.filter_state[0][0] = y11;
+  pno_.filter_state[0][1] = y12;
+  pno_.filter_state[1][0] = y21;
+  pno_.filter_state[1][1] = y22;
 }
 };
 
 
 class ClockedNoise :  public DigitalOscillator {
 	
+struct ClockedNoiseState {
+  uint32_t cycle_phase;
+  uint32_t cycle_phase_increment;
+  uint32_t rng_state;
+  int32_t seed;
+  int16_t sample;
+};
+
+ClockedNoiseState clk_;
+
   public:
 void Render(
-    const uint8_t* sync,
-    int16_t* buffer,
-    size_t size) {
-  ClockedNoiseState* state = &state_.clk;
+    const int32_t* sync,
+    int32_t* buffer,
+    size_t size,
+	bool strike) {
+	phase_increment_ = ComputePhaseIncrement(pitch_);
+		
+  ClockedNoiseState* state = &clk_;
   
   if ((parameter_[1] > previous_parameter_[1] + 64) ||
       (parameter_[1] < previous_parameter_[1] - 64)) {
@@ -2223,9 +2241,8 @@ void Render(
   }
   
   
-  if (strike_) {
+  if (strike) {
     state->seed = stmlib::Random::GetWord();
-    strike_ = false;
   }
   
   // Shift the range of the Coarse knob to reach higher clock rates, close
@@ -2250,8 +2267,10 @@ void Render(
   uint32_t quantizer_divider = 65536 / num_steps;
   while (size--) {
     phase += phase_increment;
+	if (sync) {
     if (*sync++) {
       phase = 0;
+    }
     }
     
     // Clock.
@@ -2271,29 +2290,37 @@ void Render(
       // Make the clock rate an exact divisor of the sample rate.
       phase = phase_increment;
     }
-    *buffer++ = state->sample;
+    *buffer++ = state->sample<<11;
   }
   phase_ = phase;
 }
 };
 
 class GranularCloud :  public DigitalOscillator {
-	
+	struct Grain {
+  uint32_t phase;
+  uint32_t phase_increment;
+  uint32_t envelope_phase;
+  uint32_t envelope_phase_increment;
+};
+
+Grain grain_[4];
+
   public:
 void Render(
-    const uint8_t* sync,
-    int16_t* buffer,
+    int32_t* buffer,
     size_t size) {
+	phase_increment_ = ComputePhaseIncrement(pitch_);
   
   for (size_t i = 0; i < 4; ++i) {
-    Grain* g = &state_.grain[i];
+    Grain* g = &grain_[i];
     // If a grain has reached the end of its envelope, reset it.
     if (g->envelope_phase > (1 << 24) ||
         g->envelope_phase_increment == 0) {
       g->envelope_phase_increment = 0;
       if ((stmlib::Random::GetWord() & 0xffff) < 0x4000) {
         g->envelope_phase_increment = \
-            lut_granular_envelope_rate[parameter_[0] >> 7] << 3;
+            braids::lut_granular_envelope_rate[parameter_[0] >> 7] << 3;
         g->envelope_phase = 0;
         g->phase_increment = phase_increment_;
         int32_t pitch_mod = stmlib::Random::GetSample() * parameter_[1] >> 16;
@@ -2311,25 +2338,25 @@ void Render(
   // increment too!
   while (size--) {
     int32_t sample = 0;
-    state_.grain[0].phase += state_.grain[0].phase_increment;
-    state_.grain[0].envelope_phase += state_.grain[0].envelope_phase_increment;
-    sample += stmlib::Interpolate824(braids::wav_sine, state_.grain[0].phase) * \
-        lut_granular_envelope[state_.grain[0].envelope_phase >> 16] >> 17;
+    grain_[0].phase += grain_[0].phase_increment;
+    grain_[0].envelope_phase += grain_[0].envelope_phase_increment;
+    sample += stmlib::Interpolate824(braids::wav_sine, grain_[0].phase) * \
+        braids::lut_granular_envelope[grain_[0].envelope_phase >> 16] >> 17;
 
-    state_.grain[1].phase += state_.grain[1].phase_increment;
-    state_.grain[1].envelope_phase += state_.grain[1].envelope_phase_increment;
-    sample += stmlib::Interpolate824(braids::wav_sine, state_.grain[1].phase) * \
-        lut_granular_envelope[state_.grain[1].envelope_phase >> 16] >> 17;
+    grain_[1].phase += grain_[1].phase_increment;
+    grain_[1].envelope_phase += grain_[1].envelope_phase_increment;
+    sample += stmlib::Interpolate824(braids::wav_sine, grain_[1].phase) * \
+        braids::lut_granular_envelope[grain_[1].envelope_phase >> 16] >> 17;
 
-    state_.grain[2].phase += state_.grain[2].phase_increment;
-    state_.grain[2].envelope_phase += state_.grain[2].envelope_phase_increment;
-    sample += stmlib::Interpolate824(braids::wav_sine, state_.grain[2].phase) * \
-        lut_granular_envelope[state_.grain[2].envelope_phase >> 16] >> 17;
+    grain_[2].phase += grain_[2].phase_increment;
+    grain_[2].envelope_phase += grain_[2].envelope_phase_increment;
+    sample += stmlib::Interpolate824(braids::wav_sine, grain_[2].phase) * \
+        braids::lut_granular_envelope[grain_[2].envelope_phase >> 16] >> 17;
 
-    state_.grain[3].phase += state_.grain[3].phase_increment;
-    state_.grain[3].envelope_phase += state_.grain[3].envelope_phase_increment;
-    sample += stmlib::Interpolate824(braids::wav_sine, state_.grain[3].phase) * \
-        lut_granular_envelope[state_.grain[3].envelope_phase >> 16] >> 17;
+    grain_[3].phase += grain_[3].phase_increment;
+    grain_[3].envelope_phase += grain_[3].envelope_phase_increment;
+    sample += stmlib::Interpolate824(braids::wav_sine, grain_[3].phase) * \
+        braids::lut_granular_envelope[grain_[3].envelope_phase >> 16] >> 17;
     
     if (sample < -32768) {
       sample = -32768;
@@ -2337,39 +2364,40 @@ void Render(
     if (sample > 32767) {
       sample = 32767;
     }
-    *buffer++ = sample;
+    *buffer++ = sample<<11;
   } 
 }
 };
 
+class ParticleNoise :  public DigitalOscillator {
+	ParticleNoiseState pno_;	
+  public:
+void Render(
+    int32_t* buffer,
+    size_t size) {
+
 static const uint16_t kParticleNoiseDecay = 64763;
 static const int32_t kResonanceSquared = 32768 * 0.996 * 0.996;
 static const int32_t kResonanceFactor = 32768 * 0.996;
-
-class ParticleNoise :  public DigitalOscillator {
-	
-  public:
-void Render(
-    const uint8_t* sync,
-    int16_t* buffer,
-    size_t size) {
-  uint16_t amplitude = state_.pno.amplitude;
+		
+		
+  uint16_t amplitude = pno_.amplitude;
   uint32_t density = 1024 + parameter_[0];
   int32_t sample;
   
   int32_t y10, y20, y30;
-  int32_t y11 = state_.pno.filter_state[0][0];
-  int32_t y12 = state_.pno.filter_state[0][1];
-  int32_t s1 = state_.pno.filter_scale[0];
-  int32_t c1 = state_.pno.filter_coefficient[0];
-  int32_t y21 = state_.pno.filter_state[1][0];
-  int32_t y22 = state_.pno.filter_state[1][1];
-  int32_t s2 = state_.pno.filter_scale[1];
-  int32_t c2 = state_.pno.filter_coefficient[1];
-  int32_t y31 = state_.pno.filter_state[2][0];
-  int32_t y32 = state_.pno.filter_state[2][1];
-  int32_t s3 = state_.pno.filter_scale[2];
-  int32_t c3 = state_.pno.filter_coefficient[2];
+  int32_t y11 = pno_.filter_state[0][0];
+  int32_t y12 = pno_.filter_state[0][1];
+  int32_t s1 = pno_.filter_scale[0];
+  int32_t c1 = pno_.filter_coefficient[0];
+  int32_t y21 = pno_.filter_state[1][0];
+  int32_t y22 = pno_.filter_state[1][1];
+  int32_t s2 = pno_.filter_scale[1];
+  int32_t c2 = pno_.filter_coefficient[1];
+  int32_t y31 = pno_.filter_state[2][0];
+  int32_t y32 = pno_.filter_state[2][1];
+  int32_t s3 = pno_.filter_scale[2];
+  int32_t c3 = pno_.filter_coefficient[2];
 
   while (size) {
     uint32_t noise = stmlib::Random::GetWord();
@@ -2380,18 +2408,18 @@ void Render(
       int16_t p1 = pitch_ + (3 * noise_a * parameter_[1] >> 17) + 0x600;
 
       CONSTRAIN(p1, 0, 16383)
-      c1 = stmlib::Interpolate824(lut_resonator_coefficient, p1 << 17);
-      s1 = stmlib::Interpolate824(lut_resonator_scale, p1 << 17);
+      c1 = stmlib::Interpolate824(braids::lut_resonator_coefficient, p1 << 17);
+      s1 = stmlib::Interpolate824(braids::lut_resonator_scale, p1 << 17);
 
       int16_t p2 = pitch_ + (noise_a * parameter_[1] >> 15) + 0x980;
       CONSTRAIN(p2, 0, 16383)
-      c2 = stmlib::Interpolate824(lut_resonator_coefficient, p2 << 17);
-      s2 = stmlib::Interpolate824(lut_resonator_scale, p2 << 17);
+      c2 = stmlib::Interpolate824(braids::lut_resonator_coefficient, p2 << 17);
+      s2 = stmlib::Interpolate824(braids::lut_resonator_scale, p2 << 17);
 
       int16_t p3 = pitch_ + (noise_b * parameter_[1] >> 16) + 0x790;
       CONSTRAIN(p3, 0, 16383)
-      c3 = stmlib::Interpolate824(lut_resonator_coefficient, p3 << 17);
-      s3 = stmlib::Interpolate824(lut_resonator_scale, p3 << 17);
+      c3 = stmlib::Interpolate824(braids::lut_resonator_coefficient, p3 << 17);
+      s3 = stmlib::Interpolate824(braids::lut_resonator_scale, p3 << 17);
       
       c1 = c1 * kResonanceFactor >> 15;
       c2 = c2 * kResonanceFactor >> 15;
@@ -2430,70 +2458,79 @@ void Render(
     
     y10 += y20 + y30;
     CLIP(y10)
-    *buffer++ = y10;
-    *buffer++ = y10;
-    size -= 2;
+    *buffer++ = y10<<11;
+    size --;
   }
   
-  state_.pno.amplitude = amplitude;
-  state_.pno.filter_state[0][0] = y11;
-  state_.pno.filter_state[0][1] = y12;
-  state_.pno.filter_scale[0] = s1;
-  state_.pno.filter_coefficient[0] = c1;
-  state_.pno.filter_state[1][0] = y21;
-  state_.pno.filter_state[1][1] = y22;
-  state_.pno.filter_scale[1] = s2;
-  state_.pno.filter_coefficient[1] = c2;
-  state_.pno.filter_state[2][0] = y31;
-  state_.pno.filter_state[2][1] = y32;
-  state_.pno.filter_scale[2] = s3;
-  state_.pno.filter_coefficient[2] = c3;
+  pno_.amplitude = amplitude;
+  pno_.filter_state[0][0] = y11;
+  pno_.filter_state[0][1] = y12;
+  pno_.filter_scale[0] = s1;
+  pno_.filter_coefficient[0] = c1;
+  pno_.filter_state[1][0] = y21;
+  pno_.filter_state[1][1] = y22;
+  pno_.filter_scale[1] = s2;
+  pno_.filter_coefficient[1] = c2;
+  pno_.filter_state[2][0] = y31;
+  pno_.filter_state[2][1] = y32;
+  pno_.filter_scale[2] = s3;
+  pno_.filter_coefficient[2] = c3;
 }
 };
+
+
+
+class DigitalModulation :  public DigitalOscillator {
+
+struct DigitalModulationState {
+  uint32_t symbol_phase;
+  uint16_t symbol_count;
+  int32_t filter_state;
+  uint8_t data_byte;
+};
+  DigitalModulationState dmd_;
+		
+  public:
+void Render(
+    int32_t* buffer,
+    size_t size,
+	bool strike) {
+	phase_increment_ = ComputePhaseIncrement(pitch_);
 
 static const int32_t kConstellationQ[] = { 23100, -23100, -23100, 23100 };
 static const int32_t kConstellationI[] = { 23100, 23100, -23100, -23100 };
 
-
-class DigitalModulation :  public DigitalOscillator {
-	
-  public:
-void Render(
-    const uint8_t* sync,
-    int16_t* buffer,
-    size_t size) {
-  uint32_t phase = phase_;
+	uint32_t phase = phase_;
   uint32_t increment = phase_increment_;
   
-  uint32_t symbol_stream_phase = state_.dmd.symbol_phase;
+  uint32_t symbol_stream_phase = dmd_.symbol_phase;
   uint32_t symbol_stream_phase_increment = ComputePhaseIncrement(
       pitch_ - 1536 + ((parameter_[0] - 32767) >> 3));
-  uint8_t data_byte = state_.dmd.data_byte;
+  uint8_t data_byte = dmd_.data_byte;
   
-  if (strike_) {
-    state_.dmd.symbol_count = 0;
-    strike_ = false;
+  if (strike) {
+    dmd_.symbol_count = 0;
   }
   
   while (size--) {
     phase += increment;
     symbol_stream_phase += symbol_stream_phase_increment;
     if (symbol_stream_phase < symbol_stream_phase_increment) {
-      ++state_.dmd.symbol_count;
-      if (!(state_.dmd.symbol_count & 3)) {
-        if (state_.dmd.symbol_count >= (64 + 4 * 256)) {
-          state_.dmd.symbol_count = 0;
+      ++dmd_.symbol_count;
+      if (!(dmd_.symbol_count & 3)) {
+        if (dmd_.symbol_count >= (64 + 4 * 256)) {
+          dmd_.symbol_count = 0;
         }
-        if (state_.dmd.symbol_count < 32) {
+        if (dmd_.symbol_count < 32) {
           data_byte = 0x00;
-        } else if (state_.dmd.symbol_count < 48) {
+        } else if (dmd_.symbol_count < 48) {
           data_byte = 0x99;
-        } else if (state_.dmd.symbol_count < 64) {
+        } else if (dmd_.symbol_count < 64) {
           data_byte = 0xcc;
         } else {
-          state_.dmd.filter_state = (state_.dmd.filter_state * 3 + \
+          dmd_.filter_state = (dmd_.filter_state * 3 + \
               static_cast<int32_t>(parameter_[1])) >> 2;
-          data_byte = state_.dmd.filter_state >> 7;
+          data_byte = dmd_.filter_state >> 7;
         }
       } else {
         data_byte >>= 2;
@@ -2501,30 +2538,41 @@ void Render(
     }
     int16_t i = stmlib::Interpolate824(braids::wav_sine, phase);
     int16_t q = stmlib::Interpolate824(braids::wav_sine, phase + (1 << 30));
-    *buffer++ = (kConstellationQ[data_byte & 3] * q >> 15) + \
-        (kConstellationI[data_byte & 3] * i >> 15);
+    *buffer++ = ((kConstellationQ[data_byte & 3] * q >> 15) + \
+        (kConstellationI[data_byte & 3] * i >> 15))<<11;
   }
   phase_ = phase;
-  state_.dmd.symbol_phase = symbol_stream_phase;
-  state_.dmd.data_byte = data_byte;
+  dmd_.symbol_phase = symbol_stream_phase;
+  dmd_.data_byte = data_byte;
 }
+};
+
 
 class QuestionMark :  public DigitalOscillator {
+struct ClockedNoiseState {
+  uint32_t cycle_phase;
+  uint32_t cycle_phase_increment;
+  uint32_t rng_state;
+  int32_t seed;
+  int16_t sample;
+};
+
+ClockedNoiseState clk_;
 	
   public:
 void Render(
-    const uint8_t* sync,
-    int16_t* buffer,
-    size_t size) {
-  ClockedNoiseState* state = &state_.clk;
+    int32_t* buffer,
+    size_t size,
+	bool strike) {
+	phase_increment_ = ComputePhaseIncrement(pitch_);
+  ClockedNoiseState* state = &clk_;
   
-  if (strike_) {
+  if (strike) {
     state->rng_state = 0;
     state->cycle_phase = 0;
     state->sample = 10;
     state->cycle_phase_increment = -1;
     state->seed = 32767;
-    strike_ = false;
   }
   
   uint32_t phase = phase_;
@@ -2547,7 +2595,7 @@ void Render(
 
         size_t address = state->cycle_phase_increment >> 2;
         size_t shift = (state->cycle_phase_increment & 0x3) << 1;
-        state->sample = (2 << ((wt_code[address] >> shift) & 3)) - 1;
+        state->sample = (2 << ((braids::wt_code[address] >> shift) & 3)) - 1;
         if (state->sample == 15) {
           state->sample = 100;
           state->rng_state = 0;
@@ -2573,16 +2621,14 @@ void Render(
     sample += noise;
     CLIP(sample);
     int32_t distorted = sample * sample >> 14;
-    sample += distorted * parameter_[1] >> 15;
+    sample += distorted * parameter_[1] >> 4;
     CLIP(sample);
-    *buffer++ = sample;
+    *buffer++ = sample<<11;
   }
   phase_ = phase;
 }
 };
 
-
-#endif
 
 class Excitation {
  public:
