@@ -1,0 +1,50 @@
+<objdefs appVersion="1.0.11">
+   <obj.normal id="strms" uuid="00A8C08C-86A1-431B-81C2-BC674979BD24">
+      <sDescription>Streams effect from Mutable Instruments Elements (experimental only) 
+important note: the outputs are not audio signals, they are the frequency and gain levels of a pwm oscillator</sDescription>
+      <author>Mark Harris</author>
+      <license>GPL</license>
+      <inlets>
+         <frac32buffer name="in"/>
+         <frac32buffer name="excite"/>
+      </inlets>
+      <outlets>
+         <frac32buffer name="gain" description="gain for pwm"/>
+         <frac32buffer name="freq" description="frequency of pwm "/>
+      </outlets>
+      <displays/>
+      <params>
+         <frac32.u.map name="shape"/>
+         <frac32.u.map name="mod"/>
+         <frac32.u.map name="level"/>
+         <frac32.u.map name="env"/>
+      </params>
+      <attribs/>
+      <code.declaration><![CDATA[streams::Processor processor;]]></code.declaration>
+      <code.init><![CDATA[processor.Init(0);]]></code.init>
+      <code.krate><![CDATA[int i;
+bool refresh=false;
+//processor.set_shape(q27_to_float(param_shape));
+//processor.set_mod(q27_to_float(param_mod));
+//processor.set_level(q27_to_float(param_level));
+//processor.set_env(q27_to_float(param_env));
+if(refresh) {
+   processor.Configure();
+}
+
+uint16_t gain = 0;
+uint16_t frequency = 65535;
+
+int16_t in;
+int16_t excite;
+
+for(i=0;i<BUFSIZE;i++){
+   in = inlet_in[i] >> 16;
+   excite = inlet_excite[i] >> 16;
+   processor.Process(in,excite,&gain,&frequency);
+   outlet_gain[i] = gain;
+   outlet_freq[i] = 65535 - frequency;
+
+}]]></code.krate>
+   </obj.normal>
+</objdefs>
