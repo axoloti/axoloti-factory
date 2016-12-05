@@ -14,7 +14,10 @@ modified for 48kHz operation</sDescription>
       <displays/>
       <params/>
       <attribs/>
-      <code.declaration><![CDATA[warps::Vocoder vocoder;]]></code.declaration>
+      <includes>
+         <include>./warps_vocoder.h</include>
+      </includes>
+      <code.declaration><![CDATA[warps_deriv::Vocoder vocoder;]]></code.declaration>
       <code.init><![CDATA[vocoder.Init(48000);]]></code.init>
       <code.krate><![CDATA[float fmod[BUFSIZE];
 float fcar[BUFSIZE];

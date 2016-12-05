@@ -16,9 +16,10 @@
          <frac32.u.map name="depth"/>
       </params>
       <attribs/>
-      <code.declaration><![CDATA[rings::Ensemble ensemble;
-
-]]></code.declaration>
+      <includes>
+         <include>./rings_fx.h</include>
+      </includes>
+      <code.declaration><![CDATA[rings_fx::Ensemble ensemble;]]></code.declaration>
       <code.init><![CDATA[ensemble.Init((uint16_t*) sdram_malloc(32768));]]></code.init>
       <code.krate><![CDATA[static float left[BUFSIZE];
 static float right[BUFSIZE];

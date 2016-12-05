@@ -1,5 +1,5 @@
-<objdefs appVersion="1.0.11">
-   <obj.normal id="pitch shifter" uuid="CF2FFE3A-9363-4C78-AF25-9F3A41E5F0E4">
+<objdefs appVersion="1.0.12">
+   <obj.normal id="pitchshifter" uuid="CF2FFE3A-9363-4C78-AF25-9F3A41E5F0E4">
       <sDescription>Pitch Shift effect from Mutable Instruments Clouds</sDescription>
       <license>GPL</license>
       <inlets>
@@ -16,11 +16,14 @@
          <frac32.u.map name="size"/>
       </params>
       <attribs/>
-      <code.declaration><![CDATA[clouds::PitchShifter fx;]]></code.declaration>
+      <includes>
+         <include>./clouds_fx.h</include>
+      </includes>
+      <code.declaration><![CDATA[clouds_deriv::PitchShifter fx;]]></code.declaration>
       <code.init><![CDATA[uint16_t* buf = (uint16_t*) sdram_malloc(32768);
 if(!buf) return;
 fx.Init(buf);]]></code.init>
-      <code.krate><![CDATA[static clouds::FloatFrame iobuf[BUFSIZE];
+      <code.krate><![CDATA[static clouds_deriv::FloatFrame iobuf[BUFSIZE];
 fx.set_ratio(q27_to_float(param_ratio));
 fx.set_size(q27_to_float(param_size));
 int i;

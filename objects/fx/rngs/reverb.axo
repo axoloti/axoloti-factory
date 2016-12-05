@@ -19,9 +19,10 @@
          <frac32.u.map name="lowpass"/>
       </params>
       <attribs/>
-      <code.declaration><![CDATA[rings::Reverb reverb;
-
-]]></code.declaration>
+      <includes>
+         <include>./rings_fx.h</include>
+      </includes>
+      <code.declaration><![CDATA[rings_fx::Reverb reverb;]]></code.declaration>
       <code.init><![CDATA[reverb.Init((uint16_t*) sdram_malloc(32768));]]></code.init>
       <code.krate><![CDATA[static float left[BUFSIZE];
 static float right[BUFSIZE];
