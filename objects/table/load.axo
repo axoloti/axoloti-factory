@@ -1,6 +1,5 @@
-<objdefs>
-   <obj.normal id="load" uuid="600cc22c6734d23a82620da1a14e78782a7e168e" sha="1dd619384c568b5f9651bd5690af9f3bcf6ec7c0">
-      <upgradeSha>d9220dffa4b03b49a97727d904d4dbbb4684c45d</upgradeSha>
+<objdefs appVersion="1.0.12">
+   <obj.normal id="load" uuid="600cc22c6734d23a82620da1a14e78782a7e168e">
       <sDescription>load table from sdcard</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
@@ -25,11 +24,12 @@
 ]]></code.declaration>
       <code.init><![CDATA[  ntrig = 0;
 ]]></code.init>
-      <code.krate><![CDATA[  if ((inlet_trig>0) && !ntrig) {
+      <code.krate><![CDATA[if ((inlet_trig>0) && !ntrig) {
     ntrig=1;
     FIL FileObject;
     FRESULT err;
     UINT bytes_read;
+    codec_clearbuffer();
     err = f_open(&FileObject, inlet_filename, FA_READ | FA_OPEN_EXISTING);
     if (err != FR_OK) { report_fatfs_error(err,inlet_filename); return;}
     int rem_sz = sizeof(*attr_table.array)*attr_table.LENGTH;
@@ -50,7 +50,6 @@
     err = f_close(&FileObject);
     if (err != FR_OK) { report_fatfs_error(err,inlet_filename); return;};
   }
-  else if (!(inlet_trig>0)) ntrig=0;
-]]></code.krate>
+  else if (!(inlet_trig>0)) ntrig=0;]]></code.krate>
    </obj.normal>
 </objdefs>
