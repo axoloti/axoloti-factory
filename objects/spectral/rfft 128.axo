@@ -1,6 +1,5 @@
-<objdefs>
-   <obj.normal id="rfft 128" uuid="27b4fa628dda621136f74e407ee8761ba76f631c" sha="1e5ec296644678b7bb811cbba8dfac44e890dcb9">
-      <upgradeSha>38b87d809e1f4ce40fa6651b081e68e82f80d2b2</upgradeSha>
+<objdefs appVersion="1.0.12">
+   <obj.normal id="rfft 128" uuid="27b4fa628dda621136f74e407ee8761ba76f631c">
       <sDescription>spectral analyzer display using 128 input points fft</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
@@ -41,7 +40,7 @@ int32_t state;
 msg_t ThreadX2(){
       int i;
       int n = 128;
-      arm_rfft_init_q31(&rfft, &cfft, 128,0,1);
+      arm_rfft_init_q31(&rfft, 128,0,1);
       for(i=0;i<n;i++){
         hanning_q31[i] = (int32_t)(0.5f*2147483647.0f*(1.0f-cosf(2.0f*PI*i/n)));
       }
@@ -70,8 +69,7 @@ static msg_t ThreadX(void *arg) {
 ((attr_parent *)arg)->ThreadX2();
 }
 WORKING_AREA(waThreadX, 4096);
-Thread *Thd;
-]]></code.declaration>
+Thread *Thd;]]></code.declaration>
       <code.init><![CDATA[int i;
 for(i=0;i<128;i++) inbuf[i]=0;
 for(i=0;i<128;i++) outbuf[i]=0;
