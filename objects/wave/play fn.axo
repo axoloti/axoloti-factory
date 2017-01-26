@@ -1,6 +1,5 @@
-<objdefs>
-   <obj.normal id="play fn" uuid="25910f7130532e4934eed3cf2a934324790d0f00" sha="f8e94936bdea36a99134ade7dd8988d30d0ac6bc">
-      <upgradeSha>3772a7e3208a65534e5007803e1343c61497e9b2</upgradeSha>
+<objdefs appVersion="1.0.11">
+   <obj.normal id="play fn" uuid="25910f7130532e4934eed3cf2a934324790d0f00">
       <sDescription>streaming playback of a mono .wav file from sdcard (testing). Direct filename.</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
@@ -11,6 +10,7 @@
       </inlets>
       <outlets>
          <frac32buffer name="out" description="output"/>
+         <bool32.pulse name="end" description="end of stream"/>
       </outlets>
       <displays/>
       <params/>
@@ -21,12 +21,11 @@
          <include>./streamer.h</include>
          <include>chibios/ext/fatfs/src/ff.h</include>
       </includes>
-      <code.declaration><![CDATA[    WORKING_AREA(waThreadSD, 720);
+      <code.declaration><![CDATA[WORKING_AREA(waThreadSD, 720);
    sdReadFilePingpong *stream;
    int starttrig;
    int stoptrig;
-   char c[64];
-]]></code.declaration>
+   char c[64];]]></code.declaration>
       <code.init><![CDATA[static sdReadFilePingpong s[attr_poly] __attribute__ ((section (".data")));
 // unmap from aliased memory for DMA
 stream = (sdReadFilePingpong *)(0x20000000 | (int)&s[parent->polyIndex]);
@@ -37,11 +36,11 @@ starttrig = 0;
 stoptrig = 0;
 strcpy(&c[0],"attr_fn");
 stream->pThreadSD = chThdCreateStatic(waThreadSD, sizeof(waThreadSD),
-                    HIGHPRIO, ThreadSD, (void *)stream);
-]]></code.init>
-      <code.dispose><![CDATA[sdStopStreamer(stream);
-]]></code.dispose>
-      <code.krate><![CDATA[     int32_t i;
+                    HIGHPRIO, ThreadSD, (void *)stream);]]></code.init>
+      <code.dispose><![CDATA[sdStopStreamer(stream);]]></code.dispose>
+      <code.krate><![CDATA[int32_t i;
+outlet_end = 0;
+
      if ((inlet_start>0) && !starttrig) {
         sdOpenStream(stream,&c[0]);
         sdSeekStream(stream,((inlet_pos)>>4)<<2);
@@ -61,8 +60,10 @@ stream->pThreadSD = chThdCreateStatic(waThreadSD, sizeof(waThreadSD),
            outlet_out[i] = (*(p++))<<10;
         }
      }
-     else 
-        for(i=0;i<BUFSIZE;i++) outlet_out[i] = 0;
-]]></code.krate>
+     else {
+        for(i=0;i<BUFSIZE;i++) 
+        	outlet_out[i] = 0;
+        outlet_end = 1;
+     }]]></code.krate>
    </obj.normal>
 </objdefs>
