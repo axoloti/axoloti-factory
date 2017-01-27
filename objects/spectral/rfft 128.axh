@@ -1,58 +1,60 @@
-<patch-1.0>
-   <obj type="ctrl/toggle" sha="a104f377191a424d537741cdfd7d5348bc16590c" name="cb11" x="266" y="20">
+<patch-1.0 appVersion="1.0.12">
+   <obj type="osc/sine" uuid="6e094045cca76a9dbf7ebfa72e44e4700d2b3ba" name="sine_1" x="14" y="14">
+      <params>
+         <frac32.s.map name="pitch" value="45.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <comment type="patch/comment" x="154" y="42" text="128 point fft spectrum"/>
+   <comment type="patch/comment" x="154" y="56" text="linear frequency scale, shows very little detail in lower frequencies..."/>
+   <obj type="ctrl/toggle" uuid="42b8134fa729d54bfc8d62d6ef3fa99498c1de99" name="cb11" x="266" y="126">
       <params>
          <bool32.tgl name="b" value="0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="osc~" sha="edec4a9d5f533ea748cd564ce8c69673dd78742f" name="osc_1" x="28" y="80">
+   <obj type="noise/uniform" uuid="a3926ef22ae9ac217cd09933d90101848796eb78" name="rand_1" x="28" y="140">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="osc/saw" uuid="739ecc36017ef3249479b8f01716b8bbfba9abc1" name="saw_1" x="14" y="196">
       <params>
-         <frac32.s.map name="pitch" value="0.0"/>
+         <frac32.s.map name="pitch" value="39.0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="mix/mix 3" sha="3d37ac18e4393438042204df12d17aec499f09fb" name="mix21" x="266" y="80">
+   <obj type="mix/mix 3" uuid="8be16f2156012a4a8974804178cece51555f272b" name="mix_1" x="154" y="196">
       <params>
          <frac32.u.map name="gain1" value="0.0"/>
          <frac32.u.map name="gain2" value="0.0"/>
-         <frac32.u.map name="gain3" value="0.0"/>
+         <frac32.u.map name="gain3" value="64.0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="rfft128" sha="1e5ec296644678b7bb811cbba8dfac44e890dcb9" name="rfft1281" x="420" y="80">
+   <obj type="spectral/rfft 128" uuid="27b4fa628dda621136f74e407ee8761ba76f631c" name="rfft_1" x="266" y="196">
       <params/>
-      <attribs/>
-   </obj>
-   <obj type="noise/uniform" sha="117e0adca76d1dc3810e120a06d022ef06093103" name="rand_1" x="28" y="200">
-      <params/>
-      <attribs/>
-   </obj>
-   <obj type="saw~" sha="fe2c3c02396657dfbc225c73f9340ad0c4c3eea6" name="saw_1" x="28" y="280">
-      <params>
-         <frac32.s.map name="pitch" value="0.0"/>
-      </params>
       <attribs/>
    </obj>
    <nets>
       <net>
          <source obj="cb11" outlet="o"/>
-         <dest obj="rfft1281" inlet="hold"/>
+         <dest obj="rfft_1" inlet="hold"/>
       </net>
       <net>
-         <source obj="osc_1" outlet="wave"/>
-         <dest obj="mix21" inlet="in1"/>
+         <source obj="sine_1" outlet="wave"/>
+         <dest obj="mix_1" inlet="in1"/>
       </net>
       <net>
-         <source obj="mix21" outlet="out"/>
-         <dest obj="rfft1281" inlet="in"/>
+         <source obj="mix_1" outlet="out"/>
+         <dest obj="rfft_1" inlet="in"/>
       </net>
       <net>
          <source obj="rand_1" outlet="wave"/>
-         <dest obj="mix21" inlet="in2"/>
+         <dest obj="mix_1" inlet="in2"/>
       </net>
       <net>
          <source obj="saw_1" outlet="wave"/>
-         <dest obj="mix21" inlet="in3"/>
+         <dest obj="mix_1" inlet="in3"/>
       </net>
    </nets>
    <settings>
@@ -60,9 +62,9 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>0</x>
-      <y>2</y>
-      <width>730</width>
-      <height>590</height>
+      <x>319</x>
+      <y>216</y>
+      <width>588</width>
+      <height>564</height>
    </windowPos>
 </patch-1.0>
