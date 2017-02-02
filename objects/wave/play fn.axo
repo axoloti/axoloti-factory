@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="play fn" uuid="25910f7130532e4934eed3cf2a934324790d0f00">
       <sDescription>streaming playback of a mono .wav file from sdcard (testing). Direct filename.</sDescription>
       <author>Johannes Taelman</author>
@@ -18,10 +18,10 @@
          <file name="fn"/>
       </attribs>
       <includes>
-         <include>./streamer.h</include>
          <include>chibios/ext/fatfs/src/ff.h</include>
+         <include>./streamer.h</include>
       </includes>
-      <code.declaration><![CDATA[WORKING_AREA(waThreadSD, 720);
+      <code.declaration><![CDATA[WORKING_AREA(waThreadSD, 780);
    sdReadFilePingpong *stream;
    int starttrig;
    int stoptrig;
