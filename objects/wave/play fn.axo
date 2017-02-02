@@ -21,7 +21,7 @@
          <include>chibios/ext/fatfs/src/ff.h</include>
          <include>./streamer.h</include>
       </includes>
-      <code.declaration><![CDATA[WORKING_AREA(waThreadSD, 780);
+      <code.declaration><![CDATA[WORKING_AREA(waThreadSD, 800);
    sdReadFilePingpong *stream;
    int starttrig;
    int stoptrig;
