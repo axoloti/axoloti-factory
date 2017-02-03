@@ -1,6 +1,6 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="clockednoise" uuid="c4049bf8-426e-4b9c-b17c-4909133405c6">
-      <sDescription>&quot;Plucked&quot; oscillator from Mutable Instruments Braids</sDescription>
+      <sDescription>&quot;Clocked Noise&quot; oscillator from Mutable Instruments Braids</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
       <helpPatch>osc.axh</helpPatch>
@@ -27,7 +27,7 @@
       <includes>
          <include>./brds_digital.h</include>
       </includes>
-      <code.declaration><![CDATA[braids_deriv::ClockedNoise osc;
+      <code.declaration><![CDATA[braids_digital_deriv::ClockedNoise osc;
 bool pstrike;]]></code.declaration>
       <code.init><![CDATA[osc.Init();
 pstrike = 0;]]></code.init>
