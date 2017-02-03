@@ -1,4 +1,23 @@
+#ifndef BRDS_DIGITAL_
+#define BRDS_DIGITAL_
+
 namespace braids_deriv {
+
+    
+
+static const size_t kWGBridgeLength = 1024;
+static const size_t kWGNeckLength = 4096;
+static const size_t kWGBoreLength = 2048;
+static const size_t kWGJetLength = 1024;
+static const size_t kWGFBoreLength = 4096;
+static const size_t kCombDelayLength = 8192;
+
+static const size_t kNumFormants = 5;
+static const size_t kNumPluckVoices = 3;
+static const size_t kNumOverlappingFof = 3;
+static const size_t kNumBellPartials = 11;
+static const size_t kNumDrumPartials = 6;
+static const size_t kNumAdditiveHarmonics = 12;
 
 static const uint16_t kHighestNote = 140 * 128;
 static const uint16_t kPitchTableStart = 128 * 128;
@@ -567,7 +586,7 @@ class VowelFof :  public DigitalOscillator {
   int32_t svf_bp_[kNumFormants];
   
 int16_t InterpolateFormantParameter(
-    const int16_t table[][braids::kNumFormants][braids::kNumFormants],
+    const int16_t table[][kNumFormants][kNumFormants],
     int16_t x,
     int16_t y,
     uint8_t formant) {
@@ -597,7 +616,7 @@ void Render(
 
   		  phase_increment_ = ComputePhaseIncrement(pitch_);
 
-static const int16_t formant_f_data[braids::kNumFormants][braids::kNumFormants][braids::kNumFormants] = {
+static const int16_t formant_f_data[kNumFormants][kNumFormants][kNumFormants] = {
   // bass
   {
     { 9519, 10738, 12448, 12636, 12892 }, // a
@@ -640,7 +659,7 @@ static const int16_t formant_f_data[braids::kNumFormants][braids::kNumFormants][
   }
 };
 
-static const int16_t formant_a_data[braids::kNumFormants][braids::kNumFormants][braids::kNumFormants] = {
+static const int16_t formant_a_data[kNumFormants][kNumFormants][kNumFormants] = {
   // bass
   {
     { 16384, 7318, 5813, 5813, 1638 }, // a
@@ -2989,3 +3008,5 @@ void Render(
 };
 
 }
+
+#endif

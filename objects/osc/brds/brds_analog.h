@@ -1,3 +1,6 @@
+#ifndef BRDS_ANALOG_
+#define BRDS_ANALOG_
+
 namespace braids_deriv {
 
 static const size_t kNumZones = 15;
@@ -641,3 +644,5 @@ void Render (
 
 
 }
+
+#endif
