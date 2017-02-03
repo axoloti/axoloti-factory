@@ -1,9 +1,9 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="plucked" uuid="e78bfbb5-2963-49a0-8863-dead044d748c">
       <sDescription>&quot;Plucked&quot; oscillator from Mutable Instruments Braids</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
-      <helpPatch>osc.axh</helpPatch>
+      <helpPatch>brds_physical_modelling_oscs.axh</helpPatch>
       <inlets>
          <frac32.bipolar name="pitch" description="pitch"/>
          <frac32 name="timbre"/>
@@ -27,7 +27,7 @@
       <includes>
          <include>./brds_digital.h</include>
       </includes>
-      <code.declaration><![CDATA[braids_deriv::Plucked osc;
+      <code.declaration><![CDATA[braids_digital_deriv::Plucked osc;
 bool pstrike;]]></code.declaration>
       <code.init><![CDATA[osc.Init();
 pstrike = 0;]]></code.init>

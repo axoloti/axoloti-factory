@@ -3,7 +3,7 @@
       <sDescription>Virtual analog saw oscillator from Mutable Instruments Braids. Operating at 48kHz (original Braids works at 96kHz).</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
-      <helpPatch>osc.axh</helpPatch>
+      <helpPatch>brds_analog.axh</helpPatch>
       <inlets>
          <frac32.bipolar name="pitch" description="pitch"/>
       </inlets>

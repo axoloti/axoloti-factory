@@ -3,7 +3,7 @@
       <sDescription>&quot;Snare&quot; oscillator from Mutable Instruments Braids</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
-      <helpPatch>osc.axh</helpPatch>
+      <helpPatch>brds_percussion.axh</helpPatch>
       <inlets>
          <frac32.bipolar name="pitch" description="pitch"/>
          <frac32 name="timbre"/>
