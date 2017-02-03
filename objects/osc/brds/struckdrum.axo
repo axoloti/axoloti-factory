@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="struckdrum" uuid="e9737331-1464-485d-9d5e-d304e04943f7">
       <sDescription>Struck drum oscillator from Mutable Instruments Braids</sDescription>
       <author>Johannes Taelman</author>
@@ -27,7 +27,7 @@
       <includes>
          <include>./brds_digital.h</include>
       </includes>
-      <code.declaration><![CDATA[braids_deriv::StruckDrum osc;
+      <code.declaration><![CDATA[braids_digital_deriv::StruckDrum osc;
 bool pstrike;]]></code.declaration>
       <code.init><![CDATA[osc.Init();
 pstrike = 0;]]></code.init>

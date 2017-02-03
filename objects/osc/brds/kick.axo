@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="kick" uuid="5687b190-2426-430c-a30c-383b668dcfad">
       <sDescription>&quot;Kick&quot; oscillator from Mutable Instruments Braids</sDescription>
       <author>Johannes Taelman</author>
@@ -27,7 +27,7 @@
       <includes>
          <include>./brds_digital.h</include>
       </includes>
-      <code.declaration><![CDATA[braids_deriv::Kick osc;
+      <code.declaration><![CDATA[braids_digital_deriv::Kick osc;
 bool pstrike;]]></code.declaration>
       <code.init><![CDATA[osc.Init();
 pstrike = 0;]]></code.init>

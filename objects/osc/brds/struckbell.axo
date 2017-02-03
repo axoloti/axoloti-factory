@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="struckbell" uuid="7dc99f76-9a23-4faf-a6da-3654cd168670">
       <sDescription>feedback FM oscillator from Mutable Instruments Braids</sDescription>
       <author>Johannes Taelman</author>
@@ -27,7 +27,7 @@
       <includes>
          <include>./brds_digital.h</include>
       </includes>
-      <code.declaration><![CDATA[braids_deriv::StruckBell osc;
+      <code.declaration><![CDATA[braids_digital_deriv::StruckBell osc;
 bool pstrike;]]></code.declaration>
       <code.init><![CDATA[osc.Init();
 pstrike = 0;]]></code.init>

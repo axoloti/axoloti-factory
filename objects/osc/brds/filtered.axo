@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="filtered" uuid="5ad078fd-5713-497a-8be9-ea086cf88357">
       <sDescription>DigitalFilter oscillator from Mutable Instruments Braids</sDescription>
       <author>Johannes Taelman</author>
@@ -31,7 +31,7 @@
       <includes>
          <include>./brds_digital.h</include>
       </includes>
-      <code.declaration><![CDATA[braids_deriv::DigitalFilter osc;]]></code.declaration>
+      <code.declaration><![CDATA[braids_digital_deriv::DigitalFilter osc;]]></code.declaration>
       <code.init><![CDATA[osc.Init();]]></code.init>
       <code.krate><![CDATA[osc.set_parameters(__USAT((inlet_timbre+param_timbre)>>12,15),__USAT((inlet_color+param_color)>>12,15));
 osc.set_pitch((64<<7)+((param_pitch + inlet_pitch)>>14));

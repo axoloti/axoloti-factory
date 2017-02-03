@@ -1,9 +1,7 @@
 #ifndef BRDS_DIGITAL_
 #define BRDS_DIGITAL_
 
-namespace braids_deriv {
-
-    
+namespace braids_digital_deriv {
 
 static const size_t kWGBridgeLength = 1024;
 static const size_t kWGNeckLength = 4096;

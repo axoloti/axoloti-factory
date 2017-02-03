@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="blown" uuid="1185d86b-5be7-429f-8788-e26868c65a82">
       <sDescription>&quot;Blown&quot; oscillator from Mutable Instruments Braids</sDescription>
       <author>Johannes Taelman</author>
@@ -27,7 +27,7 @@
       <includes>
          <include>./brds_digital.h</include>
       </includes>
-      <code.declaration><![CDATA[braids_deriv::Blown osc;
+      <code.declaration><![CDATA[braids_digital_deriv::Blown osc;
 bool pstrike;]]></code.declaration>
       <code.init><![CDATA[osc.Init();
 pstrike = 0;]]></code.init>

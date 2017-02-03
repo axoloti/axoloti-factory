@@ -1,6 +1,6 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="vowel" uuid="5fe75952-b89b-416b-a502-d5c1e47a8827">
-      <sDescription>Vosim oscillator from Mutable Instruments Braids</sDescription>
+      <sDescription>Vowel oscillator from Mutable Instruments Braids</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
       <helpPatch>osc.axh</helpPatch>
@@ -27,7 +27,7 @@
       <includes>
          <include>./brds_digital.h</include>
       </includes>
-      <code.declaration><![CDATA[braids_deriv::Vowel osc;]]></code.declaration>
+      <code.declaration><![CDATA[braids_digital_deriv::Vowel osc;]]></code.declaration>
       <code.init><![CDATA[osc.Init();]]></code.init>
       <code.krate><![CDATA[osc.set_parameters(__USAT((inlet_timbre+param_timbre)>>12,15),__USAT((inlet_color+param_color)>>12,15));
 osc.set_pitch((64<<7)+((param_pitch + inlet_pitch)>>14));

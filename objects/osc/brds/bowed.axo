@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="bowed" uuid="c914df2f-e44b-4918-be05-2c194020cca9">
       <sDescription>&quot;Bowed&quot; oscillator from Mutable Instruments Braids</sDescription>
       <author>Johannes Taelman</author>
@@ -27,7 +27,7 @@
       <includes>
          <include>./brds_digital.h</include>
       </includes>
-      <code.declaration><![CDATA[braids_deriv::Bowed osc;
+      <code.declaration><![CDATA[braids_digital_deriv::Bowed osc;
 bool pstrike;]]></code.declaration>
       <code.init><![CDATA[osc.Init();
 pstrike = 0;]]></code.init>
