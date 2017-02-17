@@ -56,7 +56,7 @@ int i;
 
 processor.mutable_parameters()->position=q27_to_float(param_position);
 processor.mutable_parameters()->size=q27_to_float(param_size);
-processor.mutable_parameters()->pitch=q27_to_float(param_pitch);
+processor.mutable_parameters()->pitch=q27_to_float(param_pitch) * 64.0f;
 processor.mutable_parameters()->density=q27_to_float(param_density);
 processor.mutable_parameters()->texture=q27_to_float(param_texture);
 processor.mutable_parameters()->dry_wet=q27_to_float(param_mix);
@@ -75,9 +75,9 @@ processor.mutable_parameters()->spectral.phase_randomization=q27_to_float(param_
 processor.mutable_parameters()->spectral.warp=q27_to_float(param_swarp);
 
 
-processor.mutable_parameters()->gate=q27_to_float(inlet_gate);
-processor.mutable_parameters()->freeze=q27_to_float(inlet_freeze);
-processor.mutable_parameters()->trigger=q27_to_float(inlet_trigger);
+processor.mutable_parameters()->gate = inlet_gate > (1 << 26);
+processor.mutable_parameters()->freeze = inlet_freeze > (1 << 26);
+processor.mutable_parameters()->trigger = inlet_trigger > (1 << 26);
 
 
 
