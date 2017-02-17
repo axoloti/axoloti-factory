@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="clds" uuid="FD6EFF1B-3317-4BA5-A952-841327FC2F47">
       <sDescription>Clouds effect from Mutable Instruments</sDescription>
       <author>Mark Harris</author>
@@ -34,6 +34,16 @@
          <frac32.u.map name="srate"/>
          <frac32.u.map name="srand"/>
          <frac32.u.map name="swarp"/>
+         <int32.hradio name="playmode">
+            <MaxValue i="5"/>
+         </int32.hradio>
+         <int32 name="channels">
+            <MinValue i="1"/>
+            <MaxValue i="2"/>
+         </int32>
+         <bool32.tgl name="lofi"/>
+         <bool32.tgl name="silence"/>
+         <bool32.tgl name="bypass"/>
       </params>
       <attribs/>
       <includes>
@@ -79,7 +89,17 @@ processor.mutable_parameters()->gate = inlet_gate > (1 << 26);
 processor.mutable_parameters()->freeze = inlet_freeze > (1 << 26);
 processor.mutable_parameters()->trigger = inlet_trigger > (1 << 26);
 
+processor.set_playback_mode((clouds::PlaybackMode)param_playmode );
+processor.set_bypass(param_bypass);
+processor.set_silence(param_silence);
+processor.set_num_channels(param_channels);
+processor.set_low_fidelity(param_lofi);
 
+static int fred = 0;
+if(fred==0) {
+LogTextMessage("asdhlkad %x", param_channels);
+fred++;
+}
 
 for(i=0;i<BUFSIZE;i++){
    input[i].l = inlet_l[i]>> 17; 
