@@ -85,11 +85,11 @@ processor.mutable_parameters()->spectral.phase_randomization=q27_to_float(param_
 processor.mutable_parameters()->spectral.warp=q27_to_float(param_swarp);
 
 
-processor.mutable_parameters()->gate = inlet_gate > (1 << 26);
-processor.mutable_parameters()->freeze = inlet_freeze > (1 << 26);
-processor.mutable_parameters()->trigger = inlet_trigger > (1 << 26);
+processor.mutable_parameters()->gate = inlet_gate;
+processor.mutable_parameters()->freeze = inlet_freeze;
+processor.mutable_parameters()->trigger = inlet_trigger;
 
-processor.set_playback_mode((clouds::PlaybackMode)param_playmode );
+processor.set_playback_mode((clouds::PlaybackMode) param_playmode );
 processor.set_bypass(param_bypass);
 processor.set_silence(param_silence);
 processor.set_num_channels(param_channels);
