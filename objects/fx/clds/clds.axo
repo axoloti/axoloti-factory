@@ -95,12 +95,6 @@ processor.set_silence(param_silence);
 processor.set_num_channels(param_channels);
 processor.set_low_fidelity(param_lofi);
 
-static int fred = 0;
-if(fred==0) {
-LogTextMessage("asdhlkad %x", param_channels);
-fred++;
-}
-
 for(i=0;i<BUFSIZE;i++){
    input[i].l = inlet_l[i]>> 17; 
    input[i].r = inlet_r[i] >> 17; 
