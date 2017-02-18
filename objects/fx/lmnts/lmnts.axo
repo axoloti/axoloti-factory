@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="lmnts" uuid="361A8551-0FF8-4559-9D34-6419E86449E7">
       <sDescription>Elements effect from Mutable Instruments Elements</sDescription>
       <author>Mark Harris</author>
@@ -18,27 +18,22 @@
       </outlets>
       <displays/>
       <params>
-         <frac32.u.map name="excite env shape"/>
+         <frac32.u.map name="contour"/>
          <frac32.u.map name="bow level"/>
          <frac32.u.map name="bow timbre"/>
          <frac32.u.map name="blow level"/>
-         <frac32.u.map name="blow meta"/>
+         <frac32.u.map name="blow flow"/>
          <frac32.u.map name="blow timbre"/>
          <frac32.u.map name="strike level"/>
-         <frac32.u.map name="strike meta"/>
+         <frac32.u.map name="strike mallet"/>
          <frac32.u.map name="strike timbre"/>
-         <frac32.u.map name="excite signature"/>
-         <frac32.u.map name="res geometry"/>
-         <frac32.u.map name="res brightness"/>
-         <frac32.u.map name="res damping"/>
-         <frac32.u.map name="res position"/>
-         <frac32.u.map name="res mod freq"/>
-         <frac32.u.map name="res mod offset"/>
-         <frac32.u.map name="reverb diff"/>
-         <frac32.u.map name="reverb lp"/>
+         <frac32.u.map name="geometry"/>
+         <frac32.u.map name="brightness"/>
+         <frac32.u.map name="damping"/>
+         <frac32.u.map name="position"/>
          <frac32.u.map name="space"/>
-         <frac32.u.map name="mod freq"/>
          <frac32.s.map name="pitch"/>
+         <frac32.u.map name="seed"/>
       </params>
       <attribs>
          <combo name="resonator">
@@ -61,14 +56,9 @@
       <includes>
          <include>axoloti_mi.h</include>
       </includes>
-      <code.declaration><![CDATA[
-elements::Part part;
-
-
-]]></code.declaration>
-      <code.init><![CDATA[
-
-const int SAMPLE_SZ = 256026;
+      <code.declaration><![CDATA[elements::Part part;
+uint32_t seed=0;]]></code.declaration>
+      <code.init><![CDATA[const int SAMPLE_SZ = 256026;
 const int NOISE_SZ = 81926;
 
 bool r = false;
@@ -93,38 +83,33 @@ part.Init( (uint16_t *) sdram_malloc(ELEMENTS_SZ) );
 
 LogTextMessage("Elements initialised, SDRAM free %d", sdram_get_free() );
 
-part.set_resonator_model(elements::ResonatorModel(attr_resonator));
-
-]]></code.init>
-      <code.krate><![CDATA[
-
-static float blow_in[BUFSIZE];
+part.set_resonator_model(elements::ResonatorModel(attr_resonator));]]></code.init>
+      <code.krate><![CDATA[static float blow_in[BUFSIZE];
 static float strike_in[BUFSIZE];
 static float left[BUFSIZE];
 static float right[BUFSIZE];
 
 int i;
 
-part.mutable_patch()->exciter_envelope_shape=q27_to_float(param_excite_space_env_space_shape);
+part.mutable_patch()->exciter_envelope_shape=q27_to_float(param_contour);
 part.mutable_patch()->exciter_bow_level=q27_to_float(param_bow_space_level);
 part.mutable_patch()->exciter_bow_timbre=q27_to_float(param_bow_space_timbre);
 part.mutable_patch()->exciter_blow_level=q27_to_float(param_blow_space_level);
-part.mutable_patch()->exciter_blow_meta=q27_to_float(param_blow_space_meta);
+part.mutable_patch()->exciter_blow_meta=q27_to_float(param_blow_space_flow);
 part.mutable_patch()->exciter_blow_timbre=q27_to_float(param_blow_space_timbre);
 part.mutable_patch()->exciter_strike_level=q27_to_float(param_strike_space_level);
-part.mutable_patch()->exciter_strike_meta=q27_to_float(param_strike_space_meta);
+part.mutable_patch()->exciter_strike_meta=q27_to_float(param_strike_space_mallet);
 part.mutable_patch()->exciter_strike_timbre=q27_to_float(param_strike_space_timbre);
-part.mutable_patch()->exciter_signature=q27_to_float(param_excite_space_signature);
-part.mutable_patch()->resonator_geometry=q27_to_float(param_res_space_geometry);
-part.mutable_patch()->resonator_brightness=q27_to_float(param_res_space_brightness);
-part.mutable_patch()->resonator_damping=q27_to_float(param_res_space_damping);
-part.mutable_patch()->resonator_position=q27_to_float(param_res_space_position);
-part.mutable_patch()->resonator_modulation_frequency=q27_to_float(param_res_space_mod_space_freq);
-part.mutable_patch()->resonator_modulation_offset=q27_to_float(param_res_space_mod_space_offset);
-part.mutable_patch()->reverb_diffusion=q27_to_float(param_reverb_space_diff);
-part.mutable_patch()->reverb_lp=q27_to_float(param_reverb_space_lp);
+part.mutable_patch()->resonator_geometry=q27_to_float(param_geometry);
+part.mutable_patch()->resonator_brightness=q27_to_float(param_brightness);
+part.mutable_patch()->resonator_damping=q27_to_float(param_damping);
+part.mutable_patch()->resonator_position=q27_to_float(param_position);
 part.mutable_patch()->space=q27_to_float(param_space) * 2.0;
-part.mutable_patch()->modulation_frequency==q27_to_float(param_mod_space_freq);
+
+if(seed!=param_seed) {
+	seed = param_seed;
+	part.Seed(&seed, 1);
+}
  
 for(i=0;i<BUFSIZE;i++){
    blow_in[i] = q27_to_float(inlet_blow[i]);
@@ -137,7 +122,6 @@ state.note = q27_to_float(param_pitch + inlet_pitch) * 60.0f;
 //state.note = (64<<7)+((param_pitch + inlet_pitch)>>14);
 state.modulation = q27_to_float(inlet_modulation) * 60.0f;
 state.strength = q27_to_float(inlet_strength);
-
 
 part.Process(state,blow_in,strike_in,left,right,BUFSIZE);
 
