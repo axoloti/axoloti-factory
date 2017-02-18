@@ -66,15 +66,15 @@ static clouds::ShortFrame output[BUFSIZE];
 
 int i;
 
-processor.mutable_parameters()->position=q27_to_float(param_position + inlet_position);
-processor.mutable_parameters()->size=q27_to_float(param_size + inlet_size);
-processor.mutable_parameters()->pitch=q27_to_float(param_pitch + inlet_pitch) * 64.0f;
-processor.mutable_parameters()->density=q27_to_float(param_density + inlet_density);
-processor.mutable_parameters()->texture=q27_to_float(param_texture + inlet_texture);
-processor.mutable_parameters()->dry_wet=q27_to_float(param_mix + inlet_mix);
-processor.mutable_parameters()->stereo_spread=q27_to_float(param_spread + inlet_spread);
-processor.mutable_parameters()->feedback=q27_to_float(param_feedback + inlet_feedback);
-processor.mutable_parameters()->reverb=q27_to_float(param_reverb + inlet_reverb);
+processor.mutable_parameters()->position 	= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_position 	+ inlet_position)));
+processor.mutable_parameters()->size		= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_size 		+ inlet_size)));
+processor.mutable_parameters()->pitch		= std::max<float>(-64.0f,std::min<float>(64.0f, q27_to_float(param_pitch 	+ inlet_pitch) * 64.0f));
+processor.mutable_parameters()->density		= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_density 	+ inlet_density)));
+processor.mutable_parameters()->texture 	= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_texture 	+ inlet_texture)));
+processor.mutable_parameters()->dry_wet 	= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_mix 		+ inlet_mix)));
+processor.mutable_parameters()->stereo_spread= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_spread 	+ inlet_spread)));
+processor.mutable_parameters()->feedback 	= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_feedback 	+ inlet_feedback)));
+processor.mutable_parameters()->reverb		= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_reverb 	+ inlet_reverb)));
 
 
 processor.mutable_parameters()->freeze = inlet_freeze;
