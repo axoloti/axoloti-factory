@@ -85,24 +85,16 @@
    </obj>
    <obj type="fx/clds/clds" uuid="FD6EFF1B-3317-4BA5-A952-841327FC2F47" name="clds_1" x="448" y="322">
       <params>
-         <frac32.u.map name="position" value="0.0"/>
-         <frac32.u.map name="size" value="64.0"/>
+         <frac32.u.map name="position" value="12.5"/>
+         <frac32.u.map name="size" value="45.5"/>
          <frac32.s.map name="pitch" value="0.0"/>
-         <frac32.u.map name="density" value="23.5"/>
-         <frac32.u.map name="texture" value="44.0"/>
-         <frac32.u.map name="mix" value="39.0"/>
-         <frac32.u.map name="spread" value="47.0"/>
-         <frac32.u.map name="feedback" value="35.5"/>
-         <frac32.u.map name="reverb" value="52.0"/>
-         <frac32.u.map name="goverlap" value="33.5"/>
-         <frac32.u.map name="gwndshape" value="39.0"/>
-         <frac32.u.map name="gspread" value="46.5"/>
-         <bool32.tgl name="gseed" value="0"/>
-         <frac32.u.map name="squantization" value="24.5"/>
-         <frac32.u.map name="srate" value="19.0"/>
-         <frac32.u.map name="srand" value="13.5"/>
-         <frac32.u.map name="swarp" value="42.0"/>
-         <int32.hradio name="playmode" value="2"/>
+         <frac32.u.map name="density" value="41.0"/>
+         <frac32.u.map name="texture" value="46.5"/>
+         <frac32.u.map name="mix" value="50.0"/>
+         <frac32.s.map name="spread" value="38.0"/>
+         <frac32.u.map name="feedback" value="19.5"/>
+         <frac32.s.map name="reverb" value="25.0"/>
+         <int32.hradio name="playmode" value="0"/>
          <int32 name="channels" value="2"/>
          <bool32.tgl name="lofi" value="0"/>
          <bool32.tgl name="silence" value="0"/>
@@ -122,12 +114,11 @@
       <params/>
       <attribs/>
    </obj>
-   <comment type="patch/comment" x="616" y="995" text="playback modes:"/>
-   <comment type="patch/comment" x="616" y="1008" text="granular"/>
-   <comment type="patch/comment" x="616" y="1022" text="stretch"/>
-   <comment type="patch/comment" x="616" y="1036" text="looping delay"/>
-   <comment type="patch/comment" x="616" y="1050" text="spectral"/>
-   <comment type="patch/comment" x="616" y="1064" text="last"/>
+   <comment type="patch/comment" x="588" y="728" text="playback modes:"/>
+   <comment type="patch/comment" x="588" y="742" text="granular"/>
+   <comment type="patch/comment" x="588" y="756" text="stretch"/>
+   <comment type="patch/comment" x="588" y="770" text="looping delay"/>
+   <comment type="patch/comment" x="588" y="784" text="spectral"/>
    <nets>
       <net>
          <source obj="vca_1" outlet="o"/>
@@ -203,9 +194,9 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>9</x>
-      <y>23</y>
-      <width>1087</width>
-      <height>873</height>
+      <x>862</x>
+      <y>200</y>
+      <width>1223</width>
+      <height>1066</height>
    </windowPos>
 </patch-1.0>
