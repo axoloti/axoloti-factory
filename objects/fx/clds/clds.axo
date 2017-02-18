@@ -8,8 +8,16 @@
          <frac32buffer name="l"/>
          <frac32buffer name="r"/>
          <bool32 name="freeze"/>
-         <bool32 name="trigger"/>
-         <bool32 name="gate"/>
+         <bool32.rising name="trig"/>
+         <frac32.bipolar name="position"/>
+         <frac32.bipolar name="size"/>
+         <frac32.bipolar name="pitch"/>
+         <frac32.bipolar name="density"/>
+         <frac32.bipolar name="texture"/>
+         <frac32.bipolar name="mix"/>
+         <frac32.bipolar name="spread"/>
+         <frac32.bipolar name="feedback"/>
+         <frac32.bipolar name="reverb"/>
       </inlets>
       <outlets>
          <frac32buffer name="l"/>
@@ -19,13 +27,13 @@
       <params>
          <frac32.u.map name="position"/>
          <frac32.u.map name="size"/>
-         <frac32.s.map name="pitch"/>
+         <frac32.s.map.pitch name="pitch"/>
          <frac32.u.map name="density"/>
          <frac32.u.map name="texture"/>
          <frac32.u.map name="mix"/>
-         <frac32.s.map name="spread"/>
+         <frac32.u.map name="spread"/>
          <frac32.u.map name="feedback"/>
-         <frac32.s.map name="reverb"/>
+         <frac32.u.map name="reverb"/>
          <int32.hradio name="playmode">
             <MaxValue i="4"/>
          </int32.hradio>
@@ -41,7 +49,8 @@
       <includes>
          <include>axoloti_mi.h</include>
       </includes>
-      <code.declaration><![CDATA[clouds::GranularProcessor processor;]]></code.declaration>
+      <code.declaration><![CDATA[clouds::GranularProcessor processor;
+bool ltrig = false;]]></code.declaration>
       <code.init><![CDATA[const int LARGE_BUF = 118784;
 const int SMALL_BUF = 65536 - 128;
 
@@ -50,26 +59,38 @@ if(!large_buff) return;
 uint8_t* small_buff = (uint8_t*) sdram_malloc(SMALL_BUF); //ccm usually
 if(!small_buff) return;
 
-processor.Init(large_buff,LARGE_BUF, small_buff,SMALL_BUF);]]></code.init>
+processor.Init(large_buff,LARGE_BUF, small_buff,SMALL_BUF);
+ltrig = false;]]></code.init>
       <code.krate><![CDATA[static clouds::ShortFrame input[BUFSIZE];
 static clouds::ShortFrame output[BUFSIZE];
 
 int i;
 
-processor.mutable_parameters()->position=q27_to_float(param_position);
-processor.mutable_parameters()->size=q27_to_float(param_size);
-processor.mutable_parameters()->pitch=q27_to_float(param_pitch) * 64.0f;
-processor.mutable_parameters()->density=q27_to_float(param_density);
-processor.mutable_parameters()->texture=q27_to_float(param_texture);
-processor.mutable_parameters()->dry_wet=q27_to_float(param_mix);
-processor.mutable_parameters()->stereo_spread=q27_to_float(param_spread);
-processor.mutable_parameters()->feedback=q27_to_float(param_feedback);
-processor.mutable_parameters()->reverb=q27_to_float(param_reverb);
+processor.mutable_parameters()->position=q27_to_float(param_position + inlet_position);
+processor.mutable_parameters()->size=q27_to_float(param_size + inlet_size);
+processor.mutable_parameters()->pitch=q27_to_float(param_pitch + inlet_pitch) * 64.0f;
+processor.mutable_parameters()->density=q27_to_float(param_density + inlet_density);
+processor.mutable_parameters()->texture=q27_to_float(param_texture + inlet_texture);
+processor.mutable_parameters()->dry_wet=q27_to_float(param_mix + inlet_mix);
+processor.mutable_parameters()->stereo_spread=q27_to_float(param_spread + inlet_spread);
+processor.mutable_parameters()->feedback=q27_to_float(param_feedback + inlet_feedback);
+processor.mutable_parameters()->reverb=q27_to_float(param_reverb + inlet_reverb);
 
 
-processor.mutable_parameters()->gate = inlet_gate;
 processor.mutable_parameters()->freeze = inlet_freeze;
-processor.mutable_parameters()->trigger = inlet_trigger;
+
+//note the trig input is really a gate... whicht then feeds the trig
+processor.mutable_parameters()->gate = inlet_trig;
+
+bool trig = false;
+if(inlet_trig && !ltrig) {
+	ltrig = true;
+	trig  = true;
+} else if (!inlet_trig) {
+	ltrig = false;
+}
+processor.mutable_parameters()->trigger = trig;
+
 
 processor.set_playback_mode((clouds::PlaybackMode) param_playmode );
 processor.set_bypass(param_bypass);

@@ -5,19 +5,13 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="ctrl/toggle" uuid="42b8134fa729d54bfc8d62d6ef3fa99498c1de99" name="freeze" x="378" y="28">
+   <obj type="ctrl/toggle" uuid="42b8134fa729d54bfc8d62d6ef3fa99498c1de99" name="freeze" x="182" y="28">
       <params>
          <bool32.tgl name="b" value="0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="ctrl/toggle" uuid="42b8134fa729d54bfc8d62d6ef3fa99498c1de99" name="gate" x="476" y="28">
-      <params>
-         <bool32.tgl name="b" value="0"/>
-      </params>
-      <attribs/>
-   </obj>
-   <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="volume" x="784" y="28">
+   <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="volume" x="266" y="28">
       <params>
          <frac32.u.map name="value" value="37.0"/>
       </params>
@@ -85,15 +79,15 @@
    </obj>
    <obj type="fx/clds/clds" uuid="FD6EFF1B-3317-4BA5-A952-841327FC2F47" name="clds_1" x="448" y="322">
       <params>
-         <frac32.u.map name="position" value="12.5"/>
-         <frac32.u.map name="size" value="45.5"/>
+         <frac32.u.map name="position" value="0.0"/>
+         <frac32.u.map name="size" value="30.0"/>
          <frac32.s.map name="pitch" value="0.0"/>
-         <frac32.u.map name="density" value="41.0"/>
-         <frac32.u.map name="texture" value="46.5"/>
-         <frac32.u.map name="mix" value="50.0"/>
-         <frac32.s.map name="spread" value="38.0"/>
-         <frac32.u.map name="feedback" value="19.5"/>
-         <frac32.s.map name="reverb" value="25.0"/>
+         <frac32.u.map name="density" value="48.0"/>
+         <frac32.u.map name="texture" value="53.5"/>
+         <frac32.u.map name="mix" value="64.0"/>
+         <frac32.u.map name="spread" value="0.0"/>
+         <frac32.u.map name="feedback" value="25.0"/>
+         <frac32.u.map name="reverb" value="39.0"/>
          <int32.hradio name="playmode" value="0"/>
          <int32 name="channels" value="2"/>
          <bool32.tgl name="lofi" value="0"/>
@@ -114,11 +108,11 @@
       <params/>
       <attribs/>
    </obj>
-   <comment type="patch/comment" x="588" y="728" text="playback modes:"/>
-   <comment type="patch/comment" x="588" y="742" text="granular"/>
-   <comment type="patch/comment" x="588" y="756" text="stretch"/>
-   <comment type="patch/comment" x="588" y="770" text="looping delay"/>
-   <comment type="patch/comment" x="588" y="784" text="spectral"/>
+   <comment type="patch/comment" x="560" y="840" text="playback modes:"/>
+   <comment type="patch/comment" x="560" y="854" text="granular"/>
+   <comment type="patch/comment" x="560" y="868" text="stretch"/>
+   <comment type="patch/comment" x="560" y="882" text="looping delay"/>
+   <comment type="patch/comment" x="560" y="896" text="spectral"/>
    <nets>
       <net>
          <source obj="vca_1" outlet="o"/>
@@ -127,7 +121,7 @@
       </net>
       <net>
          <source obj="trig" outlet="o"/>
-         <dest obj="clds_1" inlet="trigger"/>
+         <dest obj="clds_1" inlet="trig"/>
       </net>
       <net>
          <source obj="freeze" outlet="o"/>
@@ -154,10 +148,6 @@
       <net>
          <source obj="saw_1" outlet="wave"/>
          <dest obj="vca_1" inlet="a"/>
-      </net>
-      <net>
-         <source obj="gate" outlet="o"/>
-         <dest obj="clds_1" inlet="gate"/>
       </net>
       <net>
          <source obj="volume" outlet="out"/>
@@ -194,8 +184,8 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>862</x>
-      <y>200</y>
+      <x>579</x>
+      <y>313</y>
       <width>1223</width>
       <height>1066</height>
    </windowPos>
