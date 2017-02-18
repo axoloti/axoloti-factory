@@ -94,7 +94,10 @@
          <bool32.tgl name="silence" value="0"/>
          <bool32.tgl name="bypass" value="0"/>
       </params>
-      <attribs/>
+      <attribs>
+         <combo attributeName="large buffer" selection="131072"/>
+         <combo attributeName="small buffer" selection="65536"/>
+      </attribs>
    </obj>
    <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_2" x="728" y="322">
       <params/>
@@ -185,7 +188,7 @@
    <notes><![CDATA[]]></notes>
    <windowPos>
       <x>579</x>
-      <y>313</y>
+      <y>301</y>
       <width>1223</width>
       <height>1066</height>
    </windowPos>

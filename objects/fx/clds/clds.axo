@@ -45,14 +45,45 @@
          <bool32.tgl name="silence"/>
          <bool32.tgl name="bypass"/>
       </params>
-      <attribs/>
+      <attribs>
+         <combo name="large buffer">
+            <MenuEntries>
+               <string>131072</string>
+               <string>262144</string>
+               <string>524288</string>
+               <string>1048576</string>
+               <string>2097152</string>
+               <string>4194304</string>
+            </MenuEntries>
+            <CEntries>
+               <string>131072</string>
+               <string>262144</string>
+               <string>524288</string>
+               <string>1048576</string>
+               <string>2097152</string>
+               <string>4194304</string>
+            </CEntries>
+         </combo>
+         <combo name="small buffer">
+            <MenuEntries>
+               <string>65536</string>
+               <string>131072</string>
+               <string>262144</string>
+            </MenuEntries>
+            <CEntries>
+               <string>65536</string>
+               <string>131072</string>
+               <string>262144</string>
+            </CEntries>
+         </combo>
+      </attribs>
       <includes>
          <include>axoloti_mi.h</include>
       </includes>
       <code.declaration><![CDATA[clouds::GranularProcessor processor;
 bool ltrig = false;]]></code.declaration>
-      <code.init><![CDATA[const int LARGE_BUF = 118784;
-const int SMALL_BUF = 65536 - 128;
+      <code.init><![CDATA[const int LARGE_BUF = attr_large_space_buffer;
+const int SMALL_BUF = attr_small_space_buffer;
 
 uint8_t* large_buff = (uint8_t*) sdram_malloc(LARGE_BUF); 
 if(!large_buff) return;
