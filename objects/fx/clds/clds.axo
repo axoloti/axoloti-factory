@@ -18,6 +18,11 @@
          <frac32.bipolar name="spread"/>
          <frac32.bipolar name="feedback"/>
          <frac32.bipolar name="reverb"/>
+         <int32.positive name="mode"/>
+         <int32.positive name="mono"/>
+         <bool32 name="lofi"/>
+         <bool32 name="silence"/>
+         <bool32 name="bypass"/>
       </inlets>
       <outlets>
          <frac32buffer name="l"/>
@@ -37,10 +42,7 @@
          <int32.hradio name="playmode">
             <MaxValue i="4"/>
          </int32.hradio>
-         <int32 name="channels">
-            <MinValue i="1"/>
-            <MaxValue i="2"/>
-         </int32>
+         <bool32.tgl name="mono"/>
          <bool32.tgl name="lofi"/>
          <bool32.tgl name="silence"/>
          <bool32.tgl name="bypass"/>
@@ -123,11 +125,11 @@ if(inlet_trig && !ltrig) {
 processor.mutable_parameters()->trigger = trig;
 
 
-processor.set_playback_mode((clouds::PlaybackMode) param_playmode );
-processor.set_bypass(param_bypass);
-processor.set_silence(param_silence);
-processor.set_num_channels(param_channels);
-processor.set_low_fidelity(param_lofi);
+processor.set_playback_mode((clouds::PlaybackMode) ((param_playmode + inlet_mode) % 4) );
+processor.set_bypass(param_bypass || inlet_bypass);
+processor.set_silence(param_silence || inlet_silence);
+processor.set_num_channels(( param_mono || inlet_mono) ? 1 : 2 );
+processor.set_low_fidelity(param_lofi || inlet_lofi);
 
 for(i=0;i<BUFSIZE;i++){
    input[i].l = inlet_l[i]>> 17; 
