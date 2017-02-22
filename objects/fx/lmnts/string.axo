@@ -1,6 +1,10 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="string" uuid="F272EAA4-2C68-4843-BA42-C6BA402943AE">
-      <sDescription>String from Mutable Instruments Elements</sDescription>
+      <sDescription>string from the elements dsp code open sourced by mutable instruments.
+any bugs/issues you find are our own, report on the axoloti forum.
+
+Thanks to Olivier Gillet from Mutable Instruments for open sourcing their code.
+http://mutable-instruments.com</sDescription>
       <author>Mark Harris</author>
       <license>GPL</license>
       <inlets>

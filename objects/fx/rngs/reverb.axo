@@ -1,6 +1,10 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="reverb" uuid="bb0fb9e0-aafe-4501-ba83-897f2530751d">
-      <sDescription>Reverb effect from Mutable Instruments Rings</sDescription>
+      <sDescription>a reverb effect, based on the rings reverb dsp code open sourced by mutable instruments.
+any bugs/issues you find are our own, report on the axoloti forum.
+
+Thanks to Olivier Gillet from Mutable Instruments for open sourcing their code.
+http://mutable-instruments.com</sDescription>
       <license>GPL</license>
       <inlets>
          <frac32buffer name="l"/>

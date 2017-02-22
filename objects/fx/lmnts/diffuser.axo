@@ -1,6 +1,10 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="diffuser" uuid="C1031A8D-A6A5-4640-9440-5FA1E2FA756E">
-      <sDescription>Diffuser effect from Mutable Instruments Elements</sDescription>
+      <sDescription>a diffuser effect, based on the elements dsp code open sourced by mutable instruments.
+any bugs/issues you find are our own, report on the axoloti forum.
+
+Thanks to Olivier Gillet from Mutable Instruments for open sourcing their code.
+http://mutable-instruments.com</sDescription>
       <author>Mark Harris</author>
       <license>GPL</license>
       <inlets>

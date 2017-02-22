@@ -7,13 +7,13 @@
    </obj>
    <obj type="ctrl/toggle" uuid="42b8134fa729d54bfc8d62d6ef3fa99498c1de99" name="freeze" x="182" y="28">
       <params>
-         <bool32.tgl name="b" value="0"/>
+         <bool32.tgl name="b" value="1"/>
       </params>
       <attribs/>
    </obj>
    <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="volume" x="266" y="28">
       <params>
-         <frac32.u.map name="value" value="37.0"/>
+         <frac32.u.map name="value" value="18.5"/>
       </params>
       <attribs/>
    </obj>
@@ -80,14 +80,14 @@
    <obj type="fx/clds/clds" uuid="FD6EFF1B-3317-4BA5-A952-841327FC2F47" name="clds_1" x="448" y="322">
       <params>
          <frac32.u.map name="position" value="0.0"/>
-         <frac32.u.map name="size" value="47.0"/>
+         <frac32.u.map name="size" value="14.0"/>
          <frac32.s.map name="pitch" value="0.0"/>
-         <frac32.u.map name="density" value="42.5"/>
-         <frac32.u.map name="texture" value="33.0"/>
-         <frac32.u.map name="mix" value="47.5"/>
-         <frac32.u.map name="spread" value="64.0"/>
-         <frac32.u.map name="feedback" value="27.5"/>
-         <frac32.u.map name="reverb" value="40.5"/>
+         <frac32.u.map name="density" value="0.0"/>
+         <frac32.u.map name="texture" value="27.0"/>
+         <frac32.u.map name="mix" value="37.0"/>
+         <frac32.u.map name="spread" value="46.5"/>
+         <frac32.u.map name="feedback" value="12.0"/>
+         <frac32.u.map name="reverb" value="52.5"/>
          <int32.hradio name="playmode" value="0"/>
          <bool32.tgl name="mono" value="0"/>
          <bool32.tgl name="lofi" value="0"/>
@@ -111,11 +111,7 @@
       <params/>
       <attribs/>
    </obj>
-   <comment type="patch/comment" x="560" y="952" text="playback modes:"/>
-   <comment type="patch/comment" x="560" y="966" text="granular"/>
-   <comment type="patch/comment" x="560" y="980" text="stretch"/>
-   <comment type="patch/comment" x="560" y="994" text="looping delay"/>
-   <comment type="patch/comment" x="560" y="1008" text="spectral"/>
+   <comment type="patch/comment" x="560" y="952" text="0:granular 1:looping"/>
    <nets>
       <net>
          <source obj="vca_1" outlet="o"/>
@@ -187,9 +183,9 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>539</x>
-      <y>157</y>
+      <x>229</x>
+      <y>23</y>
       <width>1211</width>
-      <height>1145</height>
+      <height>873</height>
    </windowPos>
 </patch-1.0>

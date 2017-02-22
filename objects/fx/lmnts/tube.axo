@@ -1,6 +1,10 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="tube" uuid="DA10F64F-A80A-41DA-A97E-5E010D8E46E9">
-      <sDescription>Waveguide tube from Mutable Instruments Elements</sDescription>
+      <sDescription>waveguide tube from the elements dsp code open sourced by mutable instruments.
+any bugs/issues you find are our own, report on the axoloti forum.
+
+Thanks to Olivier Gillet from Mutable Instruments for open sourcing their code.
+http://mutable-instruments.com</sDescription>
       <author>Mark Harris</author>
       <license>GPL</license>
       <inlets>

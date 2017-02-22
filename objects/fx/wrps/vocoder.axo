@@ -1,6 +1,11 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="vocoder" uuid="87d4cf48-208b-4828-a574-107c7678e1ea">
-      <sDescription>vocoder from mutable instruments
+      <sDescription>a vocoder effect, based on the warps dsp code open sourced by mutable instruments.
+any bugs/issues you find are our own, report on the axoloti forum.
+
+Thanks to Olivier Gillet from Mutable Instruments for open sourcing their code.
+http://mutable-instruments.com
+
 modified for 48kHz operation</sDescription>
       <author>Johannes Taelman</author>
       <license>GPL</license>

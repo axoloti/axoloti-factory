@@ -1,6 +1,10 @@
 <objdefs appVersion="1.0.12">
    <obj.normal id="lmnts" uuid="361A8551-0FF8-4559-9D34-6419E86449E7">
-      <sDescription>Elements effect from Mutable Instruments Elements</sDescription>
+      <sDescription>an elements-like effect, based on open source DSP code from mutable instruments.
+any bugs/issues you find are our own, report on the axoloti forum.
+
+Thanks to Olivier Gillet from Mutable Instruments for open sourcing their code.
+http://mutable-instruments.com</sDescription>
       <author>Mark Harris</author>
       <license>GPL</license>
       <helpPatch>lmnts.axh</helpPatch>

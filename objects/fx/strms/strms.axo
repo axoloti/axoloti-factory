@@ -1,6 +1,11 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="strms" uuid="00A8C08C-86A1-431B-81C2-BC674979BD24">
-      <sDescription>Streams effect from Mutable Instruments Elements (experimental only) 
+      <sDescription>streams-like effect based on dsp code open sourced by mutable instruments.
+any bugs/issues you find are our own, report on the axoloti forum.
+
+Thanks to Olivier Gillet from Mutable Instruments for open sourcing their code.
+http://mutable-instruments.com
+
 important note: the outputs are not audio signals, they are the frequency and gain levels of a pwm oscillator</sDescription>
       <author>Mark Harris</author>
       <license>GPL</license>

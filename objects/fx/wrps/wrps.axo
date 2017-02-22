@@ -1,6 +1,10 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="wrps" uuid="FCC317183-56CF-4C1D-A813-0EC4FF7DBB46">
-      <sDescription>Warps effect from Mutable Instruments</sDescription>
+      <sDescription>a warps-like effect, based on open source DSP code from mutable instruments.
+any bugs/issues you find are our own, report on the axoloti forum.
+
+Thanks to Olivier Gillet from Mutable Instruments for open sourcing their code.
+http://mutable-instruments.com</sDescription>
       <author>Mark Harris</author>
       <license>GPL</license>
       <helpPatch>wrps.axh</helpPatch>

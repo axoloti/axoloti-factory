@@ -1,6 +1,10 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="ensemble" uuid="615802b3-3def-478d-95ce-c5ac35003a55">
-      <sDescription>Ensemble effect from Mutable Instruments Rings</sDescription>
+      <sDescription>ensemble effect from the rings dsp code open sourced by mutable instruments.
+any bugs/issues you find are our own, report on the axoloti forum.
+
+Thanks to Olivier Gillet from Mutable Instruments for open sourcing their code.
+http://mutable-instruments.com</sDescription>
       <license>GPL</license>
       <inlets>
          <frac32buffer name="l"/>

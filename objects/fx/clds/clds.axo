@@ -1,6 +1,10 @@
 <objdefs appVersion="1.0.12">
    <obj.normal id="clds" uuid="FD6EFF1B-3317-4BA5-A952-841327FC2F47">
-      <sDescription>Clouds effect from Mutable Instruments</sDescription>
+      <sDescription>a clouds-like effect, based on open source DSP code from mutable instruments.
+any bugs/issues you find are our own, report on the axoloti forum.
+
+Thanks to Olivier Gillet from Mutable Instruments for open sourcing their code.
+http://mutable-instruments.com</sDescription>
       <author>Mark Harris</author>
       <license>GPL</license>
       <helpPatch>clds.axh</helpPatch>
@@ -19,7 +23,7 @@
          <frac32.bipolar name="feedback"/>
          <frac32.bipolar name="reverb"/>
          <int32.positive name="mode"/>
-         <int32.positive name="mono"/>
+         <bool32 name="mono"/>
          <bool32 name="lofi"/>
          <bool32 name="silence"/>
          <bool32 name="bypass"/>
@@ -40,7 +44,7 @@
          <frac32.u.map name="feedback"/>
          <frac32.u.map name="reverb"/>
          <int32.hradio name="playmode">
-            <MaxValue i="4"/>
+            <MaxValue i="2"/>
          </int32.hradio>
          <bool32.tgl name="mono"/>
          <bool32.tgl name="lofi"/>
@@ -99,20 +103,32 @@ static clouds::ShortFrame output[BUFSIZE];
 
 int i;
 
+// for now restrict playback mode to working modes (granular and looping) 
+// clouds::PlaybackMode mode  = (clouds::PlaybackMode) ((param_playmode + inlet_mode) % 4) );
+clouds::PlaybackMode mode =  
+	(((param_playmode + inlet_mode) % 2) == 0) 
+	? clouds::PLAYBACK_MODE_GRANULAR 
+	: clouds::PLAYBACK_MODE_LOOPING_DELAY;
+processor.set_playback_mode(mode);
+
 processor.mutable_parameters()->position 	= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_position 	+ inlet_position)));
 processor.mutable_parameters()->size		= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_size 		+ inlet_size)));
 processor.mutable_parameters()->pitch		= std::max<float>(-64.0f,std::min<float>(64.0f, q27_to_float(param_pitch 	+ inlet_pitch) * 64.0f));
-processor.mutable_parameters()->density		= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_density 	+ inlet_density)));
 processor.mutable_parameters()->texture 	= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_texture 	+ inlet_texture)));
 processor.mutable_parameters()->dry_wet 	= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_mix 		+ inlet_mix)));
 processor.mutable_parameters()->stereo_spread= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_spread 	+ inlet_spread)));
 processor.mutable_parameters()->feedback 	= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_feedback 	+ inlet_feedback)));
 processor.mutable_parameters()->reverb		= std::max<float>(0.0f,std::min<float>(1.0f, q27_to_float(param_reverb 	+ inlet_reverb)));
 
+// restrict density to .2 to .8 for granular mode, outside this breaks up
+float density = q27_to_float(param_density 	+ inlet_density); 
+density = (mode == clouds::PLAYBACK_MODE_GRANULAR) ? (density*.6)+0.2 : density;
+processor.mutable_parameters()->density		= std::max<float>(0.0f,std::min<float>(1.0f, density));
+
 
 processor.mutable_parameters()->freeze = inlet_freeze;
 
-//note the trig input is really a gate... whicht then feeds the trig
+//note the trig input is really a gate... which then feeds the trig
 processor.mutable_parameters()->gate = inlet_trig;
 
 bool trig = false;
@@ -124,8 +140,6 @@ if(inlet_trig && !ltrig) {
 }
 processor.mutable_parameters()->trigger = trig;
 
-
-processor.set_playback_mode((clouds::PlaybackMode) ((param_playmode + inlet_mode) % 4) );
 processor.set_bypass(param_bypass || inlet_bypass);
 processor.set_silence(param_silence || inlet_silence);
 processor.set_num_channels(( param_mono || inlet_mono) ? 1 : 2 );
