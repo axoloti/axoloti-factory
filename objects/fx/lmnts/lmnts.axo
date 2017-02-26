@@ -61,7 +61,16 @@ http://mutable-instruments.com</sDescription>
          <include>axoloti_mi.h</include>
       </includes>
       <code.declaration><![CDATA[elements::Part part;
-uint32_t seed=0;]]></code.declaration>
+uint32_t seed=0;
+
+
+inline float constrainQ27(int32_t v, float vMin, float vMax) {
+	return std::max<float>(vMin,std::min<float>(vMax, q27_to_float(v)));
+}
+
+inline float constrain(float v, float vMin, float vMax) {
+	return std::max<float>(vMin,std::min<float>(vMax, v));
+}]]></code.declaration>
       <code.init><![CDATA[const int SAMPLE_SZ = 256026;
 const int NOISE_SZ = 81926;
 
@@ -95,20 +104,20 @@ static float right[BUFSIZE];
 
 int i;
 
-part.mutable_patch()->exciter_envelope_shape=q27_to_float(param_contour);
-part.mutable_patch()->exciter_bow_level=q27_to_float(param_bow_space_level);
-part.mutable_patch()->exciter_bow_timbre=q27_to_float(param_bow_space_timbre);
-part.mutable_patch()->exciter_blow_level=q27_to_float(param_blow_space_level);
-part.mutable_patch()->exciter_blow_meta=q27_to_float(param_blow_space_flow);
-part.mutable_patch()->exciter_blow_timbre=q27_to_float(param_blow_space_timbre);
-part.mutable_patch()->exciter_strike_level=q27_to_float(param_strike_space_level);
-part.mutable_patch()->exciter_strike_meta=q27_to_float(param_strike_space_mallet);
-part.mutable_patch()->exciter_strike_timbre=q27_to_float(param_strike_space_timbre);
-part.mutable_patch()->resonator_geometry=q27_to_float(param_geometry);
-part.mutable_patch()->resonator_brightness=q27_to_float(param_brightness);
-part.mutable_patch()->resonator_damping=q27_to_float(param_damping);
-part.mutable_patch()->resonator_position=q27_to_float(param_position);
-part.mutable_patch()->space=q27_to_float(param_space) * 2.0;
+part.mutable_patch()->exciter_envelope_shape	= constrainQ27(param_contour			,0.0f, 1.0f);
+part.mutable_patch()->exciter_bow_level		= constrainQ27(param_bow_space_level	,0.0f, 1.0f);
+part.mutable_patch()->exciter_bow_timbre	= constrainQ27(param_bow_space_timbre	,0.0f, 1.0f);
+part.mutable_patch()->exciter_blow_level	= constrainQ27(param_blow_space_level	,0.0f, 1.0f);
+part.mutable_patch()->exciter_blow_meta		= constrainQ27(param_blow_space_flow	,0.0f, 1.0f);
+part.mutable_patch()->exciter_blow_timbre	= constrainQ27(param_blow_space_timbre	,0.0f, 1.0f);
+part.mutable_patch()->exciter_strike_level	= constrainQ27(param_strike_space_level	,0.0f, 1.0f);
+part.mutable_patch()->exciter_strike_meta	= constrainQ27(param_strike_space_mallet	,0.0f, 1.0f);
+part.mutable_patch()->exciter_strike_timbre	= constrainQ27(param_strike_space_timbre	,0.0f, 1.0f);
+part.mutable_patch()->resonator_geometry	= constrainQ27(param_geometry			,0.0f, 1.0f);
+part.mutable_patch()->resonator_brightness	= constrainQ27(param_brightness		,0.0f, 1.0f);
+part.mutable_patch()->resonator_damping		= constrainQ27(param_damping			,0.0f, 1.0f);
+part.mutable_patch()->resonator_position	= constrainQ27(param_position			,0.0f, 1.0f);
+part.mutable_patch()->space				= constrain(q27_to_float(param_space) * 2.0, 0.0f, 2.0f);
 
 if(seed!=param_seed) {
 	seed = param_seed;
@@ -116,18 +125,17 @@ if(seed!=param_seed) {
 }
  
 for(i=0;i<BUFSIZE;i++){
-   blow_in[i] = q27_to_float(inlet_blow[i]);
+   blow_in[i] 	 = q27_to_float(inlet_blow[i]);
    strike_in[i] = q27_to_float(inlet_strike[i]);
 }
 
 elements::PerformanceState state;
 state.gate = inlet_gate > 0;
-state.note = q27_to_float(param_pitch + inlet_pitch) * 60.0f;
-//state.note = (64<<7)+((param_pitch + inlet_pitch)>>14);
-state.modulation = q27_to_float(inlet_modulation) * 60.0f;
-state.strength = q27_to_float(inlet_strength);
+state.note 		= constrain(q27_to_float(param_pitch + inlet_pitch) * 60.0f,-60.0f, 60.0f);
+state.modulation 	= constrainQ27(inlet_modulation, 0.0f,1.0f) * 60.0f;
+state.strength 	= constrainQ27(inlet_strength, 0.0f,1.0f);
 
-part.Process(state,blow_in,strike_in,left,right,BUFSIZE);
+part.Process(state, blow_in, strike_in, left, right, BUFSIZE);
 
 for(i=0;i<BUFSIZE;i++){
    outlet_l[i] = float_to_q27(left[i]);
