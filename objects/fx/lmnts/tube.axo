@@ -7,8 +7,14 @@ Thanks to Olivier Gillet from Mutable Instruments for open sourcing their code.
 http://mutable-instruments.com</sDescription>
       <author>Mark Harris</author>
       <license>GPL</license>
+      <helpPatch>tube.axh</helpPatch>
       <inlets>
          <frac32buffer name="in"/>
+         <frac32.bipolar name="frequency"/>
+         <frac32.bipolar name="envelope"/>
+         <frac32.bipolar name="damping"/>
+         <frac32.bipolar name="timbre"/>
+         <frac32.bipolar name="gain"/>
       </inlets>
       <outlets>
          <frac32buffer name="out"/>
@@ -22,7 +28,15 @@ http://mutable-instruments.com</sDescription>
          <frac32.u.map name="gain"/>
       </params>
       <attribs/>
-      <code.declaration><![CDATA[elements::Tube tube;]]></code.declaration>
+      <code.declaration><![CDATA[elements::Tube tube;
+
+inline float constrainQ27(int32_t v, float vMin, float vMax) {
+   return std::max<float>(vMin,std::min<float>(vMax, q27_to_float(v)));
+}
+
+inline float constrain(float v, float vMin, float vMax) {
+   return std::max<float>(vMin,std::min<float>(vMax, v));
+}]]></code.declaration>
       <code.init><![CDATA[tube.Init();]]></code.init>
       <code.krate><![CDATA[static float buf[BUFSIZE];
 
@@ -31,17 +45,15 @@ int i;
 for(i=0;i<BUFSIZE;i++){
 	buf[i] = q27_to_float(inlet_in[i]);
 }
- 
-float freq = q27_to_float(param_frequency);
-if(freq == 0.0) freq = 0.0000001; // stop tube blowing up.
+
 
 tube.Process(
-			freq,
-			q27_to_float(param_envelope),
-			q27_to_float(param_damping),
-			q27_to_float(param_timbre),
+			constrainQ27(param_frequency + inlet_frequency,0.0000001,1.0f),
+			constrainQ27(param_envelope + inlet_envelope,0.0f,1.0f),
+			constrainQ27(param_damping + inlet_damping,0.0f,1.0f),
+			constrainQ27(param_timbre + inlet_timbre,0.0f,1.0f),
 			buf,
-			q27_to_float(param_gain),
+			constrainQ27(param_gain + inlet_gain,0.0f,1.0f),
 			BUFSIZE
 			);
 

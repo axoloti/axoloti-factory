@@ -7,8 +7,14 @@ Thanks to Olivier Gillet from Mutable Instruments for open sourcing their code.
 http://mutable-instruments.com</sDescription>
       <author>Mark Harris</author>
       <license>GPL</license>
+      <helpPatch>string.axh</helpPatch>
       <inlets>
          <frac32buffer name="in"/>
+         <frac32.bipolar name="frequency"/>
+         <frac32.bipolar name="dispersion"/>
+         <frac32.bipolar name="brightness"/>
+         <frac32.bipolar name="damping"/>
+         <frac32.bipolar name="position"/>
       </inlets>
       <outlets>
          <frac32buffer name="l"/>
@@ -34,7 +40,14 @@ http://mutable-instruments.com</sDescription>
             </CEntries>
          </combo>
       </attribs>
-      <code.declaration><![CDATA[elements::String string;]]></code.declaration>
+      <code.declaration><![CDATA[elements::String string;
+         inline float constrainQ27(int32_t v, float vMin, float vMax) {
+   return std::max<float>(vMin,std::min<float>(vMax, q27_to_float(v)));
+}
+
+inline float constrain(float v, float vMin, float vMax) {
+   return std::max<float>(vMin,std::min<float>(vMax, v));
+}]]></code.declaration>
       <code.init><![CDATA[string.Init(attr_dispersion);]]></code.init>
       <code.krate><![CDATA[static float in[BUFSIZE];
 static float out[BUFSIZE];
@@ -47,15 +60,13 @@ for(i=0;i<BUFSIZE;i++){
 }
 
  
-float freq = q27_to_float(param_frequency);
-if(freq == 0.0) freq = 0.0000001; // stop tube blowing up.
-string.set_frequency(freq);
+string.set_frequency(constrainQ27(param_frequency + inlet_frequency,0.0000001,1.0f));
+string.set_brightness(constrainQ27(param_brightness + inlet_brightness,0.0f,1.0f));
+string.set_damping(constrainQ27(param_damping + inlet_damping,0.0f,1.0f));
+string.set_position(constrainQ27(param_position + inlet_position,0.0f,1.0f));
 
-string.set_dispersion(q27_to_float(param_dispersion));
-string.set_brightness(q27_to_float(param_brightness));
-string.set_damping(q27_to_float(param_damping));
-string.set_position(q27_to_float(param_position));
-
+// dispersion blows up ~ > 0.2 
+string.set_dispersion(constrainQ27(q27_to_float(param_dispersion + inlet_dispersion) *0.20f,0.0f,0.20f));
 
 
 string.Process(in,out,aux,BUFSIZE);

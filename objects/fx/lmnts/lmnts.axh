@@ -7,73 +7,87 @@
    </obj>
    <obj type="ctrl/dial b" uuid="862e7d7f29093cb1ce4aed72244d118ad4d46692" name="pitch" x="154" y="14">
       <params>
-         <frac32.s.map name="value" value="4.0"/>
+         <frac32.s.map name="value" value="57.0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="mod rate" x="266" y="14">
+   <comment type="patch/comment" x="336" y="56" text="resonator modulation"/>
+   <obj type="ctrl/dial b" uuid="862e7d7f29093cb1ce4aed72244d118ad4d46692" name="dial_1" x="336" y="70">
       <params>
-         <frac32.u.map name="value" value="57.0"/>
+         <frac32.s.map name="value" value="57.0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="mod amt" x="378" y="14">
+   <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="mod depth" x="406" y="70">
       <params>
-         <frac32.u.map name="value" value="52.0"/>
+         <frac32.u.map name="value" value="54.5"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="volume" x="714" y="28">
+   <comment type="patch/comment" x="490" y="70" text="IMPORTANT NOTE:"/>
+   <comment type="patch/comment" x="490" y="84" text="modal limitations (cpu)"/>
+   <comment type="patch/comment" x="658" y="84" text="pitch + mod freq need to be high, also try geometry"/>
+   <comment type="patch/comment" x="490" y="98" text="strings limitation (cpu)"/>
+   <comment type="patch/comment" x="658" y="98" text="pitch + mod freq &lt;=0.0"/>
+   <comment type="patch/comment" x="910" y="98" text="future: will reduce string count, so greater range"/>
+   <obj type="osc/sine" uuid="6e094045cca76a9dbf7ebfa72e44e4700d2b3ba" name="sine_1" x="126" y="140">
+      <params>
+         <frac32.s.map name="pitch" value="-1.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="volume" x="700" y="168">
       <params>
          <frac32.u.map name="value" value="44.5"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="noise/uniform" uuid="a3926ef22ae9ac217cd09933d90101848796eb78" name="uniform_1" x="70" y="154">
+   <obj type="osc/saw medium" uuid="388a55fef8413cfaf26a2a76ed21a7c28bef4e9d" name="saw_1" x="14" y="196">
+      <params>
+         <frac32.s.map name="pitch" value="-13.0"/>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_3" x="364" y="210">
       <params/>
       <attribs/>
    </obj>
-   <obj type="osc/saw medium" uuid="388a55fef8413cfaf26a2a76ed21a7c28bef4e9d" name="saw_1" x="266" y="154">
+   <obj type="env/ad" uuid="255cb0cd67470c7498f9c33b820facd26aa629ce" name="ad_2" x="126" y="266">
       <params>
-         <frac32.s.map name="pitch" value="-23.0"/>
+         <frac32.s.map name="a" value="-64.0"/>
+         <frac32.s.map name="d" value="29.0"/>
       </params>
       <attribs/>
    </obj>
-   <obj type="env/ad" uuid="255cb0cd67470c7498f9c33b820facd26aa629ce" name="ad_2" x="266" y="266">
-      <params>
-         <frac32.s.map name="a" value="21.0"/>
-         <frac32.s.map name="d" value="17.0"/>
-      </params>
-      <attribs/>
-   </obj>
-   <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_4" x="392" y="266">
+   <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_4" x="238" y="266">
       <params/>
       <attribs/>
    </obj>
    <obj type="fx/lmnts/lmnts" uuid="361A8551-0FF8-4559-9D34-6419E86449E7" name="lmnts_1" x="518" y="266">
       <params>
          <frac32.s.map name="pitch" value="0.0"/>
-         <frac32.u.map name="contour" value="47.0"/>
-         <frac32.u.map name="bow level" value="62.0"/>
-         <frac32.u.map name="bow timbre" value="64.0"/>
-         <frac32.u.map name="blow level" value="11.5"/>
-         <frac32.u.map name="blow flow" value="24.0"/>
-         <frac32.u.map name="blow timbre" value="24.0"/>
-         <frac32.u.map name="strike level" value="54.0"/>
-         <frac32.u.map name="strike mallet" value="23.0"/>
-         <frac32.u.map name="strike timbre" value="14.0"/>
-         <frac32.u.map name="geometry" value="64.0"/>
-         <frac32.u.map name="brightness" value="27.0"/>
-         <frac32.u.map name="damping" value="16.0"/>
-         <frac32.u.map name="position" value="0.0"/>
-         <frac32.u.map name="space" value="47.0"/>
-         <frac32.u.map name="modulation" value="0.0"/>
-         <frac32.u.map name="strength" value="0.0"/>
+         <frac32.u.map name="contour" value="38.5"/>
+         <frac32.u.map name="bow level" value="31.5"/>
+         <frac32.u.map name="bow timbre" value="57.0"/>
+         <frac32.u.map name="blow level" value="13.0"/>
+         <frac32.u.map name="blow flow" value="14.5"/>
+         <frac32.u.map name="blow timbre" value="23.5"/>
+         <frac32.u.map name="strike level" value="37.0"/>
+         <frac32.u.map name="strike mallet" value="52.5"/>
+         <frac32.u.map name="strike timbre" value="54.0"/>
+         <int32.hradio name="resonator" value="1"/>
+         <frac32.u.map name="geometry" value="55.0"/>
+         <frac32.u.map name="brightness" value="47.0"/>
+         <frac32.u.map name="damping" value="45.5"/>
+         <frac32.u.map name="position" value="13.0"/>
+         <frac32.u.map name="space" value="44.0"/>
+         <frac32.s.map name="mod pitch" value="0.0"/>
+         <frac32.u.map name="mod depth" value="0.0"/>
          <frac32.u.map name="seed" value="3.1499996185302734"/>
+         <bool32.tgl name="bypass" value="0"/>
+         <bool32.tgl name="easter egg" value="0"/>
       </params>
-      <attribs>
-         <combo attributeName="resonator" selection="modal"/>
-      </attribs>
+      <attribs/>
    </obj>
    <obj type="gain/vca" uuid="a9f2dcd18043e2f47364e45cb8814f63c2a37c0d" name="vca_1" x="700" y="266">
       <params/>
@@ -87,6 +101,11 @@
       <params/>
       <attribs/>
    </obj>
+   <comment type="patch/comment" x="56" y="574" text="known issues:"/>
+   <comment type="patch/comment" x="56" y="588" text="sounds on startup"/>
+   <comment type="patch/comment" x="56" y="602" text="modal model issues"/>
+   <comment type="patch/comment" x="56" y="616" text="strings model, only low pitch"/>
+   <comment type="patch/comment" x="644" y="994" text="modal, string , strings"/>
    <nets>
       <net>
          <source obj="vca_1" outlet="o"/>
@@ -112,6 +131,7 @@
       <net>
          <source obj="bang" outlet="o"/>
          <dest obj="ad_2" inlet="trig"/>
+         <dest obj="vca_3" inlet="v"/>
          <dest obj="lmnts_1" inlet="gate"/>
       </net>
       <net>
@@ -123,23 +143,27 @@
          <dest obj="vca_4" inlet="v"/>
       </net>
       <net>
-         <source obj="vca_4" outlet="o"/>
-         <dest obj="lmnts_1" inlet="strike"/>
-      </net>
-      <net>
          <source obj="pitch" outlet="out"/>
          <dest obj="lmnts_1" inlet="pitch"/>
       </net>
       <net>
-         <source obj="mod rate" outlet="out"/>
-         <dest obj="lmnts_1" inlet="modulation"/>
+         <source obj="mod depth" outlet="out"/>
+         <dest obj="lmnts_1" inlet="mod depth"/>
       </net>
       <net>
-         <source obj="mod amt" outlet="out"/>
-         <dest obj="lmnts_1" inlet="strength"/>
+         <source obj="dial_1" outlet="out"/>
+         <dest obj="lmnts_1" inlet="mod pitch"/>
       </net>
       <net>
-         <source obj="uniform_1" outlet="wave"/>
+         <source obj="vca_4" outlet="o"/>
+         <dest obj="lmnts_1" inlet="strike"/>
+      </net>
+      <net>
+         <source obj="sine_1" outlet="wave"/>
+         <dest obj="vca_3" inlet="a"/>
+      </net>
+      <net>
+         <source obj="vca_3" outlet="o"/>
          <dest obj="lmnts_1" inlet="blow"/>
       </net>
    </nets>
@@ -148,8 +172,8 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>585</x>
-      <y>44</y>
+      <x>637</x>
+      <y>155</y>
       <width>1514</width>
       <height>1179</height>
    </windowPos>
