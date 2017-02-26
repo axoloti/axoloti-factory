@@ -52,6 +52,7 @@
    </obj>
    <obj type="fx/lmnts/lmnts" uuid="361A8551-0FF8-4559-9D34-6419E86449E7" name="lmnts_1" x="518" y="266">
       <params>
+         <frac32.s.map name="pitch" value="0.0"/>
          <frac32.u.map name="contour" value="47.0"/>
          <frac32.u.map name="bow level" value="62.0"/>
          <frac32.u.map name="bow timbre" value="64.0"/>
@@ -66,8 +67,9 @@
          <frac32.u.map name="damping" value="16.0"/>
          <frac32.u.map name="position" value="0.0"/>
          <frac32.u.map name="space" value="47.0"/>
-         <frac32.s.map name="pitch" value="0.0"/>
-         <frac32.u.map name="seed" value="3.1499999999999986"/>
+         <frac32.u.map name="modulation" value="0.0"/>
+         <frac32.u.map name="strength" value="0.0"/>
+         <frac32.u.map name="seed" value="3.1499996185302734"/>
       </params>
       <attribs>
          <combo attributeName="resonator" selection="modal"/>
@@ -146,9 +148,9 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>848</x>
-      <y>166</y>
-      <width>1366</width>
-      <height>1058</height>
+      <x>585</x>
+      <y>44</y>
+      <width>1514</width>
+      <height>1179</height>
    </windowPos>
 </patch-1.0>

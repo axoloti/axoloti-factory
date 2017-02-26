@@ -13,8 +13,26 @@ http://mutable-instruments.com</sDescription>
          <frac32buffer name="strike"/>
          <bool32 name="gate"/>
          <frac32.bipolar name="pitch"/>
-         <frac32.bipolar name="modulation"/>
-         <frac32.positive name="strength"/>
+         <frac32.bipolar name="contour"/>
+         <frac32.bipolar name="bow level"/>
+         <frac32.bipolar name="bow timbre"/>
+         <frac32.bipolar name="blow level"/>
+         <frac32.bipolar name="blow flow"/>
+         <frac32.bipolar name="blow timbre"/>
+         <frac32.bipolar name="strike level"/>
+         <frac32.bipolar name="strike mallet"/>
+         <frac32.bipolar name="strike timbre"/>
+         <int32.positive name="resonator"/>
+         <frac32.bipolar name="geometry"/>
+         <frac32.bipolar name="brightness"/>
+         <frac32.bipolar name="damping"/>
+         <frac32.bipolar name="position"/>
+         <frac32.bipolar name="space"/>
+         <frac32.bipolar name="mod rate"/>
+         <frac32.bipolar name="mod depth"/>
+         <frac32.bipolar name="seed"/>
+         <bool32 name="bypass"/>
+         <bool32 name="easter egg"/>
       </inlets>
       <outlets>
          <frac32buffer name="l"/>
@@ -22,6 +40,7 @@ http://mutable-instruments.com</sDescription>
       </outlets>
       <displays/>
       <params>
+         <frac32.s.map name="pitch"/>
          <frac32.u.map name="contour"/>
          <frac32.u.map name="bow level"/>
          <frac32.u.map name="bow timbre"/>
@@ -31,28 +50,21 @@ http://mutable-instruments.com</sDescription>
          <frac32.u.map name="strike level"/>
          <frac32.u.map name="strike mallet"/>
          <frac32.u.map name="strike timbre"/>
+         <int32.hradio name="resonator">
+            <MaxValue i="3"/>
+         </int32.hradio>
          <frac32.u.map name="geometry"/>
          <frac32.u.map name="brightness"/>
          <frac32.u.map name="damping"/>
          <frac32.u.map name="position"/>
          <frac32.u.map name="space"/>
-         <frac32.s.map name="pitch"/>
+         <frac32.s.map name="mod rate"/>
+         <frac32.u.map name="mod depth"/>
          <frac32.u.map name="seed"/>
+         <bool32.tgl name="bypass"/>
+         <bool32.tgl name="easter egg"/>
       </params>
-      <attribs>
-         <combo name="resonator">
-            <MenuEntries>
-               <string>modal</string>
-               <string>string</string>
-               <string>strings</string>
-            </MenuEntries>
-            <CEntries>
-               <string>1</string>
-               <string>2</string>
-               <string>3</string>
-            </CEntries>
-         </combo>
-      </attribs>
+      <attribs/>
       <file-depends>
          <file-depend localFilename="smp_noise_sample.raw" targetPath="/shared/elements/smp_noise_data.raw"/>
          <file-depend localFilename="smp_sample_data.raw" targetPath="/shared/elements/smp_sample_data.raw"/>
@@ -62,6 +74,15 @@ http://mutable-instruments.com</sDescription>
       </includes>
       <code.declaration><![CDATA[elements::Part part;
 uint32_t seed=0;
+uint32_t resonator = 0;
+float blow_in[BUFSIZE];
+float strike_in[BUFSIZE];
+float left[BUFSIZE];
+float right[BUFSIZE];
+
+const float kNoiseGateThreshold = 0.0001f;
+float strike_in_level = 0.0f;
+float blow_in_level = 0.0f;
 
 
 inline float constrainQ27(int32_t v, float vMin, float vMax) {
@@ -96,44 +117,69 @@ part.Init( (uint16_t *) sdram_malloc(ELEMENTS_SZ) );
 
 LogTextMessage("Elements initialised, SDRAM free %d", sdram_get_free() );
 
-part.set_resonator_model(elements::ResonatorModel(attr_resonator));]]></code.init>
-      <code.krate><![CDATA[static float blow_in[BUFSIZE];
-static float strike_in[BUFSIZE];
-static float left[BUFSIZE];
-static float right[BUFSIZE];
+part.set_resonator_model(elements::ResonatorModel(resonator));]]></code.init>
+      <code.krate><![CDATA[part.mutable_patch()->exciter_envelope_shape	= constrainQ27(param_contour + inlet_contour					,0.0f, 1.0f);
 
-int i;
+part.mutable_patch()->exciter_bow_level		= constrainQ27(param_bow_space_level + inlet_bow_space_level	,0.0f, 1.0f);
+part.mutable_patch()->exciter_bow_timbre	= constrainQ27(param_bow_space_timbre + inlet_bow_space_timbre	,0.0f, 0.9995f);
 
-part.mutable_patch()->exciter_envelope_shape	= constrainQ27(param_contour			,0.0f, 1.0f);
-part.mutable_patch()->exciter_bow_level		= constrainQ27(param_bow_space_level	,0.0f, 1.0f);
-part.mutable_patch()->exciter_bow_timbre	= constrainQ27(param_bow_space_timbre	,0.0f, 1.0f);
-part.mutable_patch()->exciter_blow_level	= constrainQ27(param_blow_space_level	,0.0f, 1.0f);
-part.mutable_patch()->exciter_blow_meta		= constrainQ27(param_blow_space_flow	,0.0f, 1.0f);
-part.mutable_patch()->exciter_blow_timbre	= constrainQ27(param_blow_space_timbre	,0.0f, 1.0f);
-part.mutable_patch()->exciter_strike_level	= constrainQ27(param_strike_space_level	,0.0f, 1.0f);
-part.mutable_patch()->exciter_strike_meta	= constrainQ27(param_strike_space_mallet	,0.0f, 1.0f);
-part.mutable_patch()->exciter_strike_timbre	= constrainQ27(param_strike_space_timbre	,0.0f, 1.0f);
-part.mutable_patch()->resonator_geometry	= constrainQ27(param_geometry			,0.0f, 1.0f);
-part.mutable_patch()->resonator_brightness	= constrainQ27(param_brightness		,0.0f, 1.0f);
-part.mutable_patch()->resonator_damping		= constrainQ27(param_damping			,0.0f, 1.0f);
-part.mutable_patch()->resonator_position	= constrainQ27(param_position			,0.0f, 1.0f);
-part.mutable_patch()->space				= constrain(q27_to_float(param_space) * 2.0, 0.0f, 2.0f);
+part.mutable_patch()->exciter_blow_level	= constrainQ27(param_blow_space_level + inlet_blow_space_level	,0.0f, 1.0f);
+part.mutable_patch()->exciter_blow_meta		= constrainQ27(param_blow_space_flow + inlet_blow_space_flow	,0.0f, 0.9995f);
+part.mutable_patch()->exciter_blow_timbre	= constrainQ27(param_blow_space_timbre + inlet_blow_space_timbre ,0.0f, 0.9995f);
 
-if(seed!=param_seed) {
-	seed = param_seed;
+part.mutable_patch()->exciter_strike_level	= constrainQ27(param_strike_space_level + inlet_strike_space_level	,0.0f, 1.0f);
+part.mutable_patch()->exciter_strike_meta	= constrainQ27(param_strike_space_mallet + inlet_strike_space_mallet	,0.0f, 0.9995f);
+part.mutable_patch()->exciter_strike_timbre	= constrainQ27(param_strike_space_timbre + inlet_strike_space_timbre	,0.0f, 0.9995f);
+
+part.mutable_patch()->resonator_geometry	= constrainQ27(param_geometry	+ inlet_geometry				,0.0f, 0.9995f);
+part.mutable_patch()->resonator_brightness	= constrainQ27(param_brightness + inlet_brightness			,0.0f, 0.9995f);
+part.mutable_patch()->resonator_damping		= constrainQ27(param_damping + inlet_damping					,0.0f, 0.9995f);
+part.mutable_patch()->resonator_position	= constrainQ27(param_position	+ inlet_position				,0.0f, 0.9995f);
+
+part.mutable_patch()->space				= constrain(q27_to_float(param_space + inlet_space) * 2.0		,0.0f, 2.0f);
+
+
+uint32_t nresonator = ((param_resonator + inlet_resonator) % 3) + 1;
+if(resonator != nresonator) {
+	resonator = nresonator;
+	part.set_resonator_model(elements::ResonatorModel(resonator));
+}
+
+uint32_t nseed = param_seed + inlet_seed;
+if(seed != nseed) {
+	seed = nseed;
 	part.Seed(&seed, 1);
 }
+
+part.set_bypass(param_bypass || inlet_bypass);
+part.set_easter_egg(param_easter_space_egg || inlet_easter_space_egg);
  
+int i;
 for(i=0;i<BUFSIZE;i++){
-   blow_in[i] 	 = q27_to_float(inlet_blow[i]);
-   strike_in[i] = q27_to_float(inlet_strike[i]);
+    float blow_in_sample = q27_to_float(inlet_blow[i]);;
+    float strike_in_sample = q27_to_float(inlet_strike[i]);
+
+    float error, gain;
+    error = strike_in_sample * strike_in_sample - strike_in_level;
+    strike_in_level += error * (error > 0.0f ? 0.1f : 0.0001f);
+    gain = strike_in_level <= kNoiseGateThreshold 
+          ? (1.0f / kNoiseGateThreshold) * strike_in_level : 1.0f;
+    strike_in[i] = gain * strike_in_sample;
+    
+    error = blow_in_sample * blow_in_sample - blow_in_level;
+    blow_in_level += error * (error > 0.0f ? 0.1f : 0.0001f);
+    gain = blow_in_level <= kNoiseGateThreshold 
+          ? (1.0f / kNoiseGateThreshold) * blow_in_level : 1.0f;
+    blow_in[i] = gain * blow_in_sample;
+
 }
 
 elements::PerformanceState state;
 state.gate = inlet_gate > 0;
-state.note 		= constrain(q27_to_float(param_pitch + inlet_pitch) * 60.0f,-60.0f, 60.0f);
-state.modulation 	= constrainQ27(inlet_modulation, 0.0f,1.0f) * 60.0f;
-state.strength 	= constrainQ27(inlet_strength, 0.0f,1.0f);
+state.note 		= constrain(q27_to_float(param_pitch + inlet_pitch) * 64.0f, -64.0f, 64.0f);
+
+state.strength 	= constrainQ27(param_mod_space_depth + inlet_mod_space_depth	,0.0f, 1.0f);
+state.modulation 	= constrain(q27_to_float(param_mod_space_rate  + inlet_mod_space_rate) * 60.0f, -60.0f, 60.0f);
 
 part.Process(state, blow_in, strike_in, left, right, BUFSIZE);
 
