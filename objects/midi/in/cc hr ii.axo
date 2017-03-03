@@ -21,7 +21,7 @@
 uint32_t _ccv;
 uint8_t ntrig;
 ]]></code.declaration>
-      <code.init><![CDATA[_ccv = attr_default;ccl=0;ntrig=0;
+      <code.init><![CDATA[_ccv = attr_default << 20;ccl=0;ntrig=0;
 ]]></code.init>
       <code.krate><![CDATA[ outlet_midiCC= _ccv;
 outlet_trig = ntrig;
