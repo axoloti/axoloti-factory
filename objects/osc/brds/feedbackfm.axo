@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="1.0.12">
    <obj.normal id="feedbackfm" uuid="8af83504-f920-4363-8552-efe8fffc0287">
       <sDescription>feedback FM oscillator from Mutable Instruments Braids</sDescription>
       <author>Johannes Taelman</author>
@@ -26,7 +26,7 @@
       <includes>
          <include>./brds_digital.h</include>
       </includes>
-      <code.declaration><![CDATA[braids_deriv::FeedbackFm osc;]]></code.declaration>
+      <code.declaration><![CDATA[braids_digital_deriv::FeedbackFm osc;]]></code.declaration>
       <code.init><![CDATA[osc.Init();]]></code.init>
       <code.krate><![CDATA[osc.set_parameters(__USAT((inlet_timbre+param_timbre)>>12,15),__USAT((inlet_color+param_color)>>12,15));
 osc.set_pitch((64<<7)+((param_pitch + inlet_pitch)>>14));
