@@ -57,7 +57,6 @@ outlet_pitch = _pitch;
 ]]></code.krate>
       <code.midihandler><![CDATA[
 if ((status == MIDI_NOTE_ON + attr_midichannel) && (data2)) {
-  _bend = 0;
   _velo = data2<<20;
   _note = data1-64;
   _gate = 1<<27;
