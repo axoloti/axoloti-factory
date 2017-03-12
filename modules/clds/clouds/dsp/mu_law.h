@@ -43,7 +43,7 @@ namespace clouds {
 
 
 inline short MuLaw2Lin(uint8_t u_val) {
-  return ::clouds::lut_ulaw[u_val];
+  return lut_ulaw[u_val];
 }
 
 inline unsigned char Lin2MuLaw(int16_t pcm_val) {

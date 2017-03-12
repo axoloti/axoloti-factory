@@ -8,7 +8,8 @@ MOD_OBJS = \
        clouds/dsp/granular_processor.o \
        clouds/dsp/pvoc/frame_transformation.o \
        clouds/dsp/pvoc/phase_vocoder.o \
-       clouds/dsp/pvoc/stft.o
+       clouds/dsp/pvoc/stft.o \
+       clouds/clouds_resources.o
 
 
 
