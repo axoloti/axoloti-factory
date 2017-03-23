@@ -9,7 +9,7 @@
       </params>
       <attribs/>
    </obj>
-   <obj type="ctrl/hook" uuid="39cd40e6f91f43dd1b4285eb769d7cd5613b5709" name="hook" x="98" y="98">
+   <obj type="ctrl/hook" uuid="39cd40e6f91f43dd1b4285eb769d7cd5613b5709" name="hook_3" x="98" y="98">
       <params>
          <frac32.u.map name="value" value="48.5"/>
       </params>
@@ -21,13 +21,13 @@
    </obj>
    <obj type="ctrl/toggle" uuid="42b8134fa729d54bfc8d62d6ef3fa99498c1de99" name="toggle_1" x="714" y="98">
       <params>
-         <bool32.tgl name="b" value="0"/>
+         <bool32.tgl name="b" value="1"/>
       </params>
       <attribs/>
    </obj>
    <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="dial_4" x="798" y="98">
       <params>
-         <frac32.u.map name="value" value="18.0"/>
+         <frac32.u.map name="value" value="51.5"/>
       </params>
       <attribs/>
    </obj>
@@ -41,11 +41,15 @@
    </obj>
    <obj type="ctrl/hook" uuid="39cd40e6f91f43dd1b4285eb769d7cd5613b5709" name="hook_1" x="1162" y="98">
       <params>
-         <frac32.u.map name="value" value="18.0"/>
+         <frac32.u.map name="value" value="51.5"/>
       </params>
       <attribs/>
    </obj>
    <obj type="disp/dial p" uuid="44fd18b562e434b3230441681132dbeabb15cdc5" name="dial_5" x="1344" y="98">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/bool" uuid="a0ee71d48208b71752cbb8c05e55145106ef3946" name="bool_3" x="1414" y="98">
       <params/>
       <attribs/>
    </obj>
@@ -55,11 +59,15 @@
    </obj>
    <obj type="ctrl/hook" uuid="39cd40e6f91f43dd1b4285eb769d7cd5613b5709" name="hook_2" x="1162" y="224">
       <params>
-         <frac32.u.map name="value" value="24.5"/>
+         <frac32.u.map name="value" value="47.5"/>
       </params>
       <attribs/>
    </obj>
    <obj type="disp/dial p" uuid="44fd18b562e434b3230441681132dbeabb15cdc5" name="dial_6" x="1344" y="224">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="disp/bool" uuid="a0ee71d48208b71752cbb8c05e55145106ef3946" name="bool_4" x="1414" y="224">
       <params/>
       <attribs/>
    </obj>
@@ -73,9 +81,9 @@
       <params/>
       <attribs/>
    </obj>
-   <obj type="ctrl/hook" uuid="39cd40e6f91f43dd1b4285eb769d7cd5613b5709" name="hook_" x="266" y="308">
+   <obj type="ctrl/hook" uuid="39cd40e6f91f43dd1b4285eb769d7cd5613b5709" name="hook_4" x="266" y="308">
       <params>
-         <frac32.u.map name="value" value="6.604358673095703"/>
+         <frac32.u.map name="value" value="20.9374942779541"/>
       </params>
       <attribs/>
    </obj>
@@ -94,23 +102,23 @@
    <nets>
       <net>
          <source obj="dial_1" outlet="out"/>
-         <dest obj="hook" inlet="in"/>
+         <dest obj="hook_3" inlet="in"/>
       </net>
       <net>
-         <source obj="hook" outlet="out"/>
+         <source obj="hook_3" outlet="out"/>
          <dest obj="dial_2" inlet="in"/>
       </net>
       <net>
-         <source obj="hook" outlet="hooked"/>
+         <source obj="hook_3" outlet="hooked"/>
          <dest obj="bool_1" inlet="in"/>
       </net>
       <net>
-         <source obj="hook_" outlet="out"/>
+         <source obj="hook_4" outlet="out"/>
          <dest obj="dial_3" inlet="in"/>
          <dest obj="chart_1" inlet="in"/>
       </net>
       <net>
-         <source obj="hook_" outlet="hooked"/>
+         <source obj="hook_4" outlet="hooked"/>
          <dest obj="bool_2" inlet="in"/>
       </net>
       <net>
@@ -119,7 +127,7 @@
       </net>
       <net>
          <source obj="bipolar2unipolar_1" outlet="o"/>
-         <dest obj="hook_" inlet="in"/>
+         <dest obj="hook_4" inlet="in"/>
       </net>
       <net>
          <source obj="dial_4" outlet="out"/>
@@ -131,8 +139,8 @@
       </net>
       <net>
          <source obj="demux_1" outlet="o0"/>
-         <dest obj="demux_1" inlet="d0"/>
          <dest obj="hook_1" inlet="in"/>
+         <dest obj="demux_1" inlet="d0"/>
       </net>
       <net>
          <source obj="hook_2" outlet="out"/>
@@ -140,8 +148,8 @@
       </net>
       <net>
          <source obj="demux_1" outlet="o1"/>
-         <dest obj="demux_1" inlet="d1"/>
          <dest obj="hook_2" inlet="in"/>
+         <dest obj="demux_1" inlet="d1"/>
       </net>
       <net>
          <source obj="toggle_1" outlet="o"/>
@@ -153,14 +161,22 @@
          <dest obj="hook_1" inlet="unhook"/>
          <dest obj="hook_2" inlet="unhook"/>
       </net>
+      <net>
+         <source obj="hook_1" outlet="hooked"/>
+         <dest obj="bool_3" inlet="in"/>
+      </net>
+      <net>
+         <source obj="hook_2" outlet="hooked"/>
+         <dest obj="bool_4" inlet="in"/>
+      </net>
    </nets>
    <settings>
       <subpatchmode>no</subpatchmode>
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>126</x>
-      <y>455</y>
+      <x>295</x>
+      <y>563</y>
       <width>1504</width>
       <height>617</height>
    </windowPos>

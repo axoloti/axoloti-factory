@@ -38,12 +38,15 @@ if (nhooked) {
 			nhooked = 0;
 			param_cache = param_value;
 		}
-	} else {
+	} else if (param_value < inlet_in) {
 		nhooked |= 2;
 		if (nhooked == 7) {
 			nhooked = 0;
 			param_cache = param_value;
 		}
+	} else {
+		nhooked = 0;
+		param_cache = param_value;
 	}
 } else {
 	outlet_out = inlet_in;
