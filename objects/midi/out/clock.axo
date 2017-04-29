@@ -75,6 +75,7 @@ if (inlet_run && !_active) {
 }
 outlet_pos4ppq = _pos24ppq/6;
 outlet_pos24ppq = _pos24ppq;
+outlet_active = _active;
 ]]></code.krate>
    </obj.normal>
 </objdefs>
