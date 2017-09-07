@@ -9,6 +9,7 @@
 #include <cctype>
 #include <clocale>
 
+#include "stmlib/dsp/delay_line.h"
 #include "stmlib/dsp/filter.h"
 #include "stmlib/dsp/atan.h"
 #include "stmlib/dsp/cosine_oscillator.h"

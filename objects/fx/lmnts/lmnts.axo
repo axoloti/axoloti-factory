@@ -72,8 +72,8 @@ http://mutable-instruments.com</sDescription>
       <modules>
          <modules>lmnts</modules>
       </modules>
-      <code.declaration><![CDATA[elements::Part part;
-elements::PerformanceState state;
+      <code.declaration><![CDATA[lmnts::elements::Part part;
+lmnts::elements::PerformanceState state;
 
 uint32_t seed=0;
 uint32_t resonator = 0;
@@ -104,12 +104,12 @@ LogTextMessage("sdram_get_free %d",sdram_get_free());
 int16_t* smp_sample_data = (int16_t*) sdram_malloc(SAMPLE_SZ);
 if(!smp_sample_data) return;
  
-r = loadElementsData(0,"/shared/elements/smp_sample_data.raw",smp_sample_data,SAMPLE_SZ/2);
+r = lmnts::elements::loadElementsData(0,"/shared/elements/smp_sample_data.raw",smp_sample_data,SAMPLE_SZ/2);
 
 int16_t* smp_noise_data= (int16_t*) sdram_malloc(NOISE_SZ);
 if(!smp_noise_data) return;
 
-if(r) r = loadElementsData(1,"/shared/elements/smp_noise_data.raw",smp_noise_data,NOISE_SZ/2);
+if(r) r = lmnts::elements::loadElementsData(1,"/shared/elements/smp_noise_data.raw",smp_noise_data,NOISE_SZ/2);
 
 if(r) {
    LogTextMessage("Elements loading sample complete, SDRAM free %d", sdram_get_free() );
@@ -129,7 +129,7 @@ seed = 0;
 part.Seed(&seed, 1);
 
 resonator = 0;
-part.set_resonator_model(elements::ResonatorModel(resonator));
+part.set_resonator_model(lmnts::elements::ResonatorModel(resonator));
 state.gate = false;
 state.note = 0.0f;
 state.modulation = 0.0f;
@@ -158,7 +158,7 @@ part.mutable_patch()->space				= constrain(q27_to_float(param_space + inlet_spac
 uint32_t nresonator = ((param_resonator + inlet_resonator) % 3);
 if(resonator != nresonator) {
 	resonator = nresonator;
-	part.set_resonator_model(elements::ResonatorModel(resonator));
+	part.set_resonator_model(lmnts::elements::ResonatorModel(resonator));
 }
 
 uint32_t nseed = param_seed + inlet_seed;
