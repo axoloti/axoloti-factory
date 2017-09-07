@@ -17,6 +17,9 @@
          <frac32.u.map name="timbre"/>
       </params>
       <attribs/>
+      <modules>
+         <module>brds</module>
+      </modules>
       <includes>
          <include>./brds_analog.h</include>
       </includes>

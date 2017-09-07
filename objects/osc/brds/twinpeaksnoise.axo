@@ -19,6 +19,9 @@
          <frac32.u.map name="color"/>
       </params>
       <attribs/>
+      <modules>
+         <module>brds</module>
+      </modules>
       <includes>
          <include>./brds_digital.h</include>
       </includes>

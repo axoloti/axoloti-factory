@@ -1,5 +1,7 @@
-#ifndef BRDS_ANALOG_
-#define BRDS_ANALOG_
+#pragma once
+
+#include "brds_wrapper.h"
+using namespace brds;
 
 namespace braids_deriv {
 
@@ -644,5 +646,3 @@ void Render (
 
 
 }
-
-#endif

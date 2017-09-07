@@ -1,5 +1,7 @@
-#ifndef BRDS_DIGITAL_
-#define BRDS_DIGITAL_
+#pragma once 
+
+#include "brds_wrapper.h"
+using namespace brds;
 
 namespace braids_digital_deriv {
 
@@ -3007,4 +3009,3 @@ void Render(
 
 }
 
-#endif

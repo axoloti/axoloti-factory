@@ -18,6 +18,9 @@
       <includes>
          <include>./brds_analog.h</include>
       </includes>
+      <modules>
+         <module>brds</module>
+      </modules>
       <code.declaration><![CDATA[braids_deriv::Triangle osc;]]></code.declaration>
       <code.init><![CDATA[osc.Init();]]></code.init>
       <code.krate><![CDATA[osc.set_pitch((64<<7)+((param_pitch + inlet_pitch)>>14));

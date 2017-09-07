@@ -40,7 +40,10 @@ http://mutable-instruments.com</sDescription>
             </CEntries>
          </combo>
       </attribs>
-      <code.declaration><![CDATA[elements::String string;
+      <modules>
+         <modules>lmnts</modules>
+      </modules>
+      <code.declaration><![CDATA[lmnts::elements::String string;
          inline float constrainQ27(int32_t v, float vMin, float vMax) {
    return std::max<float>(vMin,std::min<float>(vMax, q27_to_float(v)));
 }

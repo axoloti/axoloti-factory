@@ -17,7 +17,10 @@
          <frac32.u.map name="timbre"/>
       </params>
       <attribs/>
-      <includes>
+      <modules>
+         <module>brds</module>
+      </modules>
+     <includes>
          <include>./brds_analog.h</include>
       </includes>
       <code.declaration><![CDATA[braids_deriv::VariableSaw osc;]]></code.declaration>

@@ -23,6 +23,9 @@ http://mutable-instruments.com</sDescription>
       <includes>
          <include>./rings_fx.h</include>
       </includes>
+      <modules>
+         <module>rngs</module>
+      </modules>
       <code.declaration><![CDATA[rings_fx::Chorus chorus;]]></code.declaration>
       <code.init><![CDATA[chorus.Init((uint16_t*) sdram_malloc(32768));]]></code.init>
       <code.krate><![CDATA[static float left[BUFSIZE];
