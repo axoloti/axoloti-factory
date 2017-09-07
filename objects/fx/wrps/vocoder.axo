@@ -12,17 +12,26 @@ modified for 48kHz operation</sDescription>
       <inlets>
          <frac32buffer name="carrier"/>
          <frac32buffer name="modulator"/>
+         <frac32.bipolar name="release"/>
+         <frac32.bipolar name="formant"/>
       </inlets>
       <outlets>
          <frac32buffer name="out"/>
       </outlets>
       <displays/>
-      <params/>
+      <params>
+         <frac32.u.map name="release"/>
+         <frac32.u.map name="formant"/>
+      </params>
       <attribs/>
       <includes>
          <include>./warps_vocoder.h</include>
       </includes>
-      <code.declaration><![CDATA[warps_deriv::Vocoder vocoder;]]></code.declaration>
+      <code.declaration><![CDATA[inline float constrainQ27(int32_t v, float vMin, float vMax) {
+	return std::max<float>(vMin,std::min<float>(vMax, q27_to_float(v)));
+}
+
+warps_deriv::Vocoder vocoder;]]></code.declaration>
       <code.init><![CDATA[vocoder.Init(48000);]]></code.init>
       <code.krate><![CDATA[float fmod[BUFSIZE];
 float fcar[BUFSIZE];
@@ -32,6 +41,10 @@ for(i=0;i<BUFSIZE;i++){
    fmod[i] = q27_to_float(inlet_modulator[i]); 
    fcar[i] = q27_to_float(inlet_carrier[i]); 
 }
+
+vocoder.set_release_time(constrainQ27(param_release + inlet_release, 	0.0f,1.0f));
+vocoder.set_formant_shift(constrainQ27(param_formant + inlet_formant,	0.0f,1.0f));
+
 
 vocoder.Process(&fmod[0],&fcar[0],&fout[0],BUFSIZE);
 

@@ -4,7 +4,9 @@
 any bugs/issues you find are our own, report on the axoloti forum.
 
 Thanks to Olivier Gillet from Mutable Instruments for open sourcing their code.
-http://mutable-instruments.com</sDescription>
+http://mutable-instruments.com
+BUG: this will not currently link, due to axo firmware issue
+</sDescription>
       <author>Mark Harris</author>
       <license>GPL</license>
       <helpPatch>wrps.axh</helpPatch>
