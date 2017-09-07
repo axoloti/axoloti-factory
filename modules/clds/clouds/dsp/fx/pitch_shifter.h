@@ -26,8 +26,7 @@
 //
 // Pitch shifter.
 
-#ifndef CLOUDS_DSP_FX_PITCH_SHIFTER_H_
-#define CLOUDS_DSP_FX_PITCH_SHIFTER_H_
+#pragma once
 
 #include "stmlib/stmlib.h"
 
@@ -113,4 +112,3 @@ class PitchShifter {
 
 }  // namespace clouds
 
-#endif  // CLOUDS_DSP_FX_MINI_CHORUS_H_

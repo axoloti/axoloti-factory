@@ -24,8 +24,9 @@
 //
 // -----------------------------------------------------------------------------
 //
-// Base class for building reverbs.
-#pragma once
+// Base class for building reverb.
+
+#pragma once 
 
 #include <algorithm>
 
@@ -34,7 +35,7 @@
 #include "stmlib/dsp/dsp.h"
 #include "stmlib/dsp/cosine_oscillator.h"
 
-namespace clouds {
+namespace elements {
 
 #define TAIL , -1
 
@@ -104,10 +105,6 @@ class FxEngine {
 
   void Init(T* buffer) {
     buffer_ = buffer;
-    Clear();
-  }
-  
-  void Clear() {
     std::fill(&buffer_[0], &buffer_[size], 0);
     write_ptr_ = 0;
   }
@@ -261,8 +258,7 @@ class FxEngine {
   };
   
   inline void SetLFOFrequency(LFOIndex index, float frequency) {
-    lfo_[index].template Init<stmlib::COSINE_OSCILLATOR_APPROXIMATE>(
-        frequency * 32.0f);
+    lfo_[index].template Init<stmlib::COSINE_OSCILLATOR_APPROXIMATE>(frequency * 32.0f);
   }
   
   inline void Start(Context* c) {
@@ -295,5 +291,5 @@ class FxEngine {
   DISALLOW_COPY_AND_ASSIGN(FxEngine);
 };
 
-}  // namespace clouds
+}  // namespace elements
 

@@ -26,45 +26,42 @@
 //
 // Reverb.
 
-#pragma once
+#pragma once 
 
 #include "stmlib/stmlib.h"
 
-#include "clouds/dsp/fx/fx_engine.h"
+#include "elements/dsp/fx/fx_engine.h"
 
-namespace clouds {
-
-#define REVERB_DEPTH FORMAT_16_BIT
-// #define REVERB_DEPTH FORMAT_12_BIT
+namespace elements {
 
 class Reverb {
  public:
   Reverb() { }
   ~Reverb() { }
   
-  void Init(uint16_t* buffer, float sr) {
+  void Init(uint16_t* buffer) {
     engine_.Init(buffer);
-    engine_.SetLFOFrequency(LFO_1, 0.5f / sr);
-    engine_.SetLFOFrequency(LFO_2, 0.3f / sr);
+    engine_.SetLFOFrequency(LFO_1, 0.5f / 32000.0f);
+    engine_.SetLFOFrequency(LFO_2, 0.3f / 32000.0f);
     lp_ = 0.7f;
     diffusion_ = 0.625f;
   }
   
-  void Process(FloatFrame* in_out, size_t size) {
+  void Process(float* left, float* right, size_t size) {
     // This is the Griesinger topology described in the Dattorro paper
     // (4 AP diffusers on the input, then a loop of 2x 2AP+1Delay).
     // Modulation is applied in the loop of the first diffuser AP for additional
     // smearing; and to the two long delays for a slow shimmer/chorus effect.
-    typedef E::Reserve<113,
-      E::Reserve<162,
-      E::Reserve<241,
-      E::Reserve<399,
-      E::Reserve<1653,
-      E::Reserve<2038,
-      E::Reserve<3411,
-      E::Reserve<1913,
-      E::Reserve<1663,
-      E::Reserve<4782> > > > > > > > > > Memory;
+    typedef E::Reserve<150,
+      E::Reserve<214,
+      E::Reserve<319,
+      E::Reserve<527,
+      E::Reserve<2182,
+      E::Reserve<2690,
+      E::Reserve<4501,
+      E::Reserve<2525,
+      E::Reserve<2197,
+      E::Reserve<6312> > > > > > > > > > Memory;
     E::DelayLine<Memory, 0> ap1;
     E::DelayLine<Memory, 1> ap2;
     E::DelayLine<Memory, 2> ap3;
@@ -92,10 +89,10 @@ class Reverb {
       engine_.Start(&c);
       
       // Smear AP1 inside the loop.
-      c.Interpolate(ap1, 10.0f, LFO_1, 60.0f, 1.0f);
+      c.Interpolate(ap1, 10.0f, LFO_1, 80.0f, 1.0f);
       c.Write(ap1, 100, 0.0f);
       
-      c.Read(in_out->l + in_out->r, gain);
+      c.Read(*left + *right, gain);
 
       // Diffuse through 4 allpasses.
       c.Read(ap1 TAIL, kap);
@@ -110,7 +107,7 @@ class Reverb {
       
       // Main reverb loop.
       c.Load(apout);
-      c.Interpolate(del2, 4680.0f, LFO_2, 100.0f, krt);
+      c.Interpolate(del2, 6211.0f, LFO_2, 100.0f, krt);
       c.Lp(lp_1, klp);
       c.Read(dap1a TAIL, -kap);
       c.WriteAllPass(dap1a, kap);
@@ -119,7 +116,7 @@ class Reverb {
       c.Write(del1, 2.0f);
       c.Write(wet, 0.0f);
 
-      in_out->l += (wet - in_out->l) * amount;
+      *left += (wet - *left) * amount;
 
       c.Load(apout);
       // c.Interpolate(del1, 4450.0f, LFO_1, 50.0f, krt);
@@ -132,9 +129,10 @@ class Reverb {
       c.Write(del2, 2.0f);
       c.Write(wet, 0.0f);
 
-      in_out->r += (wet - in_out->r) * amount;
+      *right += (wet - *right) * amount;
       
-      ++in_out;
+      ++left;
+      ++right;
     }
     
     lp_decay_1_ = lp_1;
@@ -162,7 +160,7 @@ class Reverb {
   }
   
  private:
-  typedef FxEngine<16384, REVERB_DEPTH> E;
+  typedef FxEngine<32768, FORMAT_16_BIT> E;
   E engine_;
   
   float amount_;
@@ -177,5 +175,5 @@ class Reverb {
   DISALLOW_COPY_AND_ASSIGN(Reverb);
 };
 
-}  // namespace clouds
+}  // namespace elements
 
