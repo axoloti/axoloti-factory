@@ -36,7 +36,7 @@ for(i=0;i<BUFSIZE;i++){
    iobuf[i].r = q27_to_float(inlet_r[i]); 
 }
 
-fx.Process(iobuf,sizeof(iobuf));
+fx.Process(iobuf,BUFSIZE);
 
 for(i=0;i<BUFSIZE;i++){
 	outlet_l[i] = float_to_q27(iobuf[i].l);
