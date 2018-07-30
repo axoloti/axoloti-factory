@@ -36,8 +36,12 @@ rstp = 0;]]></code.init>
 }
 if (inlet_run && !_active) {
   _active = 1;
-  if (_pos24ppq)     PatchMidiInHandler(MIDI_DEVICE_INTERNAL, 0,MIDI_START,0,0);
-  else     PatchMidiInHandler(MIDI_DEVICE_INTERNAL, 0,MIDI_CONTINUE,0,0);
+  if (_pos24ppq) {
+    PatchMidiInHandler(MIDI_DEVICE_INTERNAL, 0,MIDI_CONTINUE,0,0);
+  } else {
+    PatchMidiInHandler(MIDI_DEVICE_INTERNAL, 0,MIDI_START,0,0);
+    PatchMidiInHandler(MIDI_DEVICE_INTERNAL, 0,MIDI_TIMING_CLOCK,0,0);
+  }
 } else if (!inlet_run && _active){
   _active = 0;
   PatchMidiInHandler(MIDI_DEVICE_INTERNAL, 0,MIDI_STOP,0,0);
