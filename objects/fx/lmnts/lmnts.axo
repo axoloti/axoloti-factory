@@ -70,7 +70,7 @@ http://mutable-instruments.com</sDescription>
          <file-depend localFilename="smp_sample_data.raw" targetPath="/shared/elements/smp_sample_data.raw"/>
       </file-depends>
       <modules>
-         <modules>lmnts</modules>
+         <module>lmnts</module>
       </modules>
       <code.declaration><![CDATA[lmnts::elements::Part part;
 lmnts::elements::PerformanceState state;

@@ -41,7 +41,7 @@ http://mutable-instruments.com</sDescription>
          </combo>
       </attribs>
       <modules>
-         <modules>lmnts</modules>
+         <module>lmnts</module>
       </modules>
       <code.declaration><![CDATA[lmnts::elements::String string;
          inline float constrainQ27(int32_t v, float vMin, float vMax) {

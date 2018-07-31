@@ -84,7 +84,7 @@ http://mutable-instruments.com</sDescription>
          </combo>
       </attribs>
       <modules>
-         <modules>clds</modules>
+         <module>clds</module>
       </modules>
       <code.declaration><![CDATA[clds::clouds::GranularProcessor processor;
 bool ltrig = false;

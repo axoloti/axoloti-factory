@@ -17,7 +17,7 @@ http://mutable-instruments.com</sDescription>
       <params/>
       <attribs/>
       <modules>
-         <modules>lmnts</modules>
+         <module>lmnts</module>
       </modules>
       <code.declaration><![CDATA[lmnts::elements::Diffuser diffuser;
 
