@@ -16,7 +16,7 @@
       <code.declaration><![CDATA[int ntrig;
 ]]></code.declaration>
       <code.krate><![CDATA[if ((inlet_trig>0) && !ntrig) {
-  PExModulationSourceChange(
+  ModulationSourceChange(
     &parent->GetModulationTable()[parent->MODULATOR_attr_name*NMODULATIONTARGETS],
     NMODULATIONTARGETS,
     &parent->PExch[0],
