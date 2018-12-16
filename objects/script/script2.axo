@@ -29,7 +29,8 @@ msg_t ThreadX2(){
   }
   chThdExit((msg_t)0);
 }
-static msg_t ThreadX(void *arg) {
+
+THD_FUNCTION(ThreadX, arg) {
 ((attr_parent *)arg)->ThreadX2();
 }
 WORKING_AREA(waThreadX, 1024);
