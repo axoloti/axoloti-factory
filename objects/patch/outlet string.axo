@@ -13,7 +13,7 @@
       <attribs/>
       <code.declaration><![CDATA[char * _outlet;
 ]]></code.declaration>
-      <code.krate><![CDATA[   _outlet = inlet_outlet;
+      <code.krate><![CDATA[   _outlet = (char *)inlet_outlet;
 ]]></code.krate>
    </obj.normal>
 </objdefs>
