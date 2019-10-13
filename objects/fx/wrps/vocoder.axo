@@ -24,6 +24,9 @@ modified for 48kHz operation</sDescription>
          <frac32.u.map name="formant"/>
       </params>
       <attribs/>
+      <modules>
+         <module>wrps</module>
+      </modules>
       <includes>
          <include>./warps_vocoder.h</include>
       </includes>

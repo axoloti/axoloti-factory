@@ -26,13 +26,14 @@ BUG: this will not currently link, due to axo firmware issue
          <frac32.u.map name="density"/>
       </params>
       <attribs/>
-      <includes>
-         <include>axoloti_mi.h</include>
-      </includes>
-      <code.declaration><![CDATA[warps::Modulator processor;]]></code.declaration>
+      <modules>
+         <module>wrps</module>
+      </modules>
+      <includes/>
+      <code.declaration><![CDATA[wrps::warps::Modulator processor;]]></code.declaration>
       <code.init><![CDATA[processor.Init(48000.0f); //MI = 96k]]></code.init>
-      <code.krate><![CDATA[static warps::ShortFrame input[BUFSIZE];
-static warps::ShortFrame output[BUFSIZE];
+      <code.krate><![CDATA[static wrps::warps::ShortFrame input[BUFSIZE];
+static wrps::warps::ShortFrame output[BUFSIZE];
 
 int i;
 

@@ -23,7 +23,10 @@
          </frac32.u.map>
       </params>
       <attribs/>
-      <includes>
+       <modules>
+         <module>brds</module>
+      </modules>
+     <includes>
          <include>./brds_digital.h</include>
       </includes>
       <code.declaration><![CDATA[braids_digital_deriv::Wavetables osc;]]></code.declaration>

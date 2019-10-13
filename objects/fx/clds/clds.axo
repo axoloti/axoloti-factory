@@ -83,10 +83,10 @@ http://mutable-instruments.com</sDescription>
             </CEntries>
          </combo>
       </attribs>
-      <includes>
-         <include>axoloti_mi.h</include>
-      </includes>
-      <code.declaration><![CDATA[clouds::GranularProcessor processor;
+      <modules>
+         <module>clds</module>
+      </modules>
+      <code.declaration><![CDATA[clds::clouds::GranularProcessor processor;
 bool ltrig = false;
 
 inline float constrainQ27(int32_t v, float vMin, float vMax) {
@@ -106,17 +106,17 @@ if(!small_buff) return;
 
 processor.Init(large_buff,LARGE_BUF, small_buff,SMALL_BUF);
 ltrig = false;]]></code.init>
-      <code.krate><![CDATA[static clouds::ShortFrame input[BUFSIZE];
-static clouds::ShortFrame output[BUFSIZE];
+      <code.krate><![CDATA[static clds::clouds::ShortFrame input[BUFSIZE];
+static clds::clouds::ShortFrame output[BUFSIZE];
 
 int i;
 
 // for now restrict playback mode to working modes (granular and looping) 
 // clouds::PlaybackMode mode  = (clouds::PlaybackMode) ((param_playmode + inlet_mode) % 4) );
-clouds::PlaybackMode mode =  
+clds::clouds::PlaybackMode mode =  
 	(((param_playmode + inlet_mode) % 2) == 0) 
-	? clouds::PLAYBACK_MODE_GRANULAR 
-	: clouds::PLAYBACK_MODE_LOOPING_DELAY;
+	? clds::clouds::PLAYBACK_MODE_GRANULAR 
+	: clds::clouds::PLAYBACK_MODE_LOOPING_DELAY;
 processor.set_playback_mode(mode);
 
 processor.mutable_parameters()->position 	= constrainQ27(param_position + inlet_position, 	0.0f,1.0f);
@@ -131,7 +131,7 @@ processor.mutable_parameters()->pitch		= constrain(q27_to_float(param_pitch + in
 
 // restrict density to .2 to .8 for granular mode, outside this breaks up
 float density = q27_to_float(param_density 	+ inlet_density); 
-density = (mode == clouds::PLAYBACK_MODE_GRANULAR) ? (density*.6)+0.2 : density;
+density = (mode == clds::clouds::PLAYBACK_MODE_GRANULAR) ? (density*.6)+0.2 : density;
 processor.mutable_parameters()->density	= constrain(density, 0.0f, 1.0f);
 
 processor.mutable_parameters()->freeze = inlet_freeze;

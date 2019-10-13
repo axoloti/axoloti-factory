@@ -25,7 +25,10 @@ important note: the outputs are not audio signals, they are the frequency and ga
          <frac32.u.map name="env"/>
       </params>
       <attribs/>
-      <code.declaration><![CDATA[streams::Processor processor;]]></code.declaration>
+      <modules>
+         <module>strms</module>
+      </modules>
+      <code.declaration><![CDATA[strms::streams::Processor processor;]]></code.declaration>
       <code.init><![CDATA[processor.Init(0);]]></code.init>
       <code.krate><![CDATA[int i;
 bool refresh=false;

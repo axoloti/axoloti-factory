@@ -1,11 +1,10 @@
-<patch-1.0 appVersion="1.0.11">
+<patchModel appVersion="1.0.12">
    <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="volume" x="378" y="0">
       <params>
          <frac32.u.map name="value" value="0.0"/>
       </params>
       <attribs/>
    </obj>
-   <comment type="patch/comment" x="31" y="20" text="note: not currently workng CCSRAM issue"/>
    <obj type="osc/saw" uuid="739ecc36017ef3249479b8f01716b8bbfba9abc1" name="saw_1" x="28" y="140">
       <params>
          <frac32.s.map name="pitch" value="0.0"/>
@@ -41,37 +40,43 @@
    </obj>
    <nets>
       <net>
-         <source obj="volume" outlet="out"/>
-         <dest obj="vca_2" inlet="v"/>
-         <dest obj="vca_1" inlet="v"/>
+         <source outlet="out" obj="volume"/>
+         <dest inlet="v" obj="vca_2"/>
+         <dest inlet="v" obj="vca_1"/>
       </net>
       <net>
-         <source obj="wrps_1" outlet="out"/>
-         <dest obj="vca_1" inlet="a"/>
+         <source outlet="out" obj="wrps_1"/>
+         <dest inlet="a" obj="vca_1"/>
       </net>
       <net>
-         <source obj="wrps_1" outlet="aux"/>
-         <dest obj="vca_2" inlet="a"/>
+         <source outlet="aux" obj="wrps_1"/>
+         <dest inlet="a" obj="vca_2"/>
       </net>
       <net>
-         <source obj="vca_1" outlet="o"/>
-         <dest obj="out_1" inlet="left"/>
+         <source outlet="o" obj="vca_1"/>
+         <dest inlet="left" obj="out_1"/>
       </net>
       <net>
-         <source obj="vca_2" outlet="o"/>
-         <dest obj="out_1" inlet="right"/>
+         <source outlet="o" obj="vca_2"/>
+         <dest inlet="right" obj="out_1"/>
       </net>
       <net>
-         <source obj="saw_1" outlet="wave"/>
-         <dest obj="wrps_1" inlet="i1"/>
+         <source outlet="wave" obj="saw_1"/>
+         <dest inlet="i1" obj="wrps_1"/>
       </net>
       <net>
-         <source obj="square_1" outlet="wave"/>
-         <dest obj="wrps_1" inlet="i2"/>
+         <source outlet="wave" obj="square_1"/>
+         <dest inlet="i2" obj="wrps_1"/>
       </net>
    </nets>
    <settings>
       <subpatchmode>no</subpatchmode>
+      <MidiChannel>1</MidiChannel>
+      <NPresets>0</NPresets>
+      <NPresetEntries>0</NPresetEntries>
+      <NModulationSources>0</NModulationSources>
+      <NModulationTargetsPerSource>0</NModulationTargetsPerSource>
+      <Author></Author>
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
@@ -80,4 +85,4 @@
       <width>654</width>
       <height>502</height>
    </windowPos>
-</patch-1.0>
+</patchModel>

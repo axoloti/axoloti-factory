@@ -16,7 +16,10 @@ http://mutable-instruments.com</sDescription>
       <displays/>
       <params/>
       <attribs/>
-      <code.declaration><![CDATA[elements::Diffuser diffuser;
+      <modules>
+         <module>lmnts</module>
+      </modules>
+      <code.declaration><![CDATA[lmnts::elements::Diffuser diffuser;
 
 float * alloc_buffer(){
 	static float buffer[32768] __attribute__ ((section (".sdram")));

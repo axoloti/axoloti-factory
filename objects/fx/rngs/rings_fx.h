@@ -1,5 +1,12 @@
 #pragma once
 
+#include "rngs_wrapper.h"
+
+using namespace rngs::rings;
+
+// from clouds!
+#define TAIL , -1
+
 namespace rings_fx {
 
 

@@ -29,7 +29,10 @@ http://mutable-instruments.com</sDescription>
          <frac32.u.map name="lowpass"/>
       </params>
       <attribs/>
-      <code.declaration><![CDATA[elements::Reverb reverb;
+      <modules>
+         <module>lmnts</module>
+      </modules>
+     <code.declaration><![CDATA[lmnts::elements::Reverb reverb;
 
 inline float constrainQ27(int32_t v, float vMin, float vMax) {
    return std::max<float>(vMin,std::min<float>(vMax, q27_to_float(v)));

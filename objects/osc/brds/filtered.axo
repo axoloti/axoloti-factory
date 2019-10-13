@@ -28,6 +28,9 @@
          </int32>
       </params>
       <attribs/>
+      <modules>
+         <module>brds</module>
+      </modules>
       <includes>
          <include>./brds_digital.h</include>
       </includes>

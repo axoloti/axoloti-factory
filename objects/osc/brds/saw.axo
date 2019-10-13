@@ -15,6 +15,9 @@
          <frac32.s.map.pitch name="pitch" noLabel="true"/>
       </params>
       <attribs/>
+      <modules>
+         <module>brds</module>
+      </modules>
       <includes>
          <include>./brds_analog.h</include>
       </includes>

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "wrps_wrapper.h"
+
 namespace warps_deriv {
 
 enum SampleRateConversionDirection {

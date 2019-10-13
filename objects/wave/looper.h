@@ -108,7 +108,7 @@ void stream_close(sdFilePingpongRW *s) {
 
 #define __INL __attribute__ ((noinline))
 
-static __INL msg_t ThreadSD(void *arg) {
+THD_FUNCTION(ThreadSD, arg) {
   volatile FRESULT err;
   UINT bytes_read;
   while (!chThdShouldTerminate()) {
