@@ -30,37 +30,46 @@ http://mutable-instruments.com</sDescription>
       </params>
       <attribs/>
       <modules>
-         <module>lmnts</module>
+         <module>lmntsreverb</module>
       </modules>
-     <code.declaration><![CDATA[lmnts::elements::Reverb reverb;
+     <code.declaration><![CDATA[
+lmntsreverb::C_lmnts_reverb *reverb;
+uint16_t* buf;
 
 inline float constrainQ27(int32_t v, float vMin, float vMax) {
-   return std::max<float>(vMin,std::min<float>(vMax, q27_to_float(v)));
+   return std::fmax(vMin,std::fmin(vMax, q27_to_float(v)));
 }
 
 inline float constrain(float v, float vMin, float vMax) {
-   return std::max<float>(vMin,std::min<float>(vMax, v));
-}]]></code.declaration>
-      <code.init><![CDATA[uint16_t* buf = (uint16_t*) sdram_malloc(32768);
-if(!buf) return;
-reverb.Init(buf);]]></code.init>
-      <code.krate><![CDATA[static float left[BUFSIZE];
-static float right[BUFSIZE];
+   return std::fmax(vMin,std::fmin(vMax, v));
+}
+]]></code.declaration>
+      <code.init><![CDATA[buf = (uint16_t*) sdram_malloc(32768*2);
+if (!buf) return;
+reverb = lmntsreverb_factory();
+reverb->Init(buf);]]></code.init>
+<code.dispose><![CDATA[if (buf) ax_free(buf);
+if (reverb) {
+	reverb->~C_lmnts_reverb();
+	ax_free(reverb);
+}]]></code.dispose>
+        <code.krate><![CDATA[float left[BUFSIZE];
+float right[BUFSIZE];
 
 int i;
 
-reverb.set_amount(constrainQ27(param_amount+inlet_amount, 0.0f,1.0f));
-reverb.set_input_gain(constrainQ27(param_gain + inlet_gain, 0.0f,1.0f));
-reverb.set_time(constrainQ27(param_time + inlet_time, 0.0f,1.0f));
-reverb.set_diffusion(constrainQ27(param_diffusion + inlet_diffusion, 0.0f,1.0f));
-reverb.set_lp(constrainQ27(param_lowpass + inlet_lowpass, 0.0f,1.0f));
+reverb->set_amount(constrainQ27(param_amount+inlet_amount, 0.0f,1.0f));
+reverb->set_input_gain(constrainQ27(param_gain + inlet_gain, 0.0f,1.0f));
+reverb->set_time(constrainQ27(param_time + inlet_time, 0.0f,1.0f));
+reverb->set_diffusion(constrainQ27(param_diffusion + inlet_diffusion, 0.0f,1.0f));
+reverb->set_lp(constrainQ27(param_lowpass + inlet_lowpass, 0.0f,1.0f));
 
 for(i=0;i<BUFSIZE;i++){
 	left[i] = q27_to_float(inlet_l[i]);
 	right[i] = q27_to_float(inlet_r[i]);
 }
 
-reverb.Process(left,right,BUFSIZE);
+reverb->Process(left,right,BUFSIZE);
 
 for(i=0;i<BUFSIZE;i++){
 	outlet_l[i] = float_to_q27(left[i]);
