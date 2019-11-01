@@ -45,7 +45,7 @@ inline float constrain(float v, float vMin, float vMax) {
 }
 ]]></code.declaration>
       <code.init><![CDATA[buf = (uint16_t*) sdram_malloc(32768*2);
-if (!buf) return;
+if (!buf) return error_outOfMemory;
 reverb = lmntsreverb_factory();
 reverb->Init(buf);]]></code.init>
 <code.dispose><![CDATA[if (buf) ax_free(buf);
