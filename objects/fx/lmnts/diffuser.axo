@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.12">
+<objdefs appVersion="2.0.0">
    <obj.normal id="diffuser" uuid="C1031A8D-A6A5-4640-9440-5FA1E2FA756E">
       <sDescription>a diffuser effect, based on the elements dsp code open sourced by mutable instruments.
 any bugs/issues you find are our own, report on the axoloti forum.
@@ -16,26 +16,33 @@ http://mutable-instruments.com</sDescription>
       <displays/>
       <params/>
       <attribs/>
+      <file-depends/>
+      <includes/>
+      <depends/>
       <modules>
-         <module>lmnts</module>
+         <module>lmntsdiffuser</module>
       </modules>
-      <code.declaration><![CDATA[lmnts::elements::Diffuser diffuser;
+      <code.declaration><![CDATA[float * buf;
 
-float * alloc_buffer(){
-	static float buffer[32768] __attribute__ ((section (".sdram")));
-	return buffer;
-}]]></code.declaration>
-      <code.init><![CDATA[diffuser.Init(alloc_buffer());]]></code.init>
+lmntsdiffuser::C_lmnts_diffuser *diffuser;]]></code.declaration>
+      <code.init><![CDATA[buf = (float*) sdram_malloc(32768*4);
+if (!buf) return error_outOfMemory;
+diffuser = lmntsdiffuser_factory();
+diffuser->Init(buf);]]></code.init>
+      <code.dispose><![CDATA[if (buf) ax_free(buf);
+if (diffuser) {
+	diffuser->~C_lmnts_diffuser();
+	ax_free(diffuser);
+}]]></code.dispose>
       <code.krate><![CDATA[static float buf[BUFSIZE];
 
 int i;
-
 
 for(i=0;i<BUFSIZE;i++){
 	buf[i] = q27_to_float(inlet_in[i]);
 }
 
-diffuser.Process(buf,BUFSIZE);
+diffuser->Process(buf,BUFSIZE);
 
 for(i=0;i<BUFSIZE;i++){
 	outlet_out[i] = float_to_q27(buf[i]);
