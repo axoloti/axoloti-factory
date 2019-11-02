@@ -65,12 +65,12 @@ if (err != FR_OK) {
 	for(i=0;i<max_length;i++){
 		sample[i]=0;
 	}
-	return;
+	return error_fileOperationFailed;
 }
 err = f_read(&FileObject, (char *)sample, sizeof(_sample),&bytes_read);
-if (err != FR_OK) {LogTextMessage("Read failed\n"); return;}
+if (err != FR_OK) {LogTextMessage("Read failed\n"); return error_fileOperationFailed;}
 err = f_close(&FileObject);
-if (err != FR_OK) {LogTextMessage("Close failed\n"); return;}
+if (err != FR_OK) {LogTextMessage("Close failed\n"); return error_fileOperationFailed;}
 
 int i=bytes_read/2; // 16 bit per sample
 // clear from file end to array end

@@ -80,7 +80,7 @@ FIL FileObject;
 FRESULT err;
 UINT bytes_read;
 err = f_open(&FileObject, "attr_filename", FA_READ | FA_OPEN_EXISTING);
-if (err != FR_OK) {report_fatfs_error(err,"attr_filename"); return;}
+if (err != FR_OK) {report_fatfs_error(err,"attr_filename"); return error_fileOperationFailed;}
 int rem_sz = sizeof(_array[0]);
 int offset = 0;
 while (rem_sz>0) {
@@ -95,9 +95,9 @@ while (rem_sz>0) {
     memcpy((char *)(&_array[0]) + offset,(char *)fbuff,bytes_read);
     rem_sz = 0;
   }
-}if (err != FR_OK) {LogTextMessage("Read failed\n"); return;}
+}if (err != FR_OK) {LogTextMessage("Read failed\n"); return error_fileOperationFailed;}
 err = f_close(&FileObject);
-if (err != FR_OK) {LogTextMessage("Close failed\n"); return;}
+if (err != FR_OK) {LogTextMessage("Close failed\n"); return error_fileOperationFailed;}
 ]]></code.init>
    </obj.normal>
 </objdefs>
