@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="keyb mod" uuid="abcd509d15e7d13d5381203fd2b4d0ac6fe57bb3" sha="5c4259f776c29bb6d0a1dae616d462851a373035">
       <upgradeSha>b04b85a71cec3251affc24a6ff92a38936ee9b1b</upgradeSha>
       <sDescription>Monophonic MIDI keyboard note input, gate, velocity and release velocity modulation source</sDescription>
@@ -21,15 +21,17 @@
       <displays/>
       <params/>
       <attribs/>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
       <code.declaration><![CDATA[int8_t _note;
 int32_t _gate;
 int32_t _gate2;
 uint8_t _velo;
-uint8_t _rvelo;
-]]></code.declaration>
+uint8_t _rvelo;]]></code.declaration>
       <code.init><![CDATA[_gate = 0;
-_note = 0;
-]]></code.init>
+_note = 0;]]></code.init>
       <code.krate><![CDATA[outlet_note= _note<<21;
 outlet_gate= _gate;
 outlet_gate2= _gate2;
@@ -37,7 +39,8 @@ _gate2 = _gate;
 outlet_velocity= _velo<<20;
 outlet_releaseVelocity= _rvelo<<20;
 ]]></code.krate>
-      <code.midihandler><![CDATA[if ((status == MIDI_NOTE_ON + attr_midichannel) && (data2)) {
+      <code.midihandler><![CDATA[if (port!=attr_midiport) return;
+if ((status == MIDI_NOTE_ON + attr_midichannel) && (data2)) {
   _velo = data2;
   _note = data1-64;
   _gate = 1<<27;
@@ -68,7 +71,6 @@ outlet_releaseVelocity= _rvelo<<20;
   }
 } else if ((status == attr_midichannel + MIDI_CONTROL_CHANGE)&&(data1 == MIDI_C_ALL_NOTES_OFF)) {
   _gate = 0;
-}
-]]></code.midihandler>
+}]]></code.midihandler>
    </obj.normal>
 </objdefs>

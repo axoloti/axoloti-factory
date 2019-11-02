@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="keyb zone touch" uuid="b50844801544a4d92e447c983cf5c3acafbbdf17" sha="ac58d123bcaa381a2adf6db55d3ec7ed51f51e28">
       <upgradeSha>a338e85868281e045314a2800ffafe4f12117ad4</upgradeSha>
       <sDescription>Monophonic MIDI keyboard note input, gate, velocity and release velocity, only responding to a range of notes, with polyphonic aftertouch</sDescription>
@@ -19,23 +19,26 @@
          <spinner name="startNote" MinValue="0" MaxValue="127" DefaultValue="0"/>
          <spinner name="endNote" MinValue="0" MaxValue="127" DefaultValue="127"/>
       </attribs>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
       <code.declaration><![CDATA[int8_t _note;
 uint8_t _gate;
 uint8_t _velo;
 uint8_t _rvelo;
-uint8_t _touch;
-]]></code.declaration>
+uint8_t _touch;]]></code.declaration>
       <code.init><![CDATA[_gate = 0;
 _note = 0;
-_touch = 0;
-]]></code.init>
+_touch = 0;]]></code.init>
       <code.krate><![CDATA[outlet_note= _note<<21;
 outlet_gate= _gate<<27;
 outlet_velocity= _velo<<20;
 outlet_touch = _touch<<20;
 outlet_releaseVelocity= _rvelo<<20;
 ]]></code.krate>
-      <code.midihandler><![CDATA[if ((status == MIDI_NOTE_ON + attr_midichannel) && (data2)) {
+      <code.midihandler><![CDATA[if (port!=attr_midiport) return;
+if ((status == MIDI_NOTE_ON + attr_midichannel) && (data2)) {
   if ((data1 >= attr_startNote)&&(data1 <= attr_endNote)) {
     _velo = data2;
     _note = data1-64;
@@ -50,7 +53,6 @@ outlet_releaseVelocity= _rvelo<<20;
   _touch = data2;
 } else if ((status == attr_midichannel + MIDI_CONTROL_CHANGE)&&(data1 == MIDI_C_ALL_NOTES_OFF)) {
    _gate = 0;
-}
-]]></code.midihandler>
+}]]></code.midihandler>
    </obj.normal>
 </objdefs>

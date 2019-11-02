@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="touch" uuid="7e3a4d718388f6d5213accadf5a80121a7c35cc9" sha="19f5c78f0104c14d673160c3fee210c96ce3b62a">
       <upgradeSha>cb01f331517bc8be44bcf77add271dab64bb90df</upgradeSha>
       <sDescription>Midi channel pressure input</sDescription>
@@ -13,17 +13,20 @@
       <displays/>
       <params/>
       <attribs/>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
       <code.declaration><![CDATA[int32_t _press;
-int32_t ntrig;
-]]></code.declaration>
+int32_t ntrig;]]></code.declaration>
       <code.init><![CDATA[_press = 0;
-ntrig = 0;
-]]></code.init>
+ntrig = 0;]]></code.init>
       <code.krate><![CDATA[outlet_o = _press;
 outlet_trig = ntrig;
 ntrig = 0;
 ]]></code.krate>
-      <code.midihandler><![CDATA[if (status == MIDI_CHANNEL_PRESSURE + attr_midichannel) {  _press = (data1)<<20;
+      <code.midihandler><![CDATA[if (port!=attr_midiport) return;
+if (status == MIDI_CHANNEL_PRESSURE + attr_midichannel) {  _press = (data1)<<20;
   ntrig = 1;
 }]]></code.midihandler>
    </obj.normal>

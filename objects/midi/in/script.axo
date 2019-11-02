@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="script" uuid="92cbee0cb01566f753d6515bcc16c32f0baa37a3" sha="3ee8b91484e8ee55e2bc5f205ec797d8a6986231">
       <upgradeSha>82709d8f2cd722b129cb94767cdc4a23b41a5230</upgradeSha>
       <sDescription>script with 2 outputs, triggered by MIDI input</sDescription>
@@ -15,13 +15,17 @@
       <attribs>
          <text name="script"/>
       </attribs>
-      <code.declaration><![CDATA[int32_t out1,out2;
-]]></code.declaration>
-      <code.init><![CDATA[out1=0;out2=0;
-]]></code.init>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
+      <code.declaration><![CDATA[int32_t out1,out2;]]></code.declaration>
+      <code.init><![CDATA[out1=0;out2=0;]]></code.init>
       <code.krate><![CDATA[outlet_out1__ = this->out1;
 outlet_out2__ = this->out2;
 ]]></code.krate>
-      <code.midihandler><![CDATA[attr_script]]></code.midihandler>
+      <code.midihandler><![CDATA[if (port!=attr_midiport) return;
+
+attr_script]]></code.midihandler>
    </obj.normal>
 </objdefs>
