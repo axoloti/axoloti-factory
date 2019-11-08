@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="alloc 32b sdram" uuid="1a4546b7b52747ea765093ac97444601c44721e8" sha="b1d59d2d6fb50c9999f11aa494fb0f0411301026">
       <upgradeSha>f08ccbf86a1ba7ab420c79a9299d8821ae6ccedd</upgradeSha>
       <sDescription>allocate 32bit table in SDRAM memory</sDescription>
@@ -60,19 +60,23 @@
          </combo>
          <text name="init"/>
       </attribs>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
       <code.declaration><![CDATA[static const uint32_t LENGTHPOW = attr_size;
 static const uint32_t LENGTH = 1<<attr_size;
 static const uint32_t LENGTHMASK = (1<<attr_size)-1;
 static const uint32_t BITS = 32;
 static const uint32_t GAIN = 0;
-int32_t *array;
-]]></code.declaration>
-      <code.init><![CDATA[static int32_t _array[attr_poly][LENGTH] __attribute__ ((section (".sdram")));
-array = &_array[parent->polyIndex][0];
-{ 
+int32_t *array;]]></code.declaration>
+      <code.init><![CDATA[array = (int32_t *)ax_malloc(LENGTH * sizeof(int32_t), mem_type_hint_large);
+if (!array) return error_outOfMemory;
+{
   int i;
   for(i=0;i<LENGTH;i++) array[i]=0;
 }
 attr_init]]></code.init>
+      <code.dispose><![CDATA[ax_free(array);]]></code.dispose>
    </obj.normal>
 </objdefs>

@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="alloc 16b sdram load" uuid="e6b85dad3ab43565cda93ea4c43c73b668b1cd43" sha="4554392af3637f13826cd71eb68668d9acdec66d">
       <upgradeSha>24b1d447e8f1b1e1f87d7928cf851c60d7879824</upgradeSha>
       <sDescription>allocate 16bit table in SDRAM memory, -128.00 .. 127.99</sDescription>
@@ -62,18 +62,20 @@
          </combo>
          <file name="filename"/>
       </attribs>
+      <file-depends/>
+      <includes/>
       <depends>
          <depend>fatfs</depend>
       </depends>
+      <modules/>
       <code.declaration><![CDATA[static const uint32_t LENGTHPOW = (attr_size);
 static const uint32_t LENGTH = (1<<attr_size);
 static const uint32_t LENGTHMASK = ((1<<attr_size)-1);
 static const uint32_t BITS = 16;
 static const uint32_t GAIN = 12;
-int16_t *array;
-]]></code.declaration>
-      <code.init><![CDATA[static int16_t _array[attr_poly][LENGTH] __attribute__ ((section (".sdram")));
-array = &_array[parent->polyIndex][0];
+int16_t *array;]]></code.declaration>
+      <code.init><![CDATA[array = (int16_t *)ax_malloc(LENGTH * sizeof(int16_t), mem_type_hint_large);
+if (!array) return error_outOfMemory;
 int i;
 for(i=0;i<LENGTH;i++) array[i]=0;
 FIL FileObject;
@@ -97,7 +99,7 @@ while (rem_sz>0) {
   }
 }if (err != FR_OK) {LogTextMessage("Read failed\n"); return error_fileOperationFailed;}
 err = f_close(&FileObject);
-if (err != FR_OK) {LogTextMessage("Close failed\n"); return error_fileOperationFailed;}
-]]></code.init>
+if (err != FR_OK) {LogTextMessage("Close failed\n"); return error_fileOperationFailed;}]]></code.init>
+      <code.dispose><![CDATA[ax_free(array);]]></code.dispose>
    </obj.normal>
 </objdefs>

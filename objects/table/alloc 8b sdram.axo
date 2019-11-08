@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="alloc 8b sdram" uuid="7af0c2671e20d9c493553cf8b038ebbec89efb7" sha="8758d61b6a5eaecfd41e5c9c3e793f0f92e6f90a">
       <upgradeSha>1b6d949cb9f7b9eaf110e71dd28d41e2024ee73e</upgradeSha>
       <sDescription>allocate table in SDRAM memory, -128..127</sDescription>
@@ -62,19 +62,23 @@
          </combo>
          <text name="init"/>
       </attribs>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
       <code.declaration><![CDATA[static const uint32_t LENGTHPOW = (attr_size);
 static const uint32_t LENGTH = (1<<attr_size);
 static const uint32_t LENGTHMASK = ((1<<attr_size)-1);
 static const uint32_t BITS = 8;
 static const uint32_t GAIN = 20;
-int8_t *array;
-]]></code.declaration>
-      <code.init><![CDATA[static int8_t _array[attr_poly][LENGTH] __attribute__ ((section (".sdram")));
-array = &_array[parent->polyIndex][0];
-{ 
+int8_t *array;]]></code.declaration>
+      <code.init><![CDATA[array = (int8_t *)ax_malloc(LENGTH * sizeof(int8_t), mem_type_hint_large);
+if (!array) return error_outOfMemory;
+{
   int i;
   for(i=0;i<LENGTH;i++) array[i]=0;
 }
 attr_init]]></code.init>
+      <code.dispose><![CDATA[ax_free(array);]]></code.dispose>
    </obj.normal>
 </objdefs>
