@@ -1,0 +1,91 @@
+<objdefs appVersion="2.0.0">
+   <obj.normal id="reverb" uuid="8027561C-A0B5-4DF8-A10E-3ED1274F2980">
+      <sDescription>a reverb effect, based the on elements reverb dsp code open sourced by mutable instruments.
+any bugs/issues you find are our own, report on the axoloti forum.
+
+Thanks to Olivier Gillet from Mutable Instruments for open sourcing their code.
+http://mutable-instruments.com</sDescription>
+      <author>Mark Harris</author>
+      <license>GPL</license>
+      <inlets>
+         <frac32buffer name="l"/>
+         <frac32buffer name="r"/>
+         <frac32.bipolar name="amount"/>
+         <frac32.bipolar name="time"/>
+         <frac32.bipolar name="diffusion"/>
+         <frac32.bipolar name="gain"/>
+         <frac32.bipolar name="lowpass"/>
+      </inlets>
+      <outlets>
+         <frac32buffer name="l"/>
+         <frac32buffer name="r"/>
+      </outlets>
+      <displays/>
+      <params>
+         <frac32.u.map name="amount">
+            <DefaultValue v="0.0"/>
+         </frac32.u.map>
+         <frac32.u.map name="time">
+            <DefaultValue v="0.0"/>
+         </frac32.u.map>
+         <frac32.u.map name="diffusion">
+            <DefaultValue v="0.0"/>
+         </frac32.u.map>
+         <frac32.u.map name="gain">
+            <DefaultValue v="0.0"/>
+         </frac32.u.map>
+         <frac32.u.map name="lowpass">
+            <DefaultValue v="0.0"/>
+         </frac32.u.map>
+      </params>
+      <attribs/>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules>
+         <module>lmntsreverb</module>
+      </modules>
+      <code.declaration><![CDATA[uint16_t* buf;
+
+lmntsreverb::C_lmnts_reverb *reverb;
+
+inline float constrainQ27(int32_t v, float vMin, float vMax) {
+   return std::fmax(vMin,std::fmin(vMax, q27_to_float(v)));
+}
+
+inline float constrain(float v, float vMin, float vMax) {
+   return std::fmax(vMin,std::fmin(vMax, v));
+}]]></code.declaration>
+      <code.init><![CDATA[buf = (uint16_t*) sdram_malloc(32768*2);
+if (!buf) return error_outOfMemory;
+reverb = lmntsreverb_factory();
+reverb->Init(buf);]]></code.init>
+      <code.dispose><![CDATA[if (buf) ax_free(buf);
+if (reverb) {
+	reverb->~C_lmnts_reverb();
+	ax_free(reverb);
+}]]></code.dispose>
+      <code.krate><![CDATA[float left[BUFSIZE];
+float right[BUFSIZE];
+
+int i;
+
+reverb->set_amount(constrainQ27(param_amount+inlet_amount, 0.0f,1.0f));
+reverb->set_input_gain(constrainQ27(param_gain + inlet_gain, 0.0f,1.0f));
+reverb->set_time(constrainQ27(param_time + inlet_time, 0.0f,1.0f));
+reverb->set_diffusion(constrainQ27(param_diffusion + inlet_diffusion, 0.0f,1.0f));
+reverb->set_lp(constrainQ27(param_lowpass + inlet_lowpass, 0.0f,1.0f));
+
+for(i=0;i<BUFSIZE;i++){
+	left[i] = q27_to_float(inlet_l[i]);
+	right[i] = q27_to_float(inlet_r[i]);
+}
+
+reverb->Process(left,right,BUFSIZE);
+
+for(i=0;i<BUFSIZE;i++){
+	outlet_l[i] = float_to_q27(left[i]);
+	outlet_r[i] = float_to_q27(right[i]);
+}]]></code.krate>
+   </obj.normal>
+</objdefs>

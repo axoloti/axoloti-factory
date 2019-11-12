@@ -1,5 +1,5 @@
-<patch-1.0>
-   <obj type="table/alloc 16b sdram" sha="e676cfd6165b33f48b68585d94681b986ca31e22" name="t1" x="14" y="14">
+<patch appVersion="2.0.0">
+   <obj type="table/alloc 16b sdram" uuid="6d8eb0fd68f404cb5d14e7d4c8c146c8ccf09da1" name="t1" x="14" y="14">
       <params/>
       <attribs>
          <combo attributeName="size" selection="524288"/>
@@ -7,73 +7,92 @@
             <sText><![CDATA[    FIL FileObject;
     FRESULT err;
     UINT bytes_read;
-    err = f_open(&FileObject, "CR.RAW", FA_READ | FA_OPEN_EXISTING);
-    if (err != FR_OK) {LogTextMessage("Open failed\n"); return;}
+    err = f_open(&FileObject, "snare.raw", FA_READ | FA_OPEN_EXISTING);
+    if (err != FR_OK) {LogTextMessage("Open failed\n"); return error_fileNotFound;}
     err = f_read(&FileObject, (char *)array, LENGTH*sizeof(*array),&bytes_read);
-    if (err != FR_OK) {LogTextMessage("Read failed\n"); return;};
+    if (err != FR_OK) {LogTextMessage("Read failed\n"); return error_fileOperationFailed;};
     err = f_close(&FileObject);
-    if (err != FR_OK) {LogTextMessage("Close failed\n"); return;};
+    if (err != FR_OK) {LogTextMessage("Close failed\n"); return error_fileOperationFailed;};
 ]]></sText>
          </text>
       </attribs>
    </obj>
-   <comment type="patch/comment" x="154" y="56" text="&lt;- init script shows how to read a file into memory at patch initialisation"/>
-   <obj type="string/c" sha="ee2b2048e59a86ec2249107bf0f2989587486d9" name="c_1" x="14" y="112">
+   <comment type="patch/comment" name="35" x="154" y="56" text="&lt;- init script shows how to read a file into memory at patch initialisation"/>
+   <obj type="string/c" uuid="4aa90a90c435a742ddfa152d232883fc5b2f1b3" name="c_1" x="14" y="112">
       <params/>
       <attribs>
-         <table attributeName="str" table="CR.RAW"/>
+         <table attributeName="str" table="hatclose.raw"/>
       </attribs>
    </obj>
-   <obj type="ctrl/button" sha="15ee4f76478131dcc3e0ff8d36be5480bdb1b7d4" name="button_1" x="14" y="182">
+   <obj type="ctrl/button" uuid="ef3d13774349df85aa9bfecf30dbc91ab8488b3f" name="button_1" x="14" y="182">
       <params>
-         <bool32.mom name="b" value="0"/>
+         <bool32.mom name="b" value="0">
+            <presets/>
+         </bool32.mom>
       </params>
       <attribs/>
    </obj>
-   <obj type="table/load" sha="efd09536a65a5b9f2e1765e4d7dab9d24a29aef8" name="load_1" x="84" y="182">
-      <params/>
-      <attribs>
-         <objref attributeName="table" obj="t1"/>
-      </attribs>
-   </obj>
-   <obj type="lfo/sine" sha="a2851b3d62ed0faceefc98038d9571422f0ce260" name="sine_1" x="238" y="294">
-      <params>
-         <frac32.s.map name="pitch" value="-31.0"/>
-      </params>
-      <attribs/>
-   </obj>
-   <obj type="mix/mix 2" sha="90ac1a48634cb998bf3d0387eb5191531d6241fe" name="mix_1" x="336" y="294">
-      <params>
-         <frac32.u.map name="gain1" value="0.5"/>
-         <frac32.u.map name="gain2" value="2.0"/>
-      </params>
-      <attribs/>
-   </obj>
-   <obj type="ctrl/dial b" sha="589b835807a3b8c8b05793bc4bd9adaf853f9705" name="dial_1" x="238" y="378">
-      <params>
-         <frac32.s.map name="value" value="16.0"/>
-      </params>
-      <attribs/>
-   </obj>
-   <obj type="lfo/square" sha="b4420b58ca2ae5ece53d53540bc91bc9ed7a4b83" name="square_1" x="14" y="462">
-      <params>
-         <frac32.s.map name="pitch" value="-9.0"/>
-      </params>
-      <attribs/>
-   </obj>
-   <obj type="table/play" sha="c255a57ea694b21f7393baddcd7d9001e9e3d6b0" name="play3_1" x="224" y="462">
+   <obj type="table/load" uuid="600cc22c6734d23a82620da1a14e78782a7e168e" name="load_1" x="84" y="182">
       <params/>
       <attribs>
          <objref attributeName="table" obj="t1"/>
       </attribs>
    </obj>
-   <obj type="audio/out stereo" sha="b933bb91801a126126313c11f773158b5ca2face" name="out_1" x="378" y="462">
+   <obj type="lfo/sine" uuid="75f7330c26a13953215dccc3b7b9008545c9daa9" name="sine_1" x="238" y="294">
+      <params>
+         <frac32.s.map name="pitch" value="-6.0">
+            <modulators/>
+            <presets/>
+         </frac32.s.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="mix/mix 2" uuid="682ea5496ded046d981e26b720a6e7f8eca97541" name="mix_1" x="336" y="294">
+      <params>
+         <frac32.u.map name="gain1" value="0.1">
+            <modulators/>
+            <presets/>
+         </frac32.u.map>
+         <frac32.u.map name="gain2" value="0.0">
+            <modulators/>
+            <presets/>
+         </frac32.u.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="ctrl/dial b" uuid="862e7d7f29093cb1ce4aed72244d118ad4d46692" name="dial_1" x="238" y="378">
+      <params>
+         <frac32.s.map name="value" value="16.0">
+            <modulators/>
+            <presets/>
+         </frac32.s.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="lfo/square" uuid="de6909eb64db13af5b43f979a4c130024b3a4793" name="square_1" x="14" y="462">
+      <params>
+         <frac32.s.map name="pitch" value="12.0">
+            <modulators/>
+            <presets/>
+         </frac32.s.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="table/play" uuid="53c499b6f6fbdcc25b48906393123ca10030ed45" name="play3_1" x="224" y="462">
+      <params/>
+      <attribs>
+         <objref attributeName="table" obj="t1"/>
+      </attribs>
+   </obj>
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="378" y="462">
       <params/>
       <attribs/>
    </obj>
-   <obj type="ctrl/button" sha="15ee4f76478131dcc3e0ff8d36be5480bdb1b7d4" name="button_2" x="126" y="504">
+   <obj type="ctrl/button" uuid="ef3d13774349df85aa9bfecf30dbc91ab8488b3f" name="button_2" x="126" y="504">
       <params>
-         <bool32.mom name="b" value="0"/>
+         <bool32.mom name="b" value="0">
+            <presets/>
+         </bool32.mom>
       </params>
       <attribs/>
    </obj>
@@ -117,9 +136,9 @@
    </settings>
    <notes><![CDATA[]]></notes>
    <windowPos>
-      <x>0</x>
-      <y>23</y>
+      <x>542</x>
+      <y>53</y>
       <width>646</width>
       <height>772</height>
    </windowPos>
-</patch-1.0>
+</patch>

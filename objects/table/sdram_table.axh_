@@ -1,0 +1,156 @@
+<patch appVersion="2.0.0">
+   <obj type="lfo/saw down" uuid="d831d6b82b3d559c3ba7b1b487fb292d7998fd08" name="saw_2" x="14" y="14">
+      <params>
+         <frac32.s.map name="pitch" value="-36.0">
+            <modulators/>
+            <presets/>
+         </frac32.s.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="math/*c" uuid="7d5ef61c3bcd571ee6bbd8437ef3612125dfb225" name="*c_1" x="112" y="14">
+      <params>
+         <frac32.u.map name="amp" value="30.5">
+            <modulators/>
+            <presets/>
+         </frac32.u.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="table/alloc 32b sdram" uuid="1a4546b7b52747ea765093ac97444601c44721e8" name="t1" x="210" y="14">
+      <params/>
+      <attribs>
+         <combo attributeName="size" selection="1048576"/>
+         <text attributeName="init"/>
+      </attribs>
+   </obj>
+   <obj type="ctrl/button" uuid="ef3d13774349df85aa9bfecf30dbc91ab8488b3f" name="button_1" x="266" y="98">
+      <params>
+         <bool32.mom name="b" value="0">
+            <presets/>
+         </bool32.mom>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="table/record" uuid="2f8909f3691be093f0b8cf6532d4acff2dcb1a9f" name="record_1" x="378" y="98">
+      <params/>
+      <attribs>
+         <objref attributeName="table" obj="t1"/>
+      </attribs>
+   </obj>
+   <obj type="osc/saw" uuid="739ecc36017ef3249479b8f01716b8bbfba9abc1" name="saw_1" x="14" y="126">
+      <params>
+         <frac32.s.map name="pitch" value="0.0">
+            <modulators/>
+            <presets/>
+         </frac32.s.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="ctrl/button" uuid="ef3d13774349df85aa9bfecf30dbc91ab8488b3f" name="button_2" x="266" y="154">
+      <params>
+         <bool32.mom name="b" value="0">
+            <presets/>
+         </bool32.mom>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="ctrl/dial p" uuid="cc5d2846c3d50e425f450c4b9851371b54f4d674" name="dial_1" x="140" y="210">
+      <params>
+         <frac32.u.map name="value" value="10.5">
+            <modulators/>
+            <presets/>
+         </frac32.u.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="lfo/square" uuid="de6909eb64db13af5b43f979a4c130024b3a4793" name="square_1" x="14" y="252">
+      <params>
+         <frac32.s.map name="pitch" value="19.0">
+            <modulators/>
+            <presets/>
+         </frac32.s.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="table/play" uuid="53c499b6f6fbdcc25b48906393123ca10030ed45" name="play2_1" x="224" y="252">
+      <params/>
+      <attribs>
+         <objref attributeName="table" obj="t1"/>
+      </attribs>
+   </obj>
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_2" x="378" y="252">
+      <params>
+         <frac32.u.map name="amp" value="3.0">
+            <modulators/>
+            <presets/>
+         </frac32.u.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="490" y="252">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="ctrl/button" uuid="ef3d13774349df85aa9bfecf30dbc91ab8488b3f" name="button_3" x="154" y="308">
+      <params>
+         <bool32.mom name="b" value="0">
+            <presets/>
+         </bool32.mom>
+      </params>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="saw_2" outlet="wave"/>
+         <dest obj="*c_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="*c_1" outlet="out"/>
+         <dest obj="saw_1" inlet="pitch"/>
+      </net>
+      <net>
+         <source obj="saw_1" outlet="wave"/>
+         <dest obj="record_1" inlet="wave"/>
+      </net>
+      <net>
+         <source obj="*c_2" outlet="out"/>
+         <dest obj="out_1" inlet="left"/>
+         <dest obj="out_1" inlet="right"/>
+      </net>
+      <net>
+         <source obj="dial_1" outlet="out"/>
+         <dest obj="play2_1" inlet="pos"/>
+      </net>
+      <net>
+         <source obj="play2_1" outlet="wave"/>
+         <dest obj="*c_2" inlet="in"/>
+      </net>
+      <net>
+         <source obj="square_1" outlet="wave"/>
+         <dest obj="play2_1" inlet="start"/>
+      </net>
+      <net>
+         <source obj="button_1" outlet="o"/>
+         <dest obj="record_1" inlet="start"/>
+      </net>
+      <net>
+         <source obj="button_2" outlet="o"/>
+         <dest obj="record_1" inlet="stop"/>
+      </net>
+      <net>
+         <source obj="button_3" outlet="o"/>
+         <dest obj="play2_1" inlet="stop"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>116</x>
+      <y>166</y>
+      <width>800</width>
+      <height>562</height>
+   </windowPos>
+</patch>
