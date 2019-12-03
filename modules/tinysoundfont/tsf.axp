@@ -1,0 +1,75 @@
+<patch appVersion="2.0.0">
+   <comment type="patch/comment" name="0" x="28" y="14" text="work in progres..."/>
+   <comment type="patch/comment" name="1" x="28" y="28" text="crashes when voices are exhausted (needs voice stealing algo)"/>
+   <comment type="patch/comment" name="2" x="28" y="42" text="todo: implement midi controllers"/>
+   <patchobj type="patch/object" uuid="f474595a-14ef-4ec8-be2d-1106e854d360" name="object_1" x="28" y="70">
+      <params/>
+      <attribs>
+         <file attributeName="sf2_file" file="florestan-subset.sf2"/>
+      </attribs>
+      <object id="patch/object" uuid="f474595a-14ef-4ec8-be2d-1106e854d360">
+         <inlets/>
+         <outlets>
+            <frac32buffer.bipolar name="left" description=""/>
+            <frac32buffer.bipolar name="right" description=""/>
+         </outlets>
+         <displays/>
+         <params/>
+         <attribs>
+            <file name="sf2_file" description="soundfont2 file"/>
+         </attribs>
+         <file-depends/>
+         <includes/>
+         <depends/>
+         <modules>
+            <module>tinysoundfont</module>
+         </modules>
+         <code.declaration><![CDATA[tinysoundfont::C_tinysoundfont *tsf;]]></code.declaration>
+         <code.init><![CDATA[tsf = tinysoundfont_factory("attr_sf2_file");
+//florestan-subset.sf2
+if (!tsf) return -1;]]></code.init>
+         <code.dispose><![CDATA[]]></code.dispose>
+         <code.krate><![CDATA[float tmp[BUFSIZE*2];
+tsf->render_float(tmp, BUFSIZE);
+int i;
+float *ptmp = tmp;
+for(i=0;i<BUFSIZE;i++) {
+	float l = *ptmp++;
+	outlet_left[i] = float_to_q27(l);
+	float r = *ptmp++;
+	outlet_right[i] = float_to_q27(r);
+}]]></code.krate>
+         <code.srate><![CDATA[]]></code.srate>
+         <code.midihandler><![CDATA[tsf->process_midi(midi_message);]]></code.midihandler>
+      </object>
+   </patchobj>
+   <obj type="disp/scope 128 b trig" uuid="11747dcd1dc9afe4919f537c861fb18b80b4e4e" name="scope_1" x="252" y="70">
+      <params/>
+      <attribs/>
+   </obj>
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="28" y="168">
+      <params/>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="object_1" outlet="left"/>
+         <dest obj="scope_1" inlet="in"/>
+         <dest obj="out_1" inlet="left"/>
+      </net>
+      <net>
+         <source obj="object_1" outlet="right"/>
+         <dest obj="out_1" inlet="right"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>678</x>
+      <y>277</y>
+      <width>534</width>
+      <height>500</height>
+   </windowPos>
+</patch>
