@@ -19,28 +19,7 @@
          <frac32.u.map name="bpm" noLabel="true"/>
       </params>
       <attribs>
-         <combo name="device">
-            <MenuEntries>
-               <string>din</string>
-               <string>usb host port 1</string>
-               <string>usb host port 2</string>
-               <string>usb host port 3</string>
-               <string>usb host port 4</string>
-               <string>internal port 1</string>
-               <string>internal port 2</string>
-               <string>usb device port 1</string>
-            </MenuEntries>
-            <CEntries>
-               <string>MIDI_DEVICE_DIN, 1</string>
-               <string>MIDI_DEVICE_USB_HOST, 1</string>
-               <string>MIDI_DEVICE_USB_HOST, 2</string>
-               <string>MIDI_DEVICE_USB_HOST, 3</string>
-               <string>MIDI_DEVICE_USB_HOST, 4</string>
-               <string>MIDI_DEVICE_INTERNAL, 1</string>
-               <string>MIDI_DEVICE_INTERNAL, 2</string>
-               <string>MIDI_DEVICE_USB_DEVICE, 1</string>
-            </CEntries>
-         </combo>
+         <midiOutPort name="port" description=""/>
       </attribs>
       <code.declaration><![CDATA[bool _active;
 int32_t _posfrac;

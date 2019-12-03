@@ -14,6 +14,7 @@
       <params/>
       <attribs>
          <spinner name="channel" MinValue="1" MaxValue="16" DefaultValue="0"/>
+         <midiInPort name="midiport" description=""/>
       </attribs>
       <file-depends/>
       <includes/>
@@ -25,8 +26,7 @@ int32_t ntrig;]]></code.declaration>
 ntrig = 0;]]></code.init>
       <code.krate><![CDATA[outlet_bend = _bend;
 outlet_trig = ntrig;
-ntrig = 0;
-]]></code.krate>
+ntrig = 0;]]></code.krate>
       <code.midihandler><![CDATA[if (port!=attr_midiport) return;
 if (status == MIDI_PITCH_BEND + attr_channel - 1) {  _bend = ((int)((data2<<7)+data1)-0x2000)<<14;
   ntrig = 1;
