@@ -29,12 +29,12 @@
 #ifndef BRAIDS_ANALOG_OSCILLATOR_H_
 #define BRAIDS_ANALOG_OSCILLATOR_H_
 
-#include "stmlib/stmlib.h"
+//#include "stmlib/stmlib.h"
 
 #include <cstring>
 #include <cstdio>
 
-#include "braids/resources.h"
+//#include "braids/resources.h"
 
 namespace braids {
 
@@ -59,9 +59,9 @@ enum SyncMode {
 class AnalogOscillator {
  public:
   typedef void (AnalogOscillator::*RenderFn)(
-      const uint8_t*,
-      int16_t*,
-      uint8_t*,
+      const int32_t*,
+      int32_t*,
+      int32_t*,
       size_t);
 
   AnalogOscillator() { }
@@ -102,22 +102,22 @@ class AnalogOscillator {
     phase_ = -phase_increment_;
   }
 
-  void Render(
-      const uint8_t* sync_in,
-      int16_t* buffer,
-      uint8_t* sync_out,
+  virtual void Render(
+      const int32_t* sync_in,
+	  int32_t* buffer,
+	  int32_t* sync_out,
       size_t size);
   
  private:
-  void RenderSquare(const uint8_t*, int16_t*, uint8_t*, size_t);
-  void RenderSaw(const uint8_t*, int16_t*, uint8_t*, size_t);
-  void RenderVariableSaw(const uint8_t*, int16_t*, uint8_t*, size_t);
-  void RenderCSaw(const uint8_t*, int16_t*, uint8_t*, size_t);
-  void RenderTriangle(const uint8_t*, int16_t*, uint8_t*, size_t);
-  void RenderSine(const uint8_t*, int16_t*, uint8_t*, size_t);
-  void RenderTriangleFold(const uint8_t*, int16_t*, uint8_t*, size_t);
-  void RenderSineFold(const uint8_t*, int16_t*, uint8_t*, size_t);
-  void RenderBuzz(const uint8_t*, int16_t*, uint8_t*, size_t);
+  void RenderSquare(const int32_t*, int32_t*, int32_t*, size_t);
+  void RenderSaw(const int32_t*, int32_t*, int32_t*, size_t);
+  void RenderVariableSaw(const int32_t*, int32_t*, int32_t*, size_t);
+  void RenderCSaw(const int32_t*, int32_t*, int32_t*, size_t);
+  void RenderTriangle(const int32_t*, int32_t*, int32_t*, size_t);
+  void RenderSine(const int32_t*, int32_t*, int32_t*, size_t);
+  void RenderTriangleFold(const int32_t*, int32_t*, int32_t*, size_t);
+  void RenderSineFold(const int32_t*, int32_t*, int32_t*, size_t);
+  void RenderBuzz(const int32_t*, int32_t*, int32_t*, size_t);
   
   uint32_t ComputePhaseIncrement(int16_t midi_pitch);
   
@@ -160,3 +160,6 @@ class AnalogOscillator {
 }  // namespace braids
 
 #endif // BRAIDS_ANALOG_OSCILLATOR_H_
+
+extern "C"
+braids::AnalogOscillator * brds_analogfactory();

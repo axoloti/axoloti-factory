@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="2.0.0">
    <obj.normal id="saw" uuid="ed06f020-7e68-4db6-836a-95a85e200cfb">
       <sDescription>Virtual analog saw oscillator from Mutable Instruments Braids. Operating at 48kHz (original Braids works at 96kHz).</sDescription>
       <author>Johannes Taelman</author>
@@ -12,19 +12,25 @@
       </outlets>
       <displays/>
       <params>
-         <frac32.s.map.pitch name="pitch" noLabel="true"/>
+         <frac32.s.map.pitch name="pitch" noLabel="true">
+            <DefaultValue v="0.0"/>
+         </frac32.s.map.pitch>
       </params>
       <attribs/>
+      <file-depends/>
+      <includes/>
+      <depends/>
       <modules>
          <module>brds</module>
       </modules>
-      <includes>
-         <include>./brds_analog.h</include>
-      </includes>
-      <code.declaration><![CDATA[braids_deriv::Saw osc;]]></code.declaration>
-      <code.init><![CDATA[osc.Init();]]></code.init>
-      <code.krate><![CDATA[osc.set_pitch((64<<7)+((param_pitch + inlet_pitch)>>14));
+      <code.declaration><![CDATA[braids::AnalogOscillator *osc;]]></code.declaration>
+      <code.init><![CDATA[osc = brds_analogfactory();
+if (!osc) return error_outOfMemory;
+osc->Init();
+osc->set_shape(braids::OSC_SHAPE_SAW);]]></code.init>
+      <code.dispose><![CDATA[ax_free(osc);]]></code.dispose>
+      <code.krate><![CDATA[osc->set_pitch((64<<7)+((param_pitch + inlet_pitch)>>14));
 
-osc.Render(0,&outlet_wave[0],0,BUFSIZE);]]></code.krate>
+osc->Render(0,&outlet_wave[0],0,BUFSIZE);]]></code.krate>
    </obj.normal>
 </objdefs>

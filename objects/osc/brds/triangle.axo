@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="2.0.0">
    <obj.normal id="triangle" uuid="d3f45352-557a-4f95-9bc8-5f16f35553c5">
       <sDescription>Virtual analog triangle oscillator from Mutable Instruments Braids. Operating at 48kHz (original Braids works at 96kHz).</sDescription>
       <author>Johannes Taelman</author>
@@ -12,18 +12,24 @@
       </outlets>
       <displays/>
       <params>
-         <frac32.s.map.pitch name="pitch" noLabel="true"/>
+         <frac32.s.map.pitch name="pitch" noLabel="true">
+            <DefaultValue v="0.0"/>
+         </frac32.s.map.pitch>
       </params>
       <attribs/>
-      <includes>
-         <include>./brds_analog.h</include>
-      </includes>
+      <file-depends/>
+      <includes/>
+      <depends/>
       <modules>
          <module>brds</module>
       </modules>
-      <code.declaration><![CDATA[braids_deriv::Triangle osc;]]></code.declaration>
-      <code.init><![CDATA[osc.Init();]]></code.init>
-      <code.krate><![CDATA[osc.set_pitch((64<<7)+((param_pitch + inlet_pitch)>>14));
-osc.Render(0,&outlet_wave[0],BUFSIZE);]]></code.krate>
+      <code.declaration><![CDATA[braids::AnalogOscillator *osc;]]></code.declaration>
+      <code.init><![CDATA[osc = brds_analogfactory();
+if (!osc) return error_outOfMemory;
+osc->Init();
+osc->set_shape(braids::OSC_SHAPE_TRIANGLE);]]></code.init>
+      <code.dispose><![CDATA[ax_free(osc);]]></code.dispose>
+      <code.krate><![CDATA[osc->set_pitch((64<<7)+((param_pitch + inlet_pitch)>>14));
+osc->Render(0,&outlet_wave[0],0,BUFSIZE);]]></code.krate>
    </obj.normal>
 </objdefs>

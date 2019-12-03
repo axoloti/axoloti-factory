@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.12">
+<objdefs appVersion="2.0.0">
    <obj.normal id="filtered" uuid="5ad078fd-5713-497a-8be9-ea086cf88357">
       <sDescription>DigitalFilter oscillator from Mutable Instruments Braids</sDescription>
       <author>Johannes Taelman</author>
@@ -15,7 +15,9 @@
       </outlets>
       <displays/>
       <params>
-         <frac32.s.map.pitch name="pitch" noLabel="true"/>
+         <frac32.s.map.pitch name="pitch" noLabel="true">
+            <DefaultValue v="0.0"/>
+         </frac32.s.map.pitch>
          <frac32.u.map name="timbre">
             <DefaultValue v="64.0"/>
          </frac32.u.map>
@@ -28,16 +30,21 @@
          </int32>
       </params>
       <attribs/>
+      <file-depends/>
+      <includes/>
+      <depends/>
       <modules>
          <module>brds</module>
       </modules>
-      <includes>
-         <include>./brds_digital.h</include>
-      </includes>
-      <code.declaration><![CDATA[braids_digital_deriv::DigitalFilter osc;]]></code.declaration>
-      <code.init><![CDATA[osc.Init();]]></code.init>
-      <code.krate><![CDATA[osc.set_parameters(__USAT((inlet_timbre+param_timbre)>>12,15),__USAT((inlet_color+param_color)>>12,15));
-osc.set_pitch((64<<7)+((param_pitch + inlet_pitch)>>14));
-osc.Render(&inlet_sync[0],&outlet_wave[0],BUFSIZE,param_type);]]></code.krate>
+      <code.declaration><![CDATA[braids::DigitalOscillator *osc;]]></code.declaration>
+      <code.init><![CDATA[osc = brds_digitalfactory();
+if (!osc) return error_outOfMemory;
+osc->Init();
+osc->set_shape(braids::OSC_SHAPE_DIGITAL_FILTER_LP);]]></code.init>
+      <code.dispose><![CDATA[ax_free(osc);]]></code.dispose>
+      <code.krate><![CDATA[osc->set_parameters(__USAT((inlet_timbre+param_timbre)>>12,15),__USAT((inlet_color+param_color)>>12,15));
+osc->set_pitch((64<<7)+((param_pitch + inlet_pitch)>>14));
+osc->Render(&inlet_sync[0],&outlet_wave[0],BUFSIZE);
+// TODO: param_type]]></code.krate>
    </obj.normal>
 </objdefs>

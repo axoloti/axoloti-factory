@@ -1,12 +1,39 @@
-#define object files in the module
+#axoloti_api ?= ../../../api
+#axoloti_env ?= ../../../env
+#axoloti_runtime ?= ../../..
 
-MOD_PRE = header_pre.h
+module=brds
 
-MOD_OBJS = \
-    braids/braids_resources.o \
-    braids/analog_oscillator.o \
-    braids/digital_oscillator.o \
-    braids/macro_oscillator.o 
+objs := analog_oscillator.o resources.o digital_oscillator.o random.o
+deps := $(objs:.o=.d)
+
+all: Makefile.uptodate \
+	${module}.elf \
+	${module}.read \
+	${module}.lst \
+	${module}.dbg.read \
+	${module}.dbg.lst
 
 
+include ${axoloti_env}/module.mk
+include ${axoloti_env}/module-rules.mk
 
+CCFLAGS += -ggdb3 \
+	-nostdlib \
+	-fno-common \
+	-fno-exceptions \
+	-fno-rtti \
+	-fomit-frame-pointer \
+	-fno-math-errno \
+	-fno-threadsafe-statics \
+	-fno-use-cxa-atexit \
+	-O2
+
+LDFLAGS += \
+	-Wl,-Ur \
+	-Wl,--gc-sections \
+	-Wl,--require-defined=brds_analogfactory \
+	-Wl,--require-defined=brds_digitalfactory
+
+ALLINCDIR += $(VPATH)/../mtblnstrmnts
+CPPFLAGS = $(CCFLAGS) $(DEFS) $(IINCDIR) -MD -MP

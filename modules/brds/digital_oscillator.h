@@ -29,10 +29,10 @@
 #ifndef BRAIDS_DIGITAL_OSCILLATOR_H_
 #define BRAIDS_DIGITAL_OSCILLATOR_H_
 
-#include "stmlib/stmlib.h"
+//#include "stmlib/stmlib.h"
 
-#include "braids/excitation.h"
-#include "braids/svf.h"
+#include "excitation.h"
+#include "svf.h"
 
 #include <cstring>
 
@@ -238,7 +238,7 @@ union DigitalOscillatorState {
 
 class DigitalOscillator {
  public:
-  typedef void (DigitalOscillator::*RenderFn)(const uint8_t*, int16_t*, size_t);
+  typedef void (DigitalOscillator::*RenderFn)(const int32_t*, int32_t*, size_t);
 
   DigitalOscillator() { }
   ~DigitalOscillator() { }
@@ -285,48 +285,48 @@ class DigitalOscillator {
     strike_ = true;
   }
 
-  void Render(const uint8_t* sync, int16_t* buffer, size_t size);
+  virtual void Render(const int32_t* sync, int32_t* buffer, size_t size);
   
  private:
-  void RenderTripleRingMod(const uint8_t*, int16_t*, size_t);
-  void RenderSawSwarm(const uint8_t*, int16_t*, size_t);
-  void RenderComb(const uint8_t*, int16_t*, size_t);
-  void RenderToy(const uint8_t*, int16_t*, size_t);
+  void RenderTripleRingMod(const int32_t*, int32_t*, size_t);
+  void RenderSawSwarm(const int32_t*, int32_t*, size_t);
+  void RenderComb(const int32_t*, int32_t*, size_t);
+  void RenderToy(const int32_t*, int32_t*, size_t);
 
-  void RenderDigitalFilter(const uint8_t*, int16_t*, size_t);
-  void RenderVosim(const uint8_t*, int16_t*, size_t);
-  void RenderVowel(const uint8_t*, int16_t*, size_t);
-  void RenderVowelFof(const uint8_t*, int16_t*, size_t);
+  void RenderDigitalFilter(const int32_t*, int32_t*, size_t);
+  void RenderVosim(const int32_t*, int32_t*, size_t);
+  void RenderVowel(const int32_t*, int32_t*, size_t);
+  void RenderVowelFof(const int32_t*, int32_t*, size_t);
 
-  void RenderHarmonics(const uint8_t*, int16_t*, size_t);
+  void RenderHarmonics(const int32_t*, int32_t*, size_t);
 
-  void RenderFm(const uint8_t*, int16_t*, size_t);
-  void RenderFeedbackFm(const uint8_t*, int16_t*, size_t);
-  void RenderChaoticFeedbackFm(const uint8_t*, int16_t*, size_t);
+  void RenderFm(const int32_t*, int32_t*, size_t);
+  void RenderFeedbackFm(const int32_t*, int32_t*, size_t);
+  void RenderChaoticFeedbackFm(const int32_t*, int32_t*, size_t);
   
-  void RenderStruckBell(const uint8_t*, int16_t*, size_t);
-  void RenderStruckDrum(const uint8_t*, int16_t*, size_t);
-  void RenderPlucked(const uint8_t*, int16_t*, size_t);
-  void RenderBowed(const uint8_t*, int16_t*, size_t);
-  void RenderBlown(const uint8_t*, int16_t*, size_t);
-  void RenderFluted(const uint8_t*, int16_t*, size_t);
+  void RenderStruckBell(const int32_t*, int32_t*, size_t);
+  void RenderStruckDrum(const int32_t*, int32_t*, size_t);
+  void RenderPlucked(const int32_t*, int32_t*, size_t);
+  void RenderBowed(const int32_t*, int32_t*, size_t);
+  void RenderBlown(const int32_t*, int32_t*, size_t);
+  void RenderFluted(const int32_t*, int32_t*, size_t);
 
-  void RenderWavetables(const uint8_t*, int16_t*, size_t);
-  void RenderWaveMap(const uint8_t*, int16_t*, size_t);
-  void RenderWaveLine(const uint8_t*, int16_t*, size_t);
-  void RenderWaveParaphonic(const uint8_t*, int16_t*, size_t);
+  void RenderWavetables(const int32_t*, int32_t*, size_t);
+  void RenderWaveMap(const int32_t*, int32_t*, size_t);
+  void RenderWaveLine(const int32_t*, int32_t*, size_t);
+  void RenderWaveParaphonic(const int32_t*, int32_t*, size_t);
   
-  void RenderTwinPeaksNoise(const uint8_t*, int16_t*, size_t);
-  void RenderFilteredNoise(const uint8_t*, int16_t*, size_t);
-  void RenderClockedNoise(const uint8_t*, int16_t*, size_t);
-  void RenderGranularCloud(const uint8_t*, int16_t*, size_t);
-  void RenderParticleNoise(const uint8_t*, int16_t*, size_t);
+  void RenderTwinPeaksNoise(const int32_t*, int32_t*, size_t);
+  void RenderFilteredNoise(const int32_t*, int32_t*, size_t);
+  void RenderClockedNoise(const int32_t*, int32_t*, size_t);
+  void RenderGranularCloud(const int32_t*, int32_t*, size_t);
+  void RenderParticleNoise(const int32_t*, int32_t*, size_t);
   
-  void RenderDigitalModulation(const uint8_t*, int16_t*, size_t);
-  void RenderKick(const uint8_t*, int16_t*, size_t);
-  void RenderSnare(const uint8_t*, int16_t*, size_t);
-  void RenderCymbal(const uint8_t*, int16_t*, size_t);
-  void RenderQuestionMark(const uint8_t*, int16_t*, size_t);
+  void RenderDigitalModulation(const int32_t*, int32_t*, size_t);
+  void RenderKick(const int32_t*, int32_t*, size_t);
+  void RenderSnare(const int32_t*, int32_t*, size_t);
+  void RenderCymbal(const int32_t*, int32_t*, size_t);
+  void RenderQuestionMark(const int32_t*, int32_t*, size_t);
   
   // void RenderYourAlgo(const uint8_t*, int16_t*, size_t);
   
@@ -381,3 +381,6 @@ class DigitalOscillator {
 }  // namespace braids
 
 #endif // BRAIDS_DIGITAL_OSCILLATOR_H_
+
+extern "C"
+braids::DigitalOscillator * brds_digitalfactory();

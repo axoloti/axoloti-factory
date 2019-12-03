@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.12">
+<objdefs appVersion="2.0.0">
    <obj.normal id="vowelfof" uuid="080875e2-9623-4368-bd3b-04c517242940">
       <sDescription>VowelFof oscillator from Mutable Instruments Braids</sDescription>
       <author>Johannes Taelman</author>
@@ -14,7 +14,9 @@
       </outlets>
       <displays/>
       <params>
-         <frac32.s.map.pitch name="pitch" noLabel="true"/>
+         <frac32.s.map.pitch name="pitch" noLabel="true">
+            <DefaultValue v="0.0"/>
+         </frac32.s.map.pitch>
          <frac32.u.map name="timbre">
             <DefaultValue v="64.0"/>
          </frac32.u.map>
@@ -23,16 +25,20 @@
          </frac32.u.map>
       </params>
       <attribs/>
+      <file-depends/>
+      <includes/>
+      <depends/>
       <modules>
          <module>brds</module>
       </modules>
-      <includes>
-         <include>./brds_digital.h</include>
-      </includes>
-      <code.declaration><![CDATA[braids_digital_deriv::VowelFof osc;]]></code.declaration>
-      <code.init><![CDATA[osc.Init();]]></code.init>
-      <code.krate><![CDATA[osc.set_parameters(__USAT((inlet_timbre+param_timbre)>>12,15),__USAT((inlet_color+param_color)>>12,15));
-osc.set_pitch((64<<7)+((param_pitch + inlet_pitch)>>14));
-osc.Render(&outlet_wave[0],BUFSIZE);]]></code.krate>
+      <code.declaration><![CDATA[braids::DigitalOscillator *osc;]]></code.declaration>
+      <code.init><![CDATA[osc = brds_digitalfactory();
+if (!osc) return error_outOfMemory;
+osc->Init();
+osc->set_shape(braids::OSC_SHAPE_VOWEL_FOF);]]></code.init>
+      <code.dispose><![CDATA[ax_free(osc);]]></code.dispose>
+      <code.krate><![CDATA[osc->set_parameters(__USAT((inlet_timbre+param_timbre)>>12,15),__USAT((inlet_color+param_color)>>12,15));
+osc->set_pitch((64<<7)+((param_pitch + inlet_pitch)>>14));
+osc->Render(0,&outlet_wave[0],BUFSIZE);]]></code.krate>
    </obj.normal>
 </objdefs>
