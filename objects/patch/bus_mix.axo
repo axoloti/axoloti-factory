@@ -1,0 +1,35 @@
+<objdefs appVersion="2.0.0">
+   <obj.normal id="bus_mix" uuid="97a4b352-be57-4eb8-bc6d-92bba8257e35">
+      <sDescription>Audio mix bus. Input of multiple &quot;bus send&quot; objects are summed. The sum is obtained with a &quot;bus rcv&quot; object. Works across multiple patches.</sDescription>
+      <author>Johannes Taelman</author>
+      <license>GPL</license>
+      <helpPatch>bus.axh</helpPatch>
+      <inlets>
+         <frac32buffer.bipolar name="in" description=""/>
+      </inlets>
+      <outlets/>
+      <displays/>
+      <params/>
+      <attribs>
+         <spinner name="bus" description="" MinValue="1" MaxValue="8" DefaultValue="1"/>
+      </attribs>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules>
+         <module>audiobus</module>
+      </modules>
+      <code.declaration><![CDATA[int32_t shadow[BUFSIZE];]]></code.declaration>
+      <code.init><![CDATA[int i;
+for(i=0;i<BUFSIZE;i++) {
+	shadow[i]=0;
+}]]></code.init>
+      <code.dispose><![CDATA[audiobus_sub(attr_bus-1, shadow);]]></code.dispose>
+      <code.krate><![CDATA[audiobus_sub(attr_bus-1, shadow);
+int i;
+for(i=0;i<BUFSIZE;i++) {
+	shadow[i]=inlet_in[i];
+}
+audiobus_add(attr_bus-1, shadow);]]></code.krate>
+   </obj.normal>
+</objdefs>

@@ -1,0 +1,14 @@
+#$(info include.mk)
+
+ALLINC += ${MODULE_SRC_DIR}/${MODULE}.h
+MODULE_DEPS += ${MODULE_BUILD_ELF}
+
+MODULE_FILEDEPS += \
+	${MODULE_BUILD_ELF} \
+	/lib/${MODULE}.elf
+
+${MODULE_BUILD_ELF} : SRC_DIR := ${MODULE_SRC_DIR}
+${MODULE_BUILD_ELF} : BUILD_DIR := ${MODULE_BUILD_DIR}
+${MODULE_BUILD_ELF} : ${MODULE_SRC_DIR}/*
+	@mkdir -p "${BUILD_DIR}"
+	@make -f "${SRC_DIR}/Makefile" -C "${BUILD_DIR}" VPATH="${SRC_DIR}" all

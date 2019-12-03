@@ -1,0 +1,28 @@
+<objdefs appVersion="2.0.0">
+   <obj.normal id="bus_rcv" uuid="b2b0d7f6-fc02-4034-aa81-3fb5848253ea">
+      <sDescription>Audio mix bus. Input of multiple &quot;bus send&quot; objects are summed. The sum is obtained with a &quot;bus rcv&quot; object. Works across multiple patches. The signal from &quot;bus send&quot; objects later in execution order is delayed with one buffer (16 samples).</sDescription>
+      <author>Johannes Taelman</author>
+      <license>GPL</license>
+      <helpPatch>bus.axh</helpPatch>
+      <inlets/>
+      <outlets>
+         <frac32buffer.bipolar name="out" description=""/>
+      </outlets>
+      <displays/>
+      <params/>
+      <attribs>
+         <spinner name="bus" description="" MinValue="1" MaxValue="8" DefaultValue="1"/>
+      </attribs>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules>
+         <module>audiobus</module>
+      </modules>
+      <code.krate><![CDATA[const int32_t *d = audiobus_get(attr_bus-1);
+int i;
+for(i=0;i<BUFSIZE;i++){
+	outlet_out[i] = d[i];
+}]]></code.krate>
+   </obj.normal>
+</objdefs>

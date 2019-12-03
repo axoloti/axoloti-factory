@@ -1,0 +1,105 @@
+<patch appVersion="2.0.0">
+   <obj type="osc/sine" uuid="6e094045cca76a9dbf7ebfa72e44e4700d2b3ba" name="sine_1" x="14" y="14">
+      <params>
+         <frac32.s.map name="pitch" value="14.229999999999993">
+            <modulators/>
+            <presets/>
+         </frac32.s.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_1" x="126" y="14">
+      <params>
+         <frac32.u.map name="amp" value="64.0">
+            <modulators/>
+            <presets/>
+         </frac32.u.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="patch/bus_mix" uuid="97a4b352-be57-4eb8-bc6d-92bba8257e35" name="bus_send_1" x="238" y="14">
+      <params/>
+      <attribs>
+         <spinner attributeName="bus" value="1"/>
+      </attribs>
+   </obj>
+   <obj type="osc/sine" uuid="6e094045cca76a9dbf7ebfa72e44e4700d2b3ba" name="sine_2" x="14" y="140">
+      <params>
+         <frac32.s.map name="pitch" value="26.239999999999995">
+            <modulators/>
+            <presets/>
+         </frac32.s.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_2" x="126" y="140">
+      <params>
+         <frac32.u.map name="amp" value="64.0">
+            <modulators/>
+            <presets/>
+         </frac32.u.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="patch/bus_mix" uuid="97a4b352-be57-4eb8-bc6d-92bba8257e35" name="bus_send_2" x="238" y="140">
+      <params/>
+      <attribs>
+         <spinner attributeName="bus" value="1"/>
+      </attribs>
+   </obj>
+   <obj type="patch/bus_rcv" uuid="b2b0d7f6-fc02-4034-aa81-3fb5848253ea" name="object_1" x="14" y="266">
+      <params/>
+      <attribs>
+         <spinner attributeName="bus" value="1"/>
+      </attribs>
+   </obj>
+   <obj type="math/*c" uuid="7a66f52a9594e7e9eb31328ea725cb3641a80b55" name="*c_3" x="112" y="266">
+      <params>
+         <frac32.u.map name="amp" value="32.0">
+            <modulators/>
+            <presets/>
+         </frac32.u.map>
+      </params>
+      <attribs/>
+   </obj>
+   <obj type="disp/scope 128 b" uuid="2b69f51a714fc276503ef10c349d6d253d1ae5e2" name="scope_1" x="224" y="266">
+      <params/>
+      <attribs/>
+   </obj>
+   <nets>
+      <net>
+         <source obj="sine_1" outlet="wave"/>
+         <dest obj="*c_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="sine_2" outlet="wave"/>
+         <dest obj="*c_2" inlet="in"/>
+      </net>
+      <net>
+         <source obj="*c_2" outlet="out"/>
+         <dest obj="bus_send_2" inlet="in"/>
+      </net>
+      <net>
+         <source obj="object_1" outlet="out"/>
+         <dest obj="*c_3" inlet="in"/>
+      </net>
+      <net>
+         <source obj="*c_3" outlet="out"/>
+         <dest obj="scope_1" inlet="in"/>
+      </net>
+      <net>
+         <source obj="*c_1" outlet="out"/>
+         <dest obj="bus_send_1" inlet="in"/>
+      </net>
+   </nets>
+   <settings>
+      <subpatchmode>no</subpatchmode>
+   </settings>
+   <notes><![CDATA[]]></notes>
+   <windowPos>
+      <x>308</x>
+      <y>106</y>
+      <width>439</width>
+      <height>593</height>
+   </windowPos>
+</patch>
