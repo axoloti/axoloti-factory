@@ -24,24 +24,28 @@
 #define TSF_SQRT    sqrtf
 #define TSF_SQRTF   sqrtf
 
-void *my_malloc(int sz) {
-	void *d = ax_malloc(sz, mem_type_hint_large);
+static void *my_malloc(int sz) {
+	void *d;
+	if (sz < 1024) {
+		d = ax_malloc(sz, (mem_type_flags_t)0);
+	} else {
+		d = ax_malloc(sz, mem_type_hint_large);
+	}
 	// LogTextMessage("TSF: alloc %d", sz);
 	return d;
 }
 
-void my_free(void *ptr) {
-	if (ptr) {
-		ax_free(ptr);
-	}
+static void my_free(void *ptr) {
+	ax_free(ptr);
 }
 
-void *my_realloc(void *ptr, size_t newLength) {
-	LogTextMessage("TSF: insufficient voices, going to crash!");
+static void *my_realloc(void *ptr, size_t newLength) {
+	LogTextMessage("TSF: my_realloc, going to crash!");
 	chThdSleepMilliseconds(50);
 	return 0;
 }
 
+// TODO: fix precision issues?
 #define double float
 
 #include "tsf.h"
@@ -50,20 +54,20 @@ using namespace tinysoundfont;
 
 class C_tinysoundfont_impl : public C_tinysoundfont {
 public:
-	C_tinysoundfont_impl(const char *filename);
+	C_tinysoundfont_impl(const char *filename, int voices);
 	virtual ~C_tinysoundfont_impl();
     virtual void render_float(float* out_stereo, size_t size);
     virtual void process_midi(midi_message_t midi_message);
-private:
     tsf* tsf_;
 };
 
-C_tinysoundfont_impl::C_tinysoundfont_impl(const char *filename) {
+C_tinysoundfont_impl::C_tinysoundfont_impl(const char *filename, int voices) {
 	int size;
 	void* buffer;
 	FIL fil;
 	UINT br;
 	FRESULT fresult;
+	tsf_ = 0;
 	fresult = f_open (&fil, filename, FA_READ | FA_OPEN_EXISTING);
 	if (fresult!=FR_OK) {
 		LogTextMessage("TSF: open failed");
@@ -94,7 +98,7 @@ C_tinysoundfont_impl::C_tinysoundfont_impl(const char *filename) {
 	// TODO: load by streaming via fatfs
 	tsf_ = tsf_load_memory(buffer, size);
 	ax_free(buffer);
-	tsf_->voiceNum = 10;
+	tsf_->voiceNum = voices;
 	tsf_->voices = (struct tsf_voice*)ax_malloc(tsf_->voiceNum * sizeof(struct tsf_voice), (mem_type_flags_t)0);
 	TSF_MEMSET(tsf_->voices, 0, tsf_->voiceNum * sizeof(struct tsf_voice));
 	int i;
@@ -121,7 +125,7 @@ void C_tinysoundfont_impl::process_midi(midi_message_t midi_message) {
 	uint8_t data1 = midiMessageGetB1(midi_message);
 	uint8_t data2 = midiMessageGetB2(midi_message);
 //	LogTextMessage("m %2x %2x %2x", status,data1,data2);
-	uint8_t chan = 1 + (status & 0x0F);
+	uint8_t chan = status & 0x0F;
 	if ((status & 0x0F0) == MIDI_NOTE_ON) {
 		if (data2>0) {
 //			LogTextMessage("on %d", data1);
@@ -140,8 +144,12 @@ void C_tinysoundfont_impl::process_midi(midi_message_t midi_message) {
 }
 
 extern "C"
-tinysoundfont::C_tinysoundfont * tinysoundfont_factory(const char *filename) {
+tinysoundfont::C_tinysoundfont * tinysoundfont_factory(const char *filename, int voices) {
     void *objdata = ax_malloc(sizeof(C_tinysoundfont_impl), (mem_type_flags_t)0);
     if (objdata == 0) return 0;
-    return new (objdata) C_tinysoundfont_impl(filename);
+    C_tinysoundfont_impl * o = new (objdata) C_tinysoundfont_impl(filename, voices);
+    if (!o->tsf_) {
+    	return 0;
+    }
+    return o;
 }

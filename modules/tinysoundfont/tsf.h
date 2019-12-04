@@ -1265,8 +1265,6 @@ TSFDEF void tsf_note_on(tsf* f, int preset_index, int key, float vel)
 	voicePlayIndex = f->voicePlayIndex++;
 	for (region = f->presets[preset_index].regions, regionEnd = region + f->presets[preset_index].regionNum; region != regionEnd; region++)
 	{
-//		  asm("BKPT 255");
-
 		struct tsf_voice *voice, *v, *vEnd; TSF_BOOL doLoop; float filterQDB;
 		if (key < region->lokey || key > region->hikey || midiVelocity < region->lovel || midiVelocity > region->hivel) continue;
 
@@ -1281,12 +1279,22 @@ TSFDEF void tsf_note_on(tsf* f, int preset_index, int key, float vel)
 
 		if (!voice)
 		{
-			  asm("BKPT 255");
-
-			f->voiceNum += 4;
-			f->voices = (struct tsf_voice*)TSF_REALLOC(f->voices, f->voiceNum * sizeof(struct tsf_voice));
-			voice = &f->voices[f->voiceNum - 4];
-			voice[1].playingPreset = voice[2].playingPreset = voice[3].playingPreset = -1;
+			// steal oldest note...
+			v = f->voices;
+			voice = v;
+			vEnd = v + f->voiceNum;
+			int playIndex = v->playIndex;
+			for (; v != vEnd; v++) {
+				if (playIndex > v->playIndex) {
+					playIndex = v->playIndex;
+					voice = v;
+				}
+			}
+			// allocate extra voices
+//			f->voiceNum += 4;
+//			f->voices = (struct tsf_voice*)TSF_REALLOC(f->voices, f->voiceNum * sizeof(struct tsf_voice));
+//			voice = &f->voices[f->voiceNum - 4];
+//			voice[1].playingPreset = voice[2].playingPreset = voice[3].playingPreset = -1;
 		}
 
 		voice->region = region;
@@ -1306,7 +1314,6 @@ TSFDEF void tsf_note_on(tsf* f, int preset_index, int key, float vel)
 			voice->panFactorLeft  = TSF_SQRTF(0.5f - region->pan);
 			voice->panFactorRight = TSF_SQRTF(0.5f + region->pan);
 		}
-//		  asm("BKPT 255");
 
 		// Offset/end.
 		voice->sourceSamplePosition = region->offset;

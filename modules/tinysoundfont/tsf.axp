@@ -1,11 +1,12 @@
 <patch appVersion="2.0.0">
-   <comment type="patch/comment" name="0" x="28" y="14" text="work in progres..."/>
-   <comment type="patch/comment" name="1" x="28" y="28" text="crashes when voices are exhausted (needs voice stealing algo)"/>
-   <comment type="patch/comment" name="2" x="28" y="42" text="todo: implement midi controllers"/>
+   <comment type="patch/comment" name="3" x="28" y="14" text="work in progres..."/>
+   <comment type="patch/comment" name="5" x="28" y="28" text="todo: implement midi controllers"/>
+   <comment type="patch/comment" name="6" x="28" y="42" text="todo: optimize"/>
    <patchobj type="patch/object" uuid="f474595a-14ef-4ec8-be2d-1106e854d360" name="object_1" x="28" y="70">
       <params/>
       <attribs>
-         <file attributeName="sf2_file" file="florestan-subset.sf2"/>
+         <file attributeName="sf2file" file="/florestan-subset.sf2"/>
+         <spinner attributeName="voices" value="3"/>
       </attribs>
       <object id="patch/object" uuid="f474595a-14ef-4ec8-be2d-1106e854d360">
          <inlets/>
@@ -16,7 +17,8 @@
          <displays/>
          <params/>
          <attribs>
-            <file name="sf2_file" description="soundfont2 file"/>
+            <file name="sf2file" description="soundfont2 file"/>
+            <spinner name="voices" description="" MinValue="1" MaxValue="10" DefaultValue="4"/>
          </attribs>
          <file-depends/>
          <includes/>
@@ -25,7 +27,7 @@
             <module>tinysoundfont</module>
          </modules>
          <code.declaration><![CDATA[tinysoundfont::C_tinysoundfont *tsf;]]></code.declaration>
-         <code.init><![CDATA[tsf = tinysoundfont_factory("attr_sf2_file");
+         <code.init><![CDATA[tsf = tinysoundfont_factory("attr_sf2file", attr_voices);
 //florestan-subset.sf2
 if (!tsf) return -1;]]></code.init>
          <code.dispose><![CDATA[]]></code.dispose>
@@ -47,7 +49,7 @@ for(i=0;i<BUFSIZE;i++) {
       <params/>
       <attribs/>
    </obj>
-   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="28" y="168">
+   <obj type="audio/out stereo" uuid="a1ca7a567f535acc21055669829101d3ee7f0189" name="out_1" x="28" y="182">
       <params/>
       <attribs/>
    </obj>
@@ -69,7 +71,7 @@ for(i=0;i<BUFSIZE;i++) {
    <windowPos>
       <x>678</x>
       <y>277</y>
-      <width>534</width>
-      <height>500</height>
+      <width>460</width>
+      <height>413</height>
    </windowPos>
 </patch>

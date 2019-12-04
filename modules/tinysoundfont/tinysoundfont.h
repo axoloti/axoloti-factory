@@ -15,5 +15,5 @@ public:
 }
 
 extern "C" {
-tinysoundfont::C_tinysoundfont * tinysoundfont_factory(const char *filename);
+tinysoundfont::C_tinysoundfont * tinysoundfont_factory(const char *filename, int voices);
 }

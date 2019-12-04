@@ -27,7 +27,7 @@ CCFLAGS += -ggdb3 \
 	-fno-math-errno \
 	-fno-threadsafe-statics \
 	-fno-use-cxa-atexit \
-	-Os
+	-O2
 
 LDFLAGS += \
 	-Wl,-Ur \
