@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="led1" uuid="c6679540460d64e2e71760e61cb82fac227e2764" sha="52567d6da1edf8d777dd9c850ab30dc561d7909d">
       <upgradeSha>207fa3ece7974cc257f3963fc6118490d3dceaee</upgradeSha>
       <sDescription>controls LED1 (green) on the board</sDescription>
@@ -12,8 +12,12 @@
       <displays/>
       <params/>
       <attribs/>
-      <code.init><![CDATA[   sysmon_disable_blinker();
-   palSetPadMode(LED1_PORT,LED1_PIN,PAL_MODE_OUTPUT_PUSHPULL);]]></code.init>
-      <code.krate><![CDATA[   palWritePad(LED1_PORT,LED1_PIN,(inlet_in>0));]]></code.krate>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
+      <code.init><![CDATA[enableUserLeds(1);]]></code.init>
+      <code.dispose><![CDATA[enableUserLeds(0);]]></code.dispose>
+      <code.krate><![CDATA[writeLed(1,(inlet_in>0));]]></code.krate>
    </obj.normal>
 </objdefs>

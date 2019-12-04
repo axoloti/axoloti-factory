@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="button1" uuid="2f4fbacf3969a3a1ff9d23899566430051cb01f" sha="2d8a8388aa8ae748ba64967dc22e268e11146941">
       <upgradeSha>7ddf50cad2f2a3bf69b838f383794c2d6a9d81ea</upgradeSha>
       <sDescription>button S1 on axoloti core board</sDescription>
@@ -12,7 +12,10 @@
       <displays/>
       <params/>
       <attribs/>
-      <code.init><![CDATA[palSetPadMode(SW1_PORT,SW1_PIN,PAL_MODE_INPUT);]]></code.init>
-      <code.krate><![CDATA[outlet_out= palReadPad(SW1_PORT,SW1_PIN);]]></code.krate>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
+      <code.krate><![CDATA[outlet_out= readButton(1);]]></code.krate>
    </obj.normal>
 </objdefs>
