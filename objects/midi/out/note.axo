@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="note" uuid="a76ae870da278cbbce5501a57ce7bd0e0ea4215c" sha="30f60759a7391e48e5c23608906d46ce3c44df8c">
       <upgradeSha>ddd6201b4f86d0de5de18ebbe51b813c965de9a</upgradeSha>
       <sDescription>Midi note output</sDescription>
@@ -17,15 +17,17 @@
          <midiOutPort name="port" description=""/>
          <spinner name="channel" MinValue="1" MaxValue="16" DefaultValue="0"/>
       </attribs>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
       <code.declaration><![CDATA[int ntrig;
 int lastnote;]]></code.declaration>
-      <code.init><![CDATA[ntrig=0;
-]]></code.init>
+      <code.init><![CDATA[ntrig=0;]]></code.init>
       <code.krate><![CDATA[if ((inlet_trig>0) && !ntrig) {
 lastnote = (64+(inlet_note>>21))&0x7F;
-MidiSend3((midi_device_t) attr_device, MIDI_NOTE_ON + (attr_channel-1),lastnote,inlet_velo>>20);  ntrig=1;
+midiSend3(attr_port, MIDI_NOTE_ON + (attr_channel-1),lastnote,inlet_velo>>20);  ntrig=1;
 }
-if (!(inlet_trig>0) && ntrig) {MidiSend3((midi_device_t) attr_device, MIDI_NOTE_OFF + (attr_channel-1),lastnote,__USAT(inlet_velo>>20,7)); ntrig=0;}
-]]></code.krate>
+if (!(inlet_trig>0) && ntrig) {midiSend3(attr_port, MIDI_NOTE_OFF + (attr_channel-1),lastnote,__USAT(inlet_velo>>20,7)); ntrig=0;}]]></code.krate>
    </obj.normal>
 </objdefs>
