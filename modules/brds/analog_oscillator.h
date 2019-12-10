@@ -154,7 +154,7 @@ class AnalogOscillator {
   
   static RenderFn fn_table_[];
   
-  DISALLOW_COPY_AND_ASSIGN(AnalogOscillator);
+  // DISALLOW_COPY_AND_ASSIGN(AnalogOscillator);
 };
 
 }  // namespace braids
