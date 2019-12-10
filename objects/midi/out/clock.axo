@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="clock" uuid="12b916e835bb6fc9fa4f2c858d1d1a72d5cf6d08" sha="b1a8f7267317fa583225dc218f285fe306220d1b">
       <upgradeSha>2e1ff23ac85034ded776c411284443b01ea9cd80</upgradeSha>
       <sDescription>Midi clock master, als outputs Midi clock, start, stop, and continue messages</sDescription>
@@ -16,16 +16,21 @@
       </outlets>
       <displays/>
       <params>
-         <frac32.u.map name="bpm" noLabel="true"/>
+         <frac32.u.map name="bpm" noLabel="true">
+            <DefaultValue v="0.0"/>
+         </frac32.u.map>
       </params>
       <attribs>
          <midiOutPort name="port" description=""/>
       </attribs>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
       <code.declaration><![CDATA[bool _active;
 int32_t _posfrac;
 int32_t _pos24ppq;
-bool rstp;
-]]></code.declaration>
+bool rstp;]]></code.declaration>
       <code.init><![CDATA[_active = 0;
 _posfrac = 0;
 _pos24ppq = 0;
@@ -40,25 +45,24 @@ rstp = 0;]]></code.init>
 if (inlet_run && !_active) {
   _active = 1;
   if (_pos24ppq) {
-    MidiSend1((midi_device_t) attr_device, MIDI_CONTINUE);
+    midiSend1(attr_port, MIDI_CONTINUE);
   } else {
-    MidiSend1((midi_device_t) attr_device, MIDI_START);
-    MidiSend1((midi_device_t) attr_device, MIDI_TIMING_CLOCK);
+    midiSend1(attr_port, MIDI_START);
+    midiSend1(attr_port, MIDI_TIMING_CLOCK);
   }
 } else if (!inlet_run && _active){
   _active = 0;
-  MidiSend1((midi_device_t) attr_device, MIDI_STOP);
+  midiSend1(attr_port, MIDI_STOP);
 }if (_active) {
   _posfrac += param_bpm;
   if (_posfrac & 1<<31) {
     _posfrac &= (1<<31)-1;
     _pos24ppq++;
-    MidiSend1((midi_device_t) attr_device,MIDI_TIMING_CLOCK);
+    midiSend1(attr_port, MIDI_TIMING_CLOCK);
   }
 }
 outlet_pos4ppq = _pos24ppq/6;
 outlet_pos24ppq = _pos24ppq;
-outlet_active = _active;
-]]></code.krate>
+outlet_active = _active;]]></code.krate>
    </obj.normal>
 </objdefs>

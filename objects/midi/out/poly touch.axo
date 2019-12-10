@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="poly touch" uuid="fb4c2001825998e40f10aa83b3bfb0c6f7eff615" sha="13c77ca550c5f2381a0ca4eb2a2c0174a8b22a90">
       <upgradeSha>a4f81fda595aaa63dc52ff16cb656d4e11d1c514</upgradeSha>
       <sDescription>Midi poly pressure output</sDescription>
@@ -17,15 +17,17 @@
          <midiOutPort name="port" description=""/>
          <spinner name="channel" MinValue="1" MaxValue="16" DefaultValue="0"/>
       </attribs>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
       <code.declaration><![CDATA[int ntrig;
 int note;]]></code.declaration>
-      <code.init><![CDATA[note=0;ntrig=0;
-]]></code.init>
+      <code.init><![CDATA[note=0;ntrig=0;]]></code.init>
       <code.krate><![CDATA[if ((inlet_trig>0) && !ntrig) {
 note = (64+(inlet_note>>21))&0x7F;
-MidiSend3((midi_device_t) attr_device, MIDI_POLY_PRESSURE + (attr_channel-1),note,inlet_pressure>>20);  ntrig=1;
+midiSend3(attr_port, MIDI_POLY_PRESSURE + (attr_channel-1),note,inlet_pressure>>20);  ntrig=1;
 }
-if (!(inlet_trig>0) && ntrig) {ntrig=0;}
-]]></code.krate>
+if (!(inlet_trig>0) && ntrig) {ntrig=0;}]]></code.krate>
    </obj.normal>
 </objdefs>

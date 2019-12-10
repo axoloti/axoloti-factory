@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="channel touch" uuid="3b67cccd6c7e3b9b1c4815665f522bed48105de5" sha="9416823ae1a83f34cc6de312b141ead1d4f446c6">
       <upgradeSha>1ee755d24fd3ae5ba11cc459a57bdb3ae40784b0</upgradeSha>
       <sDescription>Midi channel pressure output</sDescription>
@@ -16,14 +16,16 @@
          <midiOutPort name="port" description=""/>
          <spinner name="channel" MinValue="1" MaxValue="16" DefaultValue="0"/>
       </attribs>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
       <code.declaration><![CDATA[int ntrig;
 int note;]]></code.declaration>
-      <code.init><![CDATA[note=0;ntrig=0;
-]]></code.init>
+      <code.init><![CDATA[note=0;ntrig=0;]]></code.init>
       <code.krate><![CDATA[if ((inlet_trig>0) && !ntrig) {
-MidiSend2((midi_device_t) attr_device, MIDI_CHANNEL_PRESSURE + (attr_channel-1),inlet_pressure>>20);  ntrig=1;
+midiSend2(attr_port, MIDI_CHANNEL_PRESSURE + (attr_channel-1),inlet_pressure>>20);  ntrig=1;
 }
-if (!(inlet_trig>0) && ntrig) {ntrig=0;}
-]]></code.krate>
+if (!(inlet_trig>0) && ntrig) {ntrig=0;}]]></code.krate>
    </obj.normal>
 </objdefs>

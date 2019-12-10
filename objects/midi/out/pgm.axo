@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="pgm" uuid="c2132a9daa2f3d70629754593838e5e921f42ef1" sha="855f347f9e87755982c0ee4445ea195d172960b2">
       <upgradeSha>fd2f4c0087509eedc956e403e6fda61c226e07b8</upgradeSha>
       <sDescription>Midi program change output</sDescription>
@@ -16,10 +16,12 @@
          <midiOutPort name="port" description=""/>
          <spinner name="channel" MinValue="1" MaxValue="16" DefaultValue="0"/>
       </attribs>
-      <code.declaration><![CDATA[int ntrig;
-]]></code.declaration>
-      <code.krate><![CDATA[if ((inlet_trig>0) && !ntrig) {MidiSend2((midi_device_t) attr_device , MIDI_PROGRAM_CHANGE + (attr_channel-1),inlet_pgm&0x7F); ntrig=1;}
-if (!(inlet_trig>0)) ntrig=0;
-]]></code.krate>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
+      <code.declaration><![CDATA[int ntrig;]]></code.declaration>
+      <code.krate><![CDATA[if ((inlet_trig>0) && !ntrig) {midiSend2(attr_port, MIDI_PROGRAM_CHANGE + (attr_channel-1),inlet_pgm&0x7F); ntrig=1;}
+if (!(inlet_trig>0)) ntrig=0;]]></code.krate>
    </obj.normal>
 </objdefs>

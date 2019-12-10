@@ -21,7 +21,7 @@
       <depends/>
       <modules/>
       <code.declaration><![CDATA[int ntrig;]]></code.declaration>
-      <code.krate><![CDATA[if ((inlet_trig>0) && !ntrig) {midiSend3(attr_device , MIDI_PITCH_BEND + (attr_channel-1),(inlet_bend>>14)&0x7F,(inlet_bend>>21)+64);  ntrig=1;}
+      <code.krate><![CDATA[if ((inlet_trig>0) && !ntrig) {midiSend3(attr_port , MIDI_PITCH_BEND + (attr_channel-1),(inlet_bend>>14)&0x7F,(inlet_bend>>21)+64);  ntrig=1;}
 if (!(inlet_trig>0)) ntrig=0;]]></code.krate>
    </obj.normal>
 </objdefs>
