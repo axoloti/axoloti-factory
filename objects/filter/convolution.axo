@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.10">
+<objdefs appVersion="2.0.0">
    <obj.normal id="convolution" uuid="016dcb48-364f-4196-95e8-fbb18fe4973b">
       <sDescription>Convolution - applies an impulse response as a filter to a signal.
 Table should contain the impulse response, and should be a &quot;table/alloc 16b&quot;, not the sdram type (for performance).
@@ -40,6 +40,10 @@ A 1024 sample impulse response results in 66% load!</sDescription>
          </combo>
          <spinner name="length" MinValue="16" MaxValue="1280" DefaultValue="512"/>
       </attribs>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
       <code.declaration><![CDATA[static const int length = attr_length;
 static const int pad = 16;
 int16_t circbuf[(length+pad) * 2];
@@ -75,23 +79,23 @@ for(i=0;i<BUFSIZE;){
 	int j = (length>>2);
 	if (j) do {
 		c0 = *(q31_t *)(coeffPtr--);
-		x2 = *(q31_t *)(statePtr--);
-		x3 = *(q31_t *)(statePtr--);
 		sum0  = __SMLALD(x0, c0, sum0); 
 		// sum0 = x0*c0 + x1*c1
 		sum1  = __SMLALD(x1, c0, sum1);
 		// sum1 = x1*c0 + x2*c1
+		x2 = *(q31_t *)(statePtr--);
+		x3 = *(q31_t *)(statePtr--);
 		sum2  = __SMLALD(x2, c0, sum2);
 		// sum2 = x2*c0 + x3*c1
 		sum3  = __SMLALD(x3, c0, sum3);
 		// sum3 = x3*c0 + x4*c1
 		c0 = *(q31_t *)(coeffPtr--);
-		x0 = *(q31_t *)(statePtr--);
-		x1 = *(q31_t *)(statePtr--);
 		sum0  = __SMLALD(x2, c0, sum0);
 		// sum0 = x0*c0 + x1*c1 + x2*c2 + x3*c3
 		sum1  = __SMLALD(x3, c0, sum1);
 		// sum1 = x1*c0 + x2*c1 + x3*c2 + x4*c3
+		x0 = *(q31_t *)(statePtr--);
+		x1 = *(q31_t *)(statePtr--);
 		sum2  = __SMLALD(x0, c0, sum2);
 		// sum2 = x2*c0 + x3*c1 + x4*c2 + x5*c3
 		sum3  = __SMLALD(x1, c0, sum3);
