@@ -1,8 +1,7 @@
-<objdefs appVersion="1.0.12">
+<objdefs appVersion="2.0.0">
    <obj.normal id="load i" uuid="b79124f5b7d1e8b39e187677ddab6260ce8c60a3">
       <sDescription>Stops current patch, and loads a patch from sdcard, selected by index in the patch bank file.
-If the index is out of range, the sdcard startup patch is loaded instead.
-</sDescription>
+If the index is out of range, the sdcard startup patch is loaded instead.</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
       <inlets>
@@ -13,14 +12,49 @@ If the index is out of range, the sdcard startup patch is loaded instead.
       <displays/>
       <params/>
       <attribs/>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
       <code.declaration><![CDATA[int ntrig;
-]]></code.declaration>
+
+int patch_index;
+
+static THD_FUNCTION(ThreadX, arg) {
+  patch_t * patch = 0;
+  while(1) {
+  	int s = chEvtWaitAnyTimeout(-1, 100000);
+  	if (s == 1) {
+  		if (patch) {
+			patch_stop(patch);
+  		}
+  		LogTextMessage("loading patch %d", *(int *)arg);
+		patch = patch_loadIndex(*(int *)arg, 0);
+		if (patch == 0) {
+  			LogTextMessage("loading patch failed");
+		}
+  	} else if (s==2) {
+  		if (patch) {
+			patch_stop(patch);
+  		}
+  		break;
+  	}
+  }
+}
+
+WORKING_AREA(waThreadX, 128);
+Thread *Thd;]]></code.declaration>
       <code.init><![CDATA[ntrig = 1;
-]]></code.init>
+Thd = chThdCreateStatic(waThreadX, sizeof(waThreadX),
+                    NORMALPRIO, ThreadX, (void *)&patch_index);]]></code.init>
+      <code.dispose><![CDATA[chEvtSignal(Thd,2);]]></code.dispose>
       <code.krate><![CDATA[if ((inlet_trig>0) && !ntrig) {
-        int i = inlet_i;
-        if (i<0) i=0;
-        LoadPatchIndexed(i); ntrig=1;}
-   else if (!(inlet_trig>0)) ntrig=0;]]></code.krate>
+	int i = inlet_i;
+	if (i<0) i=0;
+	patch_index = i;
+	chEvtSignal(Thd,1);
+	ntrig=1;
+}
+else if (!(inlet_trig>0)) ntrig=0;]]></code.krate>
    </obj.normal>
 </objdefs>
