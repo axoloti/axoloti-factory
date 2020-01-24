@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="2.0.0">
    <obj.normal id="pwm t8" uuid="3e491ae7-4200-4b96-95e7-cc42c168d0fd">
       <sDescription>PWM output using hardware timer 8
 at a fixed frequency of 97.65 Hz</sDescription>
@@ -12,6 +12,10 @@ at a fixed frequency of 97.65 Hz</sDescription>
       <displays/>
       <params/>
       <attribs/>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
       <code.init><![CDATA[static const PWMConfig pwmcfg = {400000, /* 400kHz PWM clock frequency.  */
 	4096, /* PWM period is 128 cycles.    */
 	NULL, 
@@ -25,7 +29,9 @@ at a fixed frequency of 97.65 Hz</sDescription>
 pwmStart(&PWMD8, &pwmcfg);
 palSetPadMode(GPIOA, 5, PAL_MODE_ALTERNATE(3));
 PWMD8.tim->CCER |= STM32_TIM_CCER_CC1NE | STM32_TIM_CCER_CC1NP;]]></code.init>
-      <code.dispose><![CDATA[pwmStop(&PWMD8);]]></code.dispose>
+      <code.dispose><![CDATA[pwmStop(&PWMD8);
+
+palSetPadMode(GPIOA, 5, PAL_MODE_INPUT_ANALOG);]]></code.dispose>
       <code.krate><![CDATA[pwmEnableChannel(&PWMD8, 0, (pwmcnt_t)(inlet_pa5>=0?inlet_pa5>>15:0));]]></code.krate>
    </obj.normal>
 </objdefs>

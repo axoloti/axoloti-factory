@@ -1,4 +1,4 @@
-<objdefs>
+<objdefs appVersion="2.0.0">
    <obj.normal id="analog" uuid="1c0c845ed2d7e06ae5f377ba13d9d09f4747ac87" sha="e3ff2158ab5c372cfc7d9dddc5d64d55cd90c257">
       <upgradeSha>7d96dca616c6a2c27e7cc6f57bd170d8ded36e1e</upgradeSha>
       <sDescription>Reads an external analog voltage. Voltage range 0 to 3.3V maps to 0..64, with 12-bit precision. Apply no more than 3.3V!</sDescription>
@@ -29,6 +29,7 @@
                <string>PC2 (ADC1_IN12)</string>
                <string>PC3 (ADC1_IN13)</string>
                <string>PC4 (ADC1_IN14)</string>
+               <string>PC5 (ADC1_IN15)</string>
             </MenuEntries>
             <CEntries>
                <string>0</string>
@@ -46,9 +47,14 @@
                <string>12</string>
                <string>13</string>
                <string>14</string>
+               <string>15</string>
             </CEntries>
          </combo>
       </attribs>
+      <file-depends/>
+      <includes/>
+      <depends/>
+      <modules/>
       <code.krate><![CDATA[outlet_out= adcvalues[attr_channel]<<15;]]></code.krate>
    </obj.normal>
 </objdefs>

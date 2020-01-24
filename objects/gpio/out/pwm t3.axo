@@ -1,4 +1,4 @@
-<objdefs appVersion="1.0.11">
+<objdefs appVersion="2.0.0">
    <obj.normal id="pwm t3" uuid="48d869d4-5d1e-4024-acf9-ac975c417216">
       <sDescription>PWM output using hardware timer 3
 at a fixed frequency of 97.65 Hz</sDescription>
@@ -15,9 +15,13 @@ at a fixed frequency of 97.65 Hz</sDescription>
       <displays/>
       <params/>
       <attribs/>
+      <file-depends/>
+      <includes/>
       <depends>
          <depend>PWMD3</depend>
+         <depend>PWMD3</depend>
       </depends>
+      <modules/>
       <code.init><![CDATA[static const PWMConfig pwmcfg = {400000, /* 400kHz PWM clock frequency.  */
 	4096, /* PWM period is 4096 cycles.    */
 	NULL, 
@@ -34,7 +38,12 @@ palSetPadMode(GPIOA, 6, PAL_MODE_ALTERNATE(2));
 palSetPadMode(GPIOA, 7, PAL_MODE_ALTERNATE(2));
 palSetPadMode(GPIOB, 0, PAL_MODE_ALTERNATE(2));
 palSetPadMode(GPIOB, 1, PAL_MODE_ALTERNATE(2));]]></code.init>
-      <code.dispose><![CDATA[pwmStop(&PWMD3);]]></code.dispose>
+      <code.dispose><![CDATA[pwmStop(&PWMD3);
+
+palSetPadMode(GPIOA, 6, PAL_MODE_INPUT_ANALOG);
+palSetPadMode(GPIOA, 7, PAL_MODE_INPUT_ANALOG);
+palSetPadMode(GPIOB, 0, PAL_MODE_INPUT_ANALOG);
+palSetPadMode(GPIOB, 1, PAL_MODE_INPUT_ANALOG);]]></code.dispose>
       <code.krate><![CDATA[pwmEnableChannel(&PWMD3, 0, (pwmcnt_t)(inlet_pa6>=0?inlet_pa6>>15:0));
 pwmEnableChannel(&PWMD3, 1, (pwmcnt_t)(inlet_pa7>=0?inlet_pa7>>15:0));
 pwmEnableChannel(&PWMD3, 2, (pwmcnt_t)(inlet_pb0>=0?inlet_pb0>>15:0));
