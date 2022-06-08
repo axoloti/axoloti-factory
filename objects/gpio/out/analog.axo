@@ -15,7 +15,7 @@
       <code.init><![CDATA[palSetPadMode(GPIOA, 4, PAL_MODE_INPUT_ANALOG);
 palSetPadMode(GPIOA, 5, PAL_MODE_INPUT_ANALOG);
 RCC->APB1ENR |= 0x20000000;
-DAC->CR |= 0x00030003;
+DAC->CR |= 0x00010001; /* DAC buffers are enabled by default, i.e. *setting* bits 1 and 17 means we're *disabling* them. This may lead to weak outputs even if external buffers are connected. */
 ]]></code.init>
       <code.dispose><![CDATA[DAC->CR = 0x0;
 RCC->APB1ENR &= ~0x20000000;
