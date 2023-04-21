@@ -27,10 +27,10 @@
                <string>PB7</string>
                <string>PB8</string>
                <string>PB9</string>
-               <string>PC0</string>
+               <!-- <string>PC0</string> Used for FMC on axo-427 -->
                <string>PC1</string>
-               <string>PC2</string>
-               <string>PC3</string>
+               <!-- <string>PC2</string> Used for FMC on axo-427 -->
+               <!-- <string>PC3</string> Used for FMC on axo-427 -->
                <string>PC4</string>
                <string>PC5</string>
             </MenuEntries>
@@ -49,10 +49,10 @@
                <string>GPIOB,7</string>
                <string>GPIOB,8</string>
                <string>GPIOB,9</string>
-               <string>GPIOC,0</string>
+               <!-- <string>GPIOC,0</string> Used for FMC on axo-427 -->
                <string>GPIOC,1</string>
-               <string>GPIOC,2</string>
-               <string>GPIOC,3</string>
+               <!-- <string>GPIOC,2</string> Used for FMC on axo-427 -->
+               <!-- <string>GPIOC,3</string> Used for FMC on axo-427 -->
                <string>GPIOC,4</string>
                <string>GPIOC,5</string>
             </CEntries>
