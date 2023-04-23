@@ -1,6 +1,5 @@
-<objdefs>
-   <obj.normal id="digital" uuid="320eed040f6c55bb24c56416596ac2e67d0c82bc" sha="865e8be3f5cda67286c22728b3d3a38cf6c8002d">
-      <upgradeSha>2f30b715e37909ba002025b878ae5a39554052c8</upgradeSha>
+<objdefs appVersion="1.0.12">
+   <obj.normal id="digital" uuid="320eed040f6c55bb24c56416596ac2e67d0c82bc">
       <sDescription>external digital output pin control</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
@@ -21,18 +20,30 @@
                <string>PA5</string>
                <string>PA6</string>
                <string>PA7</string>
+               <string>PA15</string>
                <string>PB0</string>
                <string>PB1</string>
+               <string>PB3</string>
+               <string>PB4</string>
                <string>PB6</string>
                <string>PB7</string>
                <string>PB8</string>
                <string>PB9</string>
-               <!-- <string>PC0</string> Used for FMC on axo-427 -->
                <string>PC1</string>
-               <!-- <string>PC2</string> Used for FMC on axo-427 -->
-               <!-- <string>PC3</string> Used for FMC on axo-427 -->
                <string>PC4</string>
                <string>PC5</string>
+               <string>PC8</string>
+               <string>PC9</string>
+               <string>PD4</string>
+               <string>PD5</string>
+               <string>PD6</string>
+               <string>PF6</string>
+               <string>PF7</string>
+               <string>PF8</string>
+               <string>PF9</string>
+               <string>PG10</string>
+               <string>PG11</string>
+               <string>PG12</string>
             </MenuEntries>
             <CEntries>
                <string>GPIOA,0</string>
@@ -43,24 +54,36 @@
                <string>GPIOA,5</string>
                <string>GPIOA,6</string>
                <string>GPIOA,7</string>
+               <string>GPIOA,15</string>
                <string>GPIOB,0</string>
                <string>GPIOB,1</string>
+               <string>GPIOB,3</string>
+               <string>GPIOB,4</string>
                <string>GPIOB,6</string>
                <string>GPIOB,7</string>
                <string>GPIOB,8</string>
                <string>GPIOB,9</string>
-               <!-- <string>GPIOC,0</string> Used for FMC on axo-427 -->
                <string>GPIOC,1</string>
-               <!-- <string>GPIOC,2</string> Used for FMC on axo-427 -->
-               <!-- <string>GPIOC,3</string> Used for FMC on axo-427 -->
                <string>GPIOC,4</string>
                <string>GPIOC,5</string>
+               <string>GPIOC,8</string>
+               <string>GPIOC,9</string>
+               <string>GPIOD,4</string>
+               <string>GPIOD,5</string>
+               <string>GPIOD,6</string>
+               <string>GPIOF,6</string>
+               <string>GPIOF,7</string>
+               <string>GPIOF,8</string>
+               <string>GPIOF,9</string>
+               <string>GPIOG,10</string>
+               <string>GPIOG,11</string>
+               <string>GPIOG,12</string>
             </CEntries>
          </combo>
          <combo name="mode">
             <MenuEntries>
-               <string>Push pull</string>
-               <string>Open drain</string>
+               <string>push-pull</string>
+               <string>open drain</string>
             </MenuEntries>
             <CEntries>
                <string>PAL_MODE_OUTPUT_PUSHPULL</string>
@@ -68,7 +91,7 @@
             </CEntries>
          </combo>
       </attribs>
-      <code.init><![CDATA[   palSetPadMode(attr_pad,attr_mode);]]></code.init>
-      <code.krate><![CDATA[   palWritePad(attr_pad,(inlet_in>0));]]></code.krate>
+      <code.init><![CDATA[palSetPadMode(attr_pad, attr_mode);]]></code.init>
+      <code.krate><![CDATA[palWritePad(attr_pad, (inlet_in > 0));]]></code.krate>
    </obj.normal>
 </objdefs>
