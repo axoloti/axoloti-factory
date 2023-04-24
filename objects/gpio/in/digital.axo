@@ -1,6 +1,6 @@
 <objdefs appVersion="1.0.12">
    <obj.normal id="digital" uuid="f59f139e8da912742832dc541157f20f30b7ac1b">
-      <sDescription>Reads a digital input pin. 3.3V logic maximum!</sDescription>
+      <sDescription>Reads a digital input pin. 3.3V logic maximum! Object edited for sebiik axo-427-core.</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
       <inlets/>
@@ -34,6 +34,7 @@
                <string>PC5</string>
                <string>PC8</string>
                <string>PC9</string>
+               <string>PD3</string>
                <string>PD4</string>
                <string>PD5</string>
                <string>PD6</string>
@@ -68,6 +69,7 @@
                <string>GPIOC,5</string>
                <string>GPIOC,8</string>
                <string>GPIOC,9</string>
+               <string>GPIOD,3</string>
                <string>GPIOD,4</string>
                <string>GPIOD,5</string>
                <string>GPIOD,6</string>
@@ -83,13 +85,13 @@
          <combo name="mode">
             <MenuEntries>
                <string>hi-z</string>
-               <string> pullup</string>
-               <string> pulldown</string>
+               <string>pullup</string>
+               <string>pulldown</string>
             </MenuEntries>
             <CEntries>
                <string>PAL_MODE_INPUT</string>
-               <string> PAL_MODE_INPUT_PULLUP</string>
-               <string> PAL_MODE_INPUT_PULLDOWN</string>
+               <string>PAL_MODE_INPUT_PULLUP</string>
+               <string>PAL_MODE_INPUT_PULLDOWN</string>
             </CEntries>
          </combo>
       </attribs>

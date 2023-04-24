@@ -1,6 +1,6 @@
 <objdefs appVersion="1.0.12">
    <obj.normal id="digital" uuid="320eed040f6c55bb24c56416596ac2e67d0c82bc">
-      <sDescription>external digital output pin control</sDescription>
+      <sDescription>External digital output pin control. Object edited for sebiik axo-427-core</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
       <inlets>
@@ -34,6 +34,7 @@
                <string>PC5</string>
                <string>PC8</string>
                <string>PC9</string>
+               <string>PD3</string>
                <string>PD4</string>
                <string>PD5</string>
                <string>PD6</string>
@@ -68,6 +69,7 @@
                <string>GPIOC,5</string>
                <string>GPIOC,8</string>
                <string>GPIOC,9</string>
+               <string>GPIOD,3</string>
                <string>GPIOD,4</string>
                <string>GPIOD,5</string>
                <string>GPIOD,6</string>
@@ -82,8 +84,8 @@
          </combo>
          <combo name="mode">
             <MenuEntries>
-               <string>push-pull</string>
-               <string>open drain</string>
+               <string>Push pull</string>
+               <string>Open drain</string>
             </MenuEntries>
             <CEntries>
                <string>PAL_MODE_OUTPUT_PUSHPULL</string>

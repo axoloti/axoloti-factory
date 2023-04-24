@@ -1,6 +1,6 @@
 <objdefs appVersion="1.0.12">
    <obj.normal id="analog" uuid="1c0c845ed2d7e06ae5f377ba13d9d09f4747ac87">
-      <sDescription>Reads an external analog voltage. Voltage range 0 to 3.3V maps to 0..64, with 12-bit precision. Apply no more than 3.3V!</sDescription>
+      <sDescription>Reads an external analog voltage. Voltage range 0 to 3.3V maps to 0..64, with 12-bit precision. Apply no more than 3.3V! Object edited for sebiik axo-427-core.</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
       <helpPatch>analog.axh</helpPatch>
@@ -25,11 +25,11 @@
                <string>PB1 (ADC1_IN9)</string>
                <string>PC1 (ADC1_IN11)</string>
                <string>PC4 (ADC1_IN14)</string>
-               <string> PC5 (ADC1_IN15)</string>
-               <string> PF6 (ADC3_IN4)</string>
-               <string> PF7 (ADC3_IN5)</string>
-               <string> PF8 (ADC3_IN6)</string>
-               <string> PF9 (ADC3_IN7)</string>
+               <string>PC5 (ADC1_IN15)</string>
+               <string>PF6 (ADC3_IN4)</string>
+               <string>PF7 (ADC3_IN5)</string>
+               <string>PF8 (ADC3_IN6)</string>
+               <string>PF9 (ADC3_IN7)</string>
             </MenuEntries>
             <CEntries>
                <string>0</string>
@@ -44,11 +44,11 @@
                <string>9</string>
                <string>10</string>
                <string>11</string>
-               <string> 12</string>
+               <string>12</string>
                <string>14</string>
-               <string> 15</string>
-               <string> 16</string>
-               <string> 17</string>
+               <string>15</string>
+               <string>16</string>
+               <string>17</string>
             </CEntries>
          </combo>
       </attribs>
