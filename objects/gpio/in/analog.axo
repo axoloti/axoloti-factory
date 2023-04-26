@@ -1,5 +1,5 @@
 <objdefs appVersion="1.0.12">
-   <obj.normal id="analog" uuid="1c0c845ed2d7e06ae5f377ba13d9d09f4747ac87">
+   <obj.normal id="analog" uuid="1c0c845ed2d7e06ae5f377ba13d9d09f4747ac88">
       <sDescription>Reads an external analog voltage. Voltage range 0 to 3.3V maps to 0..64, with 12-bit precision. Apply no more than 3.3V! Object edited for sebiik axo-427-core.</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>

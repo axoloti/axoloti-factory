@@ -1,5 +1,5 @@
 <objdefs appVersion="1.0.12">
-   <obj.normal id="digital" uuid="320eed040f6c55bb24c56416596ac2e67d0c82bc">
+   <obj.normal id="digital" uuid="320eed040f6c55bb24c56416596ac2e67d0c82bd">
       <sDescription>External digital output pin control. Object edited for sebiik axo-427-core</sDescription>
       <author>Johannes Taelman</author>
       <license>BSD</license>
