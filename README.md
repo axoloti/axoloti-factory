@@ -1,2 +1,2 @@
 # noloti-factory
-Axoloti factory objects branch for sebiiksbcs core board
+Axoloti factory objects branch for Noloti core board
