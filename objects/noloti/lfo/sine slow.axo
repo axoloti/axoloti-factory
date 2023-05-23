@@ -25,12 +25,12 @@
                <string>/32</string>
             </MenuEntries>
             <CEntries>
-               <string>0</string>
-               <string>1</string>
                <string>2</string>
                <string>3</string>
                <string>4</string>
                <string>5</string>
+               <string>6</string>
+               <string>7</string>
             </CEntries>
          </combo>
       </attribs>
@@ -38,7 +38,7 @@
       <code.init><![CDATA[Phase = 0;]]></code.init>
       <code.krate><![CDATA[{      int32_t freq;
       MTOFEXTENDED(param_pitch + inlet_pitch,freq);
-      Phase += freq>>(2+attr_divisor);
+      Phase += freq>>(attr_divisor);
       int32_t r;
       SINE2TINTERP(Phase,r)
       outlet_wave= (r>>4);
