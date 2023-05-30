@@ -1,6 +1,6 @@
 <objdefs appVersion="1.0.12">
    <obj.normal id="digital" uuid="f59f139e8da912742832dc541157f20f30b7ac1c">
-      <sDescription>Reads a digital input pin. 3.3V logic maximum! Object edited for sebiik axo-427-core.</sDescription>
+      <sDescription>Reads a digital input pin. 3.3V logic maximum! Object compatible with the Noloti board only!</sDescription>
       <author>Johannes Taelman, sebiik</author>
       <license>BSD</license>
       <inlets/>
@@ -29,9 +29,12 @@
                <string>PB7</string>
                <string>PB8</string>
                <string>PB9</string>
+               <string>PB12</string>
+               <string>PB13</string>
                <string>PC1</string>
                <string>PC4</string>
                <string>PC5</string>
+               <string>PC7</string>
                <string>PC8</string>
                <string>PC9</string>
                <string>PD3</string>
@@ -64,9 +67,12 @@
                <string>GPIOB,7</string>
                <string>GPIOB,8</string>
                <string>GPIOB,9</string>
+               <string>GPIOB,12</string>
+               <string>GPIOB,13</string>
                <string>GPIOC,1</string>
                <string>GPIOC,4</string>
                <string>GPIOC,5</string>
+               <string>GPIOC,7</string>
                <string>GPIOC,8</string>
                <string>GPIOC,9</string>
                <string>GPIOD,3</string>
