@@ -20,6 +20,7 @@
                <string>PA5</string>
                <string>PA6</string>
                <string>PA7</string>
+               <string>PA9</string>
                <string>PA15</string>
                <string>PB0</string>
                <string>PB1</string>
@@ -35,8 +36,6 @@
                <string>PC4</string>
                <string>PC5</string>
                <string>PC7</string>
-               <string>PC8</string>
-               <string>PC9</string>
                <string>PD3</string>
                <string>PD4</string>
                <string>PD5</string>
@@ -58,6 +57,7 @@
                <string>GPIOA,5</string>
                <string>GPIOA,6</string>
                <string>GPIOA,7</string>
+               <string>GPIOA,9</string>
                <string>GPIOA,15</string>
                <string>GPIOB,0</string>
                <string>GPIOB,1</string>
@@ -73,8 +73,6 @@
                <string>GPIOC,4</string>
                <string>GPIOC,5</string>
                <string>GPIOC,7</string>
-               <string>GPIOC,8</string>
-               <string>GPIOC,9</string>
                <string>GPIOD,3</string>
                <string>GPIOD,4</string>
                <string>GPIOD,5</string>
